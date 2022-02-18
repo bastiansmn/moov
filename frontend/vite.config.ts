@@ -9,5 +9,15 @@ export default defineConfig({
       '@': resolve(__dirname, 'src')
     }
   },
-  plugins: [vue()]
+  plugins: [vue()],
+  server: {
+    port: 4000,
+    proxy: {
+      "^\/api": {
+        target: "http://localhost:3000",
+        changeOrigin: false,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
 })

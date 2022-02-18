@@ -1,3 +1,46 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
+#app {
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+   transition: all .4s ease;
+}
+
+*::selection {
+   background-color: #7061E4;
+   color: #fff;
+}
+
+*, *::before, *::after {
+   box-sizing: border-box;
+}
+
+body {
+   position: relative;
+}
+
+*::-webkit-scrollbar {
+   width: 3px;
+	height: 3px;
+}
+
+
+*::-webkit-scrollbar-thumb {
+   background: #7061E4;
+}
+
+@keyframes translateXLTR {
+   from {
+      transform: translateX(-100%);
+   }
+   to {
+      transform: translateX(0);
+   }
+}
