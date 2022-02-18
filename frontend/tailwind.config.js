@@ -32,6 +32,12 @@ module.exports = {
     extend: {
       boxShadow: {
         'md': '0px 0px 8px rgba(0, 0, 0, 0.25)',
+      },
+      transitionTimingFunction: {
+        DEFAULT: 'ease-in-out',
+      },
+      transitionDuration: {
+        DEFAULT: '0.4s',
       }
     }
   },

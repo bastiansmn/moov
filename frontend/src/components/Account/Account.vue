@@ -32,8 +32,12 @@ export default defineComponent({
    ></div>
    <div
       :class="pannelVisible ? 'pannel active' : 'pannel'"
-      class="fixed inset-0 bg-white2 h-full max-w-[400px] flex items-center flex-col-reverse"
+      class="fixed inset-0 bg-white2 h-full max-w-[400px] p-6 flex items-center flex-col-reverse"
    >
+      <button @click="unshowAccount" class="close_pannel absolute top-6 right-6 w-[30px] aspect-square rounded hover:rounded-sm transition-[border-radius] bg-purple text-white2 font-bold text-md">
+         X
+      </button>
+
       <Connection />
    </div>
 </template>
@@ -55,10 +59,10 @@ export default defineComponent({
    transform: translate3d(-100%, 0, 0);
    transition: transform 0.2s;
 
-   box-shadow: 1px 0px 5px 2px rgba(0, 0, 0, 0.25);
 
    &.active {
-      transform: translate3d(0, 0, 0);
+      box-shadow: 1px 0px 5px 2px rgba(0, 0, 0, 0.25);
+      transform: translate3d(0, 0, 0); 
       transition: transform 0.5s;
    }
 }

@@ -38,7 +38,7 @@ export default defineComponent({
 </script>
 
 <template>
-   <div class="Connection w-[80%] mb-7">
+   <div class="Connection w-full">
       <div class="text mb-10">
          <h1>
             Votre compte :
@@ -59,7 +59,7 @@ export default defineComponent({
                <Input required type="password" shadow placeholder="Confirmez votre mot de passe" />
                <input type="submit" value="register" hidden>
             </form>
-            <button @click="toggleForm('register')" class="toggle-register">
+            <button @click="toggleForm('register')" class="toggle-register w-full h-[42px] text-white font-bold outline-none transition-[transform]">
                S'incrire
             </button>
          </div>
@@ -70,7 +70,7 @@ export default defineComponent({
                <a href="" class="text-light-grey font-light underline self-end hover:text-white ">Mot de passe oublié</a>
                <input type="submit" value="login" hidden>
             </form>
-            <button @click="toggleForm('login')" class="toggle-login">
+            <button @click="toggleForm('login')" class="toggle-login w-full h-[42px] text-white font-bold outline-none transition-[transform]">
                Se connecter
             </button>
          </div>
@@ -103,20 +103,21 @@ p {
    overflow: hidden;
 
    &:not(.active) > form {
-      display: none;
       height: 0;
       padding: 0;
+      overflow: hidden;
    }
 
    &.active > form {
-      display: inline;
-      animation: fadeIn 1.5s ease-in-out forwards;
-      padding: 20px 20px 0 20px;
+      padding: 10px 10px 0 10px;
+      height: fit-content;
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
+      
+      overflow: hidden;
 
       & > *:not(a) {
          width: 100%;
@@ -129,15 +130,6 @@ p {
 
    &.active > button:hover {
       transform: scale(1.1);
-   }
-
-   & > button {
-      cursor: pointer;
-      width: 100%;
-      height: 42px;
-      color: white;
-      font-weight: bold;
-      outline: none;
    }
 }
 </style>
