@@ -1,0 +1,3 @@
+-- TODO
+DROP DATABASE moov ;
+CREATE DATABASE moov ;

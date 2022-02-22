@@ -34,6 +34,9 @@ export default defineComponent({
          login,
       }
    }
+
+   // TODO : Lier les connections/inscriptions au backend -> Enregistrer les infos nécessaires dans le store/localStorage
+   // TODO : Faire un component "alertBox" qui affiche les messages erreurs/succès (couleur selon code HTTP)
 })
 </script>
 
