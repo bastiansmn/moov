@@ -1,7 +1,7 @@
 const db = require("../model/index");
 const User = db.user;
 
-checkUsernameAndEmail = (req, res, next) => {
+validateEmailAndUsername = (req, res, next) => {
    if (!req.body.username || !req.body.email) {
       res.status(400).send({
          message: "Veuillez renseigner un nom d'utilisateur et un email"
@@ -49,7 +49,7 @@ checkUsernameAndEmail = (req, res, next) => {
    });
 };
 
-checkPassword = (req, res, next) => {
+validatePassword = (req, res, next) => {
    if (!req.body.password) {
       res.status(400).send({
          message: "Veuillez renseigner un mot de passe"
@@ -111,9 +111,9 @@ isAdmin = (req, res, next) => {
 };
 
 module.exports = {
-   checkUsernameAndEmail,
+   validateEmailAndUsername,
+   validatePassword,
    checkRole,
    isAdmin,
-   roleExist,
-   checkPassword
+   roleExist
 }

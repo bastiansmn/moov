@@ -3,6 +3,7 @@ import { ref } from 'vue';
 
 import Header from '@/components/Header.vue';
 import Account from '@/components/Account/Account.vue';
+import Notification from '@/components/common/Notification.vue';
 </script>
 
 <template>
@@ -13,4 +14,6 @@ import Account from '@/components/Account/Account.vue';
   <div style="height: 300vh;">
 
   </div>
+
+  <Notification />
 </template>

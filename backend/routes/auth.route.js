@@ -18,11 +18,17 @@ module.exports = (app) => {
       "/auth/signup",
       [
          bodytrim.applyToBody(strTrim),
-         verifyLog.checkUsernameAndEmail,
+         verifyLog.validateEmailAndUsername,
+         verifyLog.validatePassword,
          verifyLog.roleExist,
-         verifyLog.checkPassword
       ],
       controller.signup
    );
-   app.post("/auth/signin", controller.signin);
+   app.post(
+      "/auth/signin", 
+      [ 
+         bodytrim.applyToBody(strTrim)
+      ], 
+      controller.signin
+   );
 };

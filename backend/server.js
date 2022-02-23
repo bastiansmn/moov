@@ -28,10 +28,4 @@ db.sequelize.sync()
 //    });
 // });
 
-app.get("/", (_req, res) => {
-   res.send({
-      message: "Hello World"
-   })
-});
-
 app.listen(process.env.PORT || 3000);

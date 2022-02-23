@@ -19,7 +19,13 @@ export default defineComponent({
          type: String,
          default: "text"
       },
-      required: Boolean
+      required: {
+         type: Boolean,
+         default: false,
+      },
+      name: {
+         type: String,
+      }
    },
    setup(props) {
       return {
@@ -31,7 +37,7 @@ export default defineComponent({
 
 <template>
    <div class="search relative rounded w-[300px] min-h-[42px] bg-white flex items-center justify-between overflow-hidden" :class="props.shadow ? 'shadow' : ''">
-      <input :required="required" :type="props.type" :placeholder="props.placeholder" autocomplete="off" spellcheck="false" class="outline-none w-full h-full rounded pl-[8px]  text-dark-grey">    
+      <input :name="name" :required="required" :type="props.type" :placeholder="props.placeholder" autocomplete="off" spellcheck="false" class="outline-none w-full h-full rounded pl-[8px]  text-dark-grey">    
       <span class="absolute bottom-0 h-[3px] transition-[width]" :style="`background: ${props.color}`"></span>
       <slot>
          <!-- Icon goes here if present -->

@@ -3,7 +3,7 @@ applyToBody = (fun) => {
       if (typeof obj === "string") {
          return fun(obj);
       }
-      if (Array.isArray(obj)) {
+      if (obj instanceof Array) {
          return obj.map(e => apply(e));
       }
       if (typeof obj === "object") {

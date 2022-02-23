@@ -7,6 +7,7 @@
 #app {
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
+   position: relative;
 }
 
 *::selection {
@@ -38,5 +39,14 @@ body {
    }
    to {
       transform: translateX(0);
+   }
+}
+
+@keyframes appearOp {
+   from {
+      opacity: 0;
+   }
+   to {
+      opacity: 1;
    }
 }

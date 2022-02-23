@@ -19,7 +19,11 @@ module.exports = {
       "black": "#000000",
       "glass-black": "rgba(0, 0, 0, 0.2)",
       "light-grey": "#C5C5C5",
-      "dark-grey": "#4D4D4D"
+      "dark-grey": "#4D4D4D",
+      "success": "#42f599",
+      "error": "#f54242",
+      "server-error": "#f5b342",
+      "info": "#42c3f5",
     },
     fontFamily: {
       sans: ['Palanquin', 'sans-serif']
