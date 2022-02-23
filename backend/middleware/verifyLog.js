@@ -49,6 +49,28 @@ checkUsernameAndEmail = (req, res, next) => {
    });
 };
 
+checkPassword = (req, res, next) => {
+   if (!req.body.password) {
+      res.status(400).send({
+         message: "Veuillez renseigner un mot de passe"
+      });
+      return;
+   }
+   if (req.body.password.length < 8 || req.body.password.length > 20) {
+      res.status(400).send({
+         message: "Le mot de passe doit contenir au moins 8 caractères et au plus 20 caractères"
+      });
+      return;
+   }
+   if (!req.body.password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)) {
+      res.status(400).send({
+         message: "Le mot de passe doit contenir uniquement des lettres et des chiffres"
+      });
+      return;
+   }
+   next();
+};
+
 checkRole = (req, res, next) => {
    if (!req.body.role) {
       res.status(400).send({
@@ -92,5 +114,6 @@ module.exports = {
    checkUsernameAndEmail,
    checkRole,
    isAdmin,
-   roleExist
+   roleExist,
+   checkPassword
 }

@@ -21,6 +21,9 @@ exports.signup = (req, res) => {
             authorities.push("ROLE_" + r.name.toUpperCase());
          });
       });
+      var token = jwt.sign({ user_uuid: user.user_uuid }, config.secret, {
+         expiresIn: 3600 * 24 * 31 // 1 Month
+      });
       if (req.body.roles) {
          Role.findAll({
             where: {
@@ -48,7 +51,7 @@ exports.signup = (req, res) => {
                user_uuid: user.user_uuid,
                username: user.username,
                email: user.email,
-               roles: authorities,
+               roles: ["ROLE_USER"],
                accessToken: token
             });
          });

@@ -18,22 +18,20 @@ require('./routes/auth.route')(app);
 
 const db = require("./model/index");
 db.sequelize.sync()
-.then(() => {
-   db.role.create({
-      name: "USER"
-   });
-
-   db.role.create({
-      name: "ADMIN"
-   });
-});
+// .then(() => {
+//    db.role.create({
+//       name: "USER"
+//    });
+//
+//    db.role.create({
+//       name: "ADMIN"
+//    });
+// });
 
 app.get("/", (_req, res) => {
    res.send({
       message: "Hello World"
    })
 });
-
-console.log(process.env.JWT_SECRET);
 
 app.listen(process.env.PORT || 3000);
