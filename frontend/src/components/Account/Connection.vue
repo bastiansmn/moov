@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref } from "vue";
+import { defineComponent, ref, onMounted } from "vue";
 
 import Input from '@/components/common/Input.vue';
 import { useSettingsStore } from '@/store/settings';
@@ -15,6 +15,16 @@ export default defineComponent({
 
       const loginForm = ref(null);
       const registerForm = ref(null);
+
+      const connectUser = (userInfos, userPreferences) => {
+         // Save user in store to provide repetitive requests
+         settingsStore.connectUser({
+            user_uuid: userInfos.user_uuid,
+            email: userInfos.email,
+            username: userInfos.username,
+            roles: userInfos.roles
+         }, userPreferences);
+      }
 
       const register = $event => {
          let form;
@@ -65,13 +75,17 @@ export default defineComponent({
             }).then(response => {
                const status = response.status;
                response.json().then(data => {
-                  console.log(data);
                   if (status >= 200 && status < 300) {
                      settingsStore.sendNotification({
                         code: 200,
                         message: "Inscription effecutée",
                      });
                      // TODO : ajouter le user au store ...
+                     connectUser(data, { 
+                        userRecommandations: data.userRecommandations,
+                        userEmailNotifications: data.userEmailNotifications,
+                        accessToken: data.accessToken,
+                     });
                      return;
                   }
                   settingsStore.sendNotification({
@@ -97,8 +111,6 @@ export default defineComponent({
                .filter(e => e.nodeName === "DIV")
                .filter(div => div.children[0]?.nodeName === "INPUT")
                .map(div => div.children[0]); // Get all the inputs
-
-            console.log(inputs);
             
 
             if (inputs.map(input => input.value).includes("")) {
@@ -128,12 +140,17 @@ export default defineComponent({
                const status = response.status;
                response.json().then(data => {
                   console.log(data);
+                  
                   if (status >= 200 && status < 300) {
                      settingsStore.sendNotification({
                         code: 200,
                         message: "Connexion effecutée",
                      });
-                     // TODO : ajouter le user au store ...
+                     connectUser(data, { 
+                        userRecommandations: data.userRecommandations,
+                        userEmailNotifications: data.userEmailNotifications,
+                        accessToken: data.accessToken,
+                     });
                      return;
                   }
                   settingsStore.sendNotification({
@@ -156,6 +173,11 @@ export default defineComponent({
                register();
                return;
             }
+         } else {
+            if (form === "login")       
+               loginForm.value.children[0].children[0].focus();
+            else
+               registerForm.value.children[0].children[0].focus();
          }
          currentForm.value = form;
          document.querySelectorAll(".forms > div").forEach(e => {
@@ -188,7 +210,7 @@ export default defineComponent({
             Votre compte :
          </h1>
          <p>
-            Vous n’êtes pas encore connectés. Le compte Moov vous permet d’enregistrer des évènements pour plus tard, d’avoir des recommendations personnalisées
+            Vous n’êtes pas encore connectés. Le compte Moov vous permet d’enregistrer des évènements pour plus tard, d’avoir des recommandations personnalisées
          </p>
          <p>
             Nous ne partageons, ni n’utilisons vos données ! Votre compte est strictement personnel et aucune information n’est partagée.
@@ -253,7 +275,8 @@ p {
    }
 
    &.active > form {
-      padding: 10px 10px 0 10px;
+      --padding: 12px;
+      padding: var(--padding) var(--padding) 0 var(--padding);
       height: fit-content;
       width: 100%;
       display: flex;

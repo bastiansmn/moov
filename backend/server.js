@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes :
 require('./routes/auth.route')(app);
+require('./routes/user.route')(app);
 
 const db = require("./model/index");
 db.sequelize.sync()
@@ -22,7 +23,7 @@ db.sequelize.sync()
 //    db.role.create({
 //       name: "USER"
 //    });
-//
+
 //    db.role.create({
 //       name: "ADMIN"
 //    });

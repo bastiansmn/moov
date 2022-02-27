@@ -18,7 +18,7 @@ exports.signup = (req, res) => {
       var authorities = [];
       user.getRoles().then(roles => {
          roles.forEach(r => {
-            authorities.push("ROLE_" + r.name.toUpperCase());
+            authorities.push(r.name.toUpperCase());
          });
       });
       var token = jwt.sign({ user_uuid: user.user_uuid }, config.secret, {
@@ -39,7 +39,9 @@ exports.signup = (req, res) => {
                   username: user.username,
                   email: user.email,
                   roles: authorities,
-                  accessToken: token
+                  accessToken: token,
+                  userEmailNotifications: user.emailNotificationEnabled,
+                  userRecommandations: user.recommandationsEnabled
                });
             });
          });
@@ -52,7 +54,9 @@ exports.signup = (req, res) => {
                username: user.username,
                email: user.email,
                roles: ["ROLE_USER"],
-               accessToken: token
+               accessToken: token,
+               userEmailNotifications: user.emailNotificationEnabled,
+               userRecommandations: user.recommandationsEnabled
             });
          });
       }
@@ -79,7 +83,7 @@ exports.signin = (req, res) => {
       if (!passwordIsValid) {
          return res.status(401).send({
             accessToken: null,
-            message: "Impossible de vous connecter"
+            message: "Le mot de passe est incorrect"
          });
       }
       var token = jwt.sign({ user_uuid: user.user_uuid }, config.secret, {
@@ -88,14 +92,16 @@ exports.signin = (req, res) => {
       var authorities = [];
       user.getRoles().then(roles => {
          roles.forEach(r => {
-            authorities.push("ROLE_" + r.name.toUpperCase());
+            authorities.push(r.name.toUpperCase());
          });
          res.status(200).send({
             user_uuid: user.user_uuid,
             username: user.username,
             email: user.email,
             roles: authorities,
-            accessToken: token
+            accessToken: token,
+            userEmailNotifications: user.emailNotificationEnabled,
+            userRecommandations: user.recommandationsEnabled
          });
       });
    }).catch(err => {

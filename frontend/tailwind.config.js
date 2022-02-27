@@ -20,7 +20,7 @@ module.exports = {
       "glass-black": "rgba(0, 0, 0, 0.2)",
       "light-grey": "#C5C5C5",
       "dark-grey": "#4D4D4D",
-      "success": "#42f599",
+      "success": "#12eb7c",
       "error": "#f54242",
       "server-error": "#f5b342",
       "info": "#42c3f5",
@@ -36,6 +36,7 @@ module.exports = {
     extend: {
       boxShadow: {
         'md': '0px 0px 8px rgba(0, 0, 0, 0.25)',
+        "sm": "0px 2px 5px -3px rgba(0, 0, 0, 0.25);"
       },
       transitionTimingFunction: {
         DEFAULT: 'ease-in-out',

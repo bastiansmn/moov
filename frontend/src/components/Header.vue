@@ -33,7 +33,7 @@ export default defineComponent({
                   <circle cx="8" cy="4" r="3" stroke="#7061E4" stroke-width="2"/>
                </svg>
             </button>
-            <Input placeholder="Rechercher">
+            <Input placeholder="Rechercher un évènement">
                <button class="aspect-square absolute right-[6px] h-[30px] flex items-center justify-center bg-purple rounded-sm">
                   <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <circle cx="7" cy="7" r="6" stroke="white" stroke-width="2"/>

@@ -3,11 +3,13 @@ import { defineComponent, ref, computed } from "vue";
 import { useSettingsStore } from "@/store/settings";
 
 import Connection from "./Connection.vue";
+import AccountPannel from "./AccountPannel.vue";
 
 export default defineComponent({
    name: "Account",
    components: {
       Connection,
+      AccountPannel,
    },
    setup(_props) {
       const settingsStore = useSettingsStore();
@@ -18,6 +20,7 @@ export default defineComponent({
 
       return {
          unshowAccount,
+         userConnected: computed(() => settingsStore.userConnected),
          pannelVisible: computed(() => settingsStore.pannelVisible),
       };
    },
@@ -31,14 +34,25 @@ export default defineComponent({
       class="fixed inset-0 w-[100vw] h-[100vh] bg-glass-black"
    ></div>
    <div
-      :class="pannelVisible ? 'pannel active' : 'pannel'"
-      class="fixed inset-0 bg-white2 h-full max-w-[400px] p-6 flex items-center flex-col-reverse"
+      :class="pannelVisible 
+      ? (
+         userConnected
+         ? 'flex-col active'
+         : 'flex-col-reverse active'
+      )
+      : (
+         userConnected
+         ? 'flex-col'
+         : 'flex-col-reverse'
+      )"
+      class="pannel fixed inset-0 bg-white2 h-full max-w-[400px] pt-20 p-6 flex"
    >
       <button @click="unshowAccount" class="close_pannel absolute top-6 right-6 w-[30px] aspect-square rounded hover:rounded-sm transition-[border-radius] bg-purple text-white2 font-bold text-md">
          X
       </button>
 
-      <Connection />
+      <Connection v-if="!userConnected" />
+      <AccountPannel v-else />
    </div>
 </template>
 

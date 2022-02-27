@@ -1,11 +1,15 @@
 import { defineStore } from "pinia";
+import User from "./model/user";
 
 // Create a new store instance.
 export const useSettingsStore = defineStore("settings", {
    state: () => {
       return {
          pannelVisible: false,
-         user: null,
+         user: {} as User,
+         userRecommandations: true,
+         userEmailNotifications: false,
+         accessToken: "",
          notification: {
             show: false,
             code: 200,
@@ -27,7 +31,7 @@ export const useSettingsStore = defineStore("settings", {
          this.notification.show = false;
       },
 
-      sendNotification(payload: { code: number, message: string }, delay: number) {
+      sendNotification(payload: { code: number, message: string }, delay?: number) {
          this.setNotification({
             show: true,
             code: payload.code,
@@ -37,8 +41,78 @@ export const useSettingsStore = defineStore("settings", {
             this.hideNotification();
          }, delay || 5_000);
       },
+
+      connectUser(user: User, preferences: { userRecommandations: boolean, userEmailNotifications: boolean, accessToken: string }) {
+         this.user = user;
+         this.userRecommandations = preferences?.userRecommandations ?? true;
+         this.userEmailNotifications = preferences?.userEmailNotifications ?? false;
+         this.accessToken = preferences.accessToken;
+
+         localStorage.setItem("accessToken", preferences.accessToken);
+         localStorage.setItem("user_uuid", user.user_uuid);
+      },
+      setUserRecommandations(val: boolean) {
+         fetch("/api/user/setRecommandations", {
+            method: "PUT",
+            headers: new Headers({
+               "Content-Type": "application/json",
+               "x-access-token": this.accessToken,
+            }),
+            body: JSON.stringify({
+               user_uuid: this.user.user_uuid,
+               recommandationsVal: val,
+            }),
+         }).then(res => {
+            const status = res.status;
+            res.json().then(data => {
+               if (status >= 200 && status < 300)
+                  this.userRecommandations = val;
+               this.sendNotification({
+                  code: status, 
+                  message: data.message 
+               });
+            });
+         });
+      },
+      enableUserRecommandations() {
+         this.setUserRecommandations(true);
+      },
+      disableUserRecommandations() {
+         this.setUserRecommandations(false);
+      },
+      setUserEmailNotifications(val: boolean) {
+         fetch("/api/user/setNotifications", {
+            method: "PUT",
+            headers: new Headers({
+               "Content-Type": "application/json",
+               "x-access-token": this.accessToken,
+            }),
+            body: JSON.stringify({
+               user_uuid: this.user.user_uuid,
+               notificationsVal: val,
+            }),
+         }).then(res => {
+            const status = res.status;
+            res.json().then(data => {
+               if (status >= 200 && status < 300)
+                  this.userEmailNotifications = val;
+               this.sendNotification({
+                  code: status, 
+                  message: data.message 
+               });
+            });
+         });
+      },
+      enableUserEmailNotifications() {
+         this.setUserEmailNotifications(true);
+      },
+      disableUserEmailNotifications() {
+         this.setUserEmailNotifications(false);
+      }
    },
    getters: {
-      userConnected: (state) => state.user !== null,
+      userConnected: (state) => {
+         return JSON.stringify(state.user) !== JSON.stringify({});
+      },
    }
 });
