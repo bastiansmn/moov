@@ -1,7 +1,8 @@
 <script>
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
+   emits: ["submit"],
    props: {
       placeholder: {
          type: String,
@@ -25,24 +26,53 @@ export default defineComponent({
       },
       name: {
          type: String,
+      },
+      width: {
+         type: Number,
+         default: 300
+      },
+      height: {
+         type: Number,
+         default: 42
+      },
+      background: {
+         type: String,
+         default: "#FFFFFF",
+      },
+      radius: {
+         type: Number,
+         default: 11,
       }
    },
-   setup(props) {
+   setup(props, { emit }) {
+      
+      const input = ref(null);
+
+      const submitInput = () => {
+         emit("submit", (input.value).value);
+      }
+
       return {
+         input,
          props,
+         submitInput,
       }
    }
 })
 </script>
 
 <template>
-   <div class="search relative rounded w-[300px] min-h-[42px] bg-white flex items-center justify-between overflow-hidden" :class="props.shadow ? 'shadow' : ''">
-      <input :name="name" :required="required" :type="props.type" :placeholder="props.placeholder" autocomplete="off" spellcheck="false" class="outline-none w-full h-full rounded pl-[8px]  text-dark-grey">    
-      <span class="absolute bottom-0 h-[3px] transition-[width]" :style="`background: ${props.color}`"></span>
+   <form @submit.prevent="submitInput" :class="props.shadow
+      ? `shadow search relative w-[${props.width}px] h-[${props.height}px] flex items-center justify-between overflow-hidden`
+      : `search relative w-[${props.width}px] h-[${props.height}px] flex items-center justify-between overflow-hidden`"
+      :style="{ background: props.background, borderRadius: props.radius + 'px' }"
+   >
+      <input @input="submitInput" ref="input" :name="name" :required="required" :type="props.type" :placeholder="props.placeholder" autocomplete="off" spellcheck="false" :class="`outline-none w-full h-full pl-[8px]  text-dark-grey bg-transparent`">    
+      <span class="absolute bottom-0 h-[7%] transition-[width]" :style="`background: ${props.color}`"></span>
       <slot>
          <!-- Icon goes here if present -->
       </slot>
-   </div>
+   </form>
 </template>
 
 <style scoped>

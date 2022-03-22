@@ -1,22 +1,130 @@
+import { useSettingsStore } from '@/store/settings';
 import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router';
 import Home from '../views/Home.vue'
+import { Roles } from '@/store/model/user';
+import { codeIsOK } from '@/utils/statusCodes';
+
 const routes: Array<RouteRecordRaw> = [
    {
       path: '/',
-      name: 'Home',
-      component: Home
+      redirect: '/home',
    },
    {
-      path: '/about',
-      name: 'About',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+      path: '/home',
+      name: 'Home',
+      component: Home,
+   },
+   {
+      path: '/admin',
+      name: "Admin",
+      component: () => import('../views/Admin.vue'),
+      meta: {
+         requiresLog: true,
+         requiresAdminOrModerator: true,
+      },
+      children: [
+         {
+            path: '/admin',
+            redirect: '/admin/application',
+         },
+         {
+            path: 'application',
+            name: 'Application',
+            component: () => import('../components/Admin/Application.vue'),
+         },
+         {
+            path: 'catalog',
+            name: 'Catalog',
+            component: () => import('../components/Admin/Catalog.vue'),
+         },
+         {
+            path: 'themes',
+            name: 'Themes',
+            component: () => import('../components/Admin/Themes.vue'),
+         }
+      ]
    }
-]
+];
+
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes
-})
+   history: createWebHashHistory(),
+   routes
+});
+
+router.beforeEach(async (to, _from, next) => {
+   const settingsStore = useSettingsStore();
+
+   const user_uuid = localStorage.getItem('user_uuid');
+   const accessToken = localStorage.getItem('accessToken');
+   const username = localStorage.getItem('username');
+
+   if (!user_uuid || !accessToken || !username) {
+      localStorage.clear();
+      if (to.meta.requiresLog) {
+         next({ name: "Home" });
+         return;
+      } else {
+         next();
+         return;
+      }
+   }
+
+   // Si le user n'est pas déjà connecté (arrivée sur le site ou reconnexion)
+   if (!settingsStore.userConnected) {
+      await fetch(`/api/user/getUserByUUID?user_uuid=${user_uuid}`, {
+         method: "GET",
+         headers: new Headers({
+           "Content-Type": "application/json",
+           "x-access-token": accessToken,
+         }),
+      }).then(async response => {
+         if (codeIsOK(response.status)) {
+            await response.json().then(data => {        
+               settingsStore.connectUser({
+                  user_uuid: data.user_uuid,
+                  email: data.email,
+                  username: data.username,
+                  roles: data.roles,
+               }, {
+                  userRecommandations: data.userRecommandations,
+                  userEmailNotifications: data.userEmailNotifications,
+                  accessToken: accessToken,
+               })
+            });
+         } else {
+            throw new Error();
+         }
+      }).catch(_err => {  
+         settingsStore.sendNotification({
+            code: 400,
+            message: "Connexion automatique impossible",
+         });
+      });
+   }
+   
+   if (to.matched.some(record => record.meta.requiresLog)) { // If route need log
+      if (!settingsStore.userConnected) {         
+         settingsStore.sendNotification({
+            code: 400,
+            message: "Vous n'êtes pas connecté"
+         });
+         next({ name: "Home" });
+         return;
+      }
+   }   
+
+   if (to.matched.some(record => record.meta.requiresAdminOrModerator)) { // If route need admin or moderator      
+      if (!settingsStore.user.roles.includes(Roles.ADMIN) && !settingsStore.user.roles.includes(Roles.MODERATOR)) {
+         settingsStore.sendNotification({
+            code: 403,
+            message: "Vous n'avez pas les droits nécessaires"
+         });
+         next({ name: "Home" });
+         return;
+      }
+   }
+
+   next();
+});
+
 export default router

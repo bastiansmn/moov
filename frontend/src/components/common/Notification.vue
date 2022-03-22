@@ -8,17 +8,7 @@ export default defineComponent({
 
       return {
          notificationVisible: computed(() => settingsStore.notification.show),
-         notificationType: computed(() => {
-            if (settingsStore.notification.code >= 200 && settingsStore.notification.code < 300) {
-               return 'bg-success';
-            } else if (settingsStore.notification.code >= 300 && settingsStore.notification.code < 400) {
-               return 'bg-server-error';
-            } else if (settingsStore.notification.code >= 400 && settingsStore.notification.code < 500) {
-               return 'bg-error';
-            } else {
-               return 'bg-info';
-            }
-         }),
+         notificationCode: computed(() => Math.floor(settingsStore.notification.code / 100) * 100),
          notificationMessage: computed(() => settingsStore.notification.message),
       }
    },
@@ -27,7 +17,7 @@ export default defineComponent({
 
 <template>
    <Transition>
-      <div v-if="notificationVisible" :class="notificationType" class="Notification fixed bottom-10 left-2/4 -translate-x-1/2 h-[42px] px-5 flex items-center justify-center rounded z-50 shadow">
+      <div v-if="notificationVisible" :class="`code-${notificationCode}`" class="Notification fixed bottom-10 left-2/4 -translate-x-1/2 h-[42px] px-5 flex items-center justify-center rounded z-50 shadow">
          <span class="text-white font-bold text-lg">{{ notificationMessage }}</span>
       </div>
   </Transition>

@@ -3,11 +3,17 @@
 @tailwind utilities;
 
 
+:root {
+   --navbar-width: 3px;
+   --header-height: 88px;
+}
 
 #app {
    -webkit-font-smoothing: antialiased;
    -moz-osx-font-smoothing: grayscale;
    position: relative;
+   width: calc(100vw - var(--navbar-width));
+   height: 100vh;
 }
 
 *::selection {
@@ -24,13 +30,29 @@ body {
 }
 
 *::-webkit-scrollbar {
-   width: 3px;
-	height: 3px;
+   width: var(--navbar-width);
+	height: var(--navbar-width);
 }
 
 
 *::-webkit-scrollbar-thumb {
    background: #7061E4;
+}
+
+.code-200 {
+   background-color: #61eb68;
+}
+
+.code-300 {
+   background-color: #f5b342;
+}
+
+.code-400 {
+   background-color: #f44336;
+}
+
+.code-500 {
+   background-color: #42c3f5;
 }
 
 @keyframes translateXLTR {
@@ -42,11 +64,38 @@ body {
    }
 }
 
+.opacity__animation {
+   animation: appearOp 0.5s ease-in-out;
+}
+
 @keyframes appearOp {
    from {
       opacity: 0;
    }
    to {
       opacity: 1;
+   }
+}
+
+@keyframes widthProgress {
+   from {
+      width: 0;
+   }
+   to {
+      width: 100%;
+   }
+}
+
+.loader {
+   border-radius: 8px;
+   animation: pulseLoader 1s infinite alternate-reverse;
+}
+
+@keyframes pulseLoader {
+   from {
+      background: #C5C5C5;
+   }
+   to {
+      background: #D6D6D6;
    }
 }

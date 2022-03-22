@@ -1,0 +1,22 @@
+{
+   "recordID": "",
+   "name": "string",
+   "date_start": "date",
+   "date_end": "date",
+   "cat": "string",
+   "small_descr": "string",
+   "big_descr": "string",
+   "mail": "string",
+   "phone": "string",
+   "address": "string",
+   "link": "string",
+   "image": "string",
+   "image_alt": "string",
+   "place_name": "string",
+   "adress": "string",
+   "coor": {
+      "lat": 0.0,
+      "lon": 0.0
+   },
+   "last_update": "date"
+}

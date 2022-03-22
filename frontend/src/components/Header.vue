@@ -24,7 +24,7 @@ export default defineComponent({
 </script>
 
 <template> 
-   <header class="h-[88px] mt-[132px] sticky top-0">
+   <header class="mt-[132px] sticky top-0">
       <div class="absolute bottom-0 overflow-hidden h-[220px] w-full bg-gradient-to-r from-[#7162E5] to-[#9566E4] flex flex-col items-center justify-center">
          <div class="navigation w-full h-[88px] fixed top-0 flex items-center justify-between px-5 z-[2]">
             <button @click="showAccount()" class="aspect-square h-[42px] bg-white flex items-center justify-center rounded shadow-md">
@@ -33,7 +33,7 @@ export default defineComponent({
                   <circle cx="8" cy="4" r="3" stroke="#7061E4" stroke-width="2"/>
                </svg>
             </button>
-            <Input placeholder="Rechercher un évènement">
+            <Input placeholder="Rechercher un évènement" shadow>
                <button class="aspect-square absolute right-[6px] h-[30px] flex items-center justify-center bg-purple rounded-sm">
                   <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <circle cx="7" cy="7" r="6" stroke="white" stroke-width="2"/>
@@ -65,3 +65,9 @@ export default defineComponent({
       </div>
    </header>
 </template>
+
+<style scoped>
+header {
+   height: var(--header-height);
+}
+</style>

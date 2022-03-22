@@ -94,18 +94,23 @@ roleExist = (req, res, next) => {
 };
 
 isAdmin = (req, res, next) => {
-   User.findByPk(req.userId).then(user => {
+   if (!req.user_uuid) {
+      res.status(400).send({
+         message: "Aucun utilisateur spécifié"
+      });
+      return;
+   }
+   const user_uuid = req.user_uuid;
+   User.findByPk(user_uuid).then(user => {
       user.getRoles().then(roles => {
-         roles.forEach(r => {
-            if (r.name === "ADMIN") {
-               next();
-               return;
-            }
-         });
-         res.status(403).send({
-            message: "Vous devez être administrateur pour effectuer cette action"
-         });
-         return;
+         if (roles.find(r => r.name === "ADMIN")) {
+            next();
+         } else {
+            res.status(403).send({
+               message: "Vous devez être admin"
+            });
+            return;
+         }
       });
    });
 };

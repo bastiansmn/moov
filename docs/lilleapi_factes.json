@@ -1,0 +1,5357 @@
+{
+   "links": [
+     {
+       "rel": "self",
+       "href": "https://opendata.lillemetropole.fr/api/v2/catalog/datasets/evenements-publics-openagenda0/facets"
+     },
+     {
+       "rel": "dataset",
+       "href": "https://opendata.lillemetropole.fr/api/v2/catalog/datasets/evenements-publics-openagenda0"
+     }
+   ],
+   "facets": [
+     {
+       "name": "tags",
+       "facets": [
+         {
+           "name": "musique",
+           "count": 182,
+           "state": "displayed",
+           "value": "musique"
+         },
+         {
+           "name": "concert",
+           "count": 163,
+           "state": "displayed",
+           "value": "concert"
+         },
+         {
+           "name": "atelier",
+           "count": 158,
+           "state": "displayed",
+           "value": "atelier"
+         },
+         {
+           "name": "roubaix",
+           "count": 146,
+           "state": "displayed",
+           "value": "roubaix"
+         },
+         {
+           "name": "enfant",
+           "count": 134,
+           "state": "displayed",
+           "value": "enfant"
+         },
+         {
+           "name": "jeune public",
+           "count": 131,
+           "state": "displayed",
+           "value": "jeune public"
+         },
+         {
+           "name": "exposition",
+           "count": 125,
+           "state": "displayed",
+           "value": "exposition"
+         },
+         {
+           "name": "visite",
+           "count": 111,
+           "state": "displayed",
+           "value": "visite"
+         },
+         {
+           "name": "Roubaix",
+           "count": 107,
+           "state": "displayed",
+           "value": "Roubaix"
+         },
+         {
+           "name": "danse",
+           "count": 94,
+           "state": "displayed",
+           "value": "danse"
+         },
+         {
+           "name": "formation",
+           "count": 94,
+           "state": "displayed",
+           "value": "formation"
+         },
+         {
+           "name": "59",
+           "count": 92,
+           "state": "displayed",
+           "value": "59"
+         },
+         {
+           "name": "Animation",
+           "count": 82,
+           "state": "displayed",
+           "value": "Animation"
+         },
+         {
+           "name": "emploi",
+           "count": 77,
+           "state": "displayed",
+           "value": "emploi"
+         },
+         {
+           "name": "famille",
+           "count": 74,
+           "state": "displayed",
+           "value": "famille"
+         },
+         {
+           "name": "art",
+           "count": 71,
+           "state": "displayed",
+           "value": "art"
+         },
+         {
+           "name": "patrimoine",
+           "count": 67,
+           "state": "displayed",
+           "value": "patrimoine"
+         },
+         {
+           "name": "numérique",
+           "count": 61,
+           "state": "displayed",
+           "value": "numérique"
+         },
+         {
+           "name": "gratuit",
+           "count": 59,
+           "state": "displayed",
+           "value": "gratuit"
+         },
+         {
+           "name": "",
+           "count": 56,
+           "state": "displayed",
+           "value": ""
+         },
+         {
+           "name": "ateliers",
+           "count": 50,
+           "state": "displayed",
+           "value": "ateliers"
+         },
+         {
+           "name": "spectacle",
+           "count": 47,
+           "state": "displayed",
+           "value": "spectacle"
+         },
+         {
+           "name": "animation",
+           "count": 44,
+           "state": "displayed",
+           "value": "animation"
+         },
+         {
+           "name": "enfants",
+           "count": 43,
+           "state": "displayed",
+           "value": "enfants"
+         },
+         {
+           "name": "histoire",
+           "count": 42,
+           "state": "displayed",
+           "value": "histoire"
+         },
+         {
+           "name": "musée",
+           "count": 39,
+           "state": "displayed",
+           "value": "musée"
+         },
+         {
+           "name": "théâtre",
+           "count": 39,
+           "state": "displayed",
+           "value": "théâtre"
+         },
+         {
+           "name": "conférence",
+           "count": 38,
+           "state": "displayed",
+           "value": "conférence"
+         },
+         {
+           "name": "sport",
+           "count": 38,
+           "state": "displayed",
+           "value": "sport"
+         },
+         {
+           "name": "rencontre",
+           "count": 37,
+           "state": "displayed",
+           "value": "rencontre"
+         },
+         {
+           "name": "Formation",
+           "count": 36,
+           "state": "displayed",
+           "value": "Formation"
+         },
+         {
+           "name": "festival",
+           "count": 36,
+           "state": "displayed",
+           "value": "festival"
+         },
+         {
+           "name": "textile",
+           "count": 36,
+           "state": "displayed",
+           "value": "textile"
+         },
+         {
+           "name": "architecture",
+           "count": 34,
+           "state": "displayed",
+           "value": "architecture"
+         },
+         {
+           "name": "Atelier",
+           "count": 33,
+           "state": "displayed",
+           "value": "Atelier"
+         },
+         {
+           "name": "condition publique",
+           "count": 33,
+           "state": "displayed",
+           "value": "condition publique"
+         },
+         {
+           "name": "visite guidée",
+           "count": 32,
+           "state": "displayed",
+           "value": "visite guidée"
+         },
+         {
+           "name": "peinture",
+           "count": 31,
+           "state": "displayed",
+           "value": "peinture"
+         },
+         {
+           "name": "photographie",
+           "count": 31,
+           "state": "displayed",
+           "value": "photographie"
+         },
+         {
+           "name": "art contemporain",
+           "count": 30,
+           "state": "displayed",
+           "value": "art contemporain"
+         },
+         {
+           "name": "cinéma",
+           "count": 30,
+           "state": "displayed",
+           "value": "cinéma"
+         },
+         {
+           "name": "alternance",
+           "count": 29,
+           "state": "displayed",
+           "value": "alternance"
+         },
+         {
+           "name": "culture",
+           "count": 28,
+           "state": "displayed",
+           "value": "culture"
+         },
+         {
+           "name": "céramique",
+           "count": 28,
+           "state": "displayed",
+           "value": "céramique"
+         },
+         {
+           "name": "design",
+           "count": 28,
+           "state": "displayed",
+           "value": "design"
+         },
+         {
+           "name": "rock",
+           "count": 28,
+           "state": "displayed",
+           "value": "rock"
+         },
+         {
+           "name": "création",
+           "count": 27,
+           "state": "displayed",
+           "value": "création"
+         },
+         {
+           "name": "street art",
+           "count": 27,
+           "state": "displayed",
+           "value": "street art"
+         },
+         {
+           "name": "Ballet du Nord",
+           "count": 26,
+           "state": "displayed",
+           "value": "Ballet du Nord"
+         },
+         {
+           "name": "Braderie",
+           "count": 26,
+           "state": "displayed",
+           "value": "Braderie"
+         },
+         {
+           "name": "Enfants",
+           "count": 26,
+           "state": "displayed",
+           "value": "Enfants"
+         },
+         {
+           "name": "fête",
+           "count": 26,
+           "state": "displayed",
+           "value": "fête"
+         },
+         {
+           "name": "dessin",
+           "count": 25,
+           "state": "displayed",
+           "value": "dessin"
+         },
+         {
+           "name": "sculpture",
+           "count": 25,
+           "state": "displayed",
+           "value": "sculpture"
+         },
+         {
+           "name": "zéro déchet",
+           "count": 25,
+           "state": "displayed",
+           "value": "zéro déchet"
+         },
+         {
+           "name": "Emploi",
+           "count": 24,
+           "state": "displayed",
+           "value": "Emploi"
+         },
+         {
+           "name": "Le Gymnase | CDCN",
+           "count": 24,
+           "state": "displayed",
+           "value": "Le Gymnase | CDCN"
+         },
+         {
+           "name": "danse contemporaine",
+           "count": 24,
+           "state": "displayed",
+           "value": "danse contemporaine"
+         },
+         {
+           "name": "rap",
+           "count": 24,
+           "state": "displayed",
+           "value": "rap"
+         },
+         {
+           "name": "recrutement",
+           "count": 24,
+           "state": "displayed",
+           "value": "recrutement"
+         },
+         {
+           "name": "métiers",
+           "count": 23,
+           "state": "displayed",
+           "value": "métiers"
+         },
+         {
+           "name": "projet",
+           "count": 23,
+           "state": "displayed",
+           "value": "projet"
+         },
+         {
+           "name": "Concert",
+           "count": 21,
+           "state": "displayed",
+           "value": "Concert"
+         },
+         {
+           "name": "Danse contemporaine",
+           "count": 21,
+           "state": "displayed",
+           "value": "Danse contemporaine"
+         },
+         {
+           "name": "Familles",
+           "count": 21,
+           "state": "displayed",
+           "value": "Familles"
+         },
+         {
+           "name": "Spectacle",
+           "count": 21,
+           "state": "displayed",
+           "value": "Spectacle"
+         },
+         {
+           "name": "débat",
+           "count": 21,
+           "state": "displayed",
+           "value": "débat"
+         },
+         {
+           "name": "jeux",
+           "count": 21,
+           "state": "displayed",
+           "value": "jeux"
+         },
+         {
+           "name": "métier",
+           "count": 21,
+           "state": "displayed",
+           "value": "métier"
+         },
+         {
+           "name": "pop",
+           "count": 21,
+           "state": "displayed",
+           "value": "pop"
+         },
+         {
+           "name": "Festival",
+           "count": 20,
+           "state": "displayed",
+           "value": "Festival"
+         },
+         {
+           "name": "La Piscine",
+           "count": 20,
+           "state": "displayed",
+           "value": "La Piscine"
+         },
+         {
+           "name": "jardin",
+           "count": 20,
+           "state": "displayed",
+           "value": "jardin"
+         },
+         {
+           "name": "lecture",
+           "count": 20,
+           "state": "displayed",
+           "value": "lecture"
+         },
+         {
+           "name": "mode",
+           "count": 20,
+           "state": "displayed",
+           "value": "mode"
+         },
+         {
+           "name": "projection",
+           "count": 20,
+           "state": "displayed",
+           "value": "projection"
+         },
+         {
+           "name": "Avant-Poste",
+           "count": 19,
+           "state": "displayed",
+           "value": "Avant-Poste"
+         },
+         {
+           "name": "Condition Publique",
+           "count": 19,
+           "state": "displayed",
+           "value": "Condition Publique"
+         },
+         {
+           "name": "Exposition",
+           "count": 19,
+           "state": "displayed",
+           "value": "Exposition"
+         },
+         {
+           "name": "Nature",
+           "count": 19,
+           "state": "displayed",
+           "value": "Nature"
+         },
+         {
+           "name": "Théâtre",
+           "count": 19,
+           "state": "displayed",
+           "value": "Théâtre"
+         },
+         {
+           "name": "interculturalité",
+           "count": 19,
+           "state": "displayed",
+           "value": "interculturalité"
+         },
+         {
+           "name": "vernissage",
+           "count": 19,
+           "state": "displayed",
+           "value": "vernissage"
+         },
+         {
+           "name": "Danse",
+           "count": 18,
+           "state": "displayed",
+           "value": "Danse"
+         },
+         {
+           "name": "Musique",
+           "count": 18,
+           "state": "displayed",
+           "value": "Musique"
+         },
+         {
+           "name": "Numérique",
+           "count": 18,
+           "state": "displayed",
+           "value": "Numérique"
+         },
+         {
+           "name": "Réunion publique",
+           "count": 18,
+           "state": "displayed",
+           "value": "Réunion publique"
+         },
+         {
+           "name": "quartier",
+           "count": 18,
+           "state": "displayed",
+           "value": "quartier"
+         },
+         {
+           "name": "vélo",
+           "count": 18,
+           "state": "displayed",
+           "value": "vélo"
+         },
+         {
+           "name": "Réunion Publique",
+           "count": 17,
+           "state": "displayed",
+           "value": "Réunion Publique"
+         },
+         {
+           "name": "apprentissage",
+           "count": 17,
+           "state": "displayed",
+           "value": "apprentissage"
+         },
+         {
+           "name": "humour",
+           "count": 17,
+           "state": "displayed",
+           "value": "humour"
+         },
+         {
+           "name": "Art",
+           "count": 16,
+           "state": "displayed",
+           "value": "Art"
+         },
+         {
+           "name": "La Condition Publique",
+           "count": 16,
+           "state": "displayed",
+           "value": "La Condition Publique"
+         },
+         {
+           "name": "bricolage",
+           "count": 16,
+           "state": "displayed",
+           "value": "bricolage"
+         },
+         {
+           "name": "cours",
+           "count": 16,
+           "state": "displayed",
+           "value": "cours"
+         },
+         {
+           "name": "jeunes",
+           "count": 16,
+           "state": "displayed",
+           "value": "jeunes"
+         },
+         {
+           "name": "marché",
+           "count": 16,
+           "state": "displayed",
+           "value": "marché"
+         },
+         {
+           "name": "stage",
+           "count": 16,
+           "state": "displayed",
+           "value": "stage"
+         },
+         {
+           "name": "Sport",
+           "count": 15,
+           "state": "displayed",
+           "value": "Sport"
+         },
+         {
+           "name": "guidée",
+           "count": 15,
+           "state": "displayed",
+           "value": "guidée"
+         },
+         {
+           "name": "hip-hop",
+           "count": 15,
+           "state": "displayed",
+           "value": "hip-hop"
+         },
+         {
+           "name": "industrie",
+           "count": 15,
+           "state": "displayed",
+           "value": "industrie"
+         },
+         {
+           "name": "sortie",
+           "count": 15,
+           "state": "displayed",
+           "value": "sortie"
+         },
+         {
+           "name": "échange",
+           "count": 15,
+           "state": "displayed",
+           "value": "échange"
+         },
+         {
+           "name": "DIY",
+           "count": 14,
+           "state": "displayed",
+           "value": "DIY"
+         },
+         {
+           "name": "artistes",
+           "count": 14,
+           "state": "displayed",
+           "value": "artistes"
+         },
+         {
+           "name": "association",
+           "count": 14,
+           "state": "displayed",
+           "value": "association"
+         },
+         {
+           "name": "braderie",
+           "count": 14,
+           "state": "displayed",
+           "value": "braderie"
+         },
+         {
+           "name": "chanson",
+           "count": 14,
+           "state": "displayed",
+           "value": "chanson"
+         },
+         {
+           "name": "diy",
+           "count": 14,
+           "state": "displayed",
+           "value": "diy"
+         },
+         {
+           "name": "découverte",
+           "count": 14,
+           "state": "displayed",
+           "value": "découverte"
+         },
+         {
+           "name": "entreprise",
+           "count": 14,
+           "state": "displayed",
+           "value": "entreprise"
+         },
+         {
+           "name": "performance",
+           "count": 14,
+           "state": "displayed",
+           "value": "performance"
+         },
+         {
+           "name": "reggae",
+           "count": 14,
+           "state": "displayed",
+           "value": "reggae"
+         },
+         {
+           "name": "Rencontre",
+           "count": 13,
+           "state": "displayed",
+           "value": "Rencontre"
+         },
+         {
+           "name": "brocante",
+           "count": 13,
+           "state": "displayed",
+           "value": "brocante"
+         },
+         {
+           "name": "coaching",
+           "count": 13,
+           "state": "displayed",
+           "value": "coaching"
+         },
+         {
+           "name": "cyclisme",
+           "count": 13,
+           "state": "displayed",
+           "value": "cyclisme"
+         },
+         {
+           "name": "cérémonie",
+           "count": 13,
+           "state": "displayed",
+           "value": "cérémonie"
+         },
+         {
+           "name": "digital",
+           "count": 13,
+           "state": "displayed",
+           "value": "digital"
+         },
+         {
+           "name": "film",
+           "count": 13,
+           "state": "displayed",
+           "value": "film"
+         },
+         {
+           "name": "noël",
+           "count": 13,
+           "state": "displayed",
+           "value": "noël"
+         },
+         {
+           "name": "tourisme",
+           "count": 13,
+           "state": "displayed",
+           "value": "tourisme"
+         },
+         {
+           "name": "BTP",
+           "count": 12,
+           "state": "displayed",
+           "value": "BTP"
+         },
+         {
+           "name": "Brocante",
+           "count": 12,
+           "state": "displayed",
+           "value": "Brocante"
+         },
+         {
+           "name": "Buvette",
+           "count": 12,
+           "state": "displayed",
+           "value": "Buvette"
+         },
+         {
+           "name": "Développement durable",
+           "count": 12,
+           "state": "displayed",
+           "value": "Développement durable"
+         },
+         {
+           "name": "accompagnement",
+           "count": 12,
+           "state": "displayed",
+           "value": "accompagnement"
+         },
+         {
+           "name": "artisanat",
+           "count": 12,
+           "state": "displayed",
+           "value": "artisanat"
+         },
+         {
+           "name": "balade",
+           "count": 12,
+           "state": "displayed",
+           "value": "balade"
+         },
+         {
+           "name": "ballet du nord",
+           "count": 12,
+           "state": "displayed",
+           "value": "ballet du nord"
+         },
+         {
+           "name": "bâtiment",
+           "count": 12,
+           "state": "displayed",
+           "value": "bâtiment"
+         },
+         {
+           "name": "conservatoire",
+           "count": 12,
+           "state": "displayed",
+           "value": "conservatoire"
+         },
+         {
+           "name": "duplexe",
+           "count": 12,
+           "state": "displayed",
+           "value": "duplexe"
+         },
+         {
+           "name": "développement durable",
+           "count": 12,
+           "state": "displayed",
+           "value": "développement durable"
+         },
+         {
+           "name": "formations",
+           "count": 12,
+           "state": "displayed",
+           "value": "formations"
+         },
+         {
+           "name": "maire",
+           "count": 12,
+           "state": "displayed",
+           "value": "maire"
+         },
+         {
+           "name": "piano",
+           "count": 12,
+           "state": "displayed",
+           "value": "piano"
+         },
+         {
+           "name": "santé",
+           "count": 12,
+           "state": "displayed",
+           "value": "santé"
+         },
+         {
+           "name": "élus",
+           "count": 12,
+           "state": "displayed",
+           "value": "élus"
+         },
+         {
+           "name": "événement",
+           "count": 12,
+           "state": "displayed",
+           "value": "événement"
+         },
+         {
+           "name": "Ateliers",
+           "count": 11,
+           "state": "displayed",
+           "value": "Ateliers"
+         },
+         {
+           "name": "Lecture",
+           "count": 11,
+           "state": "displayed",
+           "value": "Lecture"
+         },
+         {
+           "name": "Quartiers Nord",
+           "count": 11,
+           "state": "displayed",
+           "value": "Quartiers Nord"
+         },
+         {
+           "name": "belles sorties",
+           "count": 11,
+           "state": "displayed",
+           "value": "belles sorties"
+         },
+         {
+           "name": "bibliothèque",
+           "count": 11,
+           "state": "displayed",
+           "value": "bibliothèque"
+         },
+         {
+           "name": "classique",
+           "count": 11,
+           "state": "displayed",
+           "value": "classique"
+         },
+         {
+           "name": "dépistage",
+           "count": 11,
+           "state": "displayed",
+           "value": "dépistage"
+         },
+         {
+           "name": "electro",
+           "count": 11,
+           "state": "displayed",
+           "value": "electro"
+         },
+         {
+           "name": "entrepreneuriat",
+           "count": 11,
+           "state": "displayed",
+           "value": "entrepreneuriat"
+         },
+         {
+           "name": "expo",
+           "count": 11,
+           "state": "displayed",
+           "value": "expo"
+         },
+         {
+           "name": "jeunesse",
+           "count": 11,
+           "state": "displayed",
+           "value": "jeunesse"
+         },
+         {
+           "name": "lille",
+           "count": 11,
+           "state": "displayed",
+           "value": "lille"
+         },
+         {
+           "name": "partage",
+           "count": 11,
+           "state": "displayed",
+           "value": "partage"
+         },
+         {
+           "name": "photo",
+           "count": 11,
+           "state": "displayed",
+           "value": "photo"
+         },
+         {
+           "name": "skate",
+           "count": 11,
+           "state": "displayed",
+           "value": "skate"
+         },
+         {
+           "name": "solidarité",
+           "count": 11,
+           "state": "displayed",
+           "value": "solidarité"
+         },
+         {
+           "name": "travaux",
+           "count": 11,
+           "state": "displayed",
+           "value": "travaux"
+         },
+         {
+           "name": "vidéo",
+           "count": 11,
+           "state": "displayed",
+           "value": "vidéo"
+         },
+         {
+           "name": "Découverte des métiers",
+           "count": 10,
+           "state": "displayed",
+           "value": "Découverte des métiers"
+         },
+         {
+           "name": "Industrie",
+           "count": 10,
+           "state": "displayed",
+           "value": "Industrie"
+         },
+         {
+           "name": "Proch'Info Formation",
+           "count": 10,
+           "state": "displayed",
+           "value": "Proch'Info Formation"
+         },
+         {
+           "name": "artiste",
+           "count": 10,
+           "state": "displayed",
+           "value": "artiste"
+         },
+         {
+           "name": "conte musical",
+           "count": 10,
+           "state": "displayed",
+           "value": "conte musical"
+         },
+         {
+           "name": "illustration",
+           "count": 10,
+           "state": "displayed",
+           "value": "illustration"
+         },
+         {
+           "name": "jam session",
+           "count": 10,
+           "state": "displayed",
+           "value": "jam session"
+         },
+         {
+           "name": "livres",
+           "count": 10,
+           "state": "displayed",
+           "value": "livres"
+         },
+         {
+           "name": "loisirs",
+           "count": 10,
+           "state": "displayed",
+           "value": "loisirs"
+         },
+         {
+           "name": "magie",
+           "count": 10,
+           "state": "displayed",
+           "value": "magie"
+         },
+         {
+           "name": "nature",
+           "count": 10,
+           "state": "displayed",
+           "value": "nature"
+         },
+         {
+           "name": "nuit des arts",
+           "count": 10,
+           "state": "displayed",
+           "value": "nuit des arts"
+         },
+         {
+           "name": "participatif",
+           "count": 10,
+           "state": "displayed",
+           "value": "participatif"
+         },
+         {
+           "name": "petite enfance",
+           "count": 10,
+           "state": "displayed",
+           "value": "petite enfance"
+         },
+         {
+           "name": "rencontres",
+           "count": 10,
+           "state": "displayed",
+           "value": "rencontres"
+         },
+         {
+           "name": "rénovation",
+           "count": 10,
+           "state": "displayed",
+           "value": "rénovation"
+         },
+         {
+           "name": "réunion publique",
+           "count": 10,
+           "state": "displayed",
+           "value": "réunion publique"
+         },
+         {
+           "name": "seniors",
+           "count": 10,
+           "state": "displayed",
+           "value": "seniors"
+         },
+         {
+           "name": "voeux",
+           "count": 10,
+           "state": "displayed",
+           "value": "voeux"
+         },
+         {
+           "name": "2019 Année des histoires du monde",
+           "count": 9,
+           "state": "displayed",
+           "value": "2019 Année des histoires du monde"
+         },
+         {
+           "name": "Alternance",
+           "count": 9,
+           "state": "displayed",
+           "value": "Alternance"
+         },
+         {
+           "name": "Famille",
+           "count": 9,
+           "state": "displayed",
+           "value": "Famille"
+         },
+         {
+           "name": "Gratuit",
+           "count": 9,
+           "state": "displayed",
+           "value": "Gratuit"
+         },
+         {
+           "name": "Habitat",
+           "count": 9,
+           "state": "displayed",
+           "value": "Habitat"
+         },
+         {
+           "name": "La rose des vents",
+           "count": 9,
+           "state": "displayed",
+           "value": "La rose des vents"
+         },
+         {
+           "name": "Le Grand Bain",
+           "count": 9,
+           "state": "displayed",
+           "value": "Le Grand Bain"
+         },
+         {
+           "name": "Loisirs",
+           "count": 9,
+           "state": "displayed",
+           "value": "Loisirs"
+         },
+         {
+           "name": "MEL",
+           "count": 9,
+           "state": "displayed",
+           "value": "MEL"
+         },
+         {
+           "name": "Temps de la participation",
+           "count": 9,
+           "state": "displayed",
+           "value": "Temps de la participation"
+         },
+         {
+           "name": "accordéon",
+           "count": 9,
+           "state": "displayed",
+           "value": "accordéon"
+         },
+         {
+           "name": "adolescents",
+           "count": 9,
+           "state": "displayed",
+           "value": "adolescents"
+         },
+         {
+           "name": "art moderne",
+           "count": 9,
+           "state": "displayed",
+           "value": "art moderne"
+         },
+         {
+           "name": "boeuf",
+           "count": 9,
+           "state": "displayed",
+           "value": "boeuf"
+         },
+         {
+           "name": "cirque",
+           "count": 9,
+           "state": "displayed",
+           "value": "cirque"
+         },
+         {
+           "name": "commerce",
+           "count": 9,
+           "state": "displayed",
+           "value": "commerce"
+         },
+         {
+           "name": "compétences",
+           "count": 9,
+           "state": "displayed",
+           "value": "compétences"
+         },
+         {
+           "name": "concerts",
+           "count": 9,
+           "state": "displayed",
+           "value": "concerts"
+         },
+         {
+           "name": "concours",
+           "count": 9,
+           "state": "displayed",
+           "value": "concours"
+         },
+         {
+           "name": "créateurs",
+           "count": 9,
+           "state": "displayed",
+           "value": "créateurs"
+         },
+         {
+           "name": "djset",
+           "count": 9,
+           "state": "displayed",
+           "value": "djset"
+         }
+       ]
+     },
+     {
+       "name": "placename",
+       "facets": [
+         {
+           "name": "Médiathèque La Grand-Plage",
+           "count": 407,
+           "state": "displayed",
+           "value": "Médiathèque La Grand-Plage"
+         },
+         {
+           "name": "La Piscine - Musée d'Art et d' Industrie André Diligent",
+           "count": 335,
+           "state": "displayed",
+           "value": "La Piscine - Musée d'Art et d' Industrie André Diligent"
+         },
+         {
+           "name": "La Condition Publique - Roubaix",
+           "count": 197,
+           "state": "displayed",
+           "value": "La Condition Publique - Roubaix"
+         },
+         {
+           "name": "Le Colisée",
+           "count": 110,
+           "state": "displayed",
+           "value": "Le Colisée"
+         },
+         {
+           "name": "La Condition Publique",
+           "count": 101,
+           "state": "displayed",
+           "value": "La Condition Publique"
+         },
+         {
+           "name": "Hôtel de Ville",
+           "count": 87,
+           "state": "displayed",
+           "value": "Hôtel de Ville"
+         },
+         {
+           "name": "Le Conservatoire de Roubaix",
+           "count": 77,
+           "state": "displayed",
+           "value": "Le Conservatoire de Roubaix"
+         },
+         {
+           "name": "Parc Barbieux",
+           "count": 71,
+           "state": "displayed",
+           "value": "Parc Barbieux"
+         },
+         {
+           "name": "L'Avant-Poste",
+           "count": 70,
+           "state": "displayed",
+           "value": "L'Avant-Poste"
+         },
+         {
+           "name": "Bar Live",
+           "count": 62,
+           "state": "displayed",
+           "value": "Bar Live"
+         },
+         {
+           "name": "Grand' Place",
+           "count": 61,
+           "state": "displayed",
+           "value": "Grand' Place"
+         },
+         {
+           "name": "Multiples lieux roubaisiens",
+           "count": 61,
+           "state": "displayed",
+           "value": "Multiples lieux roubaisiens"
+         },
+         {
+           "name": "Bureau d'Art et de Recherche | QSP Galerie",
+           "count": 57,
+           "state": "displayed",
+           "value": "Bureau d'Art et de Recherche | QSP Galerie"
+         },
+         {
+           "name": "Salle Henri Watremez",
+           "count": 54,
+           "state": "displayed",
+           "value": "Salle Henri Watremez"
+         },
+         {
+           "name": "Le Gymnase | CDC",
+           "count": 51,
+           "state": "displayed",
+           "value": "Le Gymnase | CDC"
+         },
+         {
+           "name": "Théâtre Pierre de Roubaix",
+           "count": 49,
+           "state": "displayed",
+           "value": "Théâtre Pierre de Roubaix"
+         },
+         {
+           "name": "Mission Locale",
+           "count": 48,
+           "state": "displayed",
+           "value": "Mission Locale"
+         },
+         {
+           "name": "Théâtre de l'Oiseau Mouche",
+           "count": 45,
+           "state": "displayed",
+           "value": "Théâtre de l'Oiseau Mouche"
+         },
+         {
+           "name": "Relais Nature du canal de la Deûle à l’Escaut",
+           "count": 44,
+           "state": "displayed",
+           "value": "Relais Nature du canal de la Deûle à l’Escaut"
+         },
+         {
+           "name": "Roubaix",
+           "count": 44,
+           "state": "displayed",
+           "value": "Roubaix"
+         },
+         {
+           "name": "MIE de Roubaix",
+           "count": 43,
+           "state": "displayed",
+           "value": "MIE de Roubaix"
+         },
+         {
+           "name": "Cinéma Le Duplexe",
+           "count": 39,
+           "state": "displayed",
+           "value": "Cinéma Le Duplexe"
+         },
+         {
+           "name": "La Manufacture",
+           "count": 38,
+           "state": "displayed",
+           "value": "La Manufacture"
+         },
+         {
+           "name": "La Manufacture Musée de la mémoire et de la création textile",
+           "count": 37,
+           "state": "displayed",
+           "value": "La Manufacture Musée de la mémoire et de la création textile"
+         },
+         {
+           "name": "STAB Vélodrome couvert régional Jean-Stablinski",
+           "count": 36,
+           "state": "displayed",
+           "value": "STAB Vélodrome couvert régional Jean-Stablinski"
+         },
+         {
+           "name": "ARRE",
+           "count": 35,
+           "state": "displayed",
+           "value": "ARRE"
+         },
+         {
+           "name": "Parc des Sports",
+           "count": 35,
+           "state": "displayed",
+           "value": "Parc des Sports"
+         },
+         {
+           "name": "Centre Chorégraphique National - Ballet du Nord",
+           "count": 34,
+           "state": "displayed",
+           "value": "Centre Chorégraphique National - Ballet du Nord"
+         },
+         {
+           "name": "divers lieux à Roubaix",
+           "count": 34,
+           "state": "displayed",
+           "value": "divers lieux à Roubaix"
+         },
+         {
+           "name": "La Fabrik by MIE - Avant-Poste",
+           "count": 33,
+           "state": "displayed",
+           "value": "La Fabrik by MIE - Avant-Poste"
+         },
+         {
+           "name": "Couvent des Clarisses",
+           "count": 31,
+           "state": "displayed",
+           "value": "Couvent des Clarisses"
+         },
+         {
+           "name": "ARA - Autour des Rythmes Actuels",
+           "count": 29,
+           "state": "displayed",
+           "value": "ARA - Autour des Rythmes Actuels"
+         },
+         {
+           "name": "La Piscine",
+           "count": 29,
+           "state": "displayed",
+           "value": "La Piscine"
+         },
+         {
+           "name": "Jardins du Hêtre",
+           "count": 27,
+           "state": "displayed",
+           "value": "Jardins du Hêtre"
+         },
+         {
+           "name": "L' ARA Autour des Rythmes Actuels",
+           "count": 27,
+           "state": "displayed",
+           "value": "L' ARA Autour des Rythmes Actuels"
+         },
+         {
+           "name": "Monastère des Clarisses",
+           "count": 27,
+           "state": "displayed",
+           "value": "Monastère des Clarisses"
+         },
+         {
+           "name": "la Cave aux Poètes",
+           "count": 26,
+           "state": "displayed",
+           "value": "la Cave aux Poètes"
+         },
+         {
+           "name": "musée de la mémoire et de la création textile",
+           "count": 26,
+           "state": "displayed",
+           "value": "musée de la mémoire et de la création textile"
+         },
+         {
+           "name": "La Cave aux Poètes",
+           "count": 25,
+           "state": "displayed",
+           "value": "La Cave aux Poètes"
+         },
+         {
+           "name": "musée d'art et d'industrie André Diligent",
+           "count": 25,
+           "state": "displayed",
+           "value": "musée d'art et d'industrie André Diligent"
+         },
+         {
+           "name": "Bar du théâtre Pierre de Roubaix",
+           "count": 23,
+           "state": "displayed",
+           "value": "Bar du théâtre Pierre de Roubaix"
+         },
+         {
+           "name": "MDA - Maison des Associations",
+           "count": 23,
+           "state": "displayed",
+           "value": "MDA - Maison des Associations"
+         },
+         {
+           "name": "Ateliers Jouret",
+           "count": 22,
+           "state": "displayed",
+           "value": "Ateliers Jouret"
+         },
+         {
+           "name": "Pagode laotienne Wat Lao Bouddha Viharn",
+           "count": 22,
+           "state": "displayed",
+           "value": "Pagode laotienne Wat Lao Bouddha Viharn"
+         },
+         {
+           "name": "Le Gymnase | CDCN",
+           "count": 21,
+           "state": "displayed",
+           "value": "Le Gymnase | CDCN"
+         },
+         {
+           "name": "Le Non-lieu - Usine Cavrois-Mahieu",
+           "count": 21,
+           "state": "displayed",
+           "value": "Le Non-lieu - Usine Cavrois-Mahieu"
+         },
+         {
+           "name": "Église Protestante Unie",
+           "count": 21,
+           "state": "displayed",
+           "value": "Église Protestante Unie"
+         },
+         {
+           "name": "Archives Nationales du Monde du Travail",
+           "count": 20,
+           "state": "displayed",
+           "value": "Archives Nationales du Monde du Travail"
+         },
+         {
+           "name": "Archives nationales du monde du travail",
+           "count": 20,
+           "state": "displayed",
+           "value": "Archives nationales du monde du travail"
+         },
+         {
+           "name": "La Piscine - Musée d'Art et d'Industrie André Diligent",
+           "count": 20,
+           "state": "displayed",
+           "value": "La Piscine - Musée d'Art et d'Industrie André Diligent"
+         },
+         {
+           "name": "Le Métropolitain",
+           "count": 20,
+           "state": "displayed",
+           "value": "Le Métropolitain"
+         },
+         {
+           "name": "Coopérative Baraka",
+           "count": 19,
+           "state": "displayed",
+           "value": "Coopérative Baraka"
+         },
+         {
+           "name": "Le camion",
+           "count": 19,
+           "state": "displayed",
+           "value": "Le camion"
+         },
+         {
+           "name": "Mission Locale de Roubaix",
+           "count": 19,
+           "state": "displayed",
+           "value": "Mission Locale de Roubaix"
+         },
+         {
+           "name": "de la pêche et de la nature",
+           "count": 19,
+           "state": "displayed",
+           "value": "de la pêche et de la nature"
+         },
+         {
+           "name": "Blanchemaille",
+           "count": 17,
+           "state": "displayed",
+           "value": "Blanchemaille"
+         },
+         {
+           "name": "ENSAIT",
+           "count": 17,
+           "state": "displayed",
+           "value": "ENSAIT"
+         },
+         {
+           "name": "Hôpital Victor Provo",
+           "count": 17,
+           "state": "displayed",
+           "value": "Hôpital Victor Provo"
+         },
+         {
+           "name": "Hôtel de Ville - Salle Pierre de Roubaix",
+           "count": 17,
+           "state": "displayed",
+           "value": "Hôtel de Ville - Salle Pierre de Roubaix"
+         },
+         {
+           "name": "Le Vestiaire",
+           "count": 17,
+           "state": "displayed",
+           "value": "Le Vestiaire"
+         },
+         {
+           "name": "Maison de l'Habitat",
+           "count": 17,
+           "state": "displayed",
+           "value": "Maison de l'Habitat"
+         },
+         {
+           "name": "",
+           "count": 16,
+           "state": "displayed",
+           "value": ""
+         },
+         {
+           "name": "Lieu",
+           "count": 16,
+           "state": "displayed",
+           "value": "Lieu"
+         },
+         {
+           "name": "Salle Richard Lejeune",
+           "count": 16,
+           "state": "displayed",
+           "value": "Salle Richard Lejeune"
+         },
+         {
+           "name": "CFA BTP",
+           "count": 15,
+           "state": "displayed",
+           "value": "CFA BTP"
+         },
+         {
+           "name": "Grand'Place",
+           "count": 15,
+           "state": "displayed",
+           "value": "Grand'Place"
+         },
+         {
+           "name": "Maison de l'eau",
+           "count": 15,
+           "state": "displayed",
+           "value": "Maison de l'eau"
+         },
+         {
+           "name": "Bureau d'Art et de Recherche | Qsp galerie",
+           "count": 14,
+           "state": "displayed",
+           "value": "Bureau d'Art et de Recherche | Qsp galerie"
+         },
+         {
+           "name": "France",
+           "count": 14,
+           "state": "displayed",
+           "value": "France"
+         },
+         {
+           "name": "Le Gymnase",
+           "count": 14,
+           "state": "displayed",
+           "value": "Le Gymnase"
+         },
+         {
+           "name": "Pôle Ressources Jeunesse Deschepper",
+           "count": 14,
+           "state": "displayed",
+           "value": "Pôle Ressources Jeunesse Deschepper"
+         },
+         {
+           "name": "59100 Roubaix",
+           "count": 13,
+           "state": "displayed",
+           "value": "59100 Roubaix"
+         },
+         {
+           "name": "Grand Place",
+           "count": 13,
+           "state": "displayed",
+           "value": "Grand Place"
+         },
+         {
+           "name": "Jardin de Traverse",
+           "count": 13,
+           "state": "displayed",
+           "value": "Jardin de Traverse"
+         },
+         {
+           "name": "Conservatoire de Roubaix",
+           "count": 12,
+           "state": "displayed",
+           "value": "Conservatoire de Roubaix"
+         },
+         {
+           "name": "La Maison du Projet de la Lainière",
+           "count": 12,
+           "state": "displayed",
+           "value": "La Maison du Projet de la Lainière"
+         },
+         {
+           "name": "Le Colisée Roubaix",
+           "count": 12,
+           "state": "displayed",
+           "value": "Le Colisée Roubaix"
+         },
+         {
+           "name": "Parc des sports",
+           "count": 12,
+           "state": "displayed",
+           "value": "Parc des sports"
+         },
+         {
+           "name": "Stèle commémorative",
+           "count": 12,
+           "state": "displayed",
+           "value": "Stèle commémorative"
+         },
+         {
+           "name": "Théâtre de l'Oiseau-Mouche",
+           "count": 12,
+           "state": "displayed",
+           "value": "Théâtre de l'Oiseau-Mouche"
+         },
+         {
+           "name": "Villa Dubois \"La Maison Verte\"",
+           "count": 12,
+           "state": "displayed",
+           "value": "Villa Dubois \"La Maison Verte\""
+         },
+         {
+           "name": "Vélodrome de Roubaix - André Pétrieux",
+           "count": 12,
+           "state": "displayed",
+           "value": "Vélodrome de Roubaix - André Pétrieux"
+         },
+         {
+           "name": "parvis du monument aux Morts",
+           "count": 12,
+           "state": "displayed",
+           "value": "parvis du monument aux Morts"
+         },
+         {
+           "name": "59100 roubaix",
+           "count": 11,
+           "state": "displayed",
+           "value": "59100 roubaix"
+         },
+         {
+           "name": "BAR LIVE",
+           "count": 11,
+           "state": "displayed",
+           "value": "BAR LIVE"
+         },
+         {
+           "name": "Centre social Le Nautilus",
+           "count": 11,
+           "state": "displayed",
+           "value": "Centre social Le Nautilus"
+         },
+         {
+           "name": "Cheminée de la Tossée",
+           "count": 11,
+           "state": "displayed",
+           "value": "Cheminée de la Tossée"
+         },
+         {
+           "name": "Le Camion",
+           "count": 11,
+           "state": "displayed",
+           "value": "Le Camion"
+         },
+         {
+           "name": "Office de Tourisme",
+           "count": 11,
+           "state": "displayed",
+           "value": "Office de Tourisme"
+         },
+         {
+           "name": "devant l'Hôtel de Ville",
+           "count": 11,
+           "state": "displayed",
+           "value": "devant l'Hôtel de Ville"
+         },
+         {
+           "name": "ADEP de Roubaix",
+           "count": 10,
+           "state": "displayed",
+           "value": "ADEP de Roubaix"
+         },
+         {
+           "name": "Bureau d'Art et de Recherche",
+           "count": 10,
+           "state": "displayed",
+           "value": "Bureau d'Art et de Recherche"
+         },
+         {
+           "name": "Foyer Paul Constans Arcadis",
+           "count": 10,
+           "state": "displayed",
+           "value": "Foyer Paul Constans Arcadis"
+         },
+         {
+           "name": "Le Fil Rouge - Galerie QSP",
+           "count": 10,
+           "state": "displayed",
+           "value": "Le Fil Rouge - Galerie QSP"
+         },
+         {
+           "name": "Les Clarisses / Saisons Zéro",
+           "count": 10,
+           "state": "displayed",
+           "value": "Les Clarisses / Saisons Zéro"
+         },
+         {
+           "name": "Médiathèque La Grand Plage",
+           "count": 10,
+           "state": "displayed",
+           "value": "Médiathèque La Grand Plage"
+         },
+         {
+           "name": "Parc du Nouveau Monde",
+           "count": 10,
+           "state": "displayed",
+           "value": "Parc du Nouveau Monde"
+         },
+         {
+           "name": "Place de la Citoyenneté",
+           "count": 10,
+           "state": "displayed",
+           "value": "Place de la Citoyenneté"
+         },
+         {
+           "name": "Visioconférence",
+           "count": 10,
+           "state": "displayed",
+           "value": "Visioconférence"
+         },
+         {
+           "name": "Eglise Saint Martin de Roubaix",
+           "count": 9,
+           "state": "displayed",
+           "value": "Eglise Saint Martin de Roubaix"
+         },
+         {
+           "name": "Foyer Fourmies",
+           "count": 9,
+           "state": "displayed",
+           "value": "Foyer Fourmies"
+         },
+         {
+           "name": "Gare de Roubaix",
+           "count": 9,
+           "state": "displayed",
+           "value": "Gare de Roubaix"
+         },
+         {
+           "name": "Le Grand Bassin",
+           "count": 9,
+           "state": "displayed",
+           "value": "Le Grand Bassin"
+         },
+         {
+           "name": "Les Ateliers Jouret",
+           "count": 9,
+           "state": "displayed",
+           "value": "Les Ateliers Jouret"
+         },
+         {
+           "name": "École nationale de protection judiciaire de la jeunesse",
+           "count": 9,
+           "state": "displayed",
+           "value": "École nationale de protection judiciaire de la jeunesse"
+         },
+         {
+           "name": "Bureau d'Art et de Recherche | La Qsp galerie",
+           "count": 8,
+           "state": "displayed",
+           "value": "Bureau d'Art et de Recherche | La Qsp galerie"
+         },
+         {
+           "name": "Centre social Fresnoy-Mackellerie",
+           "count": 8,
+           "state": "displayed",
+           "value": "Centre social Fresnoy-Mackellerie"
+         },
+         {
+           "name": "Espace Grand Rue",
+           "count": 8,
+           "state": "displayed",
+           "value": "Espace Grand Rue"
+         },
+         {
+           "name": "Hôtel de ville de Roubaix",
+           "count": 8,
+           "state": "displayed",
+           "value": "Hôtel de ville de Roubaix"
+         },
+         {
+           "name": "Jardin de Chlorophylle",
+           "count": 8,
+           "state": "displayed",
+           "value": "Jardin de Chlorophylle"
+         },
+         {
+           "name": "Magic Mirror",
+           "count": 8,
+           "state": "displayed",
+           "value": "Magic Mirror"
+         },
+         {
+           "name": "Maison de l'habitat",
+           "count": 8,
+           "state": "displayed",
+           "value": "Maison de l'habitat"
+         },
+         {
+           "name": "Parc Brondeloire",
+           "count": 8,
+           "state": "displayed",
+           "value": "Parc Brondeloire"
+         },
+         {
+           "name": "Place Carnot",
+           "count": 8,
+           "state": "displayed",
+           "value": "Place Carnot"
+         },
+         {
+           "name": "Quai de Brest",
+           "count": 8,
+           "state": "displayed",
+           "value": "Quai de Brest"
+         },
+         {
+           "name": "médiathèque de Saint Maurice Pellevoisin",
+           "count": 8,
+           "state": "displayed",
+           "value": "médiathèque de Saint Maurice Pellevoisin"
+         },
+         {
+           "name": "Bord de la foret maléfique",
+           "count": 7,
+           "state": "displayed",
+           "value": "Bord de la foret maléfique"
+         },
+         {
+           "name": "Cité Entreprenante",
+           "count": 7,
+           "state": "displayed",
+           "value": "Cité Entreprenante"
+         },
+         {
+           "name": "Conservatoire à rayonnement départemental de Roubaix",
+           "count": 7,
+           "state": "displayed",
+           "value": "Conservatoire à rayonnement départemental de Roubaix"
+         },
+         {
+           "name": "Hôtel d'Hailly d'Aigremont",
+           "count": 7,
+           "state": "displayed",
+           "value": "Hôtel d'Hailly d'Aigremont"
+         },
+         {
+           "name": "Jardin de chlorophylle",
+           "count": 7,
+           "state": "displayed",
+           "value": "Jardin de chlorophylle"
+         },
+         {
+           "name": "La Manufacture-Musée de la mémoire et de la création textile",
+           "count": 7,
+           "state": "displayed",
+           "value": "La Manufacture-Musée de la mémoire et de la création textile"
+         },
+         {
+           "name": "La Troisième Place",
+           "count": 7,
+           "state": "displayed",
+           "value": "La Troisième Place"
+         },
+         {
+           "name": "La plus petite galerie du monde (OU PRESQUE)",
+           "count": 7,
+           "state": "displayed",
+           "value": "La plus petite galerie du monde (OU PRESQUE)"
+         },
+         {
+           "name": "Le Mange Disque",
+           "count": 7,
+           "state": "displayed",
+           "value": "Le Mange Disque"
+         },
+         {
+           "name": "Le Non-Lieu",
+           "count": 7,
+           "state": "displayed",
+           "value": "Le Non-Lieu"
+         },
+         {
+           "name": "Lille",
+           "count": 7,
+           "state": "displayed",
+           "value": "Lille"
+         },
+         {
+           "name": "Maison du projet Tout Pile",
+           "count": 7,
+           "state": "displayed",
+           "value": "Maison du projet Tout Pile"
+         },
+         {
+           "name": "Place de la Liberté",
+           "count": 7,
+           "state": "displayed",
+           "value": "Place de la Liberté"
+         },
+         {
+           "name": "Pôle Ressources Jeunesse Nord - Maison du Projet",
+           "count": 7,
+           "state": "displayed",
+           "value": "Pôle Ressources Jeunesse Nord - Maison du Projet"
+         },
+         {
+           "name": "Salle Watremez",
+           "count": 7,
+           "state": "displayed",
+           "value": "Salle Watremez"
+         },
+         {
+           "name": "Square Camille Claudel",
+           "count": 7,
+           "state": "displayed",
+           "value": "Square Camille Claudel"
+         },
+         {
+           "name": "Vélodrome couvert régional Jean-Stablinski",
+           "count": 7,
+           "state": "displayed",
+           "value": "Vélodrome couvert régional Jean-Stablinski"
+         },
+         {
+           "name": "Église Saint-Michel",
+           "count": 7,
+           "state": "displayed",
+           "value": "Église Saint-Michel"
+         },
+         {
+           "name": "Campus EDHEC",
+           "count": 6,
+           "state": "displayed",
+           "value": "Campus EDHEC"
+         },
+         {
+           "name": "Cimetière de Roubaix",
+           "count": 6,
+           "state": "displayed",
+           "value": "Cimetière de Roubaix"
+         },
+         {
+           "name": "Eglise Saint-Michel",
+           "count": 6,
+           "state": "displayed",
+           "value": "Eglise Saint-Michel"
+         },
+         {
+           "name": "Flam's Roubaix",
+           "count": 6,
+           "state": "displayed",
+           "value": "Flam's Roubaix"
+         },
+         {
+           "name": "Le Grand Sud",
+           "count": 6,
+           "state": "displayed",
+           "value": "Le Grand Sud"
+         },
+         {
+           "name": "Maison des Services Est",
+           "count": 6,
+           "state": "displayed",
+           "value": "Maison des Services Est"
+         },
+         {
+           "name": "Maison du Projet tout Pile",
+           "count": 6,
+           "state": "displayed",
+           "value": "Maison du Projet tout Pile"
+         },
+         {
+           "name": "Mie Sésame",
+           "count": 6,
+           "state": "displayed",
+           "value": "Mie Sésame"
+         },
+         {
+           "name": "Office de Tourisme de Roubaix",
+           "count": 6,
+           "state": "displayed",
+           "value": "Office de Tourisme de Roubaix"
+         },
+         {
+           "name": "Place du Travail",
+           "count": 6,
+           "state": "displayed",
+           "value": "Place du Travail"
+         },
+         {
+           "name": "Saisons Zéro (monastère des Clarisses)",
+           "count": 6,
+           "state": "displayed",
+           "value": "Saisons Zéro (monastère des Clarisses)"
+         },
+         {
+           "name": "École du Ballet du Nord",
+           "count": 6,
+           "state": "displayed",
+           "value": "École du Ballet du Nord"
+         },
+         {
+           "name": "52170",
+           "count": 5,
+           "state": "displayed",
+           "value": "52170"
+         },
+         {
+           "name": "Ballet du Nord",
+           "count": 5,
+           "state": "displayed",
+           "value": "Ballet du Nord"
+         },
+         {
+           "name": "Boulevard de Fourmies",
+           "count": 5,
+           "state": "displayed",
+           "value": "Boulevard de Fourmies"
+         },
+         {
+           "name": "Brasserie HUB",
+           "count": 5,
+           "state": "displayed",
+           "value": "Brasserie HUB"
+         },
+         {
+           "name": "Centre Culturel du Monde Arabe",
+           "count": 5,
+           "state": "displayed",
+           "value": "Centre Culturel du Monde Arabe"
+         },
+         {
+           "name": "Chevillon",
+           "count": 5,
+           "state": "displayed",
+           "value": "Chevillon"
+         },
+         {
+           "name": "Ecole le Cœur Bleu",
+           "count": 5,
+           "state": "displayed",
+           "value": "Ecole le Cœur Bleu"
+         },
+         {
+           "name": "Ecole nationale de protection judiciaire de la jeunesse",
+           "count": 5,
+           "state": "displayed",
+           "value": "Ecole nationale de protection judiciaire de la jeunesse"
+         },
+         {
+           "name": "Foyer Belfort",
+           "count": 5,
+           "state": "displayed",
+           "value": "Foyer Belfort"
+         },
+         {
+           "name": "Gare Saint Sauveur - Lille",
+           "count": 5,
+           "state": "displayed",
+           "value": "Gare Saint Sauveur - Lille"
+         },
+         {
+           "name": "Grande Rue 59100 Roubaix",
+           "count": 5,
+           "state": "displayed",
+           "value": "Grande Rue 59100 Roubaix"
+         },
+         {
+           "name": "IUT C",
+           "count": 5,
+           "state": "displayed",
+           "value": "IUT C"
+         },
+         {
+           "name": "La Guinguette",
+           "count": 5,
+           "state": "displayed",
+           "value": "La Guinguette"
+         },
+         {
+           "name": "La Tossée",
+           "count": 5,
+           "state": "displayed",
+           "value": "La Tossée"
+         },
+         {
+           "name": "Le Vestiaire Maisons de Mode",
+           "count": 5,
+           "state": "displayed",
+           "value": "Le Vestiaire Maisons de Mode"
+         },
+         {
+           "name": "Librairie \"Autour des mots\"",
+           "count": 5,
+           "state": "displayed",
+           "value": "Librairie \"Autour des mots\""
+         },
+         {
+           "name": "Maison de l’eau",
+           "count": 5,
+           "state": "displayed",
+           "value": "Maison de l’eau"
+         },
+         {
+           "name": "Maison des Services - Mairie des Quartiers Est",
+           "count": 5,
+           "state": "displayed",
+           "value": "Maison des Services - Mairie des Quartiers Est"
+         },
+         {
+           "name": "Maison du Projet Lainière",
+           "count": 5,
+           "state": "displayed",
+           "value": "Maison du Projet Lainière"
+         },
+         {
+           "name": "Maison du Projet de la Lainière",
+           "count": 5,
+           "state": "displayed",
+           "value": "Maison du Projet de la Lainière"
+         },
+         {
+           "name": "Maison folie Hospice d'Havré",
+           "count": 5,
+           "state": "displayed",
+           "value": "Maison folie Hospice d'Havré"
+         },
+         {
+           "name": "Mosquée Bilal",
+           "count": 5,
+           "state": "displayed",
+           "value": "Mosquée Bilal"
+         },
+         {
+           "name": "Musée d'Art et d' Industrie La Piscine",
+           "count": 5,
+           "state": "displayed",
+           "value": "Musée d'Art et d' Industrie La Piscine"
+         },
+         {
+           "name": "Médiathèque de Roubaix",
+           "count": 5,
+           "state": "displayed",
+           "value": "Médiathèque de Roubaix"
+         },
+         {
+           "name": "Oeil photographique",
+           "count": 5,
+           "state": "displayed",
+           "value": "Oeil photographique"
+         },
+         {
+           "name": "Petit Konbini",
+           "count": 5,
+           "state": "displayed",
+           "value": "Petit Konbini"
+         },
+         {
+           "name": "Place de la Fraternité",
+           "count": 5,
+           "state": "displayed",
+           "value": "Place de la Fraternité"
+         },
+         {
+           "name": "Racing Tennis Club de Roubaix",
+           "count": 5,
+           "state": "displayed",
+           "value": "Racing Tennis Club de Roubaix"
+         },
+         {
+           "name": "Racing tennis club de Roubaix",
+           "count": 5,
+           "state": "displayed",
+           "value": "Racing tennis club de Roubaix"
+         },
+         {
+           "name": "Roubaix / Médiathèque",
+           "count": 5,
+           "state": "displayed",
+           "value": "Roubaix / Médiathèque"
+         },
+         {
+           "name": "Roubaix Custom",
+           "count": 5,
+           "state": "displayed",
+           "value": "Roubaix Custom"
+         },
+         {
+           "name": "Rue de la vigne",
+           "count": 5,
+           "state": "displayed",
+           "value": "Rue de la vigne"
+         },
+         {
+           "name": "Salle des Fêtes Fives",
+           "count": 5,
+           "state": "displayed",
+           "value": "Salle des Fêtes Fives"
+         },
+         {
+           "name": "Théâtre Massenet",
+           "count": 5,
+           "state": "displayed",
+           "value": "Théâtre Massenet"
+         },
+         {
+           "name": "médiathèque Saint-Maurice Pellevoisin",
+           "count": 5,
+           "state": "displayed",
+           "value": "médiathèque Saint-Maurice Pellevoisin"
+         },
+         {
+           "name": "rue de France",
+           "count": 5,
+           "state": "displayed",
+           "value": "rue de France"
+         },
+         {
+           "name": "Église du Sacré-Cœur",
+           "count": 5,
+           "state": "displayed",
+           "value": "Église du Sacré-Cœur"
+         },
+         {
+           "name": "éGlise Protestante Unie",
+           "count": 5,
+           "state": "displayed",
+           "value": "éGlise Protestante Unie"
+         },
+         {
+           "name": "AFPI",
+           "count": 4,
+           "state": "displayed",
+           "value": "AFPI"
+         },
+         {
+           "name": "Archives Nationales Du Monde Du Travail",
+           "count": 4,
+           "state": "displayed",
+           "value": "Archives Nationales Du Monde Du Travail"
+         },
+         {
+           "name": "Canal de Roubaix",
+           "count": 4,
+           "state": "displayed",
+           "value": "Canal de Roubaix"
+         },
+         {
+           "name": "Centre Social des Quatre Quartiers",
+           "count": 4,
+           "state": "displayed",
+           "value": "Centre Social des Quatre Quartiers"
+         },
+         {
+           "name": "Centre social Pile-Sainte-Elisabeth",
+           "count": 4,
+           "state": "displayed",
+           "value": "Centre social Pile-Sainte-Elisabeth"
+         },
+         {
+           "name": "Château de la Fontaine",
+           "count": 4,
+           "state": "displayed",
+           "value": "Château de la Fontaine"
+         },
+         {
+           "name": "Ecole Blaise Pascal",
+           "count": 4,
+           "state": "displayed",
+           "value": "Ecole Blaise Pascal"
+         },
+         {
+           "name": "Ecole Edmond Rostand",
+           "count": 4,
+           "state": "displayed",
+           "value": "Ecole Edmond Rostand"
+         },
+         {
+           "name": "Ecole du Ballet du Nord - CCN / CRD",
+           "count": 4,
+           "state": "displayed",
+           "value": "Ecole du Ballet du Nord - CCN / CRD"
+         },
+         {
+           "name": "Eglise Saint Joseph",
+           "count": 4,
+           "state": "displayed",
+           "value": "Eglise Saint Joseph"
+         },
+         {
+           "name": "Eglise Saint-Martin",
+           "count": 4,
+           "state": "displayed",
+           "value": "Eglise Saint-Martin"
+         },
+         {
+           "name": "FLOW - Centre Eurorégional des Cultures Urbaines",
+           "count": 4,
+           "state": "displayed",
+           "value": "FLOW - Centre Eurorégional des Cultures Urbaines"
+         },
+         {
+           "name": "L'Alternateur",
+           "count": 4,
+           "state": "displayed",
+           "value": "L'Alternateur"
+         },
+         {
+           "name": "La Maison d'Alfred",
+           "count": 4,
+           "state": "displayed",
+           "value": "La Maison d'Alfred"
+         },
+         {
+           "name": "Le Temple",
+           "count": 4,
+           "state": "displayed",
+           "value": "Le Temple"
+         },
+         {
+           "name": "Lille / Médiathèque Saint Maurice Pellevoisin",
+           "count": 4,
+           "state": "displayed",
+           "value": "Lille / Médiathèque Saint Maurice Pellevoisin"
+         }
+       ]
+     },
+     {
+       "name": "department",
+       "facets": [
+         {
+           "name": "Nord",
+           "count": 5043,
+           "state": "displayed",
+           "value": "Nord"
+         },
+         {
+           "name": "Paris",
+           "count": 21,
+           "state": "displayed",
+           "value": "Paris"
+         },
+         {
+           "name": "Bouches-du-Rhône",
+           "count": 11,
+           "state": "displayed",
+           "value": "Bouches-du-Rhône"
+         },
+         {
+           "name": "Gironde",
+           "count": 11,
+           "state": "displayed",
+           "value": "Gironde"
+         },
+         {
+           "name": "Seine-Saint-Denis",
+           "count": 10,
+           "state": "displayed",
+           "value": "Seine-Saint-Denis"
+         },
+         {
+           "name": "Yvelines",
+           "count": 9,
+           "state": "displayed",
+           "value": "Yvelines"
+         },
+         {
+           "name": "Pas-de-Calais",
+           "count": 6,
+           "state": "displayed",
+           "value": "Pas-de-Calais"
+         },
+         {
+           "name": "Finistère",
+           "count": 5,
+           "state": "displayed",
+           "value": "Finistère"
+         },
+         {
+           "name": "Essonne",
+           "count": 4,
+           "state": "displayed",
+           "value": "Essonne"
+         },
+         {
+           "name": "Loiret",
+           "count": 4,
+           "state": "displayed",
+           "value": "Loiret"
+         },
+         {
+           "name": "Val-de-Marne",
+           "count": 4,
+           "state": "displayed",
+           "value": "Val-de-Marne"
+         },
+         {
+           "name": "Charente-Maritime",
+           "count": 2,
+           "state": "displayed",
+           "value": "Charente-Maritime"
+         },
+         {
+           "name": "Gard",
+           "count": 2,
+           "state": "displayed",
+           "value": "Gard"
+         },
+         {
+           "name": "Hautes-Pyrénées",
+           "count": 2,
+           "state": "displayed",
+           "value": "Hautes-Pyrénées"
+         },
+         {
+           "name": "Hauts-de-Seine",
+           "count": 2,
+           "state": "displayed",
+           "value": "Hauts-de-Seine"
+         },
+         {
+           "name": "Loire",
+           "count": 2,
+           "state": "displayed",
+           "value": "Loire"
+         },
+         {
+           "name": "Loire-Atlantique",
+           "count": 2,
+           "state": "displayed",
+           "value": "Loire-Atlantique"
+         },
+         {
+           "name": "Maine-et-Loire",
+           "count": 2,
+           "state": "displayed",
+           "value": "Maine-et-Loire"
+         },
+         {
+           "name": "Marne",
+           "count": 2,
+           "state": "displayed",
+           "value": "Marne"
+         },
+         {
+           "name": "Seine-et-Marne",
+           "count": 2,
+           "state": "displayed",
+           "value": "Seine-et-Marne"
+         },
+         {
+           "name": "Vaucluse",
+           "count": 2,
+           "state": "displayed",
+           "value": "Vaucluse"
+         },
+         {
+           "name": "Allier",
+           "count": 1,
+           "state": "displayed",
+           "value": "Allier"
+         },
+         {
+           "name": "Bas-Rhin",
+           "count": 1,
+           "state": "displayed",
+           "value": "Bas-Rhin"
+         },
+         {
+           "name": "Charente",
+           "count": 1,
+           "state": "displayed",
+           "value": "Charente"
+         },
+         {
+           "name": "Côtes d'Armor",
+           "count": 1,
+           "state": "displayed",
+           "value": "Côtes d'Armor"
+         },
+         {
+           "name": "Côtes-d'Armor",
+           "count": 1,
+           "state": "displayed",
+           "value": "Côtes-d'Armor"
+         },
+         {
+           "name": "Eure-et-Loir",
+           "count": 1,
+           "state": "displayed",
+           "value": "Eure-et-Loir"
+         },
+         {
+           "name": "Hainaut",
+           "count": 1,
+           "state": "displayed",
+           "value": "Hainaut"
+         },
+         {
+           "name": "Haute-Garonne",
+           "count": 1,
+           "state": "displayed",
+           "value": "Haute-Garonne"
+         },
+         {
+           "name": "Haute-Vienne",
+           "count": 1,
+           "state": "displayed",
+           "value": "Haute-Vienne"
+         },
+         {
+           "name": "Indre-et-Loire",
+           "count": 1,
+           "state": "displayed",
+           "value": "Indre-et-Loire"
+         },
+         {
+           "name": "Luxembourg",
+           "count": 1,
+           "state": "displayed",
+           "value": "Luxembourg"
+         },
+         {
+           "name": "Meurthe-et-Moselle",
+           "count": 1,
+           "state": "displayed",
+           "value": "Meurthe-et-Moselle"
+         },
+         {
+           "name": "Métropole de Lyon",
+           "count": 1,
+           "state": "displayed",
+           "value": "Métropole de Lyon"
+         },
+         {
+           "name": "Orne",
+           "count": 1,
+           "state": "displayed",
+           "value": "Orne"
+         },
+         {
+           "name": "Puy-de-Dôme",
+           "count": 1,
+           "state": "displayed",
+           "value": "Puy-de-Dôme"
+         },
+         {
+           "name": "Pyrénées-Atlantiques",
+           "count": 1,
+           "state": "displayed",
+           "value": "Pyrénées-Atlantiques"
+         },
+         {
+           "name": "Rhône",
+           "count": 1,
+           "state": "displayed",
+           "value": "Rhône"
+         },
+         {
+           "name": "Somme",
+           "count": 1,
+           "state": "displayed",
+           "value": "Somme"
+         },
+         {
+           "name": "Tarn",
+           "count": 1,
+           "state": "displayed",
+           "value": "Tarn"
+         },
+         {
+           "name": "Val-De-Marne",
+           "count": 1,
+           "state": "displayed",
+           "value": "Val-De-Marne"
+         },
+         {
+           "name": "Vosges",
+           "count": 1,
+           "state": "displayed",
+           "value": "Vosges"
+         }
+       ]
+     },
+     {
+       "name": "region",
+       "facets": [
+         {
+           "name": "Hauts-de-France",
+           "count": 5012,
+           "state": "displayed",
+           "value": "Hauts-de-France"
+         },
+         {
+           "name": "Nord-Pas-de-Calais-Picardie",
+           "count": 140,
+           "state": "displayed",
+           "value": "Nord-Pas-de-Calais-Picardie"
+         },
+         {
+           "name": "Île-de-France",
+           "count": 54,
+           "state": "displayed",
+           "value": "Île-de-France"
+         },
+         {
+           "name": "Nouvelle-Aquitaine",
+           "count": 16,
+           "state": "displayed",
+           "value": "Nouvelle-Aquitaine"
+         },
+         {
+           "name": "Provence-Alpes-Côte d'Azur",
+           "count": 12,
+           "state": "displayed",
+           "value": "Provence-Alpes-Côte d'Azur"
+         },
+         {
+           "name": "Bretagne",
+           "count": 7,
+           "state": "displayed",
+           "value": "Bretagne"
+         },
+         {
+           "name": "Auvergne-Rhône-Alpes",
+           "count": 6,
+           "state": "displayed",
+           "value": "Auvergne-Rhône-Alpes"
+         },
+         {
+           "name": "Centre-Val de Loire",
+           "count": 6,
+           "state": "displayed",
+           "value": "Centre-Val de Loire"
+         },
+         {
+           "name": "Grand Est",
+           "count": 5,
+           "state": "displayed",
+           "value": "Grand Est"
+         },
+         {
+           "name": "Occitanie",
+           "count": 5,
+           "state": "displayed",
+           "value": "Occitanie"
+         },
+         {
+           "name": "Pays de la Loire",
+           "count": 3,
+           "state": "displayed",
+           "value": "Pays de la Loire"
+         },
+         {
+           "name": "Flandre",
+           "count": 2,
+           "state": "displayed",
+           "value": "Flandre"
+         },
+         {
+           "name": "Languedoc-Roussillon-Midi-Pyrénées",
+           "count": 1,
+           "state": "displayed",
+           "value": "Languedoc-Roussillon-Midi-Pyrénées"
+         },
+         {
+           "name": "Normandie",
+           "count": 1,
+           "state": "displayed",
+           "value": "Normandie"
+         },
+         {
+           "name": "Wallonie",
+           "count": 1,
+           "state": "displayed",
+           "value": "Wallonie"
+         },
+         {
+           "name": "Walloon Region",
+           "count": 1,
+           "state": "displayed",
+           "value": "Walloon Region"
+         }
+       ]
+     },
+     {
+       "name": "city",
+       "facets": [
+         {
+           "name": "Roubaix",
+           "count": 4710,
+           "state": "displayed",
+           "value": "Roubaix"
+         },
+         {
+           "name": "Lille",
+           "count": 132,
+           "state": "displayed",
+           "value": "Lille"
+         },
+         {
+           "name": "Tourcoing",
+           "count": 128,
+           "state": "displayed",
+           "value": "Tourcoing"
+         },
+         {
+           "name": "Villeneuve-d'Ascq",
+           "count": 34,
+           "state": "displayed",
+           "value": "Villeneuve-d'Ascq"
+         },
+         {
+           "name": "Paris",
+           "count": 21,
+           "state": "displayed",
+           "value": "Paris"
+         },
+         {
+           "name": "Wattrelos",
+           "count": 17,
+           "state": "displayed",
+           "value": "Wattrelos"
+         },
+         {
+           "name": "Croix",
+           "count": 11,
+           "state": "displayed",
+           "value": "Croix"
+         },
+         {
+  
+            "name": "Arles",
+           "count": 9,
+           "state": "displayed",
+           "value": "Arles"
+         },
+         {
+           "name": "Valenciennes",
+           "count": 9,
+           "state": "displayed",
+           "value": "Valenciennes"
+         },
+         {
+           "name": "Marseille",
+           "count": 8,
+           "state": "displayed",
+           "value": "Marseille"
+         },
+         {
+           "name": "ROUBAIX",
+           "count": 8,
+           "state": "displayed",
+           "value": "ROUBAIX"
+         },
+         {
+           "name": "Leers",
+           "count": 7,
+           "state": "displayed",
+           "value": "Leers"
+         },
+         {
+           "name": "Marcq-en-Barœul",
+           "count": 7,
+           "state": "displayed",
+           "value": "Marcq-en-Barœul"
+         },
+         {
+           "name": "Bordeaux",
+           "count": 6,
+           "state": "displayed",
+           "value": "Bordeaux"
+         },
+         {
+           "name": "Wasquehal",
+           "count": 6,
+           "state": "displayed",
+           "value": "Wasquehal"
+         },
+         {
+           "name": "La Madeleine",
+           "count": 5,
+           "state": "displayed",
+           "value": "La Madeleine"
+         },
+         {
+           "name": "Montreuil",
+           "count": 5,
+           "state": "displayed",
+           "value": "Montreuil"
+         },
+         {
+           "name": "Lambersart",
+           "count": 4,
+           "state": "displayed",
+           "value": "Lambersart"
+         },
+         {
+           "name": "Mons-en-Barœul",
+           "count": 4,
+           "state": "displayed",
+           "value": "Mons-en-Barœul"
+         },
+         {
+           "name": "Mouvaux",
+           "count": 4,
+           "state": "displayed",
+           "value": "Mouvaux"
+         },
+         {
+           "name": "Toufflers",
+           "count": 4,
+           "state": "displayed",
+           "value": "Toufflers"
+         },
+         {
+           "name": "Brest",
+           "count": 3,
+           "state": "displayed",
+           "value": "Brest"
+         },
+         {
+           "name": "Cenon",
+           "count": 3,
+           "state": "displayed",
+           "value": "Cenon"
+         },
+         {
+           "name": "Ghyvelde",
+           "count": 3,
+           "state": "displayed",
+           "value": "Ghyvelde"
+         },
+         {
+           "name": "Lys-lez-Lannoy",
+           "count": 3,
+           "state": "displayed",
+           "value": "Lys-lez-Lannoy"
+         },
+         {
+           "name": "Maubeuge",
+           "count": 3,
+           "state": "displayed",
+           "value": "Maubeuge"
+         },
+         {
+           "name": "Orléans",
+           "count": 3,
+           "state": "displayed",
+           "value": "Orléans"
+         },
+         {
+           "name": "Armentières",
+           "count": 2,
+           "state": "displayed",
+           "value": "Armentières"
+         },
+         {
+           "name": "Bondy",
+           "count": 2,
+           "state": "displayed",
+           "value": "Bondy"
+         },
+         {
+           "name": "Concarneau",
+           "count": 2,
+           "state": "displayed",
+           "value": "Concarneau"
+         },
+         {
+           "name": "Cysoing",
+           "count": 2,
+           "state": "displayed",
+           "value": "Cysoing"
+         },
+         {
+           "name": "LEERS",
+           "count": 2,
+           "state": "displayed",
+           "value": "LEERS"
+         },
+         {
+           "name": "La Rochelle",
+           "count": 2,
+           "state": "displayed",
+           "value": "La Rochelle"
+         },
+         {
+           "name": "Le Cateau-Cambrésis",
+           "count": 2,
+           "state": "displayed",
+           "value": "Le Cateau-Cambrésis"
+         },
+         {
+           "name": "Nogent-sur-Marne",
+           "count": 2,
+           "state": "displayed",
+           "value": "Nogent-sur-Marne"
+         },
+         {
+           "name": "Noisiel",
+           "count": 2,
+           "state": "displayed",
+           "value": "Noisiel"
+         },
+         {
+           "name": "Nîmes",
+           "count": 2,
+           "state": "displayed",
+           "value": "Nîmes"
+         },
+         {
+           "name": "Saint-Amand-les-Eaux",
+           "count": 2,
+           "state": "displayed",
+           "value": "Saint-Amand-les-Eaux"
+         },
+         {
+           "name": "Tarbes",
+           "count": 2,
+           "state": "displayed",
+           "value": "Tarbes"
+         },
+         {
+           "name": "Toulouse",
+           "count": 2,
+           "state": "displayed",
+           "value": "Toulouse"
+         },
+         {
+           "name": "Tremblay-en-France",
+           "count": 2,
+           "state": "displayed",
+           "value": "Tremblay-en-France"
+         },
+         {
+           "name": "Tressin",
+           "count": 2,
+           "state": "displayed",
+           "value": "Tressin"
+         },
+         {
+           "name": "Vitry-sur-Seine",
+           "count": 2,
+           "state": "displayed",
+           "value": "Vitry-sur-Seine"
+         },
+         {
+           "name": "Vélizy-Villacoublay",
+           "count": 2,
+           "state": "displayed",
+           "value": "Vélizy-Villacoublay"
+         },
+         {
+           "name": "Wambrechies",
+           "count": 2,
+           "state": "displayed",
+           "value": "Wambrechies"
+         },
+         {
+           "name": "Achicourt",
+           "count": 1,
+           "state": "displayed",
+           "value": "Achicourt"
+         },
+         {
+           "name": "Albi",
+           "count": 1,
+           "state": "displayed",
+           "value": "Albi"
+         },
+         {
+           "name": "Apt",
+           "count": 1,
+           "state": "displayed",
+           "value": "Apt"
+         },
+         {
+           "name": "Avelgem",
+           "count": 1,
+           "state": "displayed",
+           "value": "Avelgem"
+         },
+         {
+           "name": "Bailleul",
+           "count": 1,
+           "state": "displayed",
+           "value": "Bailleul"
+         },
+         {
+           "name": "Beaugency",
+           "count": 1,
+           "state": "displayed",
+           "value": "Beaugency"
+         },
+         {
+           "name": "Bondues",
+           "count": 1,
+           "state": "displayed",
+           "value": "Bondues"
+         },
+         {
+           "name": "Bouguenais",
+           "count": 1,
+           "state": "displayed",
+           "value": "Bouguenais"
+         },
+         {
+           "name": "Bousbecque",
+           "count": 1,
+           "state": "displayed",
+           "value": "Bousbecque"
+         },
+         {
+           "name": "Bouvines",
+           "count": 1,
+           "state": "displayed",
+           "value": "Bouvines"
+         },
+         {
+           "name": "Bruay-la-Buissière",
+           "count": 1,
+           "state": "displayed",
+           "value": "Bruay-la-Buissière"
+         },
+         {
+           "name": "Béthune",
+           "count": 1,
+           "state": "displayed",
+           "value": "Béthune"
+         },
+         {
+           "name": "Carvin",
+           "count": 1,
+           "state": "displayed",
+           "value": "Carvin"
+         },
+         {
+           "name": "Chanteau",
+           "count": 1,
+           "state": "displayed",
+           "value": "Chanteau"
+         },
+         {
+           "name": "Clermont-Ferrand",
+           "count": 1,
+           "state": "displayed",
+           "value": "Clermont-Ferrand"
+         },
+         {
+           "name": "Coignières",
+           "count": 1,
+           "state": "displayed",
+           "value": "Coignières"
+         },
+         {
+           "name": "Dinan",
+           "count": 1,
+           "state": "displayed",
+           "value": "Dinan"
+         },
+         {
+           "name": "Dreux",
+           "count": 1,
+           "state": "displayed",
+           "value": "Dreux"
+         },
+         {
+           "name": "ELANCOURT",
+           "count": 1,
+           "state": "displayed",
+           "value": "ELANCOURT"
+         },
+         {
+           "name": "Englos",
+           "count": 1,
+           "state": "displayed",
+           "value": "Englos"
+         },
+         {
+           "name": "Erquinghem-le-Sec",
+           "count": 1,
+           "state": "displayed",
+           "value": "Erquinghem-le-Sec"
+         },
+         {
+           "name": "Erquy",
+           "count": 1,
+           "state": "displayed",
+           "value": "Erquy"
+         },
+         {
+           "name": "Faches-Thumesnil",
+           "count": 1,
+           "state": "displayed",
+           "value": "Faches-Thumesnil"
+         },
+         {
+           "name": "Fagnières",
+           "count": 1,
+           "state": "displayed",
+           "value": "Fagnières"
+         },
+         {
+           "name": "Frelinghien",
+           "count": 1,
+           "state": "displayed",
+           "value": "Frelinghien"
+         },
+         {
+           "name": "Fromelles",
+           "count": 1,
+           "state": "displayed",
+           "value": "Fromelles"
+         },
+         {
+           "name": "Gravelines",
+           "count": 1,
+           "state": "displayed",
+           "value": "Gravelines"
+         },
+         {
+           "name": "Guerville",
+           "count": 1,
+           "state": "displayed",
+           "value": "Guerville"
+         },
+         {
+           "name": "Hantay",
+           "count": 1,
+           "state": "displayed",
+           "value": "Hantay"
+         },
+         {
+           "name": "Harelbeke",
+           "count": 1,
+           "state": "displayed",
+           "value": "Harelbeke"
+         },
+         {
+           "name": "Hellemmes",
+           "count": 1,
+           "state": "displayed",
+           "value": "Hellemmes"
+         },
+         {
+           "name": "Hem",
+           "count": 1,
+           "state": "displayed",
+           "value": "Hem"
+         },
+         {
+           "name": "Illkirch-Graffenstaden",
+           "count": 1,
+           "state": "displayed",
+           "value": "Illkirch-Graffenstaden"
+         },
+         {
+           "name": "Issy-les-Moulineaux",
+           "count": 1,
+           "state": "displayed",
+           "value": "Issy-les-Moulineaux"
+         },
+         {
+           "name": "Jarnac",
+           "count": 1,
+           "state": "displayed",
+           "value": "Jarnac"
+         },
+         {
+           "name": "LILLE",
+           "count": 1,
+           "state": "displayed",
+           "value": "LILLE"
+         },
+         {
+           "name": "La Chapelle-d'Armentières",
+           "count": 1,
+           "state": "displayed",
+           "value": "La Chapelle-d'Armentières"
+         },
+         {
+           "name": "Lecelles",
+           "count": 1,
+           "state": "displayed",
+           "value": "Lecelles"
+         },
+         {
+           "name": "Lens",
+           "count": 1,
+           "state": "displayed",
+           "value": "Lens"
+         },
+         {
+           "name": "Lesquin",
+           "count": 1,
+           "state": "displayed",
+           "value": "Lesquin"
+         },
+         {
+           "name": "Limoges",
+           "count": 1,
+           "state": "displayed",
+           "value": "Limoges"
+         },
+         {
+           "name": "Linselles",
+           "count": 1,
+           "state": "displayed",
+           "value": "Linselles"
+         },
+         {
+           "name": "Mantes-la-Jolie",
+           "count": 1,
+           "state": "displayed",
+           "value": "Mantes-la-Jolie"
+         },
+         {
+           "name": "Marquette-lez-Lille",
+           "count": 1,
+           "state": "displayed",
+           "value": "Marquette-lez-Lille"
+         },
+         {
+           "name": "Massy",
+           "count": 1,
+           "state": "displayed",
+           "value": "Massy"
+         },
+         {
+           "name": "Messancy",
+           "count": 1,
+           "state": "displayed",
+           "value": "Messancy"
+         },
+         {
+           "name": "Nancy",
+           "count": 1,
+           "state": "displayed",
+           "value": "Nancy"
+         },
+         {
+           "name": "Nantes",
+           "count": 1,
+           "state": "displayed",
+           "value": "Nantes"
+         },
+         {
+           "name": "Neuilly-sur-Seine",
+           "count": 1,
+           "state": "displayed",
+           "value": "Neuilly-sur-Seine"
+         },
+         {
+           "name": "Neuville-en-Ferrain",
+           "count": 1,
+           "state": "displayed",
+           "value": "Neuville-en-Ferrain"
+         },
+         {
+           "name": "Oncy-sur-École",
+           "count": 1,
+           "state": "displayed",
+           "value": "Oncy-sur-École"
+         },
+         {
+           "name": "Palaiseau",
+           "count": 1,
+           "state": "displayed",
+           "value": "Palaiseau"
+         },
+         {
+           "name": "Pantin",
+           "count": 1,
+           "state": "displayed",
+           "value": "Pantin"
+         },
+         {
+           "name": "Pau",
+           "count": 1,
+           "state": "displayed",
+           "value": "Pau"
+         },
+         {
+           "name": "Pierrefitte",
+           "count": 1,
+           "state": "displayed",
+           "value": "Pierrefitte"
+         },
+         {
+           "name": "Pierrefitte-sur-Seine",
+           "count": 1,
+           "state": "displayed",
+           "value": "Pierrefitte-sur-Seine"
+         },
+         {
+           "name": "Plaisir",
+           "count": 1,
+           "state": "displayed",
+           "value": "Plaisir"
+         },
+         {
+           "name": "Péronne",
+           "count": 1,
+           "state": "displayed",
+           "value": "Péronne"
+         },
+         {
+           "name": "Quesnoy-sur-Deûle",
+           "count": 1,
+           "state": "displayed",
+           "value": "Quesnoy-sur-Deûle"
+         },
+         {
+           "name": "Reims",
+           "count": 1,
+           "state": "displayed",
+           "value": "Reims"
+         },
+         {
+           "name": "Rexpoëde",
+           "count": 1,
+           "state": "displayed",
+           "value": "Rexpoëde"
+         },
+         {
+           "name": "Saint-André-lez-Lille",
+           "count": 1,
+           "state": "displayed",
+           "value": "Saint-André-lez-Lille"
+         },
+         {
+           "name": "Saint-Denis",
+           "count": 1,
+           "state": "displayed",
+           "value": "Saint-Denis"
+         },
+         {
+           "name": "Saint-Macaire",
+           "count": 1,
+           "state": "displayed",
+           "value": "Saint-Macaire"
+         },
+         {
+           "name": "Saint-Maixant",
+           "count": 1,
+           "state": "displayed",
+           "value": "Saint-Maixant"
+         },
+         {
+           "name": "Saint-Michel-sur-Orge",
+           "count": 1,
+           "state": "displayed",
+           "value": "Saint-Michel-sur-Orge"
+         },
+         {
+           "name": "Saint-Omer",
+           "count": 1,
+           "state": "displayed",
+           "value": "Saint-Omer"
+         },
+         {
+           "name": "Saint-Sornin",
+           "count": 1,
+           "state": "displayed",
+           "value": "Saint-Sornin"
+         },
+         {
+           "name": "Saint-Sulpice-sur-Risle",
+           "count": 1,
+           "state": "displayed",
+           "value": "Saint-Sulpice-sur-Risle"
+         },
+         {
+           "name": "Saint-Étienne",
+           "count": 1,
+           "state": "displayed",
+           "value": "Saint-Étienne"
+         },
+         {
+           "name": "Salomé",
+           "count": 1,
+           "state": "displayed",
+           "value": "Salomé"
+         },
+         {
+           "name": "Saumur",
+           "count": 1,
+           "state": "displayed",
+           "value": "Saumur"
+         },
+         {
+           "name": "Seclin",
+           "count": 1,
+           "state": "displayed",
+           "value": "Seclin"
+         },
+         {
+           "name": "St-Étienne",
+           "count": 1,
+           "state": "displayed",
+           "value": "St-Étienne"
+         },
+         {
+           "name": "Tournai",
+           "count": 1,
+           "state": "displayed",
+           "value": "Tournai"
+         },
+         {
+           "name": "Tournefeuille",
+           "count": 1,
+           "state": "displayed",
+           "value": "Tournefeuille"
+         },
+         {
+           "name": "Tours",
+           "count": 1,
+           "state": "displayed",
+           "value": "Tours"
+         },
+         {
+           "name": "Villefranche-sur-Saône",
+           "count": 1,
+           "state": "displayed",
+           "value": "Villefranche-sur-Saône"
+         },
+         {
+           "name": "Villejuif",
+           "count": 1,
+           "state": "displayed",
+           "value": "Villejuif"
+         },
+         {
+           "name": "Villepreux",
+           "count": 1,
+           "state": "displayed",
+           "value": "Villepreux"
+         },
+         {
+           "name": "Villeurbanne",
+           "count": 1,
+           "state": "displayed",
+           "value": "Villeurbanne"
+         },
+         {
+           "name": "Wallers",
+           "count": 1,
+           "state": "displayed",
+           "value": "Wallers"
+         },
+         {
+           "name": "Wattignies",
+           "count": 1,
+           "state": "displayed",
+           "value": "Wattignies"
+         },
+         {
+           "name": "Wavrin",
+           "count": 1,
+           "state": "displayed",
+           "value": "Wavrin"
+         },
+         {
+           "name": "Willems",
+           "count": 1,
+           "state": "displayed",
+           "value": "Willems"
+         },
+         {
+           "name": "Élancourt",
+           "count": 1,
+           "state": "displayed",
+           "value": "Élancourt"
+         }
+       ]
+     },
+     {
+       "name": "date_start",
+       "facets": [
+         {
+           "name": "2023",
+           "count": 1,
+           "state": "displayed",
+           "value": "2023"
+         },
+         {
+           "name": "2022",
+           "count": 486,
+           "state": "displayed",
+           "value": "2022"
+         },
+         {
+           "name": "2021",
+           "count": 1172,
+           "state": "displayed",
+           "value": "2021"
+         },
+         {
+           "name": "2020",
+           "count": 1020,
+           "state": "displayed",
+           "value": "2020"
+         },
+         {
+           "name": "2019",
+           "count": 1218,
+           "state": "displayed",
+           "value": "2019"
+         },
+         {
+           "name": "2018",
+           "count": 800,
+           "state": "displayed",
+           "value": "2018"
+         },
+         {
+           "name": "2017",
+           "count": 313,
+           "state": "displayed",
+           "value": "2017"
+         },
+         {
+           "name": "2016",
+           "count": 126,
+           "state": "displayed",
+           "value": "2016"
+         },
+         {
+           "name": "2015",
+           "count": 102,
+           "state": "displayed",
+           "value": "2015"
+         },
+         {
+           "name": "2014",
+           "count": 42,
+           "state": "displayed",
+           "value": "2014"
+         },
+         {
+           "name": "2013",
+           "count": 4,
+           "state": "displayed",
+           "value": "2013"
+         },
+         {
+           "name": "2012",
+           "count": 1,
+           "state": "displayed",
+           "value": "2012"
+         },
+         {
+           "name": "2010",
+           "count": 1,
+           "state": "displayed",
+           "value": "2010"
+         },
+         {
+           "name": "2007",
+           "count": 1,
+           "state": "displayed",
+           "value": "2007"
+         }
+       ]
+     },
+     {
+       "name": "date_end",
+       "facets": [
+         {
+           "name": "2023",
+           "count": 1,
+           "state": "displayed",
+           "value": "2023"
+         },
+         {
+           "name": "2022",
+           "count": 519,
+           "state": "displayed",
+           "value": "2022"
+         },
+         {
+           "name": "2021",
+           "count": 1150,
+           "state": "displayed",
+           "value": "2021"
+         },
+         {
+           "name": "2020",
+           "count": 1023,
+           "state": "displayed",
+           "value": "2020"
+         },
+         {
+           "name": "2019",
+           "count": 1222,
+           "state": "displayed",
+           "value": "2019"
+         },
+         {
+           "name": "2018",
+           "count": 789,
+           "state": "displayed",
+           "value": "2018"
+         },
+         {
+           "name": "2017",
+           "count": 306,
+           "state": "displayed",
+           "value": "2017"
+         },
+         {
+           "name": "2016",
+           "count": 126,
+           "state": "displayed",
+           "value": "2016"
+         },
+         {
+           "name": "2015",
+           "count": 102,
+           "state": "displayed",
+           "value": "2015"
+         },
+         {
+           "name": "2014",
+           "count": 42,
+           "state": "displayed",
+           "value": "2014"
+         },
+         {
+           "name": "2013",
+           "count": 4,
+           "state": "displayed",
+           "value": "2013"
+         },
+         {
+           "name": "2012",
+           "count": 1,
+           "state": "displayed",
+           "value": "2012"
+         },
+         {
+           "name": "2010",
+           "count": 1,
+           "state": "displayed",
+           "value": "2010"
+         },
+         {
+           "name": "2007",
+           "count": 1,
+           "state": "displayed",
+           "value": "2007"
+         }
+       ]
+     },
+     {
+       "name": "pricing_info",
+       "facets": [
+         {
+           "name": "Entrée libre",
+           "count": 840,
+           "state": "displayed",
+           "value": "Entrée libre"
+         },
+         {
+           "name": "Gratuit",
+           "count": 464,
+           "state": "displayed",
+           "value": "Gratuit"
+         },
+         {
+           "name": "Gratuit, Entrée libre",
+           "count": 150,
+           "state": "displayed",
+           "value": "Gratuit, Entrée libre"
+         },
+         {
+           "name": "Sur inscription",
+           "count": 142,
+           "state": "displayed",
+           "value": "Sur inscription"
+         },
+         {
+           "name": "gratuit",
+           "count": 138,
+           "state": "displayed",
+           "value": "gratuit"
+         },
+         {
+           "name": "entrée libre",
+           "count": 101,
+           "state": "displayed",
+           "value": "entrée libre"
+         },
+         {
+           "name": "Gratuit sur inscription",
+           "count": 85,
+           "state": "displayed",
+           "value": "Gratuit sur inscription"
+         },
+         {
+           "name": "Entrée Libre",
+           "count": 83,
+           "state": "displayed",
+           "value": "Entrée Libre"
+         },
+         {
+           "name": "Gratuit, sans inscription",
+           "count": 69,
+           "state": "displayed",
+           "value": "Gratuit, sans inscription"
+         },
+         {
+           "name": "sur inscription",
+           "count": 58,
+           "state": "displayed",
+           "value": "sur inscription"
+         },
+         {
+           "name": "Gratuit, sur réservation",
+           "count": 44,
+           "state": "displayed",
+           "value": "Gratuit, sur réservation"
+         },
+         {
+           "name": "Sur réservation",
+           "count": 44,
+           "state": "displayed",
+           "value": "Sur réservation"
+         },
+         {
+           "name": "Groupe de 20 enfants ; Tarif par enfant : 4€ ; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation.",
+           "count": 34,
+           "state": "displayed",
+           "value": "Groupe de 20 enfants ; Tarif par enfant : 4€ ; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation."
+         },
+         {
+           "name": "Entrée 7/5 euros",
+           "count": 33,
+           "state": "displayed",
+           "value": "Entrée 7/5 euros"
+         },
+         {
+           "name": "Gratuit sur réservation",
+           "count": 29,
+           "state": "displayed",
+           "value": "Gratuit sur réservation"
+         },
+         {
+           "name": "Entrée gratuite",
+           "count": 28,
+           "state": "displayed",
+           "value": "Entrée gratuite"
+         },
+         {
+           "name": "Groupe de 15 enfants ; Tarif par enfant : 4€ ; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation.",
+           "count": 27,
+           "state": "displayed",
+           "value": "Groupe de 15 enfants ; Tarif par enfant : 4€ ; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation."
+         },
+         {
+           "name": "Entrée libre et gratuite",
+           "count": 22,
+           "state": "displayed",
+           "value": "Entrée libre et gratuite"
+         },
+         {
+           "name": "Entrée libre sur réservation",
+           "count": 22,
+           "state": "displayed",
+           "value": "Entrée libre sur réservation"
+         },
+         {
+           "name": "Gratuit, sur inscription",
+           "count": 22,
+           "state": "displayed",
+           "value": "Gratuit, sur inscription"
+         },
+         {
+           "name": "Entrée libre sur inscription",
+           "count": 21,
+           "state": "displayed",
+           "value": "Entrée libre sur inscription"
+         },
+         {
+           "name": "Réservation à l'Office de Tourisme de Roubaix",
+           "count": 21,
+           "state": "displayed",
+           "value": "Réservation à l'Office de Tourisme de Roubaix"
+         },
+         {
+           "name": "Réservations au plus tard le jeudi précédent la date souhaitée auprès du Service des publics. Tarif : 8€ + droit d’entrée au musée + prix du repas.",
+           "count": 21,
+           "state": "displayed",
+           "value": "Réservations au plus tard le jeudi précédent la date souhaitée auprès du Service des publics. Tarif : 8€ + droit d’entrée au musée + prix du repas."
+         },
+         {
+           "name": "Plein : 11€ / Réduit : 9€",
+           "count": 20,
+           "state": "displayed",
+           "value": "Plein : 11€ / Réduit : 9€"
+         },
+         {
+           "name": "Accès libre",
+           "count": 18,
+           "state": "displayed",
+           "value": "Accès libre"
+         },
+         {
+           "name": "Adhésion annuelle à partir de 2€",
+           "count": 18,
+           "state": "displayed",
+           "value": "Adhésion annuelle à partir de 2€"
+         },
+         {
+           "name": "10€ / 8€ / 5€",
+           "count": 16,
+           "state": "displayed",
+           "value": "10€ / 8€ / 5€"
+         },
+         {
+           "name": "Groupe de 20 enfants ; Tarif par enfant : 4€ ; Tarif par adulte : droit d’entrée au musée uniquement. Seuls les adultes accompagnés d’enfants peuvent y participer.; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation.",
+           "count": 15,
+           "state": "displayed",
+           "value": "Groupe de 20 enfants ; Tarif par enfant : 4€ ; Tarif par adulte : droit d’entrée au musée uniquement. Seuls les adultes accompagnés d’enfants peuvent y participer.; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation."
+         },
+         {
+           "name": "Groupe de 9 enfants ; Tarif par enfant : 4€ ; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation.",
+           "count": 15,
+           "state": "displayed",
+           "value": "Groupe de 9 enfants ; Tarif par enfant : 4€ ; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation."
+         },
+         {
+           "name": "ENTRÉE GRATUITE (1€ d'adhésion annuelle - Lieu de cercle privé)",
+           "count": 14,
+           "state": "displayed",
+           "value": "ENTRÉE GRATUITE (1€ d'adhésion annuelle - Lieu de cercle privé)"
+         },
+         {
+           "name": "Sur inscription, en visioconférence",
+           "count": 14,
+           "state": "displayed",
+           "value": "Sur inscription, en visioconférence"
+         },
+         {
+           "name": "Entrée 4 euros",
+           "count": 12,
+           "state": "displayed",
+           "value": "Entrée 4 euros"
+         },
+         {
+           "name": "Gratuit, entrée libre",
+           "count": 12,
+           "state": "displayed",
+           "value": "Gratuit, entrée libre"
+         },
+         {
+           "name": "Gratuit. Sur réservation auprès de l'Office de Tourisme de Roubaix.",
+           "count": 12,
+           "state": "displayed",
+           "value": "Gratuit. Sur réservation auprès de l'Office de Tourisme de Roubaix."
+         },
+         {
+           "name": "Sur inscription à l'Office de Tourisme",
+           "count": 12,
+           "state": "displayed",
+           "value": "Sur inscription à l'Office de Tourisme"
+         },
+         {
+           "name": "7€",
+           "count": 11,
+           "state": "displayed",
+           "value": "7€"
+         },
+         {
+           "name": "Atelier gratuit, inscription préalable obligatoire",
+           "count": 11,
+           "state": "displayed",
+           "value": "Atelier gratuit, inscription préalable obligatoire"
+         },
+         {
+           "name": "Entrée sur inscription",
+           "count": 11,
+           "state": "displayed",
+           "value": "Entrée sur inscription"
+         },
+         {
+           "name": "Groupe de 20 enfants ; Tarif par enfant : 4€ ; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation / La présentation d’un pass sanitaire valide est obligatoire",
+           "count": 11,
+           "state": "displayed",
+           "value": "Groupe de 20 enfants ; Tarif par enfant : 4€ ; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation / La présentation d’un pass sanitaire valide est obligatoire"
+         },
+         {
+           "name": "Sur rendez-vous",
+           "count": 11,
+           "state": "displayed",
+           "value": "Sur rendez-vous"
+         },
+         {
+           "name": "10€",
+           "count": 10,
+           "state": "displayed",
+           "value": "10€"
+         },
+         {
+           "name": "10€ / 7€ / 5€",
+           "count": 10,
+           "state": "displayed",
+           "value": "10€ / 7€ / 5€"
+         },
+         {
+           "name": "5€",
+           "count": 10,
+           "state": "displayed",
+           "value": "5€"
+         },
+         {
+           "name": "5€/0€",
+           "count": 10,
+           "state": "displayed",
+           "value": "5€/0€"
+         },
+         {
+           "name": "Entrée gratuite (1€ d'adhésion annuelle - Lieu de cercle privé)",
+           "count": 10,
+           "state": "displayed",
+           "value": "Entrée gratuite (1€ d'adhésion annuelle - Lieu de cercle privé)"
+         },
+         {
+           "name": "Entrée gratuite sur inscription",
+           "count": 10,
+           "state": "displayed",
+           "value": "Entrée gratuite sur inscription"
+         },
+         {
+           "name": "Entrée libre, gratuit",
+           "count": 10,
+           "state": "displayed",
+           "value": "Entrée libre, gratuit"
+         },
+         {
+           "name": "Inscription, gratuit",
+           "count": 10,
+           "state": "displayed",
+           "value": "Inscription, gratuit"
+         },
+         {
+           "name": "Nombre de participants 1 groupe de 20 personnes. Tarif : Gratuité totale. Pas de réservation, l’inscription se fait à l’accueil, le jour même à partir de 17h45, dans la limite des places disponibles.",
+           "count": 10,
+           "state": "displayed",
+           "value": "Nombre de participants 1 groupe de 20 personnes. Tarif : Gratuité totale. Pas de réservation, l’inscription se fait à l’accueil, le jour même à partir de 17h45, dans la limite des places disponibles."
+         },
+         {
+           "name": "ENTRÉE GRATUITE 1€ d'adhésion annuelle (lieu de cercle privé)",
+           "count": 9,
+           "state": "displayed",
+           "value": "ENTRÉE GRATUITE 1€ d'adhésion annuelle (lieu de cercle privé)"
+         },
+         {
+           "name": "Entrée gratuite sur réservation",
+           "count": 9,
+           "state": "displayed",
+           "value": "Entrée gratuite sur réservation"
+         },
+         {
+           "name": "Gratuit et sur inscription",
+           "count": 9,
+           "state": "displayed",
+           "value": "Gratuit et sur inscription"
+         },
+         {
+           "name": "Réservations à l'Office de Tourisme de Roubaix",
+           "count": 8,
+           "state": "displayed",
+           "value": "Réservations à l'Office de Tourisme de Roubaix"
+         },
+         {
+           "name": "12€/10€/8€/6€",
+           "count": 7,
+           "state": "displayed",
+           "value": "12€/10€/8€/6€"
+         },
+         {
+           "name": "Entrée gratuite, sur inscription (places limitées)",
+           "count": 7,
+           "state": "displayed",
+           "value": "Entrée gratuite, sur inscription (places limitées)"
+         },
+         {
+           "name": "Gratuit / Entrée libre dans la limite des places assises disponibles",
+           "count": 7,
+           "state": "displayed",
+           "value": "Gratuit / Entrée libre dans la limite des places assises disponibles"
+         },
+         {
+           "name": "Ouvert à tous",
+           "count": 7,
+           "state": "displayed",
+           "value": "Ouvert à tous"
+         },
+         {
+           "name": "2€",
+           "count": 6,
+           "state": "displayed",
+           "value": "2€"
+         },
+         {
+           "name": "Entrée gratuite - 1€ d'adhésion annuelle (lieu de cercle privé)",
+           "count": 6,
+           "state": "displayed",
+           "value": "Entrée gratuite - 1€ d'adhésion annuelle (lieu de cercle privé)"
+         },
+         {
+           "name": "Gratuit sans rendez-vous",
+           "count": 6,
+           "state": "displayed",
+           "value": "Gratuit sans rendez-vous"
+         },
+         {
+           "name": "Gratuit, masque obligatoire, apportez votre carte vitale",
+           "count": 6,
+           "state": "displayed",
+           "value": "Gratuit, masque obligatoire, apportez votre carte vitale"
+         },
+         {
+           "name": "Inscription obligatoire",
+           "count": 6,
+           "state": "displayed",
+           "value": "Inscription obligatoire"
+         },
+         {
+           "name": "Pas de réservation (dans la limite de la contenance de l’auditorium). Prévoir d’arriver à l’avance. 5 € pour les Amis de La Piscine ; 8 € tarif normal, 3 € pour les étudiants et demandeurs d’emploi.",
+           "count": 6,
+           "state": "displayed",
+           "value": "Pas de réservation (dans la limite de la contenance de l’auditorium). Prévoir d’arriver à l’avance. 5 € pour les Amis de La Piscine ; 8 € tarif normal, 3 € pour les étudiants et demandeurs d’emploi."
+         },
+         {
+           "name": "Réservation à l'Office de tourisme de Roubaix",
+           "count": 6,
+           "state": "displayed",
+           "value": "Réservation à l'Office de tourisme de Roubaix"
+         },
+         {
+           "name": "Sur inscriptions",
+           "count": 6,
+           "state": "displayed",
+           "value": "Sur inscriptions"
+         },
+         {
+           "name": "Tarifs : 7/5 euros",
+           "count": 6,
+           "state": "displayed",
+           "value": "Tarifs : 7/5 euros"
+         },
+         {
+           "name": "entrée libre et gratuite",
+           "count": 6,
+           "state": "displayed",
+           "value": "entrée libre et gratuite"
+         },
+         {
+           "name": "sur réservation",
+           "count": 6,
+           "state": "displayed",
+           "value": "sur réservation"
+         },
+         {
+           "name": "0€",
+           "count": 5,
+           "state": "displayed",
+           "value": "0€"
+         },
+         {
+           "name": "2€ - tarif unique",
+           "count": 5,
+           "state": "displayed",
+           "value": "2€ - tarif unique"
+         },
+         {
+           "name": "4.50€",
+           "count": 5,
+           "state": "displayed",
+           "value": "4.50€"
+         },
+         {
+           "name": "Entrée gratuite, 1€ d'adhésion annuelle (lieu de cercle privé)",
+           "count": 5,
+           "state": "displayed",
+           "value": "Entrée gratuite, 1€ d'adhésion annuelle (lieu de cercle privé)"
+         },
+         {
+           "name": "Groupe de 15 enfants ; Tarif par enfant : 4€ ; Tarif par adulte : droit d’entrée au musée uniquement. Seuls les adultes accompagnés d’enfants peuvent y participer.; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation.",
+           "count": 5,
+           "state": "displayed",
+           "value": "Groupe de 15 enfants ; Tarif par enfant : 4€ ; Tarif par adulte : droit d’entrée au musée uniquement. Seuls les adultes accompagnés d’enfants peuvent y participer.; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation."
+         },
+         {
+           "name": "Inscription conseillée",
+           "count": 5,
+           "state": "displayed",
+           "value": "Inscription conseillée"
+         },
+         {
+           "name": "Sur réservation sur www.theatre-massenet.com",
+           "count": 5,
+           "state": "displayed",
+           "value": "Sur réservation sur www.theatre-massenet.com"
+         },
+         {
+           "name": "Tarif 5 € pour les Amis de La Piscine 8 € tarif normal 3 € pour les étudiants et demandeurs d’emploi ; Pas de réservation (dans la limite de la contenance de l’auditorium). Prévoir d’arriver à l’avance.",
+           "count": 5,
+           "state": "displayed",
+           "value": "Tarif 5 € pour les Amis de La Piscine 8 € tarif normal 3 € pour les étudiants et demandeurs d’emploi ; Pas de réservation (dans la limite de la contenance de l’auditorium). Prévoir d’arriver à l’avance."
+         },
+         {
+           "name": "Tarif: Gratuit pour les adhérents de l'ARRE / 5 euros pour les extérieurs",
+           "count": 5,
+           "state": "displayed",
+           "value": "Tarif: Gratuit pour les adhérents de l'ARRE / 5 euros pour les extérieurs"
+         },
+         {
+           "name": "gratuit sur inscription",
+           "count": 5,
+           "state": "displayed",
+           "value": "gratuit sur inscription"
+         },
+         {
+           "name": "** ENTRÉE GRATUITE ** 1€ d'adhésion annuelle (lieu de cercle privé)",
+           "count": 4,
+           "state": "displayed",
+           "value": "** ENTRÉE GRATUITE ** 1€ d'adhésion annuelle (lieu de cercle privé)"
+         },
+         {
+           "name": "14€/12€/10€",
+           "count": 4,
+           "state": "displayed",
+           "value": "14€/12€/10€"
+         },
+         {
+           "name": "3,50€",
+           "count": 4,
+           "state": "displayed",
+           "value": "3,50€"
+         },
+         {
+           "name": "5€ - tarif unique",
+           "count": 4,
+           "state": "displayed",
+           "value": "5€ - tarif unique"
+         },
+         {
+           "name": "De 22 à 35 €",
+           "count": 4,
+           "state": "displayed",
+           "value": "De 22 à 35 €"
+         },
+         {
+           "name": "De 22 à 35€",
+           "count": 4,
+           "state": "displayed",
+           "value": "De 22 à 35€"
+         },
+         {
+           "name": "De 30 à 43 €",
+           "count": 4,
+           "state": "displayed",
+           "value": "De 30 à 43 €"
+         },
+         {
+           "name": "De 33 à 46€",
+           "count": 4,
+           "state": "displayed",
+           "value": "De 33 à 46€"
+         },
+         {
+           "name": "Entrée Libre - Salle du Conseil Municipal",
+           "count": 4,
+           "state": "displayed",
+           "value": "Entrée Libre - Salle du Conseil Municipal"
+         },
+         {
+           "name": "Entrée gratuite inscription obligatoire",
+           "count": 4,
+           "state": "displayed",
+           "value": "Entrée gratuite inscription obligatoire"
+         },
+         {
+           "name": "Entrée libre - Rdc - salle La criée",
+           "count": 4,
+           "state": "displayed",
+           "value": "Entrée libre - Rdc - salle La criée"
+         },
+         {
+           "name": "Entrée libre dans la limite des places disponibles",
+           "count": 4,
+           "state": "displayed",
+           "value": "Entrée libre dans la limite des places disponibles"
+         },
+         {
+           "name": "Entrée libre sur réservations",
+           "count": 4,
+           "state": "displayed",
+           "value": "Entrée libre sur réservations"
+         },
+         {
+           "name": "Evénement en ligne gratuit, sur inscription",
+           "count": 4,
+           "state": "displayed",
+           "value": "Evénement en ligne gratuit, sur inscription"
+         },
+         {
+           "name": "GRATUIT",
+           "count": 4,
+           "state": "displayed",
+           "value": "GRATUIT"
+         },
+         {
+           "name": "Gratuit sur réservation par mail en précisant la mention \"Art et Pilates\"",
+           "count": 4,
+           "state": "displayed",
+           "value": "Gratuit sur réservation par mail en précisant la mention \"Art et Pilates\""
+         },
+         {
+           "name": "Gratuit. Entrée libre sans réservation",
+           "count": 4,
+           "state": "displayed",
+           "value": "Gratuit. Entrée libre sans réservation"
+         },
+         {
+           "name": "Gratuit. Réservations obligatoires par mail.",
+           "count": 4,
+           "state": "displayed",
+           "value": "Gratuit. Réservations obligatoires par mail."
+         },
+         {
+           "name": "Groupe de 15 enfants ; Tarif par enfant : 4€. Tarif par adulte : droit d’entrée au musée uniquement. Seuls les adultes accompagnés d’enfants peuvent y participer ; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation.",
+           "count": 4,
+           "state": "displayed",
+           "value": "Groupe de 15 enfants ; Tarif par enfant : 4€. Tarif par adulte : droit d’entrée au musée uniquement. Seuls les adultes accompagnés d’enfants peuvent y participer ; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation."
+         },
+         {
+           "name": "Groupe de 20 personnes maximum. Gratuité pour la visite + droit d’entrée au musée. Pas de réservation: inscription directement à l’accueil du musée, 30 minutes avant le départ de la visite dans la limite des disponibilités.",
+           "count": 4,
+           "state": "displayed",
+           "value": "Groupe de 20 personnes maximum. Gratuité pour la visite + droit d’entrée au musée. Pas de réservation: inscription directement à l’accueil du musée, 30 minutes avant le départ de la visite dans la limite des disponibilités."
+         },
+         {
+           "name": "Paiement à effectuer sur place. Tarif : 5 € pour les Amis de La Piscine ; 8 € tarif normal, 3 € pour les étudiants et demandeurs d’emploi. Cycle complet 30 € (gratuit pour les personnes qui étaient inscrites pour le cycle précédent (confinement).",
+           "count": 4,
+           "state": "displayed",
+           "value": "Paiement à effectuer sur place. Tarif : 5 € pour les Amis de La Piscine ; 8 € tarif normal, 3 € pour les étudiants et demandeurs d’emploi. Cycle complet 30 € (gratuit pour les personnes qui étaient inscrites pour le cycle précédent (confinement)."
+         },
+         {
+           "name": "Pas de réservation. Inscription directement à l'accueil du musée, 30 minutes avant le départ de la visite dans la limite des places disponibles. Gratuité pour la visite + droit d'entrée au musée.",
+           "count": 4,
+           "state": "displayed",
+           "value": "Pas de réservation. Inscription directement à l'accueil du musée, 30 minutes avant le départ de la visite dans la limite des places disponibles. Gratuité pour la visite + droit d'entrée au musée."
+         },
+         {
+           "name": "Plein : 11€ / Réduit : 9€                     La présentation d’un pass sanitaire valide est obligatoire pour tous les visiteurs de + de 18 ans",
+           "count": 4,
+           "state": "displayed",
+           "value": "Plein : 11€ / Réduit : 9€                     La présentation d’un pass sanitaire valide est obligatoire pour tous les visiteurs de + de 18 ans"
+         },
+         {
+           "name": "Présentation obligatoire d’une pièce d’identité, pour chaque participant souhaitant accéder au site.",
+           "count": 4,
+           "state": "displayed",
+           "value": "Présentation obligatoire d’une pièce d’identité, pour chaque participant souhaitant accéder au site."
+         },
+         {
+           "name": "Réservation conseillée",
+           "count": 4,
+           "state": "displayed",
+           "value": "Réservation conseillée"
+         },
+         {
+           "name": "Réservation obligatoire",
+           "count": 4,
+           "state": "displayed",
+           "value": "Réservation obligatoire"
+         },
+         {
+           "name": "Réservation à l'Office du Tourisme de Roubaix",
+           "count": 4,
+           "state": "displayed",
+           "value": "Réservation à l'Office du Tourisme de Roubaix"
+         },
+         {
+           "name": "Sur inscription (possiblement en visioconférence)",
+           "count": 4,
+           "state": "displayed",
+           "value": "Sur inscription (possiblement en visioconférence)"
+         },
+         {
+           "name": "Sur réservation uniquement",
+           "count": 4,
+           "state": "displayed",
+           "value": "Sur réservation uniquement"
+         },
+         {
+           "name": "Tarif : 30 € pour le cycle complet des 6 conférences. Inscription par retour du coupon-réponse et du règlement à Amis de La Piscine 24 rue des Champs 59100 Roubaix",
+           "count": 4,
+           "state": "displayed",
+           "value": "Tarif : 30 € pour le cycle complet des 6 conférences. Inscription par retour du coupon-réponse et du règlement à Amis de La Piscine 24 rue des Champs 59100 Roubaix"
+         },
+         {
+           "name": "Tarif unique : 2 euros ! Attention : nombre de places limité, pré-achat conseillé au Duplexe",
+           "count": 4,
+           "state": "displayed",
+           "value": "Tarif unique : 2 euros ! Attention : nombre de places limité, pré-achat conseillé au Duplexe"
+         },
+         {
+           "name": "Tarifs : 8€ / 6€ / 4€",
+           "count": 4,
+           "state": "displayed",
+           "value": "Tarifs : 8€ / 6€ / 4€"
+         },
+         {
+           "name": "Une entrée enfant (gratuit pour les moins de 18 ans) = une entrée adulte offerte.  Sans réservation et dans la limite des places disponibles.",
+           "count": 4,
+           "state": "displayed",
+           "value": "Une entrée enfant (gratuit pour les moins de 18 ans) = une entrée adulte offerte.  Sans réservation et dans la limite des places disponibles."
+         },
+         {
+           "name": "10€ | 7€ | 5€",
+           "count": 3,
+           "state": "displayed",
+           "value": "10€ | 7€ | 5€"
+         },
+         {
+           "name": "120 euros materiel non compris",
+           "count": 3,
+           "state": "displayed",
+           "value": "120 euros materiel non compris"
+         },
+         {
+           "name": "16/9/6€ ou pass soirée à 16€",
+           "count": 3,
+           "state": "displayed",
+           "value": "16/9/6€ ou pass soirée à 16€"
+         },
+         {
+           "name": "4€",
+           "count": 3,
+           "state": "displayed",
+           "value": "4€"
+         },
+         {
+           "name": "5 €",
+           "count": 3,
+           "state": "displayed",
+           "value": "5 €"
+         },
+         {
+           "name": "5€ (préachat conseillé au Duplexe et à l’Office de Tourisme de Roubaix)",
+           "count": 3,
+           "state": "displayed",
+           "value": "5€ (préachat conseillé au Duplexe et à l’Office de Tourisme de Roubaix)"
+         },
+         {
+           "name": "5€/2€/0€",
+           "count": 3,
+           "state": "displayed",
+           "value": "5€/2€/0€"
+         },
+         {
+           "name": "6€/personne",
+           "count": 3,
+           "state": "displayed",
+           "value": "6€/personne"
+         },
+         {
+           "name": "9€",
+           "count": 3,
+           "state": "displayed",
+           "value": "9€"
+         },
+         {
+           "name": "Attractions payantes",
+           "count": 3,
+           "state": "displayed",
+           "value": "Attractions payantes"
+         },
+         {
+           "name": "De 10 à 39 €",
+           "count": 3,
+           "state": "displayed",
+           "value": "De 10 à 39 €"
+         },
+         {
+           "name": "De 25 à 39€",
+           "count": 3,
+           "state": "displayed",
+           "value": "De 25 à 39€"
+         },
+         {
+           "name": "De 28 à 39€",
+           "count": 3,
+           "state": "displayed",
+           "value": "De 28 à 39€"
+         },
+         {
+           "name": "De gratuit à 8€",
+           "count": 3,
+           "state": "displayed",
+           "value": "De gratuit à 8€"
+         },
+         {
+           "name": "Entrée libre - sur inscription",
+           "count": 3,
+           "state": "displayed",
+           "value": "Entrée libre - sur inscription"
+         },
+         {
+           "name": "Entrée libre / Rdc - salle La criée",
+           "count": 3,
+           "state": "displayed",
+           "value": "Entrée libre / Rdc - salle La criée"
+         },
+         {
+           "name": "Entrée libre / emplacement payant",
+           "count": 3,
+           "state": "displayed",
+           "value": "Entrée libre / emplacement payant"
+         },
+         {
+           "name": "Entrée libre et gratuite dans la limite des places disponibles",
+           "count": 3,
+           "state": "displayed",
+           "value": "Entrée libre et gratuite dans la limite des places disponibles"
+         },
+         {
+           "name": "Entrée libre sans réservation",
+           "count": 3,
+           "state": "displayed",
+           "value": "Entrée libre sans réservation"
+         },
+         {
+           "name": "Entrée libre sur réservation / 3ème étage - salle multimédia",
+           "count": 3,
+           "state": "displayed",
+           "value": "Entrée libre sur réservation / 3ème étage - salle multimédia"
+         },
+         {
+           "name": "Entrée libre, Gratuit",
+           "count": 3,
+           "state": "displayed",
+           "value": "Entrée libre, Gratuit"
+         },
+         {
+           "name": "Entrée libre.",
+           "count": 3,
+           "state": "displayed",
+           "value": "Entrée libre."
+         },
+         {
+           "name": "Entrée payante",
+           "count": 3,
+           "state": "displayed",
+           "value": "Entrée payante"
+         },
+         {
+           "name": "Entrée sur inscription obligatoire",
+           "count": 3,
+           "state": "displayed",
+           "value": "Entrée sur inscription obligatoire"
+         },
+         {
+           "name": "Entrée sur réservation",
+           "count": 3,
+           "state": "displayed",
+           "value": "Entrée sur réservation"
+         },
+         {
+           "name": "Evénement payant / se déroulant dans un site à entrée payante",
+           "count": 3,
+           "state": "displayed",
+           "value": "Evénement payant / se déroulant dans un site à entrée payante"
+         },
+         {
+           "name": "GRATUIT - PLACES LIMITÉES - SUR INSCRIPTION OBLIGATOIRE",
+           "count": 3,
+           "state": "displayed",
+           "value": "GRATUIT - PLACES LIMITÉES - SUR INSCRIPTION OBLIGATOIRE"
+         },
+         {
+           "name": "GRATUIT.",
+           "count": 3,
+           "state": "displayed",
+           "value": "GRATUIT."
+         },
+         {
+           "name": "Gratuit, dans la limite des places disponibles",
+           "count": 3,
+           "state": "displayed",
+           "value": "Gratuit, dans la limite des places disponibles"
+         },
+         {
+           "name": "Gratuit, inscription obligatoire",
+           "count": 3,
+           "state": "displayed",
+           "value": "Gratuit, inscription obligatoire"
+         },
+         {
+           "name": "Gratuit, réservation conseillée",
+           "count": 3,
+           "state": "displayed",
+           "value": "Gratuit, réservation conseillée"
+         },
+         {
+           "name": "Gratuité pour la visite + droit d’entrée au musée. Pas de réservation. Inscription directement à l’accueil du musée, 30 minutes avant le départ de la visite. La présentation d’un pass sanitaire valide est obligatoire pour tous les visiteurs de + de 18 ans",
+           "count": 3,
+           "state": "displayed",
+           "value": "Gratuité pour la visite + droit d’entrée au musée. Pas de réservation. Inscription directement à l’accueil du musée, 30 minutes avant le départ de la visite. La présentation d’un pass sanitaire valide est obligatoire pour tous les visiteurs de + de 18 ans"
+         },
+         {
+           "name": "Groupe de 9 enfants ; Tarif par enfant : 4€ ; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation /  La présentation d’un pass sanitaire valide est obligatoire pour tous les visiteurs de + de 18 ans",
+           "count": 3,
+           "state": "displayed",
+           "value": "Groupe de 9 enfants ; Tarif par enfant : 4€ ; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation /  La présentation d’un pass sanitaire valide est obligatoire pour tous les visiteurs de + de 18 ans"
+         },
+         {
+           "name": "Groupe de 9 enfants ; Tarif par enfant : 4€ ; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation / La présentation d’un pass sanitaire valide est obligatoire pour tous les visiteurs de + de 18 ans",
+           "count": 3,
+           "state": "displayed",
+           "value": "Groupe de 9 enfants ; Tarif par enfant : 4€ ; Pas de réservation, inscription en billetterie 30 minutes avant le début de l’animation / La présentation d’un pass sanitaire valide est obligatoire pour tous les visiteurs de + de 18 ans"
+         },
+         {
+           "name": "Inscription à l’accueil du musée 30 minutes avant le départ. Dans la limite des places disponibles.",
+           "count": 3,
+           "state": "displayed",
+           "value": "Inscription à l’accueil du musée 30 minutes avant le départ. Dans la limite des places disponibles."
+         },
+         {
+           "name": "Inscriptions en ligne et par voie postale à l’adresse indiquée sur la fiche d’inscription. Formulaire d’inscription à retirer à l’accueil de La Piscine ou à télécharger sur le site internet du Musée La Piscine",
+           "count": 3,
+           "state": "displayed",
+           "value": "Inscriptions en ligne et par voie postale à l’adresse indiquée sur la fiche d’inscription. Formulaire d’inscription à retirer à l’accueil de La Piscine ou à télécharger sur le site internet du Musée La Piscine"
+         },
+         {
+           "name": "Le paiement confirme votre inscription =&gt; Tarif de 10€ / personne, inscription via Paypal (avec message Nom+ age) ou directement au Petit Konbini",
+           "count": 3,
+           "state": "displayed",
+           "value": "Le paiement confirme votre inscription =&gt; Tarif de 10€ / personne, inscription via Paypal (avec message Nom+ age) ou directement au Petit Konbini"
+         },
+         {
+           "name": "Nombre de participants 1 groupe de 20 personnes. Tarif Gratuité totale Pas de réservation. L’inscription se fait à l’accueil, le jour même à partir de 17h45, dans la limite des places disponibles.",
+           "count": 3,
+           "state": "displayed",
+           "value": "Nombre de participants 1 groupe de 20 personnes. Tarif Gratuité totale Pas de réservation. L’inscription se fait à l’accueil, le jour même à partir de 17h45, dans la limite des places disponibles."
+         },
+         {
+           "name": "Paiement à effectuer sur place. Tarif : 5 € pour les Amis de La Piscine ; 8 € tarif normal, 3 € pour les étudiants et demandeurs d’emploi. Cycle complet 30 € (gratuit pour les personnes qui étaient inscrites pour le cycle précédent (confinement)",
+           "count": 3,
+           "state": "displayed",
+           "value": "Paiement à effectuer sur place. Tarif : 5 € pour les Amis de La Piscine ; 8 € tarif normal, 3 € pour les étudiants et demandeurs d’emploi. Cycle complet 30 € (gratuit pour les personnes qui étaient inscrites pour le cycle précédent (confinement)"
+         },
+         {
+           "name": "Réservation à l'Office de Tourisme",
+           "count": 3,
+           "state": "displayed",
+           "value": "Réservation à l'Office de Tourisme"
+         },
+         {
+           "name": "Sur inscription - Pass sanitaire obligatoire",
+           "count": 3,
+           "state": "displayed",
+           "value": "Sur inscription - Pass sanitaire obligatoire"
+         },
+         {
+           "name": "Sur inscription dans la limite des places disponibles à l'accueil du musée 30 minutes avant le départ de la visite, durée 1 heure",
+           "count": 3,
+           "state": "displayed",
+           "value": "Sur inscription dans la limite des places disponibles à l'accueil du musée 30 minutes avant le départ de la visite, durée 1 heure"
+         },
+         {
+           "name": "Sur inscription uniquement",
+           "count": 3,
+           "state": "displayed",
+           "value": "Sur inscription uniquement"
+         },
+         {
+           "name": "Sur inscription. Gratuit pour les bénévoles de l'ARRE, 110€ pour les adhérents, 220€ pour les extérieurs",
+           "count": 3,
+           "state": "displayed",
+           "value": "Sur inscription. Gratuit pour les bénévoles de l'ARRE, 110€ pour les adhérents, 220€ pour les extérieurs"
+         },
+         {
+           "name": "Sur présentation obligatoire d'une pièce d'identité.",
+           "count": 3,
+           "state": "displayed",
+           "value": "Sur présentation obligatoire d'une pièce d'identité."
+         },
+         {
+           "name": "Sur réservation auprès de l'Office de Tourisme de Roubaix",
+           "count": 3,
+           "state": "displayed",
+           "value": "Sur réservation auprès de l'Office de Tourisme de Roubaix"
+         },
+         {
+           "name": "Tarif: 5€",
+           "count": 3,
+           "state": "displayed",
+           "value": "Tarif: 5€"
+         },
+         {
+           "name": "Tarifs : 7 / 5 €",
+           "count": 3,
+           "state": "displayed",
+           "value": "Tarifs : 7 / 5 €"
+         },
+         {
+           "name": "Tarifs dans la description. Réservation obligatoire par mail.",
+           "count": 3,
+           "state": "displayed",
+           "value": "Tarifs dans la description. Réservation obligatoire par mail."
+         },
+         {
+           "name": "adhésion annuelle à partir de 2€",
+           "count": 3,
+           "state": "displayed",
+           "value": "adhésion annuelle à partir de 2€"
+         },
+         {
+           "name": "entre 4€ et 8€",
+           "count": 3,
+           "state": "displayed",
+           "value": "entre 4€ et 8€"
+         },
+         {
+           "name": "10 / 12 /14 euros",
+           "count": 2,
+           "state": "displayed",
+           "value": "10 / 12 /14 euros"
+         },
+         {
+           "name": "10 euros",
+           "count": 2,
+           "state": "displayed",
+           "value": "10 euros"
+         },
+         {
+           "name": "12€/10€/8€",
+           "count": 2,
+           "state": "displayed",
+           "value": "12€/10€/8€"
+         },
+         {
+           "name": "12€/10€/gratuit abonné.e",
+           "count": 2,
+           "state": "displayed",
+           "value": "12€/10€/gratuit abonné.e"
+         },
+         {
+           "name": "16/9/6€ sur réservation",
+           "count": 2,
+           "state": "displayed",
+           "value": "16/9/6€ sur réservation"
+         },
+         {
+           "name": "220 euros/personne",
+           "count": 2,
+           "state": "displayed",
+           "value": "220 euros/personne"
+         },
+         {
+           "name": "220€ TTC par personne",
+           "count": 2,
+           "state": "displayed",
+           "value": "220€ TTC par personne"
+         },
+         {
+           "name": "25€",
+           "count": 2,
+           "state": "displayed",
+           "value": "25€"
+         },
+         {
+           "name": "3 euros",
+           "count": 2,
+           "state": "displayed",
+           "value": "3 euros"
+         },
+         {
+           "name": "4,50€",
+           "count": 2,
+           "state": "displayed",
+           "value": "4,50€"
+         },
+         {
+           "name": "5 / 8 €",
+           "count": 2,
+           "state": "displayed",
+           "value": "5 / 8 €"
+         },
+         {
+           "name": "6 €",
+           "count": 2,
+           "state": "displayed",
+           "value": "6 €"
+         },
+         {
+           "name": "6€ sur place",
+           "count": 2,
+           "state": "displayed",
+           "value": "6€ sur place"
+         },
+         {
+           "name": "6€/4€",
+           "count": 2,
+           "state": "displayed",
+           "value": "6€/4€"
+         },
+         {
+           "name": "8€ / 10€ / 12€",
+           "count": 2,
+           "state": "displayed",
+           "value": "8€ / 10€ / 12€"
+         },
+         {
+           "name": "Accès libre et gratuit",
+           "count": 2,
+           "state": "displayed",
+           "value": "Accès libre et gratuit"
+         },
+         {
+           "name": "Animation gratuite à destination du public familial.",
+           "count": 2,
+           "state": "displayed",
+           "value": "Animation gratuite à destination du public familial."
+         },
+         {
+           "name": "Dans la limite des places disponibles",
+           "count": 2,
+           "state": "displayed",
+           "value": "Dans la limite des places disponibles"
+         },
+         {
+           "name": "De 13 à 23€",
+           "count": 2,
+           "state": "displayed",
+           "value": "De 13 à 23€"
+         },
+         {
+           "name": "De 15 à 46 €",
+           "count": 2,
+           "state": "displayed",
+           "value": "De 15 à 46 €"
+         },
+         {
+           "name": "De 28 à 39 €",
+           "count": 2,
+           "state": "displayed",
+           "value": "De 28 à 39 €"
+         },
+         {
+           "name": "De 30 à 43€",
+           "count": 2,
+           "state": "displayed",
+           "value": "De 30 à 43€"
+         },
+         {
+           "name": "De 30 à 45 €",
+           "count": 2,
+           "state": "displayed",
+           "value": "De 30 à 45 €"
+         },
+         {
+           "name": "De 35 à 49 €",
+           "count": 2,
+           "state": "displayed",
+           "value": "De 35 à 49 €"
+         },
+         {
+           "name": "De 35 à 49€",
+           "count": 2,
+           "state": "displayed",
+           "value": "De 35 à 49€"
+         },
+         {
+           "name": "Devenir adhérent au jardin de chlorophylle : 5€ pour la famille ou 5€ ou 1€ en fonction de la situation. Il est préférable de nous prévenir de votre participation pour nous aider à mieux préparer les ateliers.",
+           "count": 2,
+           "state": "displayed",
+           "value": "Devenir adhérent au jardin de chlorophylle : 5€ pour la famille ou 5€ ou 1€ en fonction de la situation. Il est préférable de nous prévenir de votre participation pour nous aider à mieux préparer les ateliers."
+         },
+         {
+           "name": "Dès 14 ans. de 6 à 21€",
+           "count": 2,
+           "state": "displayed",
+           "value": "Dès 14 ans. de 6 à 21€"
+         },
+         {
+           "name": "Enfants 6/12 ans du quartier du Pile et de l'Alma",
+           "count": 2,
+           "state": "displayed",
+           "value": "Enfants 6/12 ans du quartier du Pile et de l'Alma"
+         },
+         {
+           "name": "Entré libre sur inscription",
+           "count": 2,
+           "state": "displayed",
+           "value": "Entré libre sur inscription"
+         },
+         {
+           "name": "Entrée Gratuite",
+           "count": 2,
+           "state": "displayed",
+           "value": "Entrée Gratuite"
+         },
+         {
+           "name": "Entrée gratuite - Adhésion annuelle 1€ (lieu de cercle privé)",
+           "count": 2,
+           "state": "displayed",
+           "value": "Entrée gratuite - Adhésion annuelle 1€ (lieu de cercle privé)"
+         },
+         {
+           "name": "Entrée gratuite et ouvert à tous",
+           "count": 2,
+           "state": "displayed",
+           "value": "Entrée gratuite et ouvert à tous"
+         },
+         {
+           "name": "Entrée gratuite pour les moins de 18 ans et pour l’adulte (une personne) qui accompagne un enfant pour l’accès à l’exposition temporaire, à la visite commentée et aux animations. Pas de réservation, dans la limite des places disponibles.",
+           "count": 2,
+           "state": "displayed",
+           "value": "Entrée gratuite pour les moins de 18 ans et pour l’adulte (une personne) qui accompagne un enfant pour l’accès à l’exposition temporaire, à la visite commentée et aux animations. Pas de réservation, dans la limite des places disponibles."
+         },
+         {
+           "name": "Entrée gratuite sur inscription obligatoire",
+           "count": 2,
+           "state": "displayed",
+           "value": "Entrée gratuite sur inscription obligatoire"
+         },
+         {
+           "name": "Entrée gratuite, sur réservation",
+           "count": 2,
+           "state": "displayed",
+           "value": "Entrée gratuite, sur réservation"
+         },
+         {
+           "name": "Entrée libre - Gratuit",
+           "count": 2,
+           "state": "displayed",
+           "value": "Entrée libre - Gratuit"
+         },
+         {
+           "name": "Entrée libre - Lieu de cercle privé (adhésion annuelle à partir de 2€)",
+           "count": 2,
+           "state": "displayed",
+           "value": "Entrée libre - Lieu de cercle privé (adhésion annuelle à partir de 2€)"
+         },
+         {
+           "name": "Entrée libre - Pass Sanitaire obligatoire",
+           "count": 2,
+           "state": "displayed",
+           "value": "Entrée libre - Pass Sanitaire obligatoire"
+         }
+       ]
+     },
+     {
+       "name": "updated_at",
+       "facets": [
+         {
+           "name": "2022",
+           "count": 400,
+           "state": "displayed",
+           "value": "2022"
+         },
+         {
+           "name": "2021",
+           "count": 1267,
+           "state": "displayed",
+           "value": "2021"
+         },
+         {
+           "name": "2020",
+           "count": 1713,
+           "state": "displayed",
+           "value": "2020"
+         },
+         {
+           "name": "2019",
+           "count": 934,
+           "state": "displayed",
+           "value": "2019"
+         },
+         {
+           "name": "2018",
+           "count": 465,
+           "state": "displayed",
+           "value": "2018"
+         },
+         {
+           "name": "2017",
+           "count": 358,
+           "state": "displayed",
+           "value": "2017"
+         },
+         {
+           "name": "2016",
+           "count": 40,
+           "state": "displayed",
+           "value": "2016"
+         },
+         {
+           "name": "2015",
+           "count": 92,
+           "state": "displayed",
+           "value": "2015"
+         },
+         {
+           "name": "2014",
+           "count": 15,
+           "state": "displayed",
+           "value": "2014"
+         },
+         {
+           "name": "2013",
+           "count": 3,
+           "state": "displayed",
+           "value": "2013"
+         },
+         {
+           "name": "2012",
+           "count": 1,
+           "state": "displayed",
+           "value": "2012"
+         }
+       ]
+     },
+     {
+       "name": "city_district",
+       "facets": [
+         {
+           "name": "Centre",
+           "count": 1505,
+           "state": "displayed",
+           "value": "Centre"
+         },
+         {
+           "name": "Est",
+           "count": 449,
+           "state": "displayed",
+           "value": "Est"
+         },
+         {
+           "name": "Ouest",
+           "count": 321,
+           "state": "displayed",
+           "value": "Ouest"
+         },
+         {
+           "name": "Nord",
+           "count": 247,
+           "state": "displayed",
+           "value": "Nord"
+         },
+         {
+           "name": "Sud",
+           "count": 173,
+           "state": "displayed",
+           "value": "Sud"
+         },
+         {
+           "name": "Saint-Maurice Pellevoisin",
+           "count": 38,
+           "state": "displayed",
+           "value": "Saint-Maurice Pellevoisin"
+         },
+         {
+           "name": "Lille-Centre",
+           "count": 19,
+           "state": "displayed",
+           "value": "Lille-Centre"
+         },
+         {
+           "name": "Lille-Moulins",
+           "count": 9,
+           "state": "displayed",
+           "value": "Lille-Moulins"
+         },
+         {
+           "name": "Vieux-Lille",
+           "count": 9,
+           "state": "displayed",
+           "value": "Vieux-Lille"
+         },
+         {
+           "name": "Lille",
+           "count": 8,
+           "state": "displayed",
+           "value": "Lille"
+         },
+         {
+           "name": "Lille-Sud",
+           "count": 7,
+           "state": "displayed",
+           "value": "Lille-Sud"
+         },
+         {
+           "name": "Paris 18e Arrondissement",
+           "count": 7,
+           "state": "displayed",
+           "value": "Paris 18e Arrondissement"
+         },
+         {
+           "name": "Fives",
+           "count": 6,
+           "state": "displayed",
+           "value": "Fives"
+         },
+         {
+           "name": "Centre-Ville",
+           "count": 3,
+           "state": "displayed",
+           "value": "Centre-Ville"
+         },
+         {
+           "name": "Les Moëres",
+           "count": 3,
+           "state": "displayed",
+           "value": "Les Moëres"
+         },
+         {
+           "name": "Lomme",
+           "count": 3,
+           "state": "displayed",
+           "value": "Lomme"
+         },
+         {
+           "name": "Marseille 1er Arrondissement",
+           "count": 3,
+           "state": "displayed",
+           "value": "Marseille 1er Arrondissement"
+         },
+         {
+           "name": "Saint-Jean",
+           "count": 3,
+           "state": "displayed",
+           "value": "Saint-Jean"
+         },
+         {
+           "name": "Wazemmes",
+           "count": 3,
+           "state": "displayed",
+           "value": "Wazemmes"
+         },
+         {
+           "name": "Annappes",
+           "count": 2,
+           "state": "displayed",
+           "value": "Annappes"
+         },
+         {
+           "name": "Belencontre",
+           "count": 2,
+           "state": "displayed",
+           "value": "Belencontre"
+         },
+         {
+           "name": "Bois-Blancs",
+           "count": 2,
+           "state": "displayed",
+           "value": "Bois-Blancs"
+         },
+         {
+           "name": "Centre ville",
+           "count": 2,
+           "state": "displayed",
+           "value": "Centre ville"
+         },
+         {
+           "name": "Centre-ville",
+           "count": 2,
+           "state": "displayed",
+           "value": "Centre-ville"
+         },
+         {
+           "name": "Crétinier",
+           "count": 2,
+           "state": "displayed",
+           "value": "Crétinier"
+         },
+         {
+           "name": "Faubourg de Cambrai",
+           "count": 2,
+           "state": "displayed",
+           "value": "Faubourg de Cambrai"
+         },
+         {
+           "name": "Faubourg de Roubaix",
+           "count": 2,
+           "state": "displayed",
+           "value": "Faubourg de Roubaix"
+         },
+         {
+           "name": "Le Vert Galant",
+           "count": 2,
+           "state": "displayed",
+           "value": "Le Vert Galant"
+         },
+         {
+           "name": "Marseille 6e Arrondissement",
+           "count": 2,
+           "state": "displayed",
+           "value": "Marseille 6e Arrondissement"
+         },
+         {
+           "name": "Saint-Sauveur",
+           "count": 2,
+           "state": "displayed",
+           "value": "Saint-Sauveur"
+         },
+         {
+           "name": "18e Arrondissement",
+           "count": 1,
+           "state": "displayed",
+           "value": "18e Arrondissement"
+         },
+         {
+           "name": "Beaubreuil",
+           "count": 1,
+           "state": "displayed",
+           "value": "Beaubreuil"
+         },
+         {
+           "name": "Bobillot",
+           "count": 1,
+           "state": "displayed",
+           "value": "Bobillot"
+         },
+         {
+           "name": "Bossuit",
+           "count": 1,
+           "state": "displayed",
+           "value": "Bossuit"
+         },
+         {
+           "name": "Château d'Hem",
+           "count": 1,
+           "state": "displayed",
+           "value": "Château d'Hem"
+         },
+         {
+           "name": "Croix-Luizet",
+           "count": 1,
+           "state": "displayed",
+           "value": "Croix-Luizet"
+         },
+         {
+           "name": "Faubourg de Béthune",
+           "count": 1,
+           "state": "displayed",
+           "value": "Faubourg de Béthune"
+         },
+         {
+           "name": "Flers-Breucq",
+           "count": 1,
+           "state": "displayed",
+           "value": "Flers-Breucq"
+         },
+         {
+           "name": "Grand Centre Ville",
+           "count": 1,
+           "state": "displayed",
+           "value": "Grand Centre Ville"
+         },
+         {
+           "name": "Kortrijk",
+           "count": 1,
+           "state": "displayed",
+           "value": "Kortrijk"
+         },
+         {
+           "name": "La Petite Haie",
+           "count": 1,
+           "state": "displayed",
+           "value": "La Petite Haie"
+         },
+         {
+           "name": "La Placette",
+           "count": 1,
+           "state": "displayed",
+           "value": "La Placette"
+         },
+         {
+           "name": "Laugère",
+           "count": 1,
+           "state": "displayed",
+           "value": "Laugère"
+         },
+         {
+           "name": "Le Landais",
+           "count": 1,
+           "state": "displayed",
+           "value": "Le Landais"
+         },
+         {
+           "name": "Marseille 3e Arrondissement",
+           "count": 1,
+           "state": "displayed",
+           "value": "Marseille 3e Arrondissement"
+         },
+         {
+           "name": "Montcalm-République",
+           "count": 1,
+           "state": "displayed",
+           "value": "Montcalm-République"
+         },
+         {
+           "name": "Paris 10e Arrondissement",
+           "count": 1,
+           "state": "displayed",
+           "value": "Paris 10e Arrondissement"
+         },
+         {
+           "name": "Paris 11e Arrondissement",
+           "count": 1,
+           "state": "displayed",
+           "value": "Paris 11e Arrondissement"
+         },
+         {
+           "name": "Paris 12e Arrondissement",
+           "count": 1,
+           "state": "displayed",
+           "value": "Paris 12e Arrondissement"
+         },
+         {
+           "name": "Paris 3e Arrondissement",
+           "count": 1,
+           "state": "displayed",
+           "value": "Paris 3e Arrondissement"
+         },
+         {
+           "name": "Paris 4e Arrondissement",
+           "count": 1,
+           "state": "displayed",
+           "value": "Paris 4e Arrondissement"
+         },
+         {
+           "name": "Quennaumont",
+           "count": 1,
+           "state": "displayed",
+           "value": "Quennaumont"
+         },
+         {
+           "name": "Saumur",
+           "count": 1,
+           "state": "displayed",
+           "value": "Saumur"
+         },
+         {
+           "name": "Vauban-Esquermes",
+           "count": 1,
+           "state": "displayed",
+           "value": "Vauban-Esquermes"
+         }
+       ]
+     }
+   ]
+ }

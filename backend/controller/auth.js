@@ -47,16 +47,22 @@ exports.signup = (req, res) => {
          });
       } else {
          // Default role = USER
-         user.setRoles([1]).then(() => {
-            res.status(200).send({ 
-               message: "Inscription réussie !",
-               user_uuid: user.user_uuid,
-               username: user.username,
-               email: user.email,
-               roles: ["ROLE_USER"],
-               accessToken: token,
-               userEmailNotifications: user.emailNotificationEnabled,
-               userRecommandations: user.recommandationsEnabled
+         Role.findOne({
+            where: {
+               name: "USER"
+            }
+         }).then(role => {
+            user.setRoles([role.role_id]).then(() => {
+               res.status(200).send({ 
+                  message: "Inscription réussie !",
+                  user_uuid: user.user_uuid,
+                  username: user.username,
+                  email: user.email,
+                  roles: ["USER"],
+                  accessToken: token,
+                  userEmailNotifications: user.emailNotificationEnabled,
+                  userRecommandations: user.recommandationsEnabled
+               });
             });
          });
       }

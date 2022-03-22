@@ -24,11 +24,12 @@ const db = {
   
   user: require("./user.model")(sequelize, Sequelize),
   role: require("./role.model")(sequelize, Sequelize),
+  request: require("./request.model")(sequelize, Sequelize),
   // ... other models
 
 
   // Utils/enums/...
-  ROLES: ["ADMIN", "USER"],
+  ROLES: ["USER", "MODERATOR", "ADMIN"],
 };
 
 // Associations
@@ -41,6 +42,9 @@ db.user.belongsToMany(db.role, {
   through: "link_user_roles",
   foreignKey: "user_uuid",
   otherKey: "role_id"
+});
+db.user.hasMany(db.request, {
+  foreignKey: "user_uuid"
 });
 
 

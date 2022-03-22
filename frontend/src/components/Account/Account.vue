@@ -31,9 +31,9 @@ export default defineComponent({
    <div
       :class="pannelVisible ? 'account active' : 'account'"
       @click="unshowAccount"
-      class="fixed inset-0 w-[100vw] h-[100vh] bg-glass-black"
+      class="fixed inset-0 w-[100vw] h-[100vh] bg-glass-black z-20"
    ></div>
-   <div
+   <aside
       :class="pannelVisible 
       ? (
          userConnected
@@ -45,15 +45,17 @@ export default defineComponent({
          ? 'flex-col'
          : 'flex-col-reverse'
       )"
-      class="pannel fixed inset-0 bg-white2 h-full max-w-[400px] pt-20 p-6 flex"
+      class="pannel fixed inset-0 bg-white2 h-full max-w-[400px] pt-20 p-6 flex z-50"
    >
-      <button @click="unshowAccount" class="close_pannel absolute top-6 right-6 w-[30px] aspect-square rounded hover:rounded-sm transition-[border-radius] bg-purple text-white2 font-bold text-md">
-         X
+      <button @click="unshowAccount" class="close_pannel absolute top-6 right-6 w-[30px] aspect-square rounded hover:rounded-sm transition-[border-radius] bg-purple text-white2 font-bold text-md flex items-center justify-center">
+         <svg class="w-3/4 aspect-square" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path fill="white" d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+         </svg>
       </button>
 
-      <Connection v-if="!userConnected" />
-      <AccountPannel v-else />
-   </div>
+      <AccountPannel v-if="userConnected" />
+      <Connection v-else />
+   </aside>
 </template>
 
 <style lang="scss" scoped>

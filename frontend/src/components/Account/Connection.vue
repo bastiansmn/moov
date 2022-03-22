@@ -76,12 +76,7 @@ export default defineComponent({
                const status = response.status;
                response.json().then(data => {
                   if (status >= 200 && status < 300) {
-                     settingsStore.sendNotification({
-                        code: 200,
-                        message: "Inscription effecutée",
-                     });
-                     // TODO : ajouter le user au store ...
-                     connectUser(data, { 
+                     connectUser(data, {
                         userRecommandations: data.userRecommandations,
                         userEmailNotifications: data.userEmailNotifications,
                         accessToken: data.accessToken,
@@ -138,14 +133,8 @@ export default defineComponent({
                body: JSON.stringify(payload)
             }).then(response => {
                const status = response.status;
-               response.json().then(data => {
-                  console.log(data);
-                  
+               response.json().then(data => {                                    
                   if (status >= 200 && status < 300) {
-                     settingsStore.sendNotification({
-                        code: 200,
-                        message: "Connexion effecutée",
-                     });
                      connectUser(data, { 
                         userRecommandations: data.userRecommandations,
                         userEmailNotifications: data.userEmailNotifications,
@@ -198,8 +187,6 @@ export default defineComponent({
          registerForm,
       }
    }
-
-   // TODO : Lier les connections/inscriptions au backend -> Enregistrer les infos nécessaires dans le store/localStorage
 })
 </script>
 

@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import router from "@/router/router";
 import User from "./model/user";
 
 // Create a new store instance.
@@ -42,14 +43,33 @@ export const useSettingsStore = defineStore("settings", {
          }, delay || 5_000);
       },
 
-      connectUser(user: User, preferences: { userRecommandations: boolean, userEmailNotifications: boolean, accessToken: string }) {
+      connectUser(user: User, preferences: { userRecommandations: boolean, userEmailNotifications: boolean, accessToken: string }) {         
          this.user = user;
-         this.userRecommandations = preferences?.userRecommandations ?? true;
-         this.userEmailNotifications = preferences?.userEmailNotifications ?? false;
+         this.userRecommandations = preferences.userRecommandations ?? true;
+         this.userEmailNotifications = preferences.userEmailNotifications ?? false;
          this.accessToken = preferences.accessToken;
 
+         // TODO : ne pas enregistrer le token dans le localStorage
          localStorage.setItem("accessToken", preferences.accessToken);
          localStorage.setItem("user_uuid", user.user_uuid);
+         localStorage.setItem("username", user.username);
+
+         this.sendNotification({ code: 200, message: "Vous êtes connecté" });
+      },
+      disconnectUser() {
+         this.user = {} as User;
+         this.userRecommandations = true;
+         this.userEmailNotifications = false;
+         this.accessToken = "";
+
+         localStorage.removeItem("accessToken");
+         localStorage.removeItem("user_uuid");
+         localStorage.removeItem("username");
+
+         this.sendNotification({ code: 400, message: "Vous êtes déconnecté" });
+
+         if (router.currentRoute.value.meta.requiresLog)
+            router.push({ name: "Home" });
       },
       setUserRecommandations(val: boolean) {
          fetch("/api/user/setRecommandations", {
