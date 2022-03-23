@@ -43,7 +43,6 @@ exports.sendMail = (req, res) => {
             mailContent,
             username: user.username
          }).then(result => {
-            console.log(result);
             var mailOptions = {
                from: 'moov.noreply@gmail.com',
                to: user.email,
@@ -62,14 +61,15 @@ exports.sendMail = (req, res) => {
                   });
                }
             });
-         }).catch(_err => {
-            console.error(_err);
+         }).catch(err => {
+            console.error(err);
             res.status(400).send({
                message: "Erreur lors du rendu du template"
             });
          });
       });
-   }).catch(_err => {
+   }).catch(err => {
+      console.error(err);
       res.status(500).send({
          message: "Erreur lors de la récupération des utilisateurs !"
       });

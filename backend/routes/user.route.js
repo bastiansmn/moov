@@ -1,4 +1,4 @@
-const { jwtAuth, verifyLog } = require("../middleware/index");
+const { jwtAuth, verifyLog, requestsStats } = require("../middleware/index");
 const controller = require("../controller/user");
 
 module.exports = (app) => {
@@ -20,6 +20,7 @@ module.exports = (app) => {
       "/user/setNotifications",
       [
          jwtAuth.verifyToken,
+         requestsStats.saveRequest
       ],
       controller.setUserNotifications
    );
@@ -27,6 +28,7 @@ module.exports = (app) => {
       "/user/setRecommandations",
       [
          jwtAuth.verifyToken,
+         requestsStats.saveRequest
       ],
       controller.setUserRecommandations
    ),
@@ -35,7 +37,8 @@ module.exports = (app) => {
       "/user/getUsers",
       [
          jwtAuth.verifyToken,
-         verifyLog.isAdmin
+         verifyLog.isAdmin,
+         requestsStats.saveRequest
       ],
       controller.getUsers
    ),
@@ -43,7 +46,8 @@ module.exports = (app) => {
       "/user/updateRoles",
       [
          jwtAuth.verifyToken,
-         verifyLog.isAdmin
+         verifyLog.isAdmin,
+         requestsStats.saveRequest
       ],
       controller.updateRoles
    );
@@ -55,7 +59,8 @@ module.exports = (app) => {
          verifyLog.isAdmin,
          verifyLog.validateEmailAndUsername,
          verifyLog.validatePassword,
-         verifyLog.roleExist
+         verifyLog.roleExist,
+         requestsStats.saveRequest
       ],
       controller.createUser
    )

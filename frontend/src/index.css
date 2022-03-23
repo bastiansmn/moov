@@ -32,6 +32,7 @@ body {
 *::-webkit-scrollbar {
    width: var(--navbar-width);
 	height: var(--navbar-width);
+   border-radius: calc(var(--navbar-width) / 2);
 }
 
 

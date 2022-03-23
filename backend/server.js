@@ -26,7 +26,6 @@ db.sequelize.sync()
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(require('./middleware/index').requestsStats.saveRequest);
 
 // Routes :
 require('./routes/auth.route')(app);

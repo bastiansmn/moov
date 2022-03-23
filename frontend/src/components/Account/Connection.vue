@@ -3,6 +3,7 @@ import { defineComponent, ref, onMounted } from "vue";
 
 import Input from '@/components/common/Input.vue';
 import { useSettingsStore } from '@/store/settings';
+import User from '@/store/model/user';
 
 export default defineComponent({
    name: "Connection",
@@ -16,7 +17,12 @@ export default defineComponent({
       const loginForm = ref(null);
       const registerForm = ref(null);
 
-      const connectUser = (userInfos, userPreferences) => {
+      type UserPreferences = { 
+         userRecommandations: boolean, 
+         userEmailNotifications: boolean, 
+         accessToken: string 
+      };
+      const connectUser = (userInfos: User, userPreferences: UserPreferences) => {
          // Save user in store to provide repetitive requests
          settingsStore.connectUser({
             user_uuid: userInfos.user_uuid,
@@ -26,18 +32,11 @@ export default defineComponent({
          }, userPreferences);
       }
 
-      const register = $event => {
-         let form;
-         if (!$event)        
-            form = registerForm.value; 
-         else
-            form = $event.target;
+      const register = () => {
+         const form = registerForm.value;
                  
          if (currentForm.value === "register") {              
-            const inputs = Array.from(form.childNodes)
-               .filter(e => e.nodeName === "DIV")
-               .filter(div => div.children[0]?.nodeName === "INPUT")
-               .map(div => div.children[0]); // Get all the inputs
+            const inputs = Array.from(form.querySelectorAll("inputs:not([type=submit])")); // Get all the inputs
 
             if (inputs.map(input => input.value).includes("")) {
                settingsStore.sendNotification({
@@ -89,25 +88,16 @@ export default defineComponent({
                   });
                })
             }).catch(err => {
-               console.log(err);
+               console.error(err);
             });
          }
       }
 
-      const login = $event => {
-         
-         let form;
-         if (!$event)        
-            form = loginForm.value; 
-         else
-            form = $event.target;
+      const login = () => {
+         const form = loginForm.value;
          if (currentForm.value === "login") {
-            const inputs = Array.from(form.childNodes)
-               .filter(e => e.nodeName === "DIV")
-               .filter(div => div.children[0]?.nodeName === "INPUT")
-               .map(div => div.children[0]); // Get all the inputs
+            const inputs = Array.from(form.querySelectorAll("input:not([type=submit])")); // Get all the inputs
             
-
             if (inputs.map(input => input.value).includes("")) {
                settingsStore.sendNotification({
                   code: 400,
@@ -117,7 +107,7 @@ export default defineComponent({
             }
 
             const username = inputs.find(input => input.name === "username").value;
-            const password = inputs.find(input => input.name === "password").value;
+            const password = inputs.find(input => input.name === "password").value;            
 
             const payload = {
                username,
@@ -148,7 +138,7 @@ export default defineComponent({
                   });
                })
             }).catch(err => {
-               console.log(err);
+               console.error(err);
             });
          }
       }
@@ -206,10 +196,10 @@ export default defineComponent({
       <div class="forms w-full">
          <div class="register bg-light-grey shadow">
             <form ref="registerForm" @submit.prevent="register" autocomplete="off">
-               <Input name="username" required shadow placeholder="Votre pseudo" />
-               <Input name="email" required type="email" shadow placeholder="Votre mail" />
-               <Input name="password" required type="password" shadow placeholder="Votre mot de passe" />
-               <Input name="passwordConfirm" required type="password" shadow placeholder="Confirmez votre mot de passe" />
+               <Input @submit="register" name="username" required shadow placeholder="Votre pseudo" />
+               <Input @submit="register" name="email" required type="email" shadow placeholder="Votre mail" />
+               <Input @submit="register" name="password" required type="password" shadow placeholder="Votre mot de passe" />
+               <Input @submit="register" name="passwordConfirm" required type="password" shadow placeholder="Confirmez votre mot de passe" />
                <input type="submit" value="register" hidden>
             </form>
             <button @click="toggleForm('register')" class="toggle-register w-full h-[42px] text-white font-bold outline-none transition-[transform]">

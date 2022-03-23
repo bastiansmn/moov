@@ -62,7 +62,7 @@ export default defineComponent({
 </script>
 
 <template>
-   <form @submit.prevent="submitInput" :class="props.shadow
+   <div :class="props.shadow
       ? `shadow search relative w-[${props.width}px] h-[${props.height}px] flex items-center justify-between overflow-hidden`
       : `search relative w-[${props.width}px] h-[${props.height}px] flex items-center justify-between overflow-hidden`"
       :style="{ background: props.background, borderRadius: props.radius + 'px' }"
@@ -72,7 +72,7 @@ export default defineComponent({
       <slot>
          <!-- Icon goes here if present -->
       </slot>
-   </form>
+   </div>
 </template>
 
 <style scoped>

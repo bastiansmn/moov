@@ -4,20 +4,18 @@ import User from "./model/user";
 
 // Create a new store instance.
 export const useSettingsStore = defineStore("settings", {
-   state: () => {
-      return {
-         pannelVisible: false,
-         user: {} as User,
-         userRecommandations: true,
-         userEmailNotifications: false,
-         accessToken: "",
-         notification: {
-            show: false,
-            code: 200,
-            message: "",
-         },
-      }
-   },
+   state: () => ({
+      pannelVisible: false,
+      user: {} as User,
+      userRecommandations: true as boolean,
+      userEmailNotifications: false as boolean,
+      accessToken: "",
+      notification: {
+         show: false,
+         code: 200,
+         message: "",
+      },
+   }),
    actions: {
       togglePannel(payload: boolean) {
          this.pannelVisible = payload;
@@ -66,7 +64,7 @@ export const useSettingsStore = defineStore("settings", {
          localStorage.removeItem("user_uuid");
          localStorage.removeItem("username");
 
-         this.sendNotification({ code: 400, message: "Vous êtes déconnecté" });
+         this.sendNotification({ code: 300, message: "Vous êtes déconnecté" });
 
          if (router.currentRoute.value.meta.requiresLog)
             router.push({ name: "Home" });

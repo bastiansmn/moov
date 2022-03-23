@@ -1,4 +1,4 @@
-const { verifyLog, bodytrim } = require("../middleware/index");
+const { verifyLog, bodytrim, requestsStats } = require("../middleware/index");
 const controller = require("../controller/auth");
 
 // Function passed to the middleware to trim the string in the body
@@ -21,13 +21,15 @@ module.exports = (app) => {
          verifyLog.validateEmailAndUsername,
          verifyLog.validatePassword,
          verifyLog.roleExist,
+         requestsStats.saveRequest
       ],
       controller.signup
    );
    app.post(
       "/auth/signin", 
       [ 
-         bodytrim.applyToBody(strTrim)
+         bodytrim.applyToBody(strTrim),
+         requestsStats.saveRequest
       ], 
       controller.signin
    );

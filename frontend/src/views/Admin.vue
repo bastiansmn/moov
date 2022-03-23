@@ -48,9 +48,12 @@ export default defineComponent({
             name="fade"
             mode="out-in"
          >
-            <div key="admin-router" class="w-full h-full p-6">
-               <component :is="Component" />
-            </div>
+            <keep-alive>
+               <div key="admin-router" class="w-full h-full p-6">
+                  <!-- TODO Define the chunk that contains all Admin sub-routes -->
+                  <component :is="Component" />
+               </div>
+            </keep-alive>
          </transition>
       </router-view>
    </div>

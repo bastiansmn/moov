@@ -30,7 +30,7 @@ const routes: Array<RouteRecordRaw> = [
          {
             path: 'application',
             name: 'Application',
-            component: () => import('../components/Admin/Application.vue'),
+            component: () => import('../components/Admin/Application/Application.vue'),
          },
          {
             path: 'catalog',
@@ -94,7 +94,8 @@ router.beforeEach(async (to, _from, next) => {
          } else {
             throw new Error();
          }
-      }).catch(_err => {  
+      }).catch(err => {  
+         console.error(err);
          settingsStore.sendNotification({
             code: 400,
             message: "Connexion automatique impossible",

@@ -10,7 +10,8 @@ exports.getAllRequests = (_req, res) => {
    }).then(requests => {
       res.status(200).send(requests);
       return;
-   }).catch(_err => {
+   }).catch(err => {
+      console.error(err);
       res.status(400).send({
          message: "Impossible de récupérer toutes les requêtes"
       });

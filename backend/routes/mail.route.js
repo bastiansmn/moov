@@ -1,4 +1,4 @@
-const { jwtAuth, verifyLog, bodytrim } = require("../middleware/index");
+const { jwtAuth, verifyLog, bodytrim, requestsStats } = require("../middleware/index");
 const controller = require("../controller/mail");
 
 // Function passed to the middleware to trim the string in the body
@@ -20,6 +20,7 @@ module.exports = (app) => {
          jwtAuth.verifyToken,
          verifyLog.isAdmin,
          bodytrim.applyToBody(strTrim),
+         requestsStats.saveRequest
       ],
       controller.sendMail
    );

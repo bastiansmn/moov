@@ -17,11 +17,11 @@ export default defineComponent({
          settingsStore.togglePannel(false);
       }
       
-      const setRecommandations = (val) => {
+      const setRecommandations = (val: Boolean) => {
          settingsStore.setUserRecommandations(val);
       }
 
-      const setEmailNotifications = (val) => {
+      const setEmailNotifications = (val: Boolean) => {
          settingsStore.setUserEmailNotifications(val);
       }
 

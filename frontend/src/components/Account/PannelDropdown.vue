@@ -12,6 +12,7 @@ export default defineComponent({
       const dropdown = ref(null);
 
       const toggleDropdown = () => {
+         if (!dropdown.value) return;
          dropdown.value.classList.toggle('active');
       }
 

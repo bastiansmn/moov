@@ -1,4 +1,4 @@
-const { verifyLog, jwtAuth } = require("../middleware/index");
+const { verifyLog, jwtAuth, requestsStats } = require("../middleware/index");
 const controller = require("../controller/role");
 
 module.exports = (app) => {
@@ -13,7 +13,8 @@ module.exports = (app) => {
       "/role/getAllRoles",
       [
          jwtAuth.verifyToken,
-         verifyLog.isAdmin
+         verifyLog.isAdmin,
+         requestsStats.saveRequest
       ],
       controller.getAllRoles
    )

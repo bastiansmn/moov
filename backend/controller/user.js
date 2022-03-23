@@ -19,7 +19,8 @@ exports.getUsers = async (_req, res) => {
          ...u.dataValues,
          roles: u.roles.map(r => r.name)
       })));
-   }).catch(_err => {
+   }).catch(err => {
+      console.error(err);
       res.status(400).send({
          message: "Impossible de récupérer tous les utilisateurs"
       });
@@ -63,6 +64,7 @@ exports.createUser = (req, res) => {
          emailNotificationEnabled: user.emailNotificationEnabled
       });
    }).catch(err => {
+      console.error(err);
       res.status(500).send({ message: err.message });
    });
 
@@ -119,7 +121,8 @@ exports.updateRoles = async (req, res) => {
       res.status(200).send({
          message: "Rôle(s) modifié(s)"
       })
-   }).catch(_err => {
+   }).catch(err => {
+      console.error(err);
       res.status(400).send({
          message: "Impossible de mofifier le rôle",
       });
@@ -153,7 +156,7 @@ exports.getUserByUUID = (req, res) => {
          });
       })
    }).catch(err => {
-      console.log(err);
+      console.error(err);
       res.status(404).send({
          message: "Utilisateur non trouvé"
       });
@@ -185,7 +188,8 @@ exports.setUserRecommandations = (req, res) => {
             message: "Recommandations modifiées",
          });
       });
-   }).catch(_err => {
+   }).catch(err => {
+      console.error(err);
       res.status(500).send({
          message: "Erreur lors de la modification des recommandations",
       })
@@ -217,7 +221,8 @@ exports.setUserNotifications = (req, res) => {
             message: "Notifications modifiées",
          });
       });
-   }).catch(_err => {
+   }).catch(err => {
+      console.error(err);
       res.status(500).send({
          message: "Erreur lors de la modification des notifications",
       })
