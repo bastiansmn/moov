@@ -35,8 +35,8 @@ export default defineComponent({
       const register = () => {
          const form = registerForm.value;
                  
-         if (currentForm.value === "register") {              
-            const inputs = Array.from(form.querySelectorAll("inputs:not([type=submit])")); // Get all the inputs
+         if (currentForm.value === "register") {                  
+            const inputs = Array.from(form.querySelectorAll("input:not([type=submit])")); // Get all the inputs
 
             if (inputs.map(input => input.value).includes("")) {
                settingsStore.sendNotification({
@@ -44,7 +44,7 @@ export default defineComponent({
                   message: "Renseignez les champs",
                })
                return;
-            }
+            }            
 
             const username = inputs.find(input => input.name === "username").value;
             const email = inputs.find(input => input.name === "email").value;
@@ -196,10 +196,10 @@ export default defineComponent({
       <div class="forms w-full">
          <div class="register bg-light-grey shadow">
             <form ref="registerForm" @submit.prevent="register" autocomplete="off">
-               <Input @submit="register" name="username" required shadow placeholder="Votre pseudo" />
-               <Input @submit="register" name="email" required type="email" shadow placeholder="Votre mail" />
-               <Input @submit="register" name="password" required type="password" shadow placeholder="Votre mot de passe" />
-               <Input @submit="register" name="passwordConfirm" required type="password" shadow placeholder="Confirmez votre mot de passe" />
+               <Input name="username" required shadow placeholder="Votre pseudo" />
+               <Input name="email" required type="email" shadow placeholder="Votre mail" />
+               <Input name="password" required type="password" shadow placeholder="Votre mot de passe" />
+               <Input name="passwordConfirm" required type="password" shadow placeholder="Confirmez votre mot de passe" />
                <input type="submit" value="register" hidden>
             </form>
             <button @click="toggleForm('register')" class="toggle-register w-full h-[42px] text-white font-bold outline-none transition-[transform]">

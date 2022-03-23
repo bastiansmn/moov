@@ -3,6 +3,7 @@ module.exports = {
   USER: process.env.DB_USER || "", 
   PASSWORD: process.env.DB_PASSWORD || "",
   DB: process.env.DB_NAME || "moov",
+  PORT: process.env.DB_PORT || 5432,
   dialect: "postgres",
   pool: {
     max: 1000,
