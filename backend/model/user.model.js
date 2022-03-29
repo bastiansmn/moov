@@ -16,13 +16,24 @@ module.exports = (sequelize, Sequelize) => {
       password: {
          type: Sequelize.STRING
       },
-      recommandationsEnabled: {
-         type: Sequelize.BOOLEAN,
-         defaultValue: true,
-      },
-      emailNotificationEnabled: {
+      birthyear: {
+         type: Sequelize.INTEGER
+      }, 
+      userRecommandations: {
          type: Sequelize.BOOLEAN,
          defaultValue: false,
       },
+      userEmailNotifications: {
+         type: Sequelize.BOOLEAN,
+         defaultValue: false,
+      },
+      preferedRadius: {
+         type: Sequelize.INTEGER,
+         defaultValue: 25
+      },
+   }, {
+      defaultScope: {
+         attributes: { exclude: ['createdAt', 'updatedAt'] },
+      }
    });
  };

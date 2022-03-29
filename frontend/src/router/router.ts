@@ -1,7 +1,7 @@
 import { useSettingsStore } from '@/store/settings';
 import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router';
 import Home from '../views/Home.vue'
-import { Roles } from '@/store/model/user';
+import User, { Roles } from '@/store/model/user';
 import { codeIsOK } from '@/utils/statusCodes';
 
 const routes: Array<RouteRecordRaw> = [
@@ -79,17 +79,8 @@ router.beforeEach(async (to, _from, next) => {
          }),
       }).then(async response => {
          if (codeIsOK(response.status)) {
-            await response.json().then(data => {        
-               settingsStore.connectUser({
-                  user_uuid: data.user_uuid,
-                  email: data.email,
-                  username: data.username,
-                  roles: data.roles,
-               }, {
-                  userRecommandations: data.userRecommandations,
-                  userEmailNotifications: data.userEmailNotifications,
-                  accessToken: accessToken,
-               })
+            await response.json().then((data: User) => {
+               settingsStore.connectUser(data);
             });
          } else {
             throw new Error();

@@ -7,8 +7,6 @@ export const useSettingsStore = defineStore("settings", {
    state: () => ({
       pannelVisible: false,
       user: {} as User,
-      userRecommandations: true as boolean,
-      userEmailNotifications: false as boolean,
       accessToken: "",
       notification: {
          show: false,
@@ -41,14 +39,11 @@ export const useSettingsStore = defineStore("settings", {
          }, delay || 5_000);
       },
 
-      connectUser(user: User, preferences: { userRecommandations: boolean, userEmailNotifications: boolean, accessToken: string }) {         
+      connectUser(user: User) {         
          this.user = user;
-         this.userRecommandations = preferences.userRecommandations ?? true;
-         this.userEmailNotifications = preferences.userEmailNotifications ?? false;
-         this.accessToken = preferences.accessToken;
 
          // TODO : ne pas enregistrer le token dans le localStorage
-         localStorage.setItem("accessToken", preferences.accessToken);
+         localStorage.setItem("accessToken", user.accessToken);
          localStorage.setItem("user_uuid", user.user_uuid);
          localStorage.setItem("username", user.username);
 
@@ -56,9 +51,6 @@ export const useSettingsStore = defineStore("settings", {
       },
       disconnectUser() {
          this.user = {} as User;
-         this.userRecommandations = true;
-         this.userEmailNotifications = false;
-         this.accessToken = "";
 
          localStorage.removeItem("accessToken");
          localStorage.removeItem("user_uuid");
@@ -74,7 +66,7 @@ export const useSettingsStore = defineStore("settings", {
             method: "PUT",
             headers: new Headers({
                "Content-Type": "application/json",
-               "x-access-token": this.accessToken,
+               "x-access-token": this.user.accessToken,
             }),
             body: JSON.stringify({
                user_uuid: this.user.user_uuid,
@@ -84,7 +76,7 @@ export const useSettingsStore = defineStore("settings", {
             const status = res.status;
             res.json().then(data => {
                if (status >= 200 && status < 300)
-                  this.userRecommandations = val;
+                  this.user.userRecommandations = val;
                this.sendNotification({
                   code: status, 
                   message: data.message 
@@ -103,7 +95,7 @@ export const useSettingsStore = defineStore("settings", {
             method: "PUT",
             headers: new Headers({
                "Content-Type": "application/json",
-               "x-access-token": this.accessToken,
+               "x-access-token": this.user.accessToken,
             }),
             body: JSON.stringify({
                user_uuid: this.user.user_uuid,
@@ -113,7 +105,7 @@ export const useSettingsStore = defineStore("settings", {
             const status = res.status;
             res.json().then(data => {
                if (status >= 200 && status < 300)
-                  this.userEmailNotifications = val;
+                  this.user.userEmailNotifications = val;
                this.sendNotification({
                   code: status, 
                   message: data.message 
@@ -126,6 +118,67 @@ export const useSettingsStore = defineStore("settings", {
       },
       disableUserEmailNotifications() {
          this.setUserEmailNotifications(false);
+      },
+      setUserCity(val: string) {
+         fetch("/api/user/setCity", {
+            method: "PUT",
+            headers: new Headers({
+               "Content-Type": "application/json",
+               "x-access-token": this.user.accessToken,
+            }),
+            body: JSON.stringify({
+               city_id: val,
+            })
+         }).then(response => {
+            const status = response.status;
+            response.json().then(data => {
+               if (status >= 200 && status < 300)
+                  this.user.city_id = val;
+               this.sendNotification({
+                  code: status, 
+                  message: data.message 
+               });
+            });
+         }).catch(err => {
+            console.error(err);
+            this.sendNotification({
+               code: 400,
+               message: "Une erreur est survenue"
+            });
+         });
+      },
+      setUserRadius(val: string) {
+         // Convert val to number
+         const preferedRadius = parseInt(val.replace("km", "").trim());
+         console.log(preferedRadius);
+         
+         fetch("/api/user/setPreferedRadius", {
+            method: "PUT",
+            headers: new Headers({
+               "Content-Type": "application/json",
+               "x-access-token": this.user.accessToken,
+            }),
+            body: JSON.stringify({
+               user_uuid: this.user.user_uuid,
+               preferedRadius,
+            })
+         }).then(response => {
+            const status = response.status;
+            response.json().then(data => {
+               if (status >= 200 && status < 300)
+                  this.user.preferedRadius = preferedRadius;
+               this.sendNotification({
+                  code: status, 
+                  message: data.message 
+               });
+            });
+         }).catch(err => {
+            console.error(err);
+            this.sendNotification({
+               code: 400,
+               message: "Une erreur est survenue"
+            });
+         });
       }
    },
    getters: {

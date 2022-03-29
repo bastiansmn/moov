@@ -1,18 +1,17 @@
 module.exports = (sequelize, Sequelize) => {
-   return sequelize.define("roles", {
-      role_id: {
-         type: Sequelize.INTEGER,
+   return sequelize.define("tags", {
+      color: {
+         type: Sequelize.STRING,
          primaryKey: true,
-         unique: true,
-         autoIncrement: true
+         unique: true
       },
       name: {
          type: Sequelize.STRING,
-         unique: true
+         allowNull: false
       }
    }, {
       defaultScope: {
          attributes: { exclude: ['createdAt', 'updatedAt'] },
       }
    });
-};
+}

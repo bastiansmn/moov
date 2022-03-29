@@ -38,6 +38,5 @@ import Notification from '@/components/common/Notification.vue';
 
 main {
   min-height: calc(100vh - var(--header-height));
-  height: calc(100vh - var(--header-height));
 }
 </style>

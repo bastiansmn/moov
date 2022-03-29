@@ -31,8 +31,7 @@ module.exports = (app) => {
          requestsStats.saveRequest
       ],
       controller.setUserRecommandations
-   ),
-   
+   );
    app.get(
       "/user/getUsers",
       [
@@ -41,7 +40,7 @@ module.exports = (app) => {
          requestsStats.saveRequest
       ],
       controller.getUsers
-   ),
+   );
    app.put(
       "/user/updateRoles",
       [
@@ -51,7 +50,20 @@ module.exports = (app) => {
       ],
       controller.updateRoles
    );
-
+   app.put(
+      "/user/setCity",
+      [
+         jwtAuth.verifyToken
+      ],
+      controller.setCity
+   );
+   app.put(
+      "/user/setPreferedRadius",
+      [
+         jwtAuth.verifyToken
+      ],
+      controller.setPreferedRadius
+   );
    app.post(
       "/user/create",
       [
@@ -63,5 +75,5 @@ module.exports = (app) => {
          requestsStats.saveRequest
       ],
       controller.createUser
-   )
+   );
 };

@@ -8,5 +8,11 @@ export default interface User {
    user_uuid: string,
    email: string,
    username: string,
-   roles: Array<Roles>
+   roles: Array<Roles>,
+   birthyear: number,
+   city_id: string,
+   preferedRadius: number,
+   userEmailNotifications: boolean,
+   userRecommandations: boolean,
+   accessToken: string
 }

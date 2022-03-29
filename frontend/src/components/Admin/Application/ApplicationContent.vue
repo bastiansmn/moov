@@ -5,6 +5,7 @@ import Input from '@/components/common/Input.vue'
 import { useSettingsStore } from '@/store/settings'
 import { useBackofficeStore } from '@/store/backoffice'
 import { codeIsOK } from '@/utils/statusCodes'
+import User, { Roles } from '@/store/model/user'
 
 import { BarChart, useBarChart } from "vue-chart-3";
 import { Chart, ChartData, ChartOptions, registerables } from "chart.js";
@@ -18,10 +19,11 @@ export default defineComponent({
       Input,
       BarChart
    },
+   // TODO : refactor la page Admin en plusieurs composants
    async setup() {
       // TODO: handle le select d'un user et changer les stats
       await backofficeStore.loadBackoffice();
-      const users = ref(backofficeStore.getUsers);
+      const users = ref<Array<User>>(backofficeStore.getUsers);
       const roles = ref(backofficeStore.getRoles);
       const requests = ref(backofficeStore.getRequests);
 
@@ -135,7 +137,7 @@ export default defineComponent({
          const filtered = backupUsers.filter(u =>
                u.username.includes(payload) 
             || u.email.includes(payload) 
-            || u.roles.find(e => e.includes(payload))
+            || u.roles.find(e => e.includes(payload.toUpperCase()))
          );
 
          if (filtered.length === 0) {
@@ -195,7 +197,7 @@ export default defineComponent({
                'x-access-token': accessToken
             },
             body: JSON.stringify({
-               user_uuid: user_uuid,
+               user_uuid,
                mailSubject,
                mailContent
             })
@@ -231,6 +233,7 @@ export default defineComponent({
          const email = $event.target.querySelector("input[name=email]").value;
          const password = $event.target.querySelector("input[name=password]").value;
          const passwordConfirm = $event.target.querySelector("input[name=passwordConfirm]").value;
+         const birthyear = $event.target.querySelector("select[name=birthyear]").value;
          const moderator = $event.target.querySelector("input#moderator").checked;
          const admin = $event.target.querySelector("input#admin").checked;
 
@@ -270,7 +273,8 @@ export default defineComponent({
                username,
                email,
                password,
-               roles
+               roles,
+               birthyear
             })
          }).then(response => {
             const status = response.status;
@@ -345,6 +349,80 @@ export default defineComponent({
          });
       }
 
+      const testApi = (payload) => {
+         // TODO : migre le test api côté back (+ tester existence ...)
+         fetch(`${payload.api_base_link}/?dataset=${payload.dataset_name}&rows=1`)
+            .then(response => response.json())
+            .then(response => {
+               const data = response.records[0].fields;
+               const { api_base_link, city_id, dataset_name, name, ...requiredFields } = payload;
+               for (let key in requiredFields) {
+                  if (!data.hasOwnProperty(requiredFields[key])) {
+                     settingsStore.sendNotification({
+                        code: 400,
+                        message: `API incompatible pour Moov (champ ${requiredFields[key]} manquant ou éronné)`
+                     });
+                     return null;
+                  }
+               }
+               settingsStore.sendNotification({
+                  code: 200,
+                  message: "API compatible pour Moov. Pensez à cliquer sur Créer"
+               });
+            });
+      }
+
+      const submitCity = ($event) => {
+         const payload = Object.fromEntries(
+            Array.from($event.target.querySelectorAll("input:not([type=submit])"))
+               .map(e => ([e.name, e.value]))
+         );
+         
+         if (Object.values(payload).includes("")) {
+            settingsStore.sendNotification({
+               code: 400,
+               message: "Veuillez remplir tous les champs"
+            });
+            return;
+         }
+         
+         testApi(payload);
+         if (settingsStore.notification.code / 100 !== 2) return;
+         if ($event.submitter.name === "submit_api") {
+            console.log("submitting...");
+
+            fetch("/api/cities/create", {
+               method: "POST",
+               headers: {
+                  'Content-Type': 'application/json',
+                  'x-access-token': localStorage.getItem('accessToken')
+               },
+               body: JSON.stringify(payload)
+            }).then(response => {
+               const status = response.status;
+               response.json().then(response => {
+                  if (codeIsOK(status)) {
+                     settingsStore.sendNotification({
+                        code: status,
+                        message: "Ville créée"
+                     });
+                  } else {
+                     settingsStore.sendNotification({
+                        code: status,
+                        message: response.message
+                     });
+                  }
+               });
+            }).catch(err => {
+               console.error(err);
+               settingsStore.sendNotification({
+                  code: 400,
+                  message: "Une erreur est survenue lors de la création de la ville"
+               });
+            });
+         }
+      }
+
       return {
          users,
          selectUser,
@@ -365,112 +443,307 @@ export default defineComponent({
          sendMail,
 
          roles,
+         Roles,
 
          // Charts:
          userBarChartProps,
          requestBarChartProps,
+
+         submitCity
       }
    },
 })
 </script>
 
 <template>
-   <div class="application__content h-full max-w-[1500px] flex justify-between">
-      <div class="users h-full w-[49%] p-5 bg-white rounded shadow">
-         <div class="header w-full h-[24px] mb-4 flex items-center justify-between opacity__animation">
-            <div class="title h-full">
-               <h1>Utilisateurs du site</h1>
-            </div>
-            <div class="buttons w-[270px] h-full flex items-center justify-between">
-               <Input @submit="filterSearch" placeholder="Chercher" :width="200" :height="24" background="#F7F7F7" :radius="8" shadow>
-                  <button class="aspect-square absolute right-[6px] h-[20px] flex items-center justify-center bg-purple rounded-[6px]">
-                     <svg width="11" height="11" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="7" cy="7" r="6" stroke="white" stroke-width="2"/>
-                        <rect x="11.562" y="10.1478" width="8.04218" height="2" rx="1" transform="rotate(45 11.562 10.1478)" fill="white"/>
-                     </svg>
+   <div class="application__content h-full max-w-[1500px]">
+      <div class="h-[70vh] flex justify-between mb-6">
+         <div class="users h-full w-[49%] p-5 bg-white rounded shadow">
+            <div class="header w-full h-[24px] mb-4 flex items-center justify-between opacity__animation">
+               <div class="title h-full">
+                  <h1>Utilisateurs du site</h1>
+               </div>
+               <div class="buttons w-[270px] h-full flex items-center justify-between">
+                  <Input 
+                     @change="filterSearch" 
+                     placeholder="Chercher" 
+                     :width="200" 
+                     :height="24" 
+                     background="#F7F7F7" 
+                     :radius="8" 
+                     shadow
+                  >
+                     <button class="aspect-square absolute right-[6px] h-[20px] flex items-center justify-center bg-purple rounded-[6px]">
+                        <svg width="11" height="11" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                           <circle cx="7" cy="7" r="6" stroke="white" stroke-width="2"/>
+                           <rect x="11.562" y="10.1478" width="8.04218" height="2" rx="1" transform="rotate(45 11.562 10.1478)" fill="white"/>
+                        </svg>
+                     </button>
+                  </Input>
+                  <button @click="showPopUp('userModify')" class="modify bg-white2 px-4 ml-2 w-[80px] h-full rounded-sm text-sm transition-[all] shadow" :disabled="!modifyActive" :class="modifyActive ? 'active' : ''">
+                     Modifier
                   </button>
-               </Input>
-               <button @click="showPopUp('userModify')" class="modify bg-white2 px-4 ml-2 w-[80px] h-full rounded-sm text-sm transition-[all] shadow" :disabled="!modifyActive" :class="modifyActive ? 'active' : ''">
-                  Modifier
+               </div>
+            </div>
+
+            <div class="container w-full h-[91%] bg-white2 border-[1px] border-light-grey opacity__animation">
+               <div class="header h-[40px] w-full bg-white flex flex-col border-b-[1px] pr-[var(--navbar-width)] border-light-grey ">
+                  <div class="h-full w-full flex items-center justify-between">
+                     <div class="h-full w-[30%] flex items-center px-3 border-r-[1px] border-r-light-grey">
+                        <h2>Nom</h2>
+                     </div>
+                     <div class="h-full w-[55%] flex items-center px-3 border-r-[1px] border-r-light-grey">
+                        <h2>Email</h2>
+                     </div>
+                     <div class="h-full w-[15%] flex items-center px-3">
+                        <h2>Rôle</h2>
+                     </div>
+                  </div>
+               </div>
+               <h1 class="font-bold text-sm w-fit m-auto mt-2" v-if="users.length === 0">
+                  Aucun utilisateur
+               </h1>
+               <h1 class="font-bold text-sm w-fit m-auto mt-2" v-else-if="noMatch">
+                  Aucune correspondance
+               </h1>
+               <transition-group
+                  v-else
+                  tag="div"
+                  style="max-height: calc(100% - 40px); overflow-y: scroll"
+                  name="fade"
+               >
+                  <div
+                     v-for="(user, index) in users" :key="index"
+                     class="user relative w-full h-[32px] bg-white flex outline-none cursor-pointer transition-[all] z-10 border-b-[1px] border-light-grey"
+                  >
+                     <div class="w-[30%] h-full flex items-center px-3 border-r-[1px] border-r-light-grey">
+                        <span class="text-sm text-dark-grey overflow-clip text-ellipsis">{{ user.username }}</span>
+                     </div>
+                     <div class="w-[55%] h-full flex items-center px-3 border-r-[1px] border-r-light-grey">
+                        <span class="text-sm text-dark-grey overflow-clip text-ellipsis">{{ user.email }}</span>
+                     </div>
+                     <div class="w-[15%] h-full flex items-center justify-between px-3">
+                        <img class="h-[20px] aspect-square" v-if="user.roles?.includes(Roles.ADMIN)" src="@/assets/crown.png" alt="Admin">
+                        <img class="h-[20px] aspect-square" v-if="user.roles?.includes(Roles.MODERATOR)" src="@/assets/pen.png" alt="Moderator">
+                     </div>
+                     <div @click="selectUser($event, user)" class="absolute inset-0"></div>
+                  </div>
+               </transition-group>
+            </div>
+         </div>
+
+         <div class="settings h-full w-[49%] flex flex-col justify-between">
+            <div class="boxes w-full h-[100px] flex justify-between">
+               <button @click="showPopUp('email')">
+                  <img src="@/assets/email.png" alt="Email" class="opacity__animation">
+                  <h1 class="opacity__animation">
+                     Envoyer un email
+                  </h1>
+               </button>
+               <button @click="showPopUp('userCreate')">
+                  <img src="@/assets/plus.png" alt="Créer utilisateur" class="opacity__animation">
+                  <h1 class="opacity__animation">
+                     Créer un utilisateur
+                  </h1>
+               </button>
+               <button @click="showPopUp('events')">
+                  <img src="@/assets/folder.png" alt="Thèmes" class="opacity__animation">
+                  <h1 class="opacity__animation">
+                     Thèmes d'évènements
+                  </h1>
                </button>
             </div>
-         </div>
-
-         <div class="container w-full h-[91%] bg-white2 border-[1px] border-light-grey opacity__animation">
-            <div class="header h-[40px] w-full bg-white flex flex-col border-b-[1px] pr-[var(--navbar-width)] border-light-grey ">
-               <div class="h-full w-full flex items-center justify-between">
-                  <div class="h-full w-[30%] flex items-center px-3 border-r-[1px] border-r-light-grey">
-                     <h2>Nom</h2>
-                  </div>
-                  <div class="h-full w-[55%] flex items-center px-3 border-r-[1px] border-r-light-grey">
-                     <h2>Email</h2>
-                  </div>
-                  <div class="h-full w-[15%] flex items-center px-3">
-                     <h2>Rôle</h2>
-                  </div>
+            <div class="stats w-full h-[calc(100%-110px)] flex flex-col justify-between">
+               <div class="request__stats w-full h-[49%] bg-white rounded shadow p-4">
+                  <BarChart class="opacity__animation" v-bind="userBarChartProps" />
+               </div>
+               <div class="user__stats w-full h-[49%] bg-white rounded shadow p-4">
+                  <BarChart class="opacity__animation" v-bind="requestBarChartProps" />
                </div>
             </div>
-            <h1 class="text-dark-grey font-bold text-sm w-fit m-auto mt-2" v-if="users.length === 0">
-               Aucun utilisateur
-            </h1>
-            <h1 class="text-dark-grey font-bold text-sm w-fit m-auto mt-2" v-else-if="noMatch">
-               Aucune correspondance
-            </h1>
-            <transition-group
-               v-else
-               tag="div"
-               style="max-height: calc(100% - 40px); overflow-y: scroll"
-               name="fade"
-            >
-               <div
-                  v-for="(user, index) in users" :key="index"
-                  class="user relative w-full h-[32px] bg-white flex outline-none cursor-pointer transition-[all] z-10 border-b-[1px] border-light-grey"
-               >
-                  <div class="w-[30%] h-full flex items-center px-3 border-r-[1px] border-r-light-grey">
-                     <span class="text-sm text-dark-grey overflow-clip text-ellipsis">{{ user.username }}</span>
-                  </div>
-                  <div class="w-[55%] h-full flex items-center px-3 border-r-[1px] border-r-light-grey">
-                     <span class="text-sm text-dark-grey overflow-clip text-ellipsis">{{ user.email }}</span>
-                  </div>
-                  <div class="w-[15%] h-full flex items-center justify-between px-3">
-                     <img class="h-[20px] aspect-square" v-if="user.roles?.includes('ADMIN')" src="@/assets/crown.png" alt="Admin">
-                     <img class="h-[20px] aspect-square" v-if="user.roles?.includes('MODERATOR')" src="@/assets/pen.png" alt="Moderator">
-                  </div>
-                  <div @click="selectUser($event, user)" class="absolute inset-0"></div>
-               </div>
-            </transition-group>
          </div>
       </div>
-
-      <div class="settings h-full w-[49%] flex flex-col justify-between">
-         <div class="boxes w-full h-[100px] flex justify-between">
-            <button @click="showPopUp('email')">
-               <img src="@/assets/email.png" alt="Email" class="opacity__animation">
-               <h1 class="opacity__animation">
-                  Envoyer un email
-               </h1>
-            </button>
-            <button @click="showPopUp('userCreate')">
-               <img src="@/assets/plus.png" alt="Créer utilisateur" class="opacity__animation">
-               <h1 class="opacity__animation">
-                  Créer un utilisateur
-               </h1>
-            </button>
-            <button @click="showPopUp('events')">
-               <img src="@/assets/folder.png" alt="Thèmes" class="opacity__animation">
-               <h1 class="opacity__animation">
-                  Thèmes d'évènements
-               </h1>
-            </button>
+      <div>
+         <div class="p-5 w-[49%] bg-white rounded shadow">
+            <h1 class="mb-4">Ajouter une ville</h1>
+            <form @submit.prevent="submitCity" class="flex flex-col opacity__animation">
+               <Input
+                  placeholder="Identifiant Moov (ex: paris, lyon, ...)"
+                  name="city_id"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Nom affiché (ex: Paris, Lyon, ...)"
+                  name="name"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Liens vers l'API (ex: https://site.fr/api/search/)"
+                  name="api_base_link"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Nom du dataset"
+                  name="dataset_name"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Nom du champ titre"
+                  name="title_field"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Nom du champ description"
+                  name="description_field"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Nom du champ image"
+                  name="image_field"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Nom du champ URL"
+                  name="url_field"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Nom du champ lieu"
+                  name="placename_field"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Nom du champ répétitions"
+                  name="timing_field"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Nom du champ date de début"
+                  name="date_start_field"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Nom du champ date de fin"
+                  name="date_end_field"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Nom du champ lattiude/longitude"
+                  name="latlon_field"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Nom du champ ville"
+                  name="city_field"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Nom du champ département"
+                  name="district_field"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-2"
+                  required
+               />
+               <Input
+                  placeholder="Nom du champ prix"
+                  name="pricing_field"
+                  :height="32"
+                  background="#F7F7F7" 
+                  :radius="8" 
+                  shadow
+                  class="mb-4"
+                  required
+               />
+               <div class="self-end w-1/3 flex justify-between opacity__animation">
+                  <input 
+                     type="submit"
+                     name="test_api" 
+                     value="Tester"
+                     class="w-[46%] p-1 bg-white2 rounded shadow cursor-pointer"
+                  >
+                  <input 
+                     type="submit" 
+                     name="submit_api" 
+                     value="Créer"
+                     class="w-[46%] p-1 bg-purple rounded shadow text-white cursor-pointer"
+                  >
+               </div>
+            </form>
          </div>
-         <div class="stats w-full h-[calc(100%-110px)] flex flex-col justify-between">
-            <div class="request__stats w-full h-[49%] bg-white rounded shadow p-4">
-               <BarChart class="opacity__animation" v-bind="userBarChartProps" />
-            </div>
-            <div class="user__stats w-full h-[49%] bg-white rounded shadow p-4">
-               <BarChart class="opacity__animation" v-bind="requestBarChartProps" />
-            </div>
-         </div>
+         <!-- TODO : Ajouter une liste des villes existantes (avec lien vers api) + stats de moyenne d'âge + ville plus utilisée -->
       </div>
    </div>
 
@@ -478,18 +751,18 @@ export default defineComponent({
       mode="out-in"
       name="fade"
    >
-      <div v-if="popUpEnabled" @click="unShowPopUp" class="popUpBackground fixed inset-0 popUp h-full w-full bg-glass-black z-20 flex items-center justify-center">
+      <div v-if="popUpEnabled" @click="unShowPopUp" class="popUpBackground fixed inset-0 popUp h-full w-full bg-glass-black flex items-center justify-center z-50">
          <div v-if="currentPopUp === 'userModify'" class="w-[280px] bg-white rounded p-6 flex flex-col items-center">
             <div class="w-full mb-2">
-               <h1 class="text-dark-grey font-semibold">Pseudo :</h1>
-               <h2 class="text-dark-grey text-sm">{{ selectedUser.username }}</h2>
+               <h1 class="font-semibold">Pseudo :</h1>
+               <h2 class="text-sm">{{ selectedUser.username }}</h2>
             </div>
             <div class="w-full mb-2">
-               <h1 class="text-dark-grey font-semibold">Email :</h1>
-               <h2 class="text-dark-grey text-sm">{{ selectedUser.email }}</h2>
+               <h1 class="font-semibold">Email :</h1>
+               <h2 class="text-sm">{{ selectedUser.email }}</h2>
             </div>
             <div class="w-full mb-2">
-               <h1 class="text-dark-grey font-semibold">Roles :</h1>
+               <h1 class="font-semibold">Roles :</h1>
                <form @submit.prevent="updateUser" class="w-full flex flex-col items-center">
                   <div :key="index" v-for="{ name }, index in roles.filter(r => r.name !== 'USER')" class="w-full">
                      <label class="flex items-center h-[32px] cursor-pointer text-dark-grey w-full">
@@ -511,14 +784,14 @@ export default defineComponent({
 
          <div v-if="currentPopUp === 'email'">
             <div class="w-[400px] bg-white rounded p-6 flex flex-col items-center">
-               <h1 class="text-dark-grey font-semibold">Envoyer un email à tous les utilisateurs</h1>
+               <h1 class="font-semibold">Envoyer un email à tous les utilisateurs</h1>
                <form @submit.prevent="sendMail" class="w-full flex flex-col items-center">
                   <div class="w-full mb-2">
-                     <h1 class="text-dark-grey font-semibold">Sujet :</h1>
+                     <h1 class="font-semibold">Sujet :</h1>
                      <input name="mailSubject" type="text" autocomplete="off" required class="w-full bg-white2 rounded p-2">
                   </div>
                   <div class="w-full mb-2">
-                     <h1 class="text-dark-grey font-semibold">Message :</h1>
+                     <h1 class="font-semibold">Message :</h1>
                      <textarea name="mailContent" required autocomplete="off" class="w-full min-h-[200px] bg-white2 rounded p-2 text-sm"></textarea>
                   </div>
                   <input type="submit" value="Envoyer" class="bg-purple text-white rounded-[4px] px-4 py-1 mt-5 cursor-pointer">
@@ -528,27 +801,34 @@ export default defineComponent({
 
          <div v-if="currentPopUp === 'userCreate'">
             <div class="w-[400px] bg-white rounded p-6 flex flex-col items-center">
-               <h1 class="text-dark-grey font-semibold">Créer un utilisateur</h1>
+               <h1 class="font-semibold">Créer un utilisateur</h1>
                <!-- Créer un utilisateur avec username, email, mot de passe, confirmation, rôles -->
                <form @submit.prevent="createUser" class="flex flex-col items-center">
                   <div class="mb-3">
-                     <h1 class="text-dark-grey font-semibold">Pseudo :</h1>
+                     <h1 class="font-semibold">Pseudo :</h1>
                      <input name="username" type="text" autocomplete="off" required class="w-full bg-white2 rounded p-2 shadow">
                   </div>
                   <div class="mb-3">
-                     <h1 class="text-dark-grey font-semibold">Email :</h1>
+                     <h1 class="font-semibold">Email :</h1>
                      <input name="email" type="email" autocomplete="off" required class="w-full bg-white2 rounded p-2 shadow">
                   </div>
                   <div class="mb-3">
-                     <h1 class="text-dark-grey font-semibold">Mot de passe :</h1>
+                     <h1 class="font-semibold">Mot de passe :</h1>
                      <input name="password" type="password" autocomplete="off" required class="w-full bg-white2 rounded p-2 shadow">
                   </div>
                   <div class="mb-3">
-                     <h1 class="text-dark-grey font-semibold">Confirmation :</h1>
+                     <h1 class="font-semibold">Confirmation :</h1>
                      <input name="passwordConfirm" type="password" autocomplete="off" required class="w-full bg-white2 rounded p-2 shadow">
                   </div>
+                  <div class="mb-3 w-full">
+                     <h1 class="font-semibold">Année de naissance :</h1>
+                     <select name="birthyear" class="bg-white2 shadow rounded w-full h-[40px]" required>
+                        <option value="" disabled selected>...</option>
+                        <option v-for="age in [...Array(new Date().getFullYear() + 1).keys()].slice(1900).reverse()" :value="age">{{ age }}</option>
+                     </select>
+                  </div>
                   <div class="w-full">
-                     <h1 class="text-dark-grey font-semibold">Rôles :</h1>
+                     <h1 class="font-semibold">Rôles :</h1>
                      <div class="flex items-center">
                         <label for="moderator" class="flex items-center mr-10 cursor-pointer">
                            <input type="checkbox" name="moderator" id="moderator">
@@ -570,7 +850,7 @@ export default defineComponent({
 
          <div v-if="currentPopUp === 'events'">
             <div class="w-[400px] bg-white rounded p-6 flex flex-col items-center">
-               <h1 class="text-dark-grey font-semibold">Evènements en attente</h1>
+               <h1 class="font-semibold">Evènements en attente</h1>
                
             </div>
          </div>
@@ -642,7 +922,9 @@ input[type=checkbox] {
 
    &:hover {
       background: #7061E4;
-      color: #FFFFFF;
+      & > h1 {
+         color: #FFFFFF;
+      }
    }
 
    & > img {

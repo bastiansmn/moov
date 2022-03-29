@@ -12,12 +12,15 @@ exports.getUsers = async (_req, res) => {
       include: [{
          model: Role,
          attributes: ["name"],
-      }],
-      attributes: ["user_uuid", "username", "email", "emailNotificationEnabled", "recommandationsEnabled"]
+      }]
    }).then(users => {
-      res.status(200).send(users.map(u => ({
-         ...u.dataValues,
-         roles: u.roles.map(r => r.name)
+      res.status(200).send(users
+         .map(user => {
+            const { password, ...u } = user.dataValues;
+            return u;
+         }).map(user => ({
+            ...user,
+            roles: user.roles.map(r => r.name)
       })));
    }).catch(err => {
       console.error(err);
@@ -32,8 +35,9 @@ exports.createUser = (req, res) => {
    const email = req.body.email;
    const password = req.body.password;
    const roles = req.body.roles;
+   const birthyear = req.body.birthyear;
 
-   if (!username || !email || !password || !roles) {
+   if (!username || !email || !password || !roles || !birthyear) {
       res.status(400).send({
          message: "Tous les champs sont requis"
       });
@@ -44,7 +48,8 @@ exports.createUser = (req, res) => {
       user_uuid: uuid(),
       username: req.body.username,
       email: req.body.email,
-      password: bcrypt.hashSync(req.body.password, 8)
+      password: bcrypt.hashSync(req.body.password, 8),
+      birthyear: req.body.birthyear,
    }).then(user => {
       roles.forEach(r => {
          Role.findOne({
@@ -55,13 +60,10 @@ exports.createUser = (req, res) => {
             user.addRole(role);
          });
       });
+      const { password, ...u } = user.dataValues;
       res.status(200).send({
-         user_uuid: user.user_uuid,
-         username: user.username,
-         email: user.email,
+         ...u,
          roles: roles.filter(r => r === "USER" || r === "MODERATOR" || r === "ADMIN"),
-         recommandationsEnabled: user.recommandationsEnabled,
-         emailNotificationEnabled: user.emailNotificationEnabled
       });
    }).catch(err => {
       console.error(err);
@@ -137,6 +139,7 @@ exports.getUserByUUID = (req, res) => {
          }
       }
    }).then(user => {
+      if (!user) throw new Error("Impossible de récupérer le user");
       var token = jwt.sign({ user_uuid: user.user_uuid }, config.secret, {
          expiresIn: 3600 * 24 * 31 // 1 Month
       });
@@ -145,14 +148,11 @@ exports.getUserByUUID = (req, res) => {
          r.forEach(role => {
             authorities.push(role.name.toUpperCase());
          });
+         const { password, ...u } = user.dataValues;
          res.status(200).send({
-            user_uuid: user.user_uuid,
-            username: user.username,
-            email: user.email,
+            ...u,
             roles: authorities,
             accessToken: token,
-            userEmailNotifications: user.emailNotificationEnabled,
-            userRecommandations: user.recommandationsEnabled
          });
       })
    }).catch(err => {
@@ -177,16 +177,15 @@ exports.setUserRecommandations = (req, res) => {
       return;
    }
 
-   User.findOne({
+   User.update({
+      userRecommandations: req.body.recommandationsVal
+   }, {
       where: {
-         user_uuid: req.body.user_uuid,
+         user_uuid: req.user_uuid,
       },
-   }).then(user => {
-      user.recommandationsEnabled = req.body.recommandationsVal;
-      user.save().then(() => {
-         res.status(200).send({
-            message: "Recommandations modifiées",
-         });
+   }).then(() => {
+      res.status(200).send({
+         message: "Recommandations modifiées",
       });
    }).catch(err => {
       console.error(err);
@@ -210,21 +209,72 @@ exports.setUserNotifications = (req, res) => {
       return;
    }
 
-   User.findOne({
+   User.update({
+      userEmailNotifications: req.body.notificationsVal
+   }, {
       where: {
-         user_uuid: req.body.user_uuid,
+         user_uuid: req.user_uuid,
       },
-   }).then(user => {
-      user.emailNotificationEnabled = req.body.notificationsVal;
-      user.save().then(() => {
-         res.status(200).send({
-            message: "Notifications modifiées",
-         });
+   }).then(() => {
+      res.status(200).send({
+         message: "Notifications modifiées",
       });
    }).catch(err => {
       console.error(err);
       res.status(500).send({
          message: "Erreur lors de la modification des notifications",
+      })
+   });
+}
+
+exports.setCity = (req, res) => {
+   if (!req.body.city_id) {
+      res.status(400).send({
+         message: "Aucune ville spécifiée",
+      });
+      return;
+   }
+   
+   User.update({
+      city_id: req.body.city_id,
+   }, {
+      where: {
+         user_uuid: req.user_uuid
+      } 
+   }).then(() => {
+      res.status(200).send({
+         message: "Ville modifiée",
+      });
+   }).catch(err => {
+      console.error(err);
+      res.status(400).send({
+         message: "Erreur lors de la modification de la ville",
+      })
+   });
+}
+
+exports.setPreferedRadius = (req, res) => {
+   if (!req.body.preferedRadius) {
+      res.status(400).send({
+         message: "Aucun rayon spécifié",
+      });
+      return;
+   }
+
+   User.update({
+      preferedRadius: req.body.preferedRadius,
+   }, {
+      where: {
+         user_uuid: req.user_uuid
+      } 
+   }).then(() => {
+      res.status(200).send({
+         message: "Rayon modifié",
+      });
+   }).catch(err => {
+      console.error(err);
+      res.status(400).send({
+         message: "Erreur lors de la modification du rayon",
       })
    });
 }

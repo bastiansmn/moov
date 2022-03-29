@@ -17,7 +17,7 @@ export default defineComponent({
 </script>
 
 <template>
-   <nav class="w-full h-[90px] sticky top-[88px] flex items-center p-8">
+   <nav class="w-full h-[90px] sticky top-[88px] flex items-center p-8 bg-white2 z-30">
       <router-link to="/home">
          <div class="h-[30px] w-[30px] bg-purple rounded hover:rounded-sm flex items-center justify-center transition-[border-radius]">
             <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="-5 0 25.618 25.618">

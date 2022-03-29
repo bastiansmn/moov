@@ -31,7 +31,7 @@ export default defineComponent({
    <div
       :class="pannelVisible ? 'account active' : 'account'"
       @click="unshowAccount"
-      class="fixed inset-0 w-[100vw] h-[100vh] bg-glass-black z-20"
+      class="fixed inset-0 w-[100vw] h-[100vh] bg-glass-black z-40"
    ></div>
    <aside
       :class="pannelVisible 
@@ -53,7 +53,14 @@ export default defineComponent({
          </svg>
       </button>
 
-      <AccountPannel v-if="userConnected" />
+      <Suspense v-if="userConnected" >
+         <template #default>
+            <AccountPannel />
+         </template>
+         <template #fallback>
+            <div class="bg-purple w-full h-[20px]"></div>
+         </template>
+      </Suspense>
       <Connection v-else />
    </aside>
 </template>
