@@ -21,5 +21,9 @@ module.exports = (sequelize, Sequelize) => {
       endpoint: {
          type: Sequelize.STRING,
       },
+   }, {
+      defaultScope: {
+         attributes: { exclude: ['createdAt', 'updatedAt'] },
+      }
    });
 };

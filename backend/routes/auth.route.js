@@ -21,7 +21,8 @@ module.exports = (app) => {
          verifyLog.validateEmailAndUsername,
          verifyLog.validatePassword,
          verifyLog.roleExist,
-         requestsStats.saveRequest
+         verifyLog.ageIsValid,
+         requestsStats.saveRequest,
       ],
       controller.signup
    );

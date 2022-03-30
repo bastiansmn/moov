@@ -2,6 +2,7 @@
 import { defineComponent, ref, onMounted } from "vue";
 
 import Input from '@/components/common/Input.vue';
+import Select from '@/components/common/Select.vue';
 import { useSettingsStore } from '@/store/settings';
 import User from '@/store/model/user';
 
@@ -9,34 +10,21 @@ export default defineComponent({
    name: "Connection",
    components: {
       Input,
+      Select
    },
    setup() {
-      const currentForm = ref("");
+      const currentForm = ref<string>("");
       const settingsStore = useSettingsStore();
 
-      const loginForm = ref(null);
-      const registerForm = ref(null);
-
-      type UserPreferences = { 
-         userRecommandations: boolean, 
-         userEmailNotifications: boolean, 
-         accessToken: string 
-      };
-      const connectUser = (userInfos: User, userPreferences: UserPreferences) => {
-         // Save user in store to provide repetitive requests
-         settingsStore.connectUser({
-            user_uuid: userInfos.user_uuid,
-            email: userInfos.email,
-            username: userInfos.username,
-            roles: userInfos.roles
-         }, userPreferences);
-      }
+      const loginForm = ref<HTMLElement>(null);
+      const registerForm = ref<HTMLElement>(null);
 
       const register = () => {
          const form = registerForm.value;
                  
-         if (currentForm.value === "register") {                  
+         if (currentForm.value === "register") {              
             const inputs = Array.from(form.querySelectorAll("input:not([type=submit])")); // Get all the inputs
+            const select = form.querySelector("select[name=birthyear]");
 
             if (inputs.map(input => input.value).includes("")) {
                settingsStore.sendNotification({
@@ -50,6 +38,7 @@ export default defineComponent({
             const email = inputs.find(input => input.name === "email").value;
             const password = inputs.find(input => input.name === "password").value;
             const passwordConfirm = inputs.find(input => input.name === "passwordConfirm").value;
+            const birthyear = select.value;
             
             if (password !== passwordConfirm) {
                settingsStore.sendNotification({
@@ -58,11 +47,6 @@ export default defineComponent({
                });
                return;
             }
-            const payload = {
-               username,
-               email,
-               password
-            };
 
             fetch("/api/auth/signup", {
                method: "POST",
@@ -70,16 +54,17 @@ export default defineComponent({
                   "Content-Type": "application/json",
                }),
                mode: "cors",
-               body: JSON.stringify(payload)
+               body: JSON.stringify({
+                  username,
+                  email,
+                  password,
+                  birthyear
+               })
             }).then(response => {
                const status = response.status;
                response.json().then(data => {
                   if (status >= 200 && status < 300) {
-                     connectUser(data, {
-                        userRecommandations: data.userRecommandations,
-                        userEmailNotifications: data.userEmailNotifications,
-                        accessToken: data.accessToken,
-                     });
+                     settingsStore.connectUser(data);
                      return;
                   }
                   settingsStore.sendNotification({
@@ -89,6 +74,10 @@ export default defineComponent({
                })
             }).catch(err => {
                console.error(err);
+               settingsStore.sendNotification({
+                  code: 500,
+                  message: "Une erreur est survenue",
+               });
             });
          }
       }
@@ -125,11 +114,7 @@ export default defineComponent({
                const status = response.status;
                response.json().then(data => {                                    
                   if (status >= 200 && status < 300) {
-                     connectUser(data, { 
-                        userRecommandations: data.userRecommandations,
-                        userEmailNotifications: data.userEmailNotifications,
-                        accessToken: data.accessToken,
-                     });
+                     settingsStore.connectUser(data);
                      return;
                   }
                   settingsStore.sendNotification({
@@ -196,10 +181,46 @@ export default defineComponent({
       <div class="forms w-full">
          <div class="register bg-light-grey shadow">
             <form ref="registerForm" @submit.prevent="register" autocomplete="off">
-               <Input name="username" required shadow placeholder="Votre pseudo" />
-               <Input name="email" required type="email" shadow placeholder="Votre mail" />
-               <Input name="password" required type="password" shadow placeholder="Votre mot de passe" />
-               <Input name="passwordConfirm" required type="password" shadow placeholder="Confirmez votre mot de passe" />
+               <Input 
+                  @submit="register" 
+                  name="username" 
+                  required 
+                  type="text"
+                  shadow 
+                  placeholder="Votre pseudo" 
+               />
+               <Input 
+                  @submit="register" 
+                  name="email" 
+                  required 
+                  type="email" 
+                  shadow 
+                  placeholder="Votre mail" 
+               />
+               <Input 
+                  @submit="register" 
+                  name="password" 
+                  required 
+                  type="password" 
+                  shadow 
+                  placeholder="Votre mot de passe" 
+               />
+               <Input 
+                  @submit="register" 
+                  name="passwordConfirm" 
+                  required 
+                  type="password" 
+                  shadow 
+                  placeholder="Confirmez votre mot de passe" 
+               />
+               <Select 
+                  name="birthyear" 
+                  required 
+                  shadow 
+                  pointer 
+                  placeholder="Année de naissance" 
+                  :options="[...Array(new Date().getFullYear() + 1).keys()].slice(1900).reverse()" 
+               />
                <input type="submit" value="register" hidden>
             </form>
             <button @click="toggleForm('register')" class="toggle-register w-full h-[42px] text-white font-bold outline-none transition-[transform]">
@@ -208,8 +229,24 @@ export default defineComponent({
          </div>
          <div class="login bg-purple shadow">
             <form ref="loginForm" @submit.prevent="login" autocomplete="off">
-               <Input name="username" color="#4D4D4D" required shadow placeholder="Votre pseudo" />
-               <Input name="password" color="#4D4D4D" required type="password" shadow placeholder="Votre mot de passe" />
+               <Input 
+                  @submit="login"
+                  name="username" 
+                  color="#4D4D4D" 
+                  required 
+                  type="text"
+                  shadow 
+                  placeholder="Votre pseudo" 
+               />
+               <Input 
+                  @submit="login" 
+                  name="password" 
+                  color="#4D4D4D" 
+                  required 
+                  type="password" 
+                  shadow 
+                  placeholder="Votre mot de passe" 
+               />
                <a href="" class="text-light-grey font-light underline self-end hover:text-white ">Mot de passe oublié</a>
                <input type="submit" value="login" hidden>
             </form>
@@ -244,6 +281,10 @@ p {
    min-height: 42px;
    border-radius: 11px;
    overflow: hidden;
+
+   & > form > form {
+      margin-bottom: 6px;
+   }
 
    &:not(.active) > form {
       height: 0;

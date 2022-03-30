@@ -13,7 +13,11 @@
    -moz-osx-font-smoothing: grayscale;
    position: relative;
    width: calc(100vw - var(--navbar-width));
-   height: 100vh;
+   min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+   color: #4D4D4D;
 }
 
 *::selection {

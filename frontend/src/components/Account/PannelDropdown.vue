@@ -9,10 +9,9 @@ export default defineComponent({
       }
    },
    setup(props) {
-      const dropdown = ref(null);
+      const dropdown = ref<HTMLElement>(null);
 
       const toggleDropdown = () => {
-         if (!dropdown.value) return;
          dropdown.value.classList.toggle('active');
       }
 

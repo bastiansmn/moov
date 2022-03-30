@@ -26,6 +26,8 @@ const db = {
   user: require("./user.model")(sequelize, Sequelize),
   role: require("./role.model")(sequelize, Sequelize),
   request: require("./request.model")(sequelize, Sequelize),
+  cities: require("./city.model")(sequelize, Sequelize),
+  tags: require("./tags.model")(sequelize, Sequelize),
   // ... other models
 
 
@@ -35,7 +37,7 @@ const db = {
 
 // Associations
 db.role.belongsToMany(db.user, {
-  through: "link_user_roles", // Table intermédiaire
+  through: "link_user_roles",
   foreignKey: "role_id",
   otherKey: "user_uuid"
 });
@@ -46,6 +48,9 @@ db.user.belongsToMany(db.role, {
 });
 db.user.hasMany(db.request, {
   foreignKey: "user_uuid"
+});
+db.cities.hasOne(db.user, {
+  foreignKey: "city_id"
 });
 
 

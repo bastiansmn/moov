@@ -13,7 +13,8 @@ exports.signup = (req, res) => {
       user_uuid: uuid(),
       username: req.body.username,
       email: req.body.email,
-      password: bcrypt.hashSync(req.body.password, 8)
+      password: bcrypt.hashSync(req.body.password, 8),
+      birthyear: req.body.birthyear,
    }).then(user => {
       var authorities = [];
       user.getRoles().then(roles => {
@@ -24,51 +25,27 @@ exports.signup = (req, res) => {
       var token = jwt.sign({ user_uuid: user.user_uuid }, config.secret, {
          expiresIn: 3600 * 24 * 31 // 1 Month
       });
-      if (req.body.roles) {
-         Role.findAll({
-            where: {
-               name: {
-                  [Op.or]: req.body.roles
-               }
-            }
-         }).then(roles => {
-            user.setRoles(roles).then(() => {
-               res.status(200).send({ 
-                  message: "Inscription réussie !",
-                  user_uuid: user.user_uuid,
-                  username: user.username,
-                  email: user.email,
-                  roles: authorities,
-                  accessToken: token,
-                  userEmailNotifications: user.emailNotificationEnabled,
-                  userRecommandations: user.recommandationsEnabled
-               });
+      // Default role = USER
+      Role.findOne({
+         where: {
+            name: "USER"
+         }
+      }).then(role => {
+         user.setRoles([role.role_id]).then(() => {
+            const { password, ...u } = user.dataValues;
+            res.status(200).send({ 
+               message: "Inscription réussie !",
+               ...u,
+               accessToken: token,
+               roles: ["USER"],
             });
          });
-      } else {
-         // Default role = USER
-         Role.findOne({
-            where: {
-               name: "USER"
-            }
-         }).then(role => {
-            user.setRoles([role.role_id]).then(() => {
-               res.status(200).send({ 
-                  message: "Inscription réussie !",
-                  user_uuid: user.user_uuid,
-                  username: user.username,
-                  email: user.email,
-                  roles: ["USER"],
-                  accessToken: token,
-                  userEmailNotifications: user.emailNotificationEnabled,
-                  userRecommandations: user.recommandationsEnabled
-               });
-            });
-         });
-      }
+      });
    }).catch(err => {
       console.error(err);
-      res.status(500).send({ message: err.message });
+      res.status(500).send({ 
+         message: "Erreur lors de l'inscription"
+      });
    });
 };
 
@@ -101,18 +78,17 @@ exports.signin = (req, res) => {
          roles.forEach(r => {
             authorities.push(r.name.toUpperCase());
          });
+         const { password, ...u } = user.dataValues;
          res.status(200).send({
-            user_uuid: user.user_uuid,
-            username: user.username,
-            email: user.email,
+            ...u,
             roles: authorities,
             accessToken: token,
-            userEmailNotifications: user.emailNotificationEnabled,
-            userRecommandations: user.recommandationsEnabled
          });
       });
    }).catch(err => {
       console.error(err);
-      res.status(500).send({ message: err.message });
+      res.status(500).send({ 
+         message: "Erreur lors de la connexion"
+      });
    });
 };

@@ -24,7 +24,7 @@ export default defineComponent({
 </script>
 
 <template> 
-   <header class="mt-[132px] sticky top-0">
+   <header class="mt-[132px] sticky top-0 z-30">
       <div class="absolute bottom-0 overflow-hidden h-[220px] w-full bg-gradient-to-r from-[#7162E5] to-[#9566E4] flex flex-col items-center justify-center">
          <div class="navigation w-full h-[88px] fixed top-0 flex items-center justify-between px-5 z-[2]">
             <button @click="showAccount()" class="aspect-square h-[42px] bg-white flex items-center justify-center rounded shadow-md">

@@ -112,13 +112,35 @@ isAdmin = (req, res, next) => {
             return;
          }
       });
+   }).catch(err => {
+      console.error(err);
+      res.status(400).send({
+         message: "Une erreur est survenue"
+      });
    });
 };
+
+ageIsValid = (req, res, next) => {
+   if (!req.body.birthyear) {
+      res.status(400).send({
+         message: "Veuillez renseigner une date de naissance"
+      });
+      return;
+   }
+   if (req.body.birthyear > 2012) {
+      res.status(400).send({
+         message: "Vous devez avoir 10 ans minimum pour vous inscrire"
+      });
+      return;
+   }
+   next();
+}
 
 module.exports = {
    validateEmailAndUsername,
    validatePassword,
    checkRole,
    isAdmin,
-   roleExist
+   roleExist,
+   ageIsValid
 }
