@@ -2,15 +2,15 @@
 import { defineComponent, computed } from 'vue'
 
 import { useSettingsStore } from "@/store/settings";
-import { Roles } from "@/store/model/user";
+import { RoleEnum } from "@/store/model/user";
 
 export default defineComponent({
    setup() {
       const settingsStore = useSettingsStore();
 
       return {
-         isAdmin: computed(() => settingsStore.userConnected && settingsStore.user.roles.includes(Roles.ADMIN)),
-         isModerator: computed(() => settingsStore.userConnected && settingsStore.user.roles.includes(Roles.MODERATOR)),
+         isAdmin: computed<boolean>(() => settingsStore.userConnected && settingsStore.user.roles.includes(RoleEnum.ADMIN)),
+         isModerator: computed<boolean>(() => settingsStore.userConnected && settingsStore.user.roles.includes(RoleEnum.MODERATOR)),
       }
    },
 })

@@ -47,7 +47,7 @@ const props = defineProps({
 
 const emit = defineEmits(["change"]);
 
-const select = ref(null);
+const select = ref<HTMLElement>(null);
 
 const changeInput = () => {
    emit("change", select.value.value);

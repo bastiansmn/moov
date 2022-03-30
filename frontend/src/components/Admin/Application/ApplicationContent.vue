@@ -5,7 +5,8 @@ import Input from '@/components/common/Input.vue'
 import { useSettingsStore } from '@/store/settings'
 import { useBackofficeStore } from '@/store/backoffice'
 import { codeIsOK } from '@/utils/statusCodes'
-import User, { Roles } from '@/store/model/user'
+import User, { Role, RoleEnum } from '@/store/model/user'
+import Request from '@/store/model/request'
 
 import { BarChart, useBarChart } from "vue-chart-3";
 import { Chart, ChartData, ChartOptions, registerables } from "chart.js";
@@ -24,17 +25,17 @@ export default defineComponent({
       // TODO: handle le select d'un user et changer les stats
       await backofficeStore.loadBackoffice();
       const users = ref<Array<User>>(backofficeStore.getUsers);
-      const roles = ref(backofficeStore.getRoles);
-      const requests = ref(backofficeStore.getRequests);
+      const roles = ref<Array<Role>>(backofficeStore.getRoles);
+      const requests = ref<Array<Request>>(backofficeStore.getRequests);
 
       const backupUsers = users.value;
 
-      const modifyActive = ref(false);
-      const popUpEnabled = ref(false);
-      const currentPopUp = ref("");
+      const modifyActive = ref<boolean>(false);
+      const popUpEnabled = ref<boolean>(false);
+      const currentPopUp = ref<string>("");
 
-      const selectedUser = ref({});
-      const noMatch = ref(false);
+      const selectedUser = ref<User>({} as User);
+      const noMatch = ref<boolean>(false);
 
       const userStatsData = computed<ChartData<"bar">>(() => ({
          labels: ["Rien", "Recomm.", "Email", "Tout"],
@@ -443,7 +444,7 @@ export default defineComponent({
          sendMail,
 
          roles,
-         Roles,
+         RoleEnum,
 
          // Charts:
          userBarChartProps,
@@ -523,8 +524,8 @@ export default defineComponent({
                         <span class="text-sm text-dark-grey overflow-clip text-ellipsis">{{ user.email }}</span>
                      </div>
                      <div class="w-[15%] h-full flex items-center justify-between px-3">
-                        <img class="h-[20px] aspect-square" v-if="user.roles?.includes(Roles.ADMIN)" src="@/assets/crown.png" alt="Admin">
-                        <img class="h-[20px] aspect-square" v-if="user.roles?.includes(Roles.MODERATOR)" src="@/assets/pen.png" alt="Moderator">
+                        <img class="h-[20px] aspect-square" v-if="user.roles?.includes(RoleEnum.ADMIN)" src="@/assets/crown.png" alt="Admin">
+                        <img class="h-[20px] aspect-square" v-if="user.roles?.includes(RoleEnum.MODERATOR)" src="@/assets/pen.png" alt="Moderator">
                      </div>
                      <div @click="selectUser($event, user)" class="absolute inset-0"></div>
                   </div>

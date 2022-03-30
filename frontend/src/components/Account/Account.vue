@@ -20,8 +20,8 @@ export default defineComponent({
 
       return {
          unshowAccount,
-         userConnected: computed(() => settingsStore.userConnected),
-         pannelVisible: computed(() => settingsStore.pannelVisible),
+         userConnected: computed<boolean>(() => settingsStore.userConnected),
+         pannelVisible: computed<boolean>(() => settingsStore.pannelVisible),
       };
    },
 });

@@ -5,11 +5,12 @@ import { useSettingsStore } from '@/store/settings'
 import PannelDropdown from './PannelDropdown.vue'
 import Switcher from '../common/Switcher.vue'
 
-import { Roles } from '@/store/model/user'
+import { RoleEnum } from '@/store/model/user'
+import City from '@/store/model/city'
 import Select from '../common/Select.vue'
 
 const fetchCities = () => {
-   return new Promise(resolve => {
+   return new Promise<Array<City>>(resolve => {
       fetch("/api/cities/getCities")
          .then(res => res.json())
          .then(res => {
@@ -27,7 +28,7 @@ export default defineComponent({
    async setup() {
       const settingsStore = useSettingsStore();
 
-      const cities = ref(await fetchCities());
+      const cities = ref<Array<City>>(await fetchCities());
 
       const unshowAccount = () => {
          settingsStore.togglePannel(false);
@@ -65,8 +66,7 @@ export default defineComponent({
          unshowAccount,
          
          cities,
-
-         Roles
+         RoleEnum
       }
    },
 })
@@ -128,7 +128,7 @@ export default defineComponent({
 
    <router-link 
       to="/admin"
-      v-if="user.roles.includes(Roles.ADMIN)"  
+      v-if="user.roles.includes(RoleEnum.ADMIN)"  
       class="bg-purple w-full h-[42px] rounded shadow flex items-center justify-center text-white font-semibold text-base"
       @click="unshowAccount"
    >

@@ -72,7 +72,7 @@ export default defineComponent({
       : `search relative w-[${props.width}px] h-[${props.height}px] flex items-center justify-between overflow-hidden`"
       :style="{ background: props.background, borderRadius: props.radius + 'px' }"
    >
-      <input @change="changeInput" ref="input" :name="name" :required="required" :type="props.type" :placeholder="props.placeholder" autocomplete="off" spellcheck="false" :class="`outline-none w-full h-full pl-[8px]  text-dark-grey bg-transparent`">    
+      <input ref="input" @input="changeInput" :name="name" :required="required" :type="props.type" :placeholder="props.placeholder" autocomplete="off" spellcheck="false" :class="`outline-none w-full h-full pl-[8px]  text-dark-grey bg-transparent`">    
       <span class="absolute bottom-0 h-[7%] transition-[width]" :style="`background: ${props.color}`"></span>
       <slot>
          <!-- Icon goes here if present -->

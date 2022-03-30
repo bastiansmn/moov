@@ -230,7 +230,7 @@ export default defineComponent({
          <div class="login bg-purple shadow">
             <form ref="loginForm" @submit.prevent="login" autocomplete="off">
                <Input 
-                  @submit="login" 
+                  @submit="login"
                   name="username" 
                   color="#4D4D4D" 
                   required 

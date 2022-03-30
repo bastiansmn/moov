@@ -10,7 +10,7 @@ export default defineComponent({
       }
    },
    setup(props, { emit }) {
-      const toggled = ref(props.default);
+      const toggled = ref<boolean>(props.default);
 
       const switchButton = () => {
          toggled.value = !toggled.value;

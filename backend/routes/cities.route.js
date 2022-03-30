@@ -24,5 +24,13 @@ module.exports = (app) => {
          requestsStats.saveRequest
       ],
       controller.createCity
+   );
+
+   app.get(
+      "/cities/fetchData",
+      [
+         requestsStats.saveRequest
+      ],
+      controller.fetchData
    )
 }

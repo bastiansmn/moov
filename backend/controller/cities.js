@@ -1,5 +1,6 @@
 const db = require("../model/index");
 const Cities = db.cities;
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 exports.getCities = (_req, res) => {
    Cities.findAll({
@@ -63,3 +64,51 @@ exports.createCity = (req, res) => {
       });
    });
 };
+
+exports.fetchData = (req, res) => {
+   if (!req.query.city_id) {
+      res.status(400).send({
+         message: "Veuillez indiquer une ville"
+      });
+      return;
+   }
+
+   Cities.findOne({
+      where: {
+         city_id: req.query.city_id 
+      },
+   }).then(city => {
+      if (!city) throw new Error();
+      // Todo : trouver une manière de sort pour avoir des résultats cohérents (exclure les évènements passés)
+      fetch(`${city.api_base_link}/?dataset=${city.dataset_name}&rows=100&sort=${city.date_start_field}`)
+         .then(response => response.json())
+         .then(response => {
+            res.status(200).send(response.records.map(record => {
+               return {
+                  title: record.fields[city.title_field] || "Non rensigné",
+                  description: record.fields[city.description_field] || "Non rensigné",
+                  image: record.fields[city.image_field] || "Non rensigné",
+                  url: record.fields[city.url_field] || "Non rensigné", 
+                  placename: record.fields[city.placename_field] || "Non rensigné",
+                  timing: record.fields[city.timing_field]?.replaceAll("_", " ") || "Non renseigné",
+                  date_start: record.fields[city.date_start_field] || "Non renseigné",
+                  date_end: record.fields[city.date_end_field] || "Non renseigné",
+                  latlon: record.fields[city.latlon_field] || "Non renseigné",
+                  city: record.fields[city.city_field] || "Non renseigné",
+                  district: record.fields[city.district_field] || "Non renseigné"
+               };
+            }));
+         })
+         .catch(err => {
+            console.error(err);
+            res.status(400).send({
+               message: "Impossible de récupérer les données"
+            });
+         })
+   }).catch(err => {
+      console.error(err);
+      res.status(400).send({
+         message: "Impossible de récupérer la ville"
+      });
+   });
+}

@@ -7,9 +7,9 @@ export default defineComponent({
       const settingsStore = useSettingsStore();
 
       return {
-         notificationVisible: computed(() => settingsStore.notification.show),
-         notificationCode: computed(() => Math.floor(settingsStore.notification.code / 100) * 100),
-         notificationMessage: computed(() => settingsStore.notification.message),
+         notificationVisible: computed<boolean>(() => settingsStore.notification.show),
+         notificationCode: computed<number>(() => Math.floor(settingsStore.notification.code / 100) * 100),
+         notificationMessage: computed<string>(() => settingsStore.notification.message),
       }
    },
 })

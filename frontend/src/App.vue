@@ -9,7 +9,7 @@ import Notification from '@/components/common/Notification.vue';
 
   <Account />
 
-  <main class="main__content w-full bg-white2">
+  <main class="w-full bg-white2">
     <router-view v-slot="{ Component }">
       <transition
         name="fade"

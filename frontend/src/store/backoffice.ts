@@ -1,27 +1,17 @@
 import { defineStore } from "pinia";
-import User from "./model/user";
+import User, { Role } from "./model/user";
 import { useSettingsStore } from "./settings";
 const settingsStore = useSettingsStore();
 
-interface UserWithNotifications extends User {
-   recommandationsEnabled: boolean;
-   emailNotificationEnabled: boolean;
-}
-
-interface Role {
-   name: String;
-   role_id: Number
-}
-
 export const useBackofficeStore = defineStore("backoffice", {
    state: () => ({
-      users: [] as Array<UserWithNotifications>,
+      users: [] as Array<User>,
       roles: [] as Array<Role>,
       requests: [] as Array<Request>,
    }),
    actions: {
       fetchUsers() {
-         return new Promise<Array<UserWithNotifications>>(resolve => {
+         return new Promise<Array<User>>(resolve => {
             const username = localStorage.getItem('username');
             const user_uuid = localStorage.getItem('user_uuid');
             const accessToken = localStorage.getItem('accessToken');

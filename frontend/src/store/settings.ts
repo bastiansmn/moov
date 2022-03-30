@@ -1,6 +1,7 @@
 import { defineStore } from "pinia";
 import router from "@/router/router";
 import User from "./model/user";
+import Event from "./model/event";
 
 // Create a new store instance.
 export const useSettingsStore = defineStore("settings", {
@@ -13,6 +14,7 @@ export const useSettingsStore = defineStore("settings", {
          code: 200,
          message: "",
       },
+      events: [] as Array<Event>,
    }),
    actions: {
       togglePannel(payload: boolean) {
@@ -132,8 +134,10 @@ export const useSettingsStore = defineStore("settings", {
          }).then(response => {
             const status = response.status;
             response.json().then(data => {
-               if (status >= 200 && status < 300)
+               if (status >= 200 && status < 300) {
                   this.user.city_id = val;
+                  this.fetchEvents(true);
+               }
                this.sendNotification({
                   code: status, 
                   message: data.message 
@@ -179,11 +183,33 @@ export const useSettingsStore = defineStore("settings", {
                message: "Une erreur est survenue"
             });
          });
+      },
+
+      fetchEvents(update=false) {
+         return new Promise<Array<Event>>(resolve => {
+            fetch(`/api/cities/fetchData?city_id=${this.userConnected ? this.user.city_id : 'paris'}`)
+               .then(response => response.json())
+               .then(data => {
+                  resolve(data);
+                  if (update) this.events = data;
+               })
+               .catch(err => {
+                  console.error(err);
+                  resolve([]);
+                  this.sendNotification({
+                     code: 400,
+                     message: "Une erreur est survenue"
+                  });
+               });
+         })
       }
    },
    getters: {
       userConnected: (state) => {
          return JSON.stringify(state.user) !== JSON.stringify({});
       },
+      getEvents: (state) => {
+         return state.events;
+      }
    }
 });
