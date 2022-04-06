@@ -23,7 +23,7 @@ const shortenMonth = {
 </script>
 
 <template>
-   <div class="min-w-[190px] h-full rounded shadow bg-white overflow-clip mr-3">
+   <div class="min-w-[190px] w-[190px] h-full rounded shadow bg-white overflow-clip">
       <div class="image__container relative w-full h-2/3">
          <!-- TODO: Catégorie de l'évènement -->
          <img class="image w-full h-full" :src="props.image" />
@@ -33,13 +33,13 @@ const shortenMonth = {
          </div>
       </div>
       <div class="infos__container w-full h-1/3 p-2">
-         <h1 class="w-full text-black text-sm font-semibold h-1/2">{{ props.title }}</h1>
+         <h1 class="w-full text-black text-sm font-semibold h-1/2 ">{{ props.title }}</h1>
          <div class="placename w-full h-1/2 flex items-center justify-between">
             <svg class="aspect-square h-[15px]" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                <path d="M1 5.23077C1 7.53017 3.34433 10.2153 4.63531 11.609C4.83193 11.8213 5.16807 11.8213 5.36469 11.609C6.65567 10.2153 9 7.53017 9 5.23077C9 2.41026 7.57143 1 5 1C2.42857 1 1 2.5197 1 5.23077Z" stroke="#7061E4" stroke-width="1.5"/>
                <circle cx="5" cy="5" r="1.75" stroke="#7061E4" stroke-width="1.5"/>
             </svg>
-            <span class="text-sm">{{ props.placename }}</span>
+            <span class="text-sm h-full">{{ props.placename }}</span>
          </div>
       </div>
    </div>
@@ -50,5 +50,13 @@ const shortenMonth = {
    & > span {
       width: calc(100% - 20px);
    }
+}
+
+h1, span {
+   line-clamp: 1;
+   -webkit-line-clamp: 1;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
 }
 </style>

@@ -83,6 +83,7 @@ exports.fetchData = (req, res) => {
       fetch(`${city.api_base_link}/?dataset=${city.dataset_name}&rows=100&sort=${city.date_start_field}`)
          .then(response => response.json())
          .then(response => {
+            // TODO : Empêcher les évènements qui n'ont pas de titres (ou champs requis)
             res.status(200).send(response.records.map(record => {
                return {
                   title: record.fields[city.title_field] || "Non rensigné",

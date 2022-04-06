@@ -390,8 +390,6 @@ export default defineComponent({
          testApi(payload);
          if (settingsStore.notification.code / 100 !== 2) return;
          if ($event.submitter.name === "submit_api") {
-            console.log("submitting...");
-
             fetch("/api/cities/create", {
                method: "POST",
                headers: {
