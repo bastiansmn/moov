@@ -45,7 +45,7 @@ export default defineComponent({
          ? 'flex-col'
          : 'flex-col-reverse'
       )"
-      class="pannel fixed inset-0 bg-white2 h-full max-w-[400px] pt-20 p-6 flex z-50"
+      class="pannel fixed inset-0 bg-white2 h-full max-w-[400px] pt-20 p-6 flex z-50 overflow-y-scroll"
    >
       <button @click="unshowAccount" class="close_pannel absolute top-6 right-6 w-[30px] aspect-square rounded hover:rounded-sm transition-[border-radius] bg-purple text-white2 font-bold text-md flex items-center justify-center">
          <svg class="w-3/4 aspect-square" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">

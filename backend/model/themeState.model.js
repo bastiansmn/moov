@@ -1,17 +1,18 @@
 module.exports = (sequelize, Sequelize) => {
-   return sequelize.define("tags", {
-      color: {
-         type: Sequelize.STRING,
+   return sequelize.define("theme_state", {
+      status_id: {
+         type: Sequelize.INTEGER,
          primaryKey: true,
-         unique: true
+         unique: true,
+         autoIncrement: true
       },
       name: {
          type: Sequelize.STRING,
-         allowNull: false
+         unique: true
       }
    }, {
       defaultScope: {
          attributes: { exclude: ['createdAt', 'updatedAt'] },
       }
    });
-}
+};

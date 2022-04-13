@@ -76,4 +76,33 @@ module.exports = (app) => {
       ],
       controller.createUser
    );
+   app.get(
+      "/user/me",
+      [
+         jwtAuth.verifyToken,
+         requestsStats.saveRequest
+      ],
+      controller.recommandedEvents
+   );
+   app.get(
+      "/user/getSavedEvents",
+      [
+         jwtAuth.verifyToken
+      ],
+      controller.getSavedEvents
+   );
+   app.post(
+      "/user/saveEvent",
+      [
+         jwtAuth.verifyToken
+      ],
+      controller.saveEvent
+   );
+   app.delete(
+      "/user/unsaveEvent",
+      [
+         jwtAuth.verifyToken
+      ],
+      controller.unsaveEvent
+   )
 };

@@ -27,12 +27,17 @@ const db = {
   role: require("./role.model")(sequelize, Sequelize),
   request: require("./request.model")(sequelize, Sequelize),
   cities: require("./city.model")(sequelize, Sequelize),
-  tags: require("./tags.model")(sequelize, Sequelize),
+  theme: require("./theme.model")(sequelize, Sequelize),
+  themeStatus: require("./themeState.model")(sequelize, Sequelize),
+  themedEvent: require("./themedEvent.model")(sequelize, Sequelize),
+  savedEvent: require("./savedEvent.model")(sequelize, Sequelize),
   // ... other models
 
 
   // Utils/enums/...
   ROLES: ["USER", "MODERATOR", "ADMIN"],
+  THEME_STATE: ["PUBLIC", "PRIVATE"],
+  TAGS: ["Musique", "Lecture", "Plein-air", "Cinéma", "Humour", "Exposition", "Enfants", "Spectacle"],
 };
 
 // Associations
@@ -52,6 +57,31 @@ db.user.hasMany(db.request, {
 db.cities.hasOne(db.user, {
   foreignKey: "city_id"
 });
-
+db.user.hasOne(db.theme, {
+  foreignKey: "user_uuid"
+});
+db.theme.belongsToMany(db.themedEvent, {
+  through: "link_theme_events",
+  foreignKey: "theme_id",
+  otherKey: "id"
+});
+db.themedEvent.belongsToMany(db.theme, {
+  through: "link_theme_events",
+  foreignKey: "id",
+  otherKey: "theme_id"
+});
+db.savedEvent.belongsToMany(db.user, {
+  through: "link_saved_user",
+  foreignKey: "id",
+  otherKey: "user_uuid"
+});
+db.user.belongsToMany(db.savedEvent, {
+  through: "link_saved_user",
+  foreignKey: "user_uuid",
+  otherKey: "id"
+});
+db.cities.hasOne(db.savedEvent, {
+  foreignKey: "city_id"
+});
 
 module.exports = db;

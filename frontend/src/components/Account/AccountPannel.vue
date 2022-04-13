@@ -4,31 +4,35 @@ import { useSettingsStore } from '@/store/settings'
 
 import PannelDropdown from './PannelDropdown.vue'
 import Switcher from '../common/Switcher.vue'
+import EventPreview from '../common/EventPreview.vue'
 
 import { RoleEnum } from '@/store/model/user'
 import City from '@/store/model/city'
 import Select from '../common/Select.vue'
 
 const fetchCities = () => {
-   return new Promise<Array<City>>(resolve => {
+   return new Promise<Array<City>>(resolve => {      
       fetch("/api/cities/getCities")
          .then(res => res.json())
          .then(res => {
             resolve(res);
          });
    })
-}
+};
 
 export default defineComponent({
    components: {
       PannelDropdown,
       Switcher,
+      EventPreview,
       Select
    },
    async setup() {
       const settingsStore = useSettingsStore();
 
       const cities = ref<Array<City>>(await fetchCities());
+
+      await settingsStore.fetchSavedEvents(true);
 
       const unshowAccount = () => {
          settingsStore.togglePannel(false);
@@ -54,16 +58,22 @@ export default defineComponent({
          settingsStore.disconnectUser();
       }
 
+      const unsaveEvent = (event) => {
+         settingsStore.unsaveEvent(event);
+      }
+
       return {
          user: computed(() => settingsStore.user),
          userRecommandations: computed(() => settingsStore.user.userRecommandations),
          userNotifications: computed(() => settingsStore.user.userEmailNotifications),
+         savedEvents: computed(() => settingsStore.savedEvents),
          setRecommandations,
          setEmailNotifications,
          setCity,
          setRadius,
          disconnect,
          unshowAccount,
+         unsaveEvent,
          
          cities,
          RoleEnum
@@ -79,7 +89,22 @@ export default defineComponent({
 
    <h1 class="font-bold text-xl mb-10">Votre compte :</h1>
    <PannelDropdown title="Evènements enregistrés">
-      <p class="font-medium text-md">Vous n'avez pas encore enregistré d'évènement</p>
+      <p v-if="savedEvents.length === 0" class="font-medium text-md">Vous n'avez pas encore enregistré d'évènement</p>
+      <div v-else class="w-full flex flex-col  items-center">
+         <!-- TODO: router link -->
+         <div class="w-full mb-2 relative" :key="event.event_id" v-for="event in savedEvents" >
+            <EventPreview 
+               :event="event" 
+               height="100%"
+               width="100%"
+            />
+            <button @click="unsaveEvent(event)" class="unsave_event absolute top-2 right-2 h-[22px] aspect-square rounded-[3px] bg-purple flex items-center justify-center">
+               <svg width="10" height="14" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M3.14286 1C1.71429 1 1 1.83333 1 3.5V13.5858C1 14.4767 2.07714 14.9229 2.70711 14.2929L5.29289 11.7071C5.68342 11.3166 6.31658 11.3166 6.70711 11.7071L9.29289 14.2929C9.92286 14.9229 11 14.4767 11 13.5858V3.5C11 1.83333 10.2857 1 8.85714 1H6H3.14286Z" stroke="white" stroke-width="2"/>
+               </svg>
+            </button>
+         </div>
+      </div>
    </PannelDropdown>
    <PannelDropdown title="Vos paramètres">
       <h1 class="text-lg mb-2 w-full">Vos informations :</h1>
@@ -129,7 +154,7 @@ export default defineComponent({
    <router-link 
       to="/admin"
       v-if="user.roles.includes(RoleEnum.ADMIN)"  
-      class="bg-purple w-full h-[42px] rounded shadow flex items-center justify-center text-white font-semibold text-base"
+      class="bg-purple w-full min-h-[42px] rounded shadow flex items-center justify-center text-white font-semibold text-base"
       @click="unshowAccount"
    >
       Accéder au dashboard

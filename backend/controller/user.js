@@ -1,11 +1,15 @@
 const db = require("../model/index");
 const User = db.user;
 const Role = db.role;
+const SavedEvent = db.savedEvent;
+const City = db.cities;
 const Op = db.Sequelize.Op;
 var jwt = require("jsonwebtoken");
 const config = require("../config/auth.config");
 const { v4: uuid } = require("uuid");
 var bcrypt = require("bcryptjs");
+const { parseTags } = require("../utils/eventTranslator");
+const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 exports.getUsers = async (_req, res) => {
    User.findAll({
@@ -277,4 +281,182 @@ exports.setPreferedRadius = (req, res) => {
          message: "Erreur lors de la modification du rayon",
       })
    });
+}
+
+exports.recommandedEvents = (req, res) => {
+   User.findOne({
+      where: {
+         user_uuid: {
+            [Op.eq]: req.user_uuid
+         }
+      }
+   }).then(user => {
+      console.log(user.birthyear, user.city_id);
+      // TODO get recommanded events from city_id, according to age
+      res.status(200).send({
+         message: "Recommandations",
+      });
+   }).catch(err => {
+      console.error(err);
+      res.status(400).send({
+         message: "Erreur lors de la récupération des recommandations",
+      })
+   });
+};
+
+exports.getSavedEvents = (req, res) => {
+   User.findOne({
+      where: {
+         user_uuid: {
+            [Op.eq]: req.user_uuid
+         }
+      },
+      include: [{
+         model: SavedEvent,
+         attributes: ["city_id", "event_id"],
+      }]
+   }).then(async user => {
+      const fetchEvent = (city, event_id) => {
+         return new Promise(resolve => {
+            shortenApiLink = city.api_base_link.match(/^(https?:\/\/([a-z0-9-]+\.?)+[a-z]+)/)[1];
+            fetch(`${shortenApiLink}/api/v2/catalog/datasets/${city.dataset_name}/records/${event_id}`)
+               .then(response => response.json())
+               .then(response => {
+                  resolve({
+                     from_dataset: city.dataset_name,
+                     event_id: event_id,
+                     api_link: shortenApiLink,
+                     title: response.record.fields[city.title_field],
+                     description: response.record.fields[city.description_field],
+                     image: response.record.fields[city.image_field],
+                     url: response.record.fields[city.url_field],
+                     placename: response.record.fields[city.placename_field],
+                     timing: response.record.fields[city.timing_field],
+                     date_start: response.record.fields[city.date_start_field],
+                     date_end: response.record.fields[city.date_end_field],
+                     latlon: response.record.fields[city.latlon_field],
+                     city: response.record.fields[city.city_field],
+                     district: response.record.fields[city.district_field],
+                     tags: parseTags(response.record.fields, city)
+                  });
+               })
+               .catch(err => {
+                  console.error(err);
+                  resolve(null);
+               })
+         })
+      }
+      
+      res.status(200).send(
+         await Promise.all(user.saved_events.map(async e => {
+            const city = await City.findOne({
+               where: {
+                  city_id: e.city_id
+               }
+            });
+            return fetchEvent(city, e.event_id);
+         }))
+      );
+   }).catch(err => {
+      console.error(err);
+      res.status(400).send({
+         message: "Impossible de récupérer les évènements enregistrés"
+      })
+   })
+}
+
+exports.saveEvent = (req, res) => {
+   if (!req.body.event_id) {
+      res.status(400).send({
+         message: "Précisez un évènement à enregister",
+      });
+      return;
+   }
+
+   User.findOne({
+      where: {
+         user_uuid: {
+            [Op.eq]: req.user_uuid
+         }
+      }
+   }).then(user => {
+      SavedEvent.findOne({
+         where: {
+            event_id: {
+               [Op.eq]: req.body.event_id
+            }
+         }
+      }).then(event => {
+         if (!event) {
+            SavedEvent.create({
+               city_id: req.body.city_id,
+               event_id: req.body.event_id,
+            }).then(event => {
+               user.addSaved_event(event).then(() => {
+                  res.status(200).send({
+                     message: "Événement sauvegardé",
+                  });
+               });
+            }).catch(err => {
+               console.error(err);
+               res.status(400).send({
+                  message: "Erreur lors de la sauvegarde de l'événement",
+               });
+            });
+         } else {
+            user.addSaved_event(event).then(() => {
+               res.status(200).send({
+                  message: "Événement sauvegardé",
+               });
+            });
+         }
+      }).catch(err => {
+         console.error(err);
+         res.status(400).send({
+            message: "Erreur lors de l'ajout de l'évènement"
+         })
+      });
+   }).catch(err => {
+      console.error(err);
+      res.status(400).send({
+         message: "Erreur lors de l'ajout de l'évènement",
+      });
+   });
+}
+
+exports.unsaveEvent = (req, res) => {
+   // TODO Supprimer le event_id de l'api spécifiée 
+   if (!req.body.event_id) {
+      res.status(400).send({
+         message: "Requête invalide",
+      });
+      return;
+   }
+
+   User.findOne({
+      where: {
+         user_uuid: {
+            [Op.eq]: req.user_uuid
+         }
+      }
+   }).then(user => {
+      SavedEvent.findOne({
+         where: {
+            event_id: {
+               [Op.eq]: req.body.event_id
+            }
+         }
+      }).then(event => {
+         user.removeSaved_event(event).then(() => {
+            res.status(200).send({
+               message: "Evènement supprimé"
+            });
+         }).catch(err => {
+            console.error(err);
+            res.status(400).send({
+               message: "Impossible de supprimer l'évènement"
+            });
+         });
+      })
+   })
 }

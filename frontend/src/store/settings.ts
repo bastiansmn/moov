@@ -15,6 +15,7 @@ export const useSettingsStore = defineStore("settings", {
          message: "",
       },
       events: [] as Array<Event>,
+      savedEvents: [] as Array<Event>,
    }),
    actions: {
       togglePannel(payload: boolean) {
@@ -202,7 +203,53 @@ export const useSettingsStore = defineStore("settings", {
                   });
                });
          })
-      }
+      },
+      fetchSavedEvents(update=false) {
+         return new Promise<Array<Event>>(resolve => {
+            fetch("/api/user/getSavedEvents", {
+               method: "GET",
+               headers: new Headers({
+                  "Content-Type": "application/json",
+                  "x-access-token": localStorage.getItem("accessToken"),
+               } as HeadersInit),
+            })
+               .then(res => res.json())
+               .then(res => {
+                  resolve(res);
+                  if (update) this.savedEvents = res;
+               });
+         })
+      },
+      unsaveEvent(event: Event) {
+         console.log(event);
+         fetch("/api/user/unsaveEvent", {
+            method: "DELETE",
+            headers: new Headers({
+               "Content-Type": "application/json",
+               "x-access-token": this.user.accessToken,
+            }),
+            body: JSON.stringify({
+               event_id: event.event_id,
+            })
+         }).then(res => {
+            const status = res.status;
+            res.json().then(data => {
+               if (status >= 200 && status < 300) {
+                  this.sendNotification({
+                     code: status, 
+                     message: data.message 
+                  });
+                  this.savedEvents = this.savedEvents.filter(e => e.event_id !== event.event_id);
+               }
+            });
+         }).catch(err => {
+            console.error(err);
+            this.sendNotification({
+               code: 400,
+               message: "Une erreur est survenue"
+            });
+         });
+      },
    },
    getters: {
       userConnected: (state) => {

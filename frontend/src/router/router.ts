@@ -57,9 +57,6 @@ router.beforeEach(async (to, _from, next) => {
    const user_uuid = localStorage.getItem('user_uuid');
    const accessToken = localStorage.getItem('accessToken');
    const username = localStorage.getItem('username');
-   
-   if (settingsStore.events.length === 0)
-      await settingsStore.fetchEvents(true);
 
    if (!user_uuid || !accessToken || !username) {
       localStorage.clear();
@@ -96,6 +93,9 @@ router.beforeEach(async (to, _from, next) => {
          });
       });
    }
+   
+   if (settingsStore.events.length === 0)
+      await settingsStore.fetchEvents(true);
 
    
    if (to.matched.some(record => record.meta.requiresLog)) { // If route need log

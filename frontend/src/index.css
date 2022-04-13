@@ -6,6 +6,8 @@
 :root {
    --navbar-width: 3px;
    --header-height: 88px;
+
+   --swiper-theme-color: #7061E4;
 }
 
 #app {

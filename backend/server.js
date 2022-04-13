@@ -34,5 +34,6 @@ require('./routes/role.route')(app);
 require('./routes/mail.route')(app);
 require('./routes/request.route')(app);
 require('./routes/cities.route')(app);
+require('./routes/tags.route')(app);
 
 app.listen(process.env.PORT || 3000);

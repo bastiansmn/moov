@@ -1,6 +1,7 @@
 const db = require("../model/index");
 const Cities = db.cities;
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const { isValidDate, parseTags } = require("../utils/eventTranslator");
 
 exports.getCities = (_req, res) => {
    Cities.findAll({
@@ -79,25 +80,29 @@ exports.fetchData = (req, res) => {
       },
    }).then(city => {
       if (!city) throw new Error();
-      // Todo : trouver une manière de sort pour avoir des résultats cohérents (exclure les évènements passés)
       fetch(`${city.api_base_link}/?dataset=${city.dataset_name}&rows=100&sort=${city.date_start_field}`)
          .then(response => response.json())
          .then(response => {
-            // TODO : Empêcher les évènements qui n'ont pas de titres (ou champs requis)
             res.status(200).send(response.records.map(record => {
                return {
-                  title: record.fields[city.title_field] || "Non rensigné",
+                  from_dataset: record.datasetid,
+                  event_id: record.recordid,
+                  api_link: city.api_base_link,
+                  title: record.fields[city.title_field],
                   description: record.fields[city.description_field] || "Non rensigné",
-                  image: record.fields[city.image_field] || "Non rensigné",
-                  url: record.fields[city.url_field] || "Non rensigné", 
+                  image: record.fields[city.image_field],
+                  url: record.fields[city.url_field], 
                   placename: record.fields[city.placename_field] || "Non rensigné",
                   timing: record.fields[city.timing_field]?.replaceAll("_", " ") || "Non renseigné",
-                  date_start: record.fields[city.date_start_field] || "Non renseigné",
-                  date_end: record.fields[city.date_end_field] || "Non renseigné",
+                  date_start: isValidDate(record.fields[city.date_start_field]),
+                  date_end: isValidDate(record.fields[city.date_end_field]),
                   latlon: record.fields[city.latlon_field] || "Non renseigné",
                   city: record.fields[city.city_field] || "Non renseigné",
-                  district: record.fields[city.district_field] || "Non renseigné"
+                  district: record.fields[city.district_field] || "Non renseigné",
+                  tags: parseTags(record.fields, city)
                };
+            }).filter(event => {
+               return !("" in Object.values(event));
             }));
          })
          .catch(err => {
