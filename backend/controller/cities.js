@@ -85,9 +85,8 @@ exports.fetchData = (req, res) => {
          .then(response => {
             res.status(200).send(response.records.map(record => {
                return {
-                  from_dataset: record.datasetid,
+                  city_id: city.city_id,
                   event_id: record.recordid,
-                  api_link: city.api_base_link,
                   title: record.fields[city.title_field],
                   description: record.fields[city.description_field] || "Non rensigné",
                   image: record.fields[city.image_field],

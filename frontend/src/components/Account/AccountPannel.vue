@@ -1,6 +1,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
 import { useSettingsStore } from '@/store/settings'
+import router from '@/router/router'
 
 import PannelDropdown from './PannelDropdown.vue'
 import Switcher from '../common/Switcher.vue'
@@ -92,7 +93,7 @@ export default defineComponent({
       <p v-if="savedEvents.length === 0" class="font-medium text-md">Vous n'avez pas encore enregistré d'évènement</p>
       <div v-else class="w-full flex flex-col  items-center">
          <!-- TODO: router link -->
-         <div class="w-full mb-2 relative" :key="event.event_id" v-for="event in savedEvents" >
+         <div class="w-full mb-2 relative" :key="event.event_id" v-for="event in savedEvents">
             <EventPreview 
                :event="event" 
                height="100%"

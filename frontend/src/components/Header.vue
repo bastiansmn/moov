@@ -61,7 +61,7 @@ export default defineComponent({
             <rect x="1067.1" y="88.1069" width="10" height="10" rx="1.5" transform="rotate(-53.1995 1067.1 88.1069)" stroke="#8A6CDF" stroke-width="3"/>
          </svg>
 
-         <h1 class="text-white sticky top-0 font-bold font-sans z-[3] text-[25px]">MOOV</h1>
+         <router-link to="/home" class="text-white sticky top-0 font-bold font-sans z-[3] text-[25px]">MOOV</router-link>
       </div>
    </header>
 </template>

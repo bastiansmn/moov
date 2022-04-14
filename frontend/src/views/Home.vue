@@ -48,7 +48,7 @@ export default defineComponent({
 </script>
 
 <template>
-   <div class="category__filter p-6">
+   <div class="category__filter">
       <h1>Catégories</h1>
       <div class="flex h-[90px] items-center">
          <button class="filterer h-1/2 flex items-center mx-3 px-4 bg-white rounded-[999px]" :key="tag" v-for="tag in tags" @click="filterEvents(tag)">
@@ -73,7 +73,7 @@ export default defineComponent({
          </button>
       </div>
    </div>
-   <div class="category p-6" v-for="i in 10">
+   <div class="category" v-for="i in 10">
       <h1>Evènements</h1>
       <Swiper 
          class="events h-[220px] w-full overflow-x-auto py-3"

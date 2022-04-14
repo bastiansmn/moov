@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import Event from "@/store/model/event";
 import Category from "./Category.vue";
+import router from '@/router/router';
 
 const props = defineProps<{
    event: Event,
@@ -22,11 +23,24 @@ const shortenMonth = {
    10: "Nov",
    11: "Déc"
 }
+
+const showEvent = (event) => {
+   router.push({
+      name: 'Event',
+      query: {
+         event_id: event.event_id,
+         city_id: event.city_id
+      },
+      params: {
+         event: JSON.stringify(event)
+      }
+   })
+}
 </script>
 
 <template>
    <!-- TODO: Router link vers évènement -->
-   <div class="rounded shadow bg-white overflow-clip" :style="`height: ${props.height || '100%'}; width: ${props.width || '190px'}`">
+   <button @click="showEvent(props.event)" class="rounded shadow bg-white overflow-clip" :style="`height: ${props.height || '100%'}; width: ${props.width || '190px'}`">
       <div class="image__container relative w-full h-2/3">
          <div class="absolute top-2 left-2 flex items-center justify-center p-1">
             <Category :cats="props.event.tags" />
@@ -47,7 +61,7 @@ const shortenMonth = {
             <span class="text-sm h-full">{{ props.event.placename }}</span>
          </div>
       </div>
-   </div>
+   </button>
 </template>
 
 <style lang="scss" scoped>

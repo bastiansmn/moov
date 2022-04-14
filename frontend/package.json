@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.14.0",
     "chart.js": "^3.7.1",
     "path": "^0.12.7",
     "pinia": "^2.0.11",

@@ -8,8 +8,7 @@ var jwt = require("jsonwebtoken");
 const config = require("../config/auth.config");
 const { v4: uuid } = require("uuid");
 var bcrypt = require("bcryptjs");
-const { parseTags } = require("../utils/eventTranslator");
-const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
+const { fetchEvent } = require("../utils/eventFecthing");
 
 exports.getUsers = async (_req, res) => {
    User.findAll({
@@ -315,38 +314,7 @@ exports.getSavedEvents = (req, res) => {
          model: SavedEvent,
          attributes: ["city_id", "event_id"],
       }]
-   }).then(async user => {
-      const fetchEvent = (city, event_id) => {
-         return new Promise(resolve => {
-            shortenApiLink = city.api_base_link.match(/^(https?:\/\/([a-z0-9-]+\.?)+[a-z]+)/)[1];
-            fetch(`${shortenApiLink}/api/v2/catalog/datasets/${city.dataset_name}/records/${event_id}`)
-               .then(response => response.json())
-               .then(response => {
-                  resolve({
-                     from_dataset: city.dataset_name,
-                     event_id: event_id,
-                     api_link: shortenApiLink,
-                     title: response.record.fields[city.title_field],
-                     description: response.record.fields[city.description_field],
-                     image: response.record.fields[city.image_field],
-                     url: response.record.fields[city.url_field],
-                     placename: response.record.fields[city.placename_field],
-                     timing: response.record.fields[city.timing_field],
-                     date_start: response.record.fields[city.date_start_field],
-                     date_end: response.record.fields[city.date_end_field],
-                     latlon: response.record.fields[city.latlon_field],
-                     city: response.record.fields[city.city_field],
-                     district: response.record.fields[city.district_field],
-                     tags: parseTags(response.record.fields, city)
-                  });
-               })
-               .catch(err => {
-                  console.error(err);
-                  resolve(null);
-               })
-         })
-      }
-      
+   }).then(async user => {      
       res.status(200).send(
          await Promise.all(user.saved_events.map(async e => {
             const city = await City.findOne({

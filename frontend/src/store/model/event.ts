@@ -1,7 +1,6 @@
 export default interface Event {
-   from_dataset: string,
+   city_id: string,
    event_id: string,
-   api_link: string,
    title: string,
    description: string,
    image: string,
