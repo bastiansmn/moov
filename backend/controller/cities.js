@@ -2,6 +2,7 @@ const db = require("../model/index");
 const Cities = db.cities;
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const { isValidDate, parseTags } = require("../utils/eventTranslator");
+const { convertLatlon } = require("../utils/eventFecthing");
 
 exports.getCities = (_req, res) => {
    Cities.findAll({
@@ -95,7 +96,7 @@ exports.fetchData = (req, res) => {
                   timing: record.fields[city.timing_field]?.replaceAll("_", " ") || "Non renseigné",
                   date_start: isValidDate(record.fields[city.date_start_field]),
                   date_end: isValidDate(record.fields[city.date_end_field]),
-                  latlon: record.fields[city.latlon_field] || "Non renseigné",
+                  latlon: convertLatlon(record.fields[city.latlon_field]) || "Non renseigné",
                   city: record.fields[city.city_field] || "Non renseigné",
                   district: record.fields[city.district_field] || "Non renseigné",
                   tags: parseTags(record.fields, city)

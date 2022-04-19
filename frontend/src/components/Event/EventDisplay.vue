@@ -1,5 +1,5 @@
 <script lang="ts">
-import Event from '@/router/model/event';
+import Event from '@/store/model/event';
 import { defineComponent, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router'
 import { useSettingsStore } from '@/store/settings';
@@ -7,7 +7,7 @@ import { Loader } from '@googlemaps/js-api-loader';
 
 const settingsStore = useSettingsStore();
 
-const fetchEvent = (event_id, city_id) => {
+const fetchEvent = (event_id: String, city_id: String) => {
    return new Promise<Event>(resolve => {
       fetch(`/api/event/fetchEvent?event_id=${event_id}&city_id=${city_id}`)
             .then(res => {
@@ -45,8 +45,8 @@ export default defineComponent({
       } else {
          const { event_id, city_id } = useRoute().query;
          const eventFromStore = 
-            settingsStore.events.find(e => e.event_id === event_id) 
-            || settingsStore.savedEvents.find(e => e.event_id === event_id);
+            settingsStore?.events.find(e => e.event_id === event_id) 
+            || settingsStore?.savedEvents.find(e => e.event_id === event_id);
          event = eventFromStore 
             ? eventFromStore 
             : await fetchEvent(event_id, city_id);
@@ -58,8 +58,8 @@ export default defineComponent({
          await loader.load();
          // TODO Handle if latlon is not an array
          const coordinates = {
-            lat: event.latlon[0],
-            lng: event.latlon[1]
+            lat: event.latlon.lat,
+            lng: event.latlon.lng
          };
          const map = new google.maps.Map(mapDiv.value, {
             center: coordinates,
@@ -84,18 +84,24 @@ export default defineComponent({
          });
          return res;
       }
-      
+
+      const saveEvent = () => {
+         console.log(event);
+         settingsStore.saveEvent(event);
+      }
+
       return {
          ...event,
          parseTimings,
-         mapDiv
+         mapDiv,
+         saveEvent
       }
    }
 })
 </script>
 
 <template>
-   <div class="w-full h-[42px] mb-5 flex items-center">
+   <div class="w-full h-[42px] mb-5 flex items-center justify-between">
       <router-link to="/home" class="flex items-center">
          <div class="h-[30px] w-[30px] bg-purple rounded hover:rounded-sm flex items-center justify-center transition-[border-radius] mr-4">
             <svg xmlns="http://www.w3.org/2000/svg" width="14px" height="14px" viewBox="-5 0 25.618 25.618">
@@ -111,6 +117,11 @@ export default defineComponent({
          </div>
          <h1 class="font-semibold">Retour à l'accueil</h1>
       </router-link>
+      <button @click="saveEvent" class="rounded h-3/4 aspect-square bg-purple flex items-center justify-center">
+         <svg width="10" height="14" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3.14286 1C1.71429 1 1 1.83333 1 3.5V13.5858C1 14.4767 2.07714 14.9229 2.70711 14.2929L5.29289 11.7071C5.68342 11.3166 6.31658 11.3166 6.70711 11.7071L9.29289 14.2929C9.92286 14.9229 11 14.4767 11 13.5858V3.5C11 1.83333 10.2857 1 8.85714 1H6H3.14286Z" stroke="white" stroke-width="2"/>
+         </svg>
+      </button>
    </div>
    <div class="event__content flex justify-between">
       <div class="left__event flex flex-col">
@@ -120,6 +131,9 @@ export default defineComponent({
       </div>
       <div class="right__event">
          <h1 class="font-semibold text-lg mb-4">{{ title }}</h1>
+         <div class="tags flex items-center h-[32px] mb-4">
+            <span class="h-full rounded-sm bg-dark-grey text-white flex items-center justify-center px-2 mr-1" v-for="tag in tags">{{ tag }}</span>
+         </div>
          <a target="_blank" :href="url" class="text-purple font-semibold mb-4">{{ url }}</a>
 
          <div ref="mapDiv" class="w-full aspect-video rounded-sm shadow border-2 border-purple my-4" />

@@ -12,7 +12,6 @@ exports.parseTags = (record, translator) => {
       ], 
       "Lecture": [
          "lecture",
-         "conférence",
          "bibliothèque",
          "livre",
       ],

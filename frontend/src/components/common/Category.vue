@@ -9,7 +9,7 @@ export default defineComponent({
       }
    },
    setup(props) {
-      const getBgColor = (cat) => {         
+      const getBgColor = (cat: String) => {         
          switch (cat) {
             case "Musique":
                return "#5BE3E3";

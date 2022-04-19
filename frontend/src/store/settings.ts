@@ -210,8 +210,8 @@ export const useSettingsStore = defineStore("settings", {
                method: "GET",
                headers: new Headers({
                   "Content-Type": "application/json",
-                  "x-access-token": localStorage.getItem("accessToken"),
-               } as HeadersInit),
+                  "x-access-token": this.user.accessToken,
+               }),
             })
                .then(res => res.json())
                .then(res => {
@@ -220,8 +220,31 @@ export const useSettingsStore = defineStore("settings", {
                });
          })
       },
+      saveEvent(event: Event) {
+         fetch("/api/user/saveEvent", {
+            method: "POST",
+            headers: new Headers({
+               "Content-Type": "application/json",
+               "x-access-token": this.user.accessToken,
+            }),
+            body: JSON.stringify({
+               event_id: event.event_id,
+               city_id: event.city_id
+            }),
+         }).then(res => {
+            const status = res.status;
+            res.json().then(data => {
+               if (status >= 200 && status < 300) {
+                  this.sendNotification({
+                     code: status, 
+                     message: data.message 
+                  });
+                  this.fetchSavedEvents(true);
+               }
+            });
+         });
+      },
       unsaveEvent(event: Event) {
-         console.log(event);
          fetch("/api/user/unsaveEvent", {
             method: "DELETE",
             headers: new Headers({

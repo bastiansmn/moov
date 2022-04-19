@@ -24,7 +24,8 @@ const shortenMonth = {
    11: "Déc"
 }
 
-const showEvent = (event) => {
+const showEvent = (event: Event) => {
+   const from = router.currentRoute.value.path
    router.push({
       name: 'Event',
       query: {
@@ -36,6 +37,7 @@ const showEvent = (event) => {
       }
    })
 }
+// TODO If we are on an event, preview doesn't dispaly the new event
 </script>
 
 <template>
@@ -51,14 +53,14 @@ const showEvent = (event) => {
             <span class="text-xs font-semibold text-dark-grey h-[12px] flex items-center">{{ shortenMonth[new Date(props.event.date_start).getMonth()] }}</span>
          </div>
       </div>
-      <div class="infos__container w-full h-1/3 p-2">
-         <h1 class="w-full text-black text-sm font-semibold h-1/2 ">{{ props.event.title }}</h1>
+      <div class="infos__container w-full h-1/3 p-2 flex flex-col justify-between">
+         <h1 class="w-full text-black text-sm font-semibold h-1/2 flex items-center">{{ props.event.title }}</h1>
          <div class="placename w-full h-1/2 flex items-center justify-between">
             <svg class="aspect-square h-[15px]" viewBox="0 0 10 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                <path d="M1 5.23077C1 7.53017 3.34433 10.2153 4.63531 11.609C4.83193 11.8213 5.16807 11.8213 5.36469 11.609C6.65567 10.2153 9 7.53017 9 5.23077C9 2.41026 7.57143 1 5 1C2.42857 1 1 2.5197 1 5.23077Z" stroke="#7061E4" stroke-width="1.5"/>
                <circle cx="5" cy="5" r="1.75" stroke="#7061E4" stroke-width="1.5"/>
             </svg>
-            <span class="text-sm h-full">{{ props.event.placename }}</span>
+            <span class="text-sm text-left">{{ props.event.placename }}</span>
          </div>
       </div>
    </button>
