@@ -41,10 +41,10 @@ export default defineComponent({
          labels: ["Rien", "Recomm.", "Email", "Tout"],
          datasets: [{
             data: [
-               users.value.filter(user => !user.emailNotificationEnabled && !user.recommandationsEnabled).length, 
-               users.value.filter(user => user.recommandationsEnabled && !user.emailNotificationEnabled).length,
-               users.value.filter(user => user.emailNotificationEnabled && !user.recommandationsEnabled).length,
-               users.value.filter(user => user.emailNotificationEnabled && user.recommandationsEnabled).length, 
+               users.value.filter(user => !user.userEmailNotifications && !user.userRecommandations).length, 
+               users.value.filter(user => user.userRecommandations && !user.userEmailNotifications).length,
+               users.value.filter(user => user.userEmailNotifications && !user.userRecommandations).length,
+               users.value.filter(user => user.userEmailNotifications && user.userRecommandations).length, 
             ],
             backgroundColor: 'rgb(112, 97, 228)',
             hoverBackgroundColor: 'rgb(149, 101, 227)',

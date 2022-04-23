@@ -28,7 +28,7 @@ const db = {
   request: require("./request.model")(sequelize, Sequelize),
   cities: require("./city.model")(sequelize, Sequelize),
   theme: require("./theme.model")(sequelize, Sequelize),
-  themeStatus: require("./themeState.model")(sequelize, Sequelize),
+  themeState: require("./themeState.model")(sequelize, Sequelize),
   themedEvent: require("./themedEvent.model")(sequelize, Sequelize),
   savedEvent: require("./savedEvent.model")(sequelize, Sequelize),
   // ... other models
@@ -36,7 +36,7 @@ const db = {
 
   // Utils/enums/...
   ROLES: ["USER", "MODERATOR", "ADMIN"],
-  THEME_STATE: ["PUBLIC", "PRIVATE"],
+  THEME_STATUS: ["PUBLIC", "PRIVATE"],
   TAGS: ["Musique", "Lecture", "Plein-air", "Cinéma", "Humour", "Exposition", "Enfants", "Spectacle"],
 };
 
@@ -69,6 +69,9 @@ db.themedEvent.belongsToMany(db.theme, {
   through: "link_theme_events",
   foreignKey: "id",
   otherKey: "theme_id"
+});
+db.themeState.hasMany(db.theme, {
+  foreignKey: "status_id"
 });
 db.savedEvent.belongsToMany(db.user, {
   through: "link_saved_user",

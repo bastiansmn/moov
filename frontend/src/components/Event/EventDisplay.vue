@@ -96,8 +96,6 @@ export default defineComponent({
          console.log(event);
          settingsStore.saveEvent(event);
       }
-
-      console.log(event);
       
       return {
          ...event,
