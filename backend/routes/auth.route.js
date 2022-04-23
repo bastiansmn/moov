@@ -2,7 +2,7 @@ const { verifyLog, bodytrim, requestsStats } = require("../middleware/index");
 const controller = require("../controller/auth");
 
 // Function passed to the middleware to trim the string in the body
-strTrim = (str) => {
+const strTrim = (str) => {
    return str.trim();
 }
 

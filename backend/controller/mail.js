@@ -1,17 +1,8 @@
 const db = require("../model/index");
 const User = db.user;
-const Op = db.Sequelize.Op;
 const nodemailer = require("nodemailer");
 const ejs = require("ejs");
 const path = require("path");
-
-var transporter = nodemailer.createTransport({
-   service: 'gmail',
-   auth: {
-      user: process.env.EMAIL,
-      pass: process.env.EMAIL_PASSWORD
-   }
- });
 
 exports.sendMail = (req, res) => {
    const mailSubject = req.body.mailSubject;
@@ -26,9 +17,7 @@ exports.sendMail = (req, res) => {
 
    User.findAll({
       where: {
-         emailNotificationEnabled: {
-            [Op.eq]: true
-         }
+         userEmailNotifications: true
       }
    }).then(users => {
       if (users.length === 0) {
@@ -43,15 +32,23 @@ exports.sendMail = (req, res) => {
             mailContent,
             username: user.username
          }).then(result => {
+            console.log(result);
             var mailOptions = {
                from: 'moov.noreply@gmail.com',
                to: user.email,
                subject: mailSubject,
-               html: mailContent
+               html: result
             };
-   
-            transporter.sendMail(mailOptions, (error, _info) => {
+            const transporter = nodemailer.createTransport({
+               service: 'gmail',
+               auth: {
+                  user: process.env.EMAIL,
+                  pass: process.env.EMAIL_PASSWORD
+               }
+            });
+            transporter.sendMail(mailOptions, (error) => {
                if (error) {
+                  console.error(error);
                   res.status(500).send({
                      message: "Erreur lors de l'envoi du mail"
                   });

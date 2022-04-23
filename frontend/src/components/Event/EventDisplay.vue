@@ -54,6 +54,7 @@ export default defineComponent({
 
       const loader = new Loader({ apiKey: import.meta.env.VITE_MAPS_API_KEY });
       const mapDiv = ref(null);
+      const renderMap = ref(false);
       onMounted(async () => {
          await loader.load();
          // TODO Handle if latlon is not an array
@@ -61,18 +62,24 @@ export default defineComponent({
             lat: event.latlon.lat,
             lng: event.latlon.lng
          };
-         const map = new google.maps.Map(mapDiv.value, {
-            center: coordinates,
-            zoom: 15,
-         });
-         new google.maps.Marker({
-            position: coordinates,
-            title: event.title,
-            map
-         })
+         
+         if (coordinates.lat && coordinates.lng) {
+            const map = new google.maps.Map(mapDiv.value, {
+               center: coordinates,
+               zoom: 15,
+            });
+            new google.maps.Marker({
+               position: coordinates,
+               title: event.title,
+               map
+            });
+         }
+
+         renderMap.value = coordinates.lat && coordinates.lng;
       })
 
       const parseTimings = (timings) => {
+         if (timings === 'Non renseigné') return ['Non renseigné'];
          const dates = timings.split(";");
          const res = dates.map(date => {
             const [start, end] = date.split(" ");
@@ -90,11 +97,14 @@ export default defineComponent({
          settingsStore.saveEvent(event);
       }
 
+      console.log(event);
+      
       return {
          ...event,
          parseTimings,
          mapDiv,
-         saveEvent
+         saveEvent,
+         renderMap,
       }
    }
 })
@@ -125,18 +135,18 @@ export default defineComponent({
    </div>
    <div class="event__content flex justify-between">
       <div class="left__event flex flex-col">
-         <img :src="image" :alt="title" class="rounded-sm shadow mb-5 w-full aspect-video">
+         <img :src="image" :alt="title" class="rounded-sm shadow mb-5 w-full aspect-video object-cover">
          <h1 class="font-semibold text-lg mb-5">Description</h1>
          <p class="event__description" v-html="description"></p>
       </div>
       <div class="right__event">
          <h1 class="font-semibold text-lg mb-4">{{ title }}</h1>
          <div class="tags flex items-center h-[32px] mb-4">
-            <span class="h-full rounded-sm bg-dark-grey text-white flex items-center justify-center px-2 mr-1" v-for="tag in tags">{{ tag }}</span>
+            <span class="h-full rounded-sm bg-dark-grey text-white flex items-center justify-center px-2 mr-1" :key="tag" v-for="tag in tags">{{ tag }}</span>
          </div>
          <a target="_blank" :href="url" class="text-purple font-semibold mb-4">{{ url }}</a>
 
-         <div ref="mapDiv" class="w-full aspect-video rounded-sm shadow border-2 border-purple my-4" />
+         <div ref="mapDiv" v-show="renderMap" class="w-full aspect-video rounded-sm shadow border-2 border-purple my-4" />
          
          <div class="flex justify-between mb-2">
             <div class="w-[49%] h-full">

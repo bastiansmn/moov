@@ -1,5 +1,5 @@
-applyToBody = (fun) => {
-   apply = (obj) => {
+const applyToBody = (fun) => {
+   const apply = (obj) => {
       if (typeof obj === "string") {
          return fun(obj);
       }

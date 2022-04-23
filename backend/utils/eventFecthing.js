@@ -2,6 +2,7 @@ const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch
 const { parseTags } = require("../utils/eventTranslator");
 
 exports.convertLatlon = (latlon) => {
+   if (!latlon) return { lat: null, lon: null };
    if (Array.isArray(latlon)) {
       return {
          lat: latlon[0],
@@ -16,7 +17,7 @@ exports.convertLatlon = (latlon) => {
 
 exports.fetchEvent = (city, event_id) => {
    return new Promise(resolve => {
-      shortenApiLink = city.api_base_link.match(/^(https?:\/\/([a-z0-9-]+\.?)+[a-z]+)/)[1];
+      const shortenApiLink = city.api_base_link.match(/^(https?:\/\/([a-z0-9-]+\.?)+[a-z]+)/)[1];
       fetch(`${shortenApiLink}/api/v2/catalog/datasets/${city.dataset_name}/records/${event_id}`)
          .then(response => response.json())
          .then(response => {

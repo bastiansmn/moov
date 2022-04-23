@@ -2,7 +2,6 @@ const db = require("../model/index");
 const config = require("../config/auth.config");
 const User = db.user;
 const Role = db.role;
-const Op = db.Sequelize.Op;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 const { v4: uuid } = require("uuid");
@@ -32,6 +31,7 @@ exports.signup = (req, res) => {
          }
       }).then(role => {
          user.setRoles([role.role_id]).then(() => {
+            // eslint-disable-next-line no-unused-vars
             const { password, ...u } = user.dataValues;
             res.status(200).send({ 
                message: "Inscription réussie !",
@@ -78,6 +78,7 @@ exports.signin = (req, res) => {
          roles.forEach(r => {
             authorities.push(r.name.toUpperCase());
          });
+         // eslint-disable-next-line no-unused-vars
          const { password, ...u } = user.dataValues;
          res.status(200).send({
             ...u,

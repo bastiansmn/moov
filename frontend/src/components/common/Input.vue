@@ -29,7 +29,6 @@ export default defineComponent({
       },
       width: {
          type: Number,
-         default: 300
       },
       height: {
          type: Number,
@@ -67,12 +66,16 @@ export default defineComponent({
 </script>
 
 <template>
-   <form @submit.prevent="submitInput" :class="props.shadow
-      ? `shadow search relative w-[${props.width}px] h-[${props.height}px] flex items-center justify-between overflow-hidden`
-      : `search relative w-[${props.width}px] h-[${props.height}px] flex items-center justify-between overflow-hidden`"
-      :style="{ background: props.background, borderRadius: props.radius + 'px' }"
+   <form @submit.prevent="submitInput" class="search relative flex items-center justify-between overflow-hidden"
+      :style="{ 
+         background: props.background, 
+         borderRadius: props.radius + 'px',
+         width: props.width ? props.width + 'px' : '100%',
+         height: props.height + 'px',
+         boxShadow: props.shadow ? '0px 2px 5px -3px rgba(0, 0, 0, 0.25)' : 'none',
+      }"
    >
-      <input ref="input" @input="changeInput" :name="name" :required="required" :type="props.type" :placeholder="props.placeholder" autocomplete="off" spellcheck="false" :class="`outline-none w-full h-full pl-[8px]  text-dark-grey bg-transparent`">    
+      <input ref="input" @input="changeInput" :name="name" :required="required" :type="props.type" :placeholder="props.placeholder" autocomplete="off" spellcheck="false" class="outline-none w-full h-full pl-[8px]  text-dark-grey bg-transparent">    
       <span class="absolute bottom-0 h-[7%] transition-[width]" :style="`background: ${props.color}`"></span>
       <slot>
          <!-- Icon goes here if present -->

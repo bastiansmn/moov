@@ -19,6 +19,7 @@ exports.getUsers = async (_req, res) => {
    }).then(users => {
       res.status(200).send(users
          .map(user => {
+            // eslint-disable-next-line no-unused-vars
             const { password, ...u } = user.dataValues;
             return u;
          }).map(user => ({
@@ -63,6 +64,7 @@ exports.createUser = (req, res) => {
             user.addRole(role);
          });
       });
+      // eslint-disable-next-line no-unused-vars
       const { password, ...u } = user.dataValues;
       res.status(200).send({
          ...u,
@@ -151,6 +153,7 @@ exports.getUserByUUID = (req, res) => {
          r.forEach(role => {
             authorities.push(role.name.toUpperCase());
          });
+         // eslint-disable-next-line no-unused-vars
          const { password, ...u } = user.dataValues;
          res.status(200).send({
             ...u,

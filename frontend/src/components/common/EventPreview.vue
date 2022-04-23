@@ -47,7 +47,7 @@ const showEvent = (event: Event) => {
          <div class="absolute top-2 left-2 flex items-center justify-center p-1">
             <Category :cats="props.event.tags" />
          </div>
-         <img class="image w-full h-full" :src="props.event.image" alt="Image impossible à charger" />
+         <img class="image w-full h-full object-cover" :src="props.event.image" alt="Image impossible à charger" />
          <div class="date absolute bottom-2 left-2 w-[32px] aspect-square rounded-[4px] bg-white flex flex-col items-center justify-center p-1">
             <span class="text-xs font-semibold text-dark-grey h-[12px] flex items-center">{{ new Date(props.event.date_start).getDate() }}</span>
             <span class="text-xs font-semibold text-dark-grey h-[12px] flex items-center">{{ shortenMonth[new Date(props.event.date_start).getMonth()] }}</span>

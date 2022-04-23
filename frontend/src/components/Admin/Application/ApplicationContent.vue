@@ -823,7 +823,7 @@ export default defineComponent({
                      <h1 class="font-semibold">Année de naissance :</h1>
                      <select name="birthyear" class="bg-white2 shadow rounded w-full h-[40px]" required>
                         <option value="" disabled selected>...</option>
-                        <option v-for="age in [...Array(new Date().getFullYear() + 1).keys()].slice(1900).reverse()" :value="age">{{ age }}</option>
+                        <option :key="age" v-for="age in [...Array(new Date().getFullYear() + 1).keys()].slice(1900).reverse()" :value="age">{{ age }}</option>
                      </select>
                   </div>
                   <div class="w-full">

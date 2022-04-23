@@ -2,7 +2,7 @@ const { jwtAuth, verifyLog, bodytrim, requestsStats } = require("../middleware/i
 const controller = require("../controller/mail");
 
 // Function passed to the middleware to trim the string in the body
-strTrim = (str) => {
+const strTrim = (str) => {
    return str.trim();
 }
 

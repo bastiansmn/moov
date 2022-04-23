@@ -1,14 +1,14 @@
 const db = require("../model/index");
 const User = db.user;
 
-validateEmailAndUsername = (req, res, next) => {
+const validateEmailAndUsername = (req, res, next) => {
    if (!req.body.username || !req.body.email) {
       res.status(400).send({
          message: "Veuillez renseigner un nom d'utilisateur et un email"
       });
       return;
    }
-   if (!req.body.email.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+   if (!req.body.email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
       res.status(400).send({
          message: "Email non valide"
       });
@@ -49,7 +49,7 @@ validateEmailAndUsername = (req, res, next) => {
    });
 };
 
-validatePassword = (req, res, next) => {
+const validatePassword = (req, res, next) => {
    if (!req.body.password) {
       res.status(400).send({
          message: "Veuillez renseigner un mot de passe"
@@ -71,7 +71,7 @@ validatePassword = (req, res, next) => {
    next();
 };
 
-checkRole = (req, res, next) => {
+const checkRole = (req, res, next) => {
    if (!req.body.role) {
       res.status(400).send({
          message: "Aucun rôle n'as été renseigné pour la requête"
@@ -81,7 +81,7 @@ checkRole = (req, res, next) => {
    next();
 };
 
-roleExist = (req, res, next) => {
+const roleExist = (req, res, next) => {
    if (!req.body.role) 
       return next();
    if (!db.ROLES.includes(req.body.role)) {
@@ -93,7 +93,7 @@ roleExist = (req, res, next) => {
    next();
 };
 
-isAdmin = (req, res, next) => {
+const isAdmin = (req, res, next) => {
    if (!req.user_uuid) {
       res.status(400).send({
          message: "Aucun utilisateur spécifié"
@@ -120,7 +120,7 @@ isAdmin = (req, res, next) => {
    });
 };
 
-ageIsValid = (req, res, next) => {
+const ageIsValid = (req, res, next) => {
    if (!req.body.birthyear) {
       res.status(400).send({
          message: "Veuillez renseigner une date de naissance"

@@ -4,7 +4,7 @@ var jwt = require("jsonwebtoken");
 const config = require("../config/auth.config.js");
 const uuid = require("uuid");
 
-saveRequest = (req, res, next) => {
+const saveRequest = (req, res, next) => {
    let token = req.headers["x-access-token"];
    let user_uuid;
    if (token) {
@@ -24,7 +24,7 @@ saveRequest = (req, res, next) => {
       hostname: req.headers["host"],
       date: new Date(),
       endpoint: `${req.protocol}://${req.get('host')}${req.originalUrl}`
-   }).then(_r => {
+   }).then(() => {
       next();
    }).catch(err => {
       console.error(err);

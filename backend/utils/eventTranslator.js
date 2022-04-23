@@ -9,6 +9,10 @@ exports.parseTags = (record, translator) => {
       "Musique": [
          "musique",
          "concert",
+         "album",
+         "morceau",
+         "music",
+         "tube",
       ], 
       "Lecture": [
          "lecture",
@@ -19,6 +23,10 @@ exports.parseTags = (record, translator) => {
          "plein-air",
          "extérieur",
          "pelouse",
+         "course",
+         "rubgy",
+         "sport",
+         "foot",
       ],
       "Cinéma": [
          "cinéma",
@@ -33,15 +41,21 @@ exports.parseTags = (record, translator) => {
          "exposition",
          "exposé",
          "tableau",
+         "visite",
+         "découverte",
       ],
       "Enfants": [
          "enfants",
          "ludique",
-         "jeu",
+         "jeux",
       ],
       "Spectacle": [
          "spectacle",
          "cirque",
+         "tournée",
+         "show",
+         "mise en scène",
+         "théâtre",
       ]
    }
 
@@ -50,8 +64,8 @@ exports.parseTags = (record, translator) => {
       for (const keyword of tagsMapper[tag]) {
          if (
             !res.includes(tag) &&
-            (record[translator.title_field].toLowerCase().includes(keyword) 
-            || record[translator.description_field].toLowerCase().includes(keyword)
+            (record[translator.title_field]?.toLowerCase().includes(keyword) 
+            || record[translator.description_field]?.toLowerCase().includes(keyword)
          )) {
             res.push(tag);
          }
