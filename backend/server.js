@@ -11,17 +11,23 @@ let corsOptions = {
 const app = express();
 
 db.sequelize.sync()
-// .then(() => {
-//    db.role.create({
-//       name: "USER"
-//    });
-//    db.role.create({
-//       name: "MODERATOR"
-//    });
-//    db.role.create({
-//       name: "ADMIN"
-//    });
-// });
+.then(() => {
+   // db.role.create({
+   //    name: "USER"
+   // });
+   // db.role.create({
+   //    name: "MODERATOR"
+   // }); 
+   // db.role.create({
+   //    name: "ADMIN"
+   // });
+   // db.themeState.create({
+   //    name: "PUBLIC"
+   // });
+   // db.themeState.create({
+   //    name: "PRIVATE"
+   // });
+});
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
@@ -36,5 +42,6 @@ require('./routes/request.route')(app);
 require('./routes/cities.route')(app);
 require('./routes/tags.route')(app);
 require('./routes/event.route')(app);
+require('./routes/theme.route')(app);
 
 app.listen(process.env.PORT || 3000);

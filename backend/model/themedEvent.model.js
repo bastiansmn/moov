@@ -5,15 +5,9 @@ module.exports = (sequelize, Sequelize) => {
          primaryKey: true,
          autoIncrement: true
       },
-      dataset_id: {
-         type: Sequelize.STRING
-      },
       event_id: {
          type: Sequelize.STRING
       },
-      blacklisted: {
-         type: Sequelize.BOOLEAN
-      }
    }, {
       defaultScope: {
          attributes: { exclude: ['createdAt', 'updatedAt'] },

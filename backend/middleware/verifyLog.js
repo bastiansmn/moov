@@ -120,6 +120,59 @@ const isAdmin = (req, res, next) => {
    });
 };
 
+const isModerator = (req, res, next) => {
+   if (!req.user_uuid) {
+      res.status(400).send({
+         message: "Aucun utilisateur spécifié"
+      });
+      return;
+   }
+   const user_uuid = req.user_uuid;
+   User.findByPk(user_uuid).then(user => {
+      user.getRoles().then(roles => {
+         if (roles.find(r => r.name === "MODERATOR")) {
+            next();
+         } else {
+            res.status(403).send({
+               message: "Vous devez être modérateur"
+            });
+            return;
+         }
+      });
+   }).catch(err => {
+      console.error(err);
+      res.status(400).send({
+         message: "Une erreur est survenue"
+      });
+   });
+};
+
+const isAdminOrModerator = (req, res, next) => {
+   if (!req.user_uuid) {
+      res.status(400).send({
+         message: "Aucun utilisateur spécifié"
+      });
+      return;
+   }
+   User.findByPk(req.user_uuid).then(user => {
+      user.getRoles().then(roles => {
+         if (roles.find(r => r.name === "ADMIN") || roles.find(r => r.name === "MODERATOR")) {
+            next();
+         } else {
+            res.status(403).send({
+               message: "Vous devez être admin ou modérateur"
+            });
+            return;
+         }
+      });
+   }).catch(err => {
+      console.error(err);
+      res.status(400).send({
+         message: "Une erreur est survenue"
+      });
+   });
+};
+
 const ageIsValid = (req, res, next) => {
    if (!req.body.birthyear) {
       res.status(400).send({
@@ -141,6 +194,8 @@ module.exports = {
    validatePassword,
    checkRole,
    isAdmin,
+   isModerator,
+   isAdminOrModerator,
    roleExist,
    ageIsValid
 }

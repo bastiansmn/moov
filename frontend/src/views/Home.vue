@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
 import { useSettingsStore } from '@/store/settings';
 import EventPreview from '@/components/common/EventPreview.vue';
 import { FreeMode, Navigation } from 'swiper';
@@ -30,18 +30,50 @@ export default defineComponent({
             });
       };
 
-      const filterEvents = (tag) => {
-         console.log("filtering", tag);
-         // TODO
+      const filterEvents = ($event, tag) => {
+         const getParentButton = (el: HTMLElement) => {
+            let temp = el;
+            while (!temp.tagName !== "BUTTON" && !temp.classList.contains("filterer")) {
+               temp = temp.parentElement;
+            }
+            return temp;
+         };
+         const button = getParentButton($event.target);
+         if (button.classList.contains("active")) {
+            button.classList.remove("active");
+            console.log(settingsStore.backups.themes);
+            settingsStore.themes = settingsStore.backups.themes;
+            settingsStore.events = settingsStore.backups.events;
+         } else {
+            button.classList.add("active");
+            settingsStore.themes = settingsStore.backups.themes.map(theme => {
+               return {
+                  ...theme,
+                  themed_events: theme.themed_events.filter(event => 
+                     event.tags.includes(tag)
+                  ),
+               };
+            })
+            settingsStore.events = settingsStore.backups.events.filter(event => event.tags.includes(tag));
+         }
       };
+
+      const onSlideChange = (e) => {
+         console.log("slide changed", e);
+         
+      }
 
       getTags();
 
       return {
          settingsStore,
-         modules: [FreeMode, Navigation],
+         modules: [Navigation],
          tags,
-         filterEvents
+         filterEvents,
+         onSlideChange,
+
+         events: computed(() => settingsStore.events),
+         themes: computed(() => settingsStore.themes),
       };
    },
 });
@@ -62,7 +94,7 @@ export default defineComponent({
             style="width: unset"
             class="flex items-center"
          >
-            <button class="filterer min-w-fit h-1/2 flex items-center mx-3 px-4 bg-white rounded-[999px]"  @click="filterEvents(tag)">
+            <button class="filterer min-w-fit h-1/2 flex items-center mx-3 px-4 bg-white rounded-[999px]"  @click="filterEvents($event, tag)">
                <svg v-if="tag === 'Musique'" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 6.88235H2.25C3.1875 6.88235 3.5 7.35294 3.5 8.05882V9.82353C3.5 10.5294 3.1875 11 2.25 11C1.3125 11 1 10.7059 1 9.82353V6.88235ZM1 6.88235V5.11765C1 2.76471 2.68666 1 5.6875 1C8.8125 1 11 2.76471 11 5.11765V6.88235M11 6.88235V9.82353C11 10.7059 10.6875 11 9.75 11C8.8125 11 8.5 10.5294 8.5 9.82353C8.5 9.11765 8.5 8.35294 8.5 8.05882C8.5 7.34749 9 6.88235 9.75 6.88235C10.5 6.88235 10.8958 6.88235 11 6.88235Z" stroke="#7061E4" stroke-width="1.5"/>
                </svg>
@@ -101,8 +133,8 @@ export default defineComponent({
       </Swiper>
    </div>
    <!-- TODO: Catégories d'évènements -->
-   <div :key="i" class="category" v-for="i in 10">
-      <h1>Evènements</h1>
+   <div :key="th.theme_id" class="category" v-for="th in themes">
+      <h1 class="font-medium">{{ th.name }}</h1>
       <Swiper 
          class="events h-[220px] w-full overflow-x-auto py-3"
          slidesPerView="auto"
@@ -112,7 +144,25 @@ export default defineComponent({
          :modules="modules"
          style="overflow: hidden;"
       >
-         <Slide style="width: unset" :key="`event-${event.event_id}`" v-for="event in settingsStore.getEvents.slice((i-1)*10, i*10)">
+         <Slide style="width: unset" :key="`event-${event.event_id}`" v-for="event in th.themed_events">
+            <EventPreview
+               :event="event"
+            />
+         </Slide>
+      </Swiper>
+   </div>
+   <div class="category">
+      <h1 class="font-medium">Evènements</h1>
+      <Swiper 
+         class="events h-[220px] w-full overflow-x-auto py-3"
+         slidesPerView="auto"
+         :spaceBetween="10"
+         navigation
+         :freeMode="true"
+         :modules="modules"
+         style="overflow: hidden;"
+      >
+         <Slide style="width: unset" :key="`event-${event.event_id}`" v-for="event in events">
             <EventPreview
                :event="event"
             />
@@ -135,7 +185,7 @@ export default defineComponent({
       transition: stroke var(--timing) ease-in-out;
    }
 
-   &:hover {
+   &:hover, &.active {
       background: #7061E4;
 
       & > h1 {

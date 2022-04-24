@@ -60,6 +60,9 @@ db.cities.hasOne(db.user, {
 db.user.hasOne(db.theme, {
   foreignKey: "user_uuid"
 });
+db.theme.belongsTo(db.user, {
+  foreignKey: "user_uuid"
+})
 db.theme.belongsToMany(db.themedEvent, {
   through: "link_theme_events",
   foreignKey: "theme_id",
@@ -73,6 +76,9 @@ db.themedEvent.belongsToMany(db.theme, {
 db.themeState.hasMany(db.theme, {
   foreignKey: "status_id"
 });
+db.theme.belongsTo(db.themeState, {
+  foreignKey: "status_id"
+});
 db.savedEvent.belongsToMany(db.user, {
   through: "link_saved_user",
   foreignKey: "id",
@@ -84,6 +90,9 @@ db.user.belongsToMany(db.savedEvent, {
   otherKey: "id"
 });
 db.cities.hasOne(db.savedEvent, {
+  foreignKey: "city_id"
+});
+db.cities.hasOne(db.themedEvent, {
   foreignKey: "city_id"
 });
 

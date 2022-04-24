@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import router from "@/router/router";
 import User from "./model/user";
 import Event from "./model/event";
+import Theme from "./model/theme";
 
 // Create a new store instance.
 export const useSettingsStore = defineStore("settings", {
@@ -14,6 +15,11 @@ export const useSettingsStore = defineStore("settings", {
          code: 200,
          message: "",
       },
+      backups: {
+         themes: [] as Array<Theme>,
+         events: [] as Array<Event>,
+      },
+      themes: [] as Array<Theme>,
       events: [] as Array<Event>,
       savedEvents: [] as Array<Event>,
    }),
@@ -185,14 +191,55 @@ export const useSettingsStore = defineStore("settings", {
             });
          });
       },
-
+      fetchThemes(update=false) {
+         return new Promise<Array<Theme>>(resolve => {
+            fetch("/api/theme/fetchThemes")
+               .then(res => {
+                  const status = res.status;
+                  res.json().then(data => {
+                     if (status >= 200 && status < 300) {
+                        if (update) {
+                           this.themes = data;
+                           this.backups.themes = data;
+                        };
+                        resolve(data);
+                     } else {
+                        this.sendNotification({
+                           code: status, 
+                           message: data.message 
+                        });
+                        resolve([]);
+                     }
+                  });
+               }).catch(err => {
+                  console.error(err);
+                  this.sendNotification({
+                     code: 400,
+                     message: "Une erreur est survenue"
+                  });
+                  resolve([]);
+               });
+         });
+      },
       fetchEvents(update=false) {
          return new Promise<Array<Event>>(resolve => {
-            fetch(`/api/cities/fetchData?city_id=${this.userConnected ? this.user.city_id : 'paris'}`)
-               .then(response => response.json())
-               .then(data => {
-                  resolve(data);
-                  if (update) this.events = data;
+            fetch(`/api/cities/fetchData?city_id=${this.userConnected ? this.user.city_id : 'paris'}&rows=15`)
+               .then(response => {
+                  if (response.status < 200 || response.status >= 300) {
+                     this.sendNotification({
+                        code: response.status,
+                        message: "Une erreur est survenue"
+                     });
+                     resolve([]);
+                  } else {
+                     response.json().then(data => {
+                        if (update) {
+                           this.events = data
+                           this.backups.events = data;
+                        }
+                        resolve(data);
+                     });
+                  }
                })
                .catch(err => {
                   console.error(err);
@@ -273,6 +320,12 @@ export const useSettingsStore = defineStore("settings", {
             });
          });
       },
+
+      filterEvents(filter: string) {
+         this.events = this.backups.events.filter(event => {
+            return event.tags.map(t => t.toLowerCase()).includes(filter.toLowerCase());
+         });
+      }
    },
    getters: {
       userConnected: (state) => {

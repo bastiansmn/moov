@@ -1,4 +1,4 @@
-const { verifyLog, jwtAuth, requestsStats } = require("../middleware/index");
+const { verifyLog, jwtAuth, requestsStats } = require("../middleware");
 const controller = require("../controller/role");
 
 module.exports = (app) => {

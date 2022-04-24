@@ -14,6 +14,7 @@ exports.signup = (req, res) => {
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
       birthyear: req.body.birthyear,
+      city_id: "paris",
    }).then(user => {
       var authorities = [];
       user.getRoles().then(roles => {

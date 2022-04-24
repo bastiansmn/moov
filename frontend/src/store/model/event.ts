@@ -11,5 +11,6 @@ export default interface Event {
    date_end: string,
    latlon: string,
    city: string,
-   district: string
+   district: string,
+   tags: Array<string>
 }

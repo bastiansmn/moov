@@ -97,11 +97,14 @@ router.beforeEach(async (to, _from, next) => {
             code: 400,
             message: "Connexion automatique impossible",
          });
+         localStorage.clear();
       });
    }
    
    if (settingsStore.events.length === 0)
       await settingsStore.fetchEvents(true);
+   if (settingsStore.themes.length === 0)
+      await settingsStore.fetchThemes(true);
 
    
    if (to.matched.some(record => record.meta.requiresLog)) { // If route need log
