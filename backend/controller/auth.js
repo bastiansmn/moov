@@ -50,6 +50,8 @@ exports.signup = (req, res) => {
    });
 };
 
+// TODO: add a login route with only JWT, and implement refresh token
+
 exports.signin = (req, res) => {
    User.findOne({
       where: {

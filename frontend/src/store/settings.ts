@@ -19,6 +19,7 @@ export const useSettingsStore = defineStore("settings", {
       events: [] as Array<Event>,
       savedEvents: [] as Array<Event>,
       filter: [] as Array<string>,
+      tags: [] as Array<String>,
 
       slidesPerLoad: 15,
    }),
@@ -266,6 +267,20 @@ export const useSettingsStore = defineStore("settings", {
                });
          })
       },
+      fetchTags(update=false) {
+         return new Promise(resolve => {
+            fetch("/api/tags/getTags")
+               .then(res => res.json())
+               .then(res => {
+                  if (update) this.tags = res;
+                  resolve(res);
+               })
+               .catch(err => {
+                  console.error(err);
+                  resolve([]);
+               });
+         })
+      }, 
       fetchSavedEvents(update=false) {
          return new Promise<Array<Event>>(resolve => {
             fetch("/api/user/getSavedEvents", {

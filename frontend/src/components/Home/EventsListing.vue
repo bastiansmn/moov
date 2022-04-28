@@ -17,7 +17,6 @@ export default defineComponent({
    },
    async setup() {
       const settingsStore = useSettingsStore();
-      const tags = ref<Array<String>>([]);
       
       const getTags = () => {
          return new Promise(resolve => {
@@ -60,18 +59,21 @@ export default defineComponent({
          }
       }
 
-      tags.value = await getTags();
-      await settingsStore.fetchEvents(true);
-      await settingsStore.fetchThemes(true);
+      if (settingsStore.events.length === 0)
+         await settingsStore.fetchEvents(true);
+      if (settingsStore.themes.length === 0)
+         await settingsStore.fetchThemes(true);
+      if (settingsStore.tags.length === 0)
+         await settingsStore.fetchTags(true);
 
       return {
          settingsStore,
          modules: [FreeMode, Navigation],
-         tags,
          filterEvents,
          onProgress,
          capitalizeFirstLetter,
 
+         tags: computed(() => settingsStore.tags),
          events: computed(() => settingsStore.getEvents),
          themes: computed(() => settingsStore.getThemes),
       };
