@@ -13,6 +13,14 @@ module.exports = (app) => {
       "/theme/fetchThemes", 
       controller.fetchThemes
    );
+   app.get(
+      "/theme/fetchPendingThemes",
+      [
+         jwtAuth.verifyToken,
+         verifyLog.isAdmin
+      ],
+      controller.fetchPendingThemes
+   );
    app.post(
       "/theme/createTheme",
       [

@@ -5,7 +5,13 @@ const ThemedEvent = db.themedEvent;
 const Cities = db.cities;
 const { fetchEvent } = require("../utils/eventFecthing");
 
-exports.fetchThemes = async (_, res) => {
+exports.fetchThemes = async (req, res) => {
+   if (!req.query.city_id) {
+      res.status(400).send({
+         message: "Spécifiez une ville"
+      });
+      return;
+   }
    const publicStatusID = await ThemeState.findOne({
       where: {
          name: "PUBLIC",
@@ -15,6 +21,60 @@ exports.fetchThemes = async (_, res) => {
    Theme.findAll({
       where: {
          status_id: publicStatusID.status_id,
+         city_id: req.query.city_id,
+      },
+      include: [
+         {
+            model: db.themedEvent,
+         },
+         {
+            model: db.themeState,
+         },
+         {
+            model: db.user,
+            attributes: ["user_uuid", "username", "email"]
+         }
+      ],
+      attributes: {
+         exclude: ["user_uuid", "status_id"]
+      }
+   }).then(async themes => {
+      const city = await Cities.findOne({
+         where: {
+            city_id: req.query.city_id
+         }
+      });
+      res.status(200).send(
+         await Promise.all(
+            themes.map(async theme => {
+               const { themed_events, ...rest } = theme.dataValues;
+               return {
+                  themed_events: (await Promise.all(themed_events.map(async e => {
+                     return fetchEvent(city, e.event_id);
+                  }))),
+                  ...rest
+               }
+            })
+         )
+      );
+   }).catch(err => {
+      console.error(err);
+      res.status(500).send({
+         message: "Impossible de récupérer les thèmes"
+      });
+   });
+}
+
+exports.fetchPendingThemes = async (req, res) => {
+   const privateStatusID = await ThemeState.findOne({
+      where: {
+         name: "PRIVATE",
+      },
+      attributes: ["status_id"]
+   });
+   Theme.findAll({
+      where: {
+         status_id: privateStatusID.status_id,
       },
       include: [
          {
@@ -36,13 +96,13 @@ exports.fetchThemes = async (_, res) => {
          await Promise.all(
             themes.map(async theme => {
                const { themed_events, ...rest } = theme.dataValues;
+               const city = await Cities.findOne({
+                  where: {
+                     city_id: theme.dataValues.city_id
+                  }
+               });
                return {
                   themed_events: (await Promise.all(themed_events.map(async e => {
-                     const city = await Cities.findOne({
-                        where: {
-                           city_id: e.city_id
-                        }
-                     });
                      return fetchEvent(city, e.event_id);
                   }))),
                   ...rest
@@ -50,6 +110,11 @@ exports.fetchThemes = async (_, res) => {
             })
          )
       );
+   }).catch(err => {
+      console.error(err);
+      res.status(500).send({
+         message: "Impossible de récupérer les thèmes"
+      });
    });
 }
 
@@ -65,6 +130,7 @@ exports.createTheme = (req, res) => {
       name: req.body.name,
       description: req.body.description,
       user_uuid: req.user_uuid,
+      city_id: req.body.city_id || null,
    }).then(theme => {
       ThemeState.findOne({
          where: {
@@ -124,6 +190,7 @@ exports.changeStatus = (req, res) => {
       }
    }).then(theme => {
       // Set status as req.body.status
+      if (!theme) throw new Error("Le thème n'existe pas");
       ThemeState.findOne({
          where: {
             name: req.body.status
@@ -148,6 +215,13 @@ exports.changeStatus = (req, res) => {
             const { status_id, updatedAt, user_uuid, ...rest } = theme.dataValues;
             res.status(200).send(rest);
          });
+      }).catch(err => {
+         throw new Error(err);
+      });
+   }).catch(err => {
+      console.error(err);
+      res.status(500).send({
+         message: "Erreur lors de la modification du statut"
       });
    });
 }
@@ -167,21 +241,20 @@ exports.addEvent = (req, res) => {
    }).then(async theme => {
       if (theme.user_uuid !== req.user_uuid) throw new Error("Vous n'êtes pas le créateur du thème");
       // Add event to theme
-      if (req.body.city_id) {
-         ThemedEvent.create({
-            event_id: req.body.event_id,
-            city_id: req.body.city_id,
-         }).then(event => {
-            Theme.findOne({
-               where: {
-                  theme_id: req.body.theme_id,
-               }
-            }).then(async theme => {
-               await theme.addThemed_event(event);
-               res.status(200).send(event);
-            })
+      ThemedEvent.create({
+         event_id: req.body.event_id
+      }).then(event => {
+         Theme.findOne({
+            where: {
+               theme_id: req.body.theme_id,
+            }
+         }).then(async theme => {
+            await theme.addThemed_event(event);
+            // eslint-disable-next-line no-unused-vars
+            const { updatedAt, createdAt, ...rest } = event.dataValues;
+            res.status(200).send(rest);
          })
-      }
+      })
    }).catch(err => {
       console.error(err);
       res.status(500).send({

@@ -1,5 +1,7 @@
 import { defineStore } from "pinia";
 import User, { Role } from "./model/user";
+import Theme from "./model/theme";
+import { codeIsOK } from "../utils/statusCodes";
 import { useSettingsStore } from "./settings";
 const settingsStore = useSettingsStore();
 
@@ -7,6 +9,7 @@ export const useBackofficeStore = defineStore("backoffice", {
    state: () => ({
       users: [] as Array<User>,
       roles: [] as Array<Role>,
+      pendingThemes: [] as Array<Theme>,
       requests: [] as Array<Request>,
    }),
    actions: {
@@ -22,6 +25,7 @@ export const useBackofficeStore = defineStore("backoffice", {
                   code: 400,
                   message: 'Vous devez être connecté pour accéder à cette page.',
                });
+               localStorage.clear();
                return;
             }
       
@@ -56,6 +60,7 @@ export const useBackofficeStore = defineStore("backoffice", {
                   code: 400,
                   message: "Impossible de récupérer les rôles"
                });
+               localStorage.clear();
                return;
             }
       
@@ -90,6 +95,7 @@ export const useBackofficeStore = defineStore("backoffice", {
                   code: 400,
                   message: "Impossible de récupérer les demandes"
                });
+               localStorage.clear();
                return;
             }
       
@@ -113,18 +119,46 @@ export const useBackofficeStore = defineStore("backoffice", {
             });
          })
       },
+      fetchPendingThemes() {
+         return new Promise<Array<Theme>>((resolve) => {
+            const user_uuid = localStorage.getItem('user_uuid');
+            const accessToken = localStorage.getItem('accessToken');
 
+            if (!user_uuid || !accessToken) {
+               resolve([]);
+               settingsStore.sendNotification({
+                  code: 400,
+                  message: "Impossible de récupérer les thèmes"
+               });
+               localStorage.clear();
+               return;
+            }
+
+            fetch(`/api/theme/fetchPendingThemes?access_token=${accessToken}`)
+               .then(response => {
+                  const status = response.status;
+                  if (codeIsOK(status)) {
+                     response.json().then(response => {
+                        resolve(response);
+                     });
+                  } else {
+                     settingsStore.sendNotification({
+                        code: status,
+                        message: "Erreur dans la récupération des thèmes"
+                     });
+                     resolve([]);
+                  }
+               })
+         });
+      },
       async loadBackoffice() {
          // TODO: Vérifier si ceci ne créé pas de bugs
          if (this.backofficeLoaded) return;
-
-         const users = await this.fetchUsers();
-         const roles = await this.fetchRoles();
-         const requests = await this.fetchRequests();
          
-         this.users = users;
-         this.roles = roles;
-         this.requests = requests;
+         this.users = await this.fetchUsers();
+         this.roles = await this.fetchRoles();
+         this.requests = await this.fetchRequests();
+         this.pendingThemes = await this.fetchPendingThemes();
       }
    },
    getters: {

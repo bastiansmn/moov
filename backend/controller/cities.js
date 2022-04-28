@@ -81,7 +81,7 @@ exports.fetchData = (req, res) => {
       },
    }).then(city => {
       if (!city) throw new Error("Ville non trouvée");
-      fetch(`${city.api_base_link}/?dataset=${city.dataset_name}&rows=${req.query.rows ?? 10}&sort=${city.date_start_field}`)
+      fetch(`${city.api_base_link}/?dataset=${city.dataset_name}&rows=${req.query.rows ?? 10}&sort=${city.date_start_field}&start=${req.query.start ?? 0}`)
          .then(response => response.json())
          .then(response => {
             res.status(200).send(response.records.map(record => {

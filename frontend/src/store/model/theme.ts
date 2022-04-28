@@ -19,4 +19,5 @@ export default interface Theme {
    themed_events: Array<Event>,
    theme_state: ThemeState,
    user: UserSimplified,
+   city_id: string,
 }

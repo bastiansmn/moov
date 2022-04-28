@@ -54,6 +54,7 @@ exports.createUser = (req, res) => {
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 8),
       birthyear: req.body.birthyear,
+      city_id: req.body.city_id || "paris"
    }).then(user => {
       roles.forEach(r => {
          Role.findOne({

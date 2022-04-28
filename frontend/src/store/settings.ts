@@ -15,13 +15,12 @@ export const useSettingsStore = defineStore("settings", {
          code: 200,
          message: "",
       },
-      backups: {
-         themes: [] as Array<Theme>,
-         events: [] as Array<Event>,
-      },
       themes: [] as Array<Theme>,
       events: [] as Array<Event>,
       savedEvents: [] as Array<Event>,
+      filter: [] as Array<string>,
+
+      slidesPerLoad: 15,
    }),
    actions: {
       togglePannel(payload: boolean) {
@@ -193,14 +192,29 @@ export const useSettingsStore = defineStore("settings", {
       },
       fetchThemes(update=false) {
          return new Promise<Array<Theme>>(resolve => {
-            fetch("/api/theme/fetchThemes")
+            fetch(`/api/theme/fetchThemes?city_id=${this.user.city_id ?? 'paris'}`)
                .then(res => {
                   const status = res.status;
                   res.json().then(data => {
                      if (status >= 200 && status < 300) {
                         if (update) {
-                           this.themes = data;
-                           this.backups.themes = data;
+                           if (this.filter.length > 0) {
+                              data.filter((e: Theme) => {
+                                 console.log(e);
+                                 
+                                 return e.themed_events.some((e: Event) => {
+                                    return this.filter.some((filter: string) => {
+                                       return e.tags.includes(filter);
+                                    });
+                                 });
+                              }).forEach((e: Theme) => {
+                                 this.themes.push(e);
+                              });
+                           } else {
+                              data.forEach((e: Theme) => {
+                                 this.themes.push(e);
+                              });
+                           }
                         };
                         resolve(data);
                      } else {
@@ -223,7 +237,7 @@ export const useSettingsStore = defineStore("settings", {
       },
       fetchEvents(update=false) {
          return new Promise<Array<Event>>(resolve => {
-            fetch(`/api/cities/fetchData?city_id=${this.userConnected ? this.user.city_id : 'paris'}&rows=15`)
+            fetch(`/api/cities/fetchData?city_id=${this.userConnected ? this.user.city_id : 'paris'}&rows=${this.slidesPerLoad}&start=${this.events.length}`)
                .then(response => {
                   if (response.status < 200 || response.status >= 300) {
                      this.sendNotification({
@@ -234,8 +248,9 @@ export const useSettingsStore = defineStore("settings", {
                   } else {
                      response.json().then(data => {
                         if (update) {
-                           this.events = data
-                           this.backups.events = data;
+                           data.forEach((e: Event) => {
+                              this.events.push(e);
+                           });
                         }
                         resolve(data);
                      });
@@ -320,19 +335,34 @@ export const useSettingsStore = defineStore("settings", {
             });
          });
       },
-
-      filterEvents(filter: string) {
-         this.events = this.backups.events.filter(event => {
-            return event.tags.map(t => t.toLowerCase()).includes(filter.toLowerCase());
-         });
-      }
    },
    getters: {
       userConnected: (state) => {
          return JSON.stringify(state.user) !== JSON.stringify({});
       },
       getEvents: (state) => {
-         return state.events;
+         return state.events.filter((e: Event) => {
+            if (state.filter.length > 0)
+               return state.filter.some((filter: string) => {
+                  return e.tags.includes(filter);
+               });
+            return true;
+         });
+      },
+      getThemes: (state) => {
+         return state.themes.map((e: Theme) => {
+            const { themed_events, ...rest } = e;
+            return {
+               themed_events: themed_events.filter((e: Event) => {
+                  if (state.filter.length > 0)
+                     return state.filter.some((filter: string) => {
+                        return e.tags.includes(filter);
+                     });
+                  return true;
+               }),
+               ...rest
+            }
+         });
       }
    }
 });

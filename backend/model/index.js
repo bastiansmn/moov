@@ -79,6 +79,12 @@ db.themeState.hasMany(db.theme, {
 db.theme.belongsTo(db.themeState, {
   foreignKey: "status_id"
 });
+db.cities.hasMany(db.theme, {
+  foreignKey: "city_id"
+});
+db.theme.belongsTo(db.cities, {
+  foreignKey: "city_id"
+});
 db.savedEvent.belongsToMany(db.user, {
   through: "link_saved_user",
   foreignKey: "id",
@@ -91,9 +97,6 @@ db.user.belongsToMany(db.savedEvent, {
 });
 db.cities.hasOne(db.savedEvent, {
   foreignKey: "city_id"
-});
-db.cities.hasOne(db.themedEvent, {
-  foreignKey: "city_id"
-});
+})
 
 module.exports = db;
