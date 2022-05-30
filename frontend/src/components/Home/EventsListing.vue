@@ -1,3 +1,4 @@
+
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue';
 import { useSettingsStore } from '@/store/settings';

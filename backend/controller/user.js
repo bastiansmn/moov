@@ -295,7 +295,7 @@ exports.recommandedEvents = (req, res) => {
       }
    }).then(user => {
       console.log(user.birthyear, user.city_id);
-      // TODO get recommanded events from city_id, according to age
+      // TODO get recommended events from city_id, according to age
       res.status(200).send({
          message: "Recommandations",
       });

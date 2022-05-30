@@ -78,7 +78,7 @@ export default defineComponent({
          </div>
          <div class="w-full mb-2">
             <h1 class="font-semibold">Message :</h1>
-            <textarea name="mailContent" required autocomplete="off" class="w-full min-h-[200px] bg-white2 rounded p-2 text-sm"></textarea>
+            <textarea name="mailContent" required autocomplete="off" class="w-full min-h-[200px] bg-white2 rounded p-2 text-sm resize-none"></textarea>
          </div>
          <input type="submit" value="Envoyer" class="bg-purple text-white rounded-[4px] px-4 py-1 mt-5 cursor-pointer">
       </form>

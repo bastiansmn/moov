@@ -97,7 +97,7 @@ export default defineComponent({
    <div class="w-[400px] bg-white rounded p-6 flex flex-col items-center">
       <h1 class="font-semibold">Créer un utilisateur</h1>
       <!-- Créer un utilisateur avec username, email, mot de passe, confirmation, rôles -->
-      <form @submit.prevent="createUser" class="flex flex-col items-center">
+      <form @submit.prevent="createUser" class="flex flex-col items-center w-[90%]">
          <div class="mb-3">
             <h1 class="font-semibold">Pseudo :</h1>
             <input name="username" type="text" autocomplete="off" required class="w-full bg-white2 rounded p-2 shadow">
