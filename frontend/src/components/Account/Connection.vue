@@ -4,7 +4,7 @@ import { defineComponent, ref, onMounted } from "vue";
 import Input from '@/components/common/Input.vue';
 import Select from '@/components/common/Select.vue';
 import { useSettingsStore } from '@/store/settings';
-import User from '@/store/model/user';
+import clean from '@/utils/fetchCleaner';
 
 export default defineComponent({
    name: "Connection",
@@ -23,8 +23,8 @@ export default defineComponent({
          const form = registerForm.value;
                  
          if (currentForm.value === "register") {              
-            const inputs = Array.from(form.querySelectorAll("input:not([type=submit])")); // Get all the inputs
-            const select = form.querySelector("select[name=birthyear]");
+            const inputs: HTMLInputElement[] = Array.from(form.querySelectorAll("input:not([type=submit])")); // Get all the inputs
+            const select: HTMLSelectElement = form.querySelector("select[name=birthyear]");
 
             if (inputs.map(input => input.value).includes("")) {
                settingsStore.sendNotification({
@@ -48,7 +48,7 @@ export default defineComponent({
                return;
             }
 
-            fetch("/api/auth/signup", {
+            fetch(clean("/api/auth/signup"), {
                method: "POST",
                headers: new Headers({
                   "Content-Type": "application/json",
@@ -85,7 +85,7 @@ export default defineComponent({
       const login = () => {
          const form = loginForm.value;
          if (currentForm.value === "login") {
-            const inputs = Array.from(form.querySelectorAll("input:not([type=submit])")); // Get all the inputs
+            const inputs: HTMLInputElement[] = Array.from(form.querySelectorAll("input:not([type=submit])")); // Get all the inputs
             
             if (inputs.map(input => input.value).includes("")) {
                settingsStore.sendNotification({
@@ -103,7 +103,7 @@ export default defineComponent({
                password
             };
 
-            fetch("/api/auth/signin", {
+            fetch(clean("/api/auth/signin"), {
                method: "POST",
                headers: new Headers({
                   "Content-Type": "application/json",
@@ -138,10 +138,10 @@ export default defineComponent({
                return;
             }
          } else {
-            if (form === "login")       
-               loginForm.value.children[0].children[0].focus();
+            if (form === "login")
+               (<HTMLInputElement> loginForm.value.firstChild.firstChild).focus();
             else
-               registerForm.value.children[0].children[0].focus();
+               (<HTMLInputElement> registerForm.value.firstChild.firstChild).focus();
          }
          currentForm.value = form;
          document.querySelectorAll(".forms > div").forEach(e => {
@@ -180,8 +180,9 @@ export default defineComponent({
       </div>
       <div class="forms w-full">
          <div class="register bg-light-grey shadow">
-            <form ref="registerForm" @submit.prevent="register" autocomplete="off">
-               <Input 
+            <form ref="registerForm" id="registerForm" @submit.prevent="register" autocomplete="off">
+               <Input
+                  class="focusable"
                   @submit="register" 
                   name="username" 
                   required 
@@ -228,8 +229,9 @@ export default defineComponent({
             </button>
          </div>
          <div class="login bg-purple shadow">
-            <form ref="loginForm" @submit.prevent="login" autocomplete="off">
-               <Input 
+            <form ref="loginForm" id="loginForm" @submit.prevent="login" autocomplete="off">
+               <Input
+                  class="focusable"
                   @submit="login"
                   name="username" 
                   color="#4D4D4D" 

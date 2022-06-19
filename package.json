@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/bastiansmn/moov#readme",
   "devDependencies": {
+    "@types/google.maps": "^3.49.2",
     "concurrently": "^7.0.0"
   }
 }

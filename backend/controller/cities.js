@@ -81,36 +81,59 @@ exports.fetchData = (req, res) => {
       },
    }).then(city => {
       if (!city) throw new Error("Ville non trouvée");
-      fetch(`${city.api_base_link}/?dataset=${city.dataset_name}&rows=${req.query.rows ?? 10}&sort=${city.date_start_field}&start=${req.query.start ?? 0}`)
-         .then(response => response.json())
-         .then(response => {
-            res.status(200).send(response.records.map(record => {
-               return {
-                  city_id: city.city_id,
-                  event_id: record.recordid,
-                  title: record.fields[city.title_field],
-                  description: record.fields[city.description_field] || "Non rensigné",
-                  image: record.fields[city.image_field],
-                  url: record.fields[city.url_field], 
-                  placename: record.fields[city.placename_field] || "Non rensigné",
-                  timing: record.fields[city.timing_field]?.replaceAll("_", " ") || "Non renseigné",
-                  date_start: isValidDate(record.fields[city.date_start_field]),
-                  date_end: isValidDate(record.fields[city.date_end_field]),
-                  latlon: convertLatlon(record.fields[city.latlon_field]) || "Non renseigné",
-                  city: record.fields[city.city_field] || "Non renseigné",
-                  district: record.fields[city.district_field] || "Non renseigné",
-                  tags: parseTags(record.fields, city)
-               };
-            }).filter(event => {
-               return !("" in Object.values(event));
-            }));
-         })
-         .catch(err => {
-            console.error(err);
+      const fetchUntilValid = (shift, nbTry) => {
+         if (nbTry > 10) {
             res.status(400).send({
                message: "Impossible de récupérer les données"
             });
-         })
+            return;
+         }
+         // TODO: Use api keys for apis to ensure we have no limit on the number of requests
+         fetch(`${city.api_base_link}/?dataset=${city.dataset_name}&rows=${req.query.rows ?? 10}&sort=${city.date_start_field}&start=${shift}${city.api_key ? `&apikey=${city.api_key}` : ""}`)
+            .then(response => response.json())
+            .then(response => {
+               let lastDateIsValid = false;
+               console.log(response.records);
+               const toSend = response.records.map(record => {
+                  lastDateIsValid = isValidDate(record[city.date_start_field]) !== "" && isValidDate(record[city.date_end_field]) !== "";
+                  return {
+                     city_id: city.city_id,
+                     event_id: record.recordid || "",
+                     title: record.fields[city.title_field] || "",
+                     description: record.fields[city.description_field] || "Non renseigné",
+                     image: record.fields[city.image_field],
+                     url: record.fields[city.url_field] || "", 
+                     placename: record.fields[city.placename_field] || "Non renseigné",
+                     timing: record.fields[city.timing_field]?.replaceAll("_", " ") || "Non renseigné",
+                     date_start: isValidDate(record.fields[city.date_start_field]),
+                     date_end: isValidDate(record.fields[city.date_end_field]),
+                     latlon: convertLatlon(record.fields[city.latlon_field]) || "Non renseigné",
+                     city: record.fields[city.city_field] || "Non renseigné",
+                     district: record.fields[city.district_field] || "Non renseigné",
+                     tags: parseTags(record.fields, city)
+                  };
+               }).filter(event => {
+                  return !(Object.values(event).includes(""));
+               });
+               if (toSend.length === 0) {
+                  fetchUntilValid(shift + 10, lastDateIsValid ? ++nbTry : nbTry);
+               } else {
+                  res.status(200).send(
+                     toSend
+                  );
+                  return;
+               }
+            })
+            .catch(err => {
+               console.error(err);
+               res.status(400).send({
+                  message: "Impossible de récupérer les données"
+               });
+            })
+
+      };
+
+      fetchUntilValid(parseInt(req.query.start) ?? 0, 0);
    }).catch(err => {
       console.error(err);
       res.status(400).send({

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { defineComponent, ref, computed } from 'vue'
 import { useSettingsStore } from '@/store/settings'
-import router from '@/router/router'
+import clean from '@/utils/fetchCleaner';
 
 import PannelDropdown from './PannelDropdown.vue'
 import Switcher from '../common/Switcher.vue'
@@ -13,7 +13,7 @@ import Select from '../common/Select.vue'
 
 const fetchCities = () => {
    return new Promise<Array<City>>(resolve => {      
-      fetch("/api/cities/getCities")
+      fetch(clean("/api/cities/getCities"))
          .then(res => res.json())
          .then(res => {
             resolve(res);
@@ -51,7 +51,7 @@ export default defineComponent({
          settingsStore.setUserCity(val.toLowerCase());
       }
 
-      const setRadius = (val: number) => {
+      const setRadius = (val: string) => {
          settingsStore.setUserRadius(val);
       }
 

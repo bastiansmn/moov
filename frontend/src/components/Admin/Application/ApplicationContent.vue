@@ -14,9 +14,12 @@ import UserStatChart from "./BackofficeComponents/UserStatChart.vue"
 import RequestStatChart from "./BackofficeComponents/RequestStatChart.vue"
 
 import { useBackofficeStore } from '@/store/backoffice'
+import { useSettingsStore } from '@/store/settings'
 import { codeIsOK } from '@/utils/statusCodes'
+import User from '@/store/model/User'
 
 const backofficeStore = useBackofficeStore();
+const settingsStore = useSettingsStore();
 
 export default defineComponent({
    components: {
@@ -36,6 +39,8 @@ export default defineComponent({
    async setup() {
       // TODO: handle le select d'un user et changer les stats
       await backofficeStore.loadBackoffice();
+      await settingsStore.loadSettings();
+
 
       const popUpEnabled = ref<boolean>(false);
       const currentPopUp = ref<string>("");
@@ -63,7 +68,7 @@ export default defineComponent({
          currentPopUp.value = popUp;
       }
 
-      const unShowPopUp = ($event) => {
+      const unShowPopUp = ($event=null) => {
          if (!$event) {
             popUpEnabled.value = false;
             return;

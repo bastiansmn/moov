@@ -4,6 +4,7 @@ import User from "@/store/model/user"
 import { useBackofficeStore } from '@/store/backoffice';
 import { codeIsOK } from "@/utils/statusCodes"
 import { useSettingsStore } from '@/store/settings';
+import clean from "@/utils/fetchCleaner";
 
 const props = defineProps<{
    selectedUser: User
@@ -28,7 +29,7 @@ const updateUser = ($event) => {
    if (moderatorRole) 
       roles.push("MODERATOR");
    
-   fetch("/api/user/updateRoles", {
+   fetch(clean('/api/user/updateRoles'), {
       method: "PUT",
       headers: {
          'Content-Type': 'application/json',
@@ -74,7 +75,7 @@ const updateUser = ($event) => {
       <div class="w-full mb-2">
          <h1 class="font-semibold">Roles :</h1>
          <form @submit.prevent="updateUser" class="w-full flex flex-col items-center">
-            <div :key="index" v-for="{ name }, index in backofficeStore.roles.filter(r => r.name !== 'USER')" class="w-full">
+            <div :key="index" v-for="({ name }, index) in backofficeStore.roles.filter(r => r.name !== 'USER')" class="w-full">
                <label class="flex items-center h-[32px] cursor-pointer text-dark-grey w-full">
                   <input 
                      :id="index === 0 ? 'admin' : 'moderator'"

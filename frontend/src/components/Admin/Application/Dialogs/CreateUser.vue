@@ -4,7 +4,14 @@ import { useSettingsStore } from '@/store/settings'
 import { useBackofficeStore } from '@/store/backoffice'
 import { codeIsOK } from "@/utils/statusCodes";
 
+import User from '@/store/model/user';
+import Input from '@/components/common/Input.vue';
+import clean from "@/utils/fetchCleaner";
+
 export default defineComponent({
+   components: {
+      Input
+   },
    setup(_props, { emit }) {
       const settingsStore = useSettingsStore();
       const backofficeStore = useBackofficeStore();
@@ -45,7 +52,7 @@ export default defineComponent({
          if (admin)
             roles.push("ADMIN");
 
-         fetch("/api/user/create", {
+         fetch(clean("/api/user/create"), {
             method: "POST",
             headers: {
                'Content-Type': 'application/json',
@@ -98,21 +105,47 @@ export default defineComponent({
       <h1 class="font-semibold">Créer un utilisateur</h1>
       <!-- Créer un utilisateur avec username, email, mot de passe, confirmation, rôles -->
       <form @submit.prevent="createUser" class="flex flex-col items-center w-[90%]">
-         <div class="mb-3">
+         <div class="mb-3 w-full">
             <h1 class="font-semibold">Pseudo :</h1>
-            <input name="username" type="text" autocomplete="off" required class="w-full bg-white2 rounded p-2 shadow">
+            <Input 
+               placeholder="Pseudo"
+               shadow
+               required
+               name="username"
+               background="#F7F7F7"
+            />
          </div>
-         <div class="mb-3">
+         <div class="mb-3 w-full">
             <h1 class="font-semibold">Email :</h1>
-            <input name="email" type="email" autocomplete="off" required class="w-full bg-white2 rounded p-2 shadow">
+            <Input 
+               placeholder="Email"
+               shadow
+               required
+               name="email"
+               background="#F7F7F7"
+            />
          </div>
-         <div class="mb-3">
+         <div class="mb-3 w-full">
             <h1 class="font-semibold">Mot de passe :</h1>
-            <input name="password" type="password" autocomplete="off" required class="w-full bg-white2 rounded p-2 shadow">
+            <Input 
+               placeholder="Mot de passe"
+               shadow
+               required
+               name="password"
+               background="#F7F7F7"
+               type="password"
+            />
          </div>
-         <div class="mb-3">
+         <div class="mb-3 w-full">
             <h1 class="font-semibold">Confirmation :</h1>
-            <input name="passwordConfirm" type="password" autocomplete="off" required class="w-full bg-white2 rounded p-2 shadow">
+            <Input 
+               placeholder="Confirmation"
+               shadow
+               required
+               name="passwordConfirm"
+               background="#F7F7F7"
+               type="password"
+            />
          </div>
          <div class="mb-3 w-full">
             <h1 class="font-semibold">Année de naissance :</h1>

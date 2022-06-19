@@ -4,12 +4,13 @@ import { defineComponent, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router'
 import { useSettingsStore } from '@/store/settings';
 import { Loader } from '@googlemaps/js-api-loader';
+import clean from "@/utils/fetchCleaner";
 
 const settingsStore = useSettingsStore();
 
 const fetchEvent = (event_id: String, city_id: String) => {
    return new Promise<Event>(resolve => {
-      fetch(`/api/event/fetchEvent?event_id=${event_id}&city_id=${city_id}`)
+      fetch(clean(`/api/event/fetchEvent?event_id=${event_id}&city_id=${city_id}`))
             .then(res => {
                const status = res.status;
                if (status === 200) {
@@ -18,7 +19,6 @@ const fetchEvent = (event_id: String, city_id: String) => {
                   })
                } else {
                   throw new Error();
-                  resolve(null);
                }
             }).catch(err => {
                console.error(err);
@@ -39,22 +39,6 @@ export default defineComponent({
       }
    },
    async setup(props) {
-      let event;
-      if (props.event) {
-         event = JSON.parse(props.event);
-      } else {
-         const { event_id, city_id } = useRoute().query;
-         const eventFromStore = 
-            settingsStore?.events.find(e => e.event_id === event_id) 
-            || settingsStore?.savedEvents.find(e => e.event_id === event_id);
-         event = eventFromStore 
-            ? eventFromStore 
-            : await fetchEvent(event_id, city_id);
-      }
-
-      const loader = new Loader({ apiKey: import.meta.env.VITE_MAPS_API_KEY });
-      const mapDiv = ref(null);
-      const renderMap = ref(false);
       onMounted(async () => {
          await loader.load();
          // TODO Handle if latlon is not an array
@@ -75,11 +59,30 @@ export default defineComponent({
             });
          }
 
-         renderMap.value = coordinates.lat && coordinates.lng;
-      })
+         renderMap.value = !!coordinates.lat && !!coordinates.lng;
+      });
+      let event: Event;
+      if (props.event) {
+         event = JSON.parse(props.event);
+      } else {
+         const { event_id, city_id } = useRoute().query;
+         const eventFromStore = 
+            settingsStore?.events.find(e => e.event_id === event_id) 
+            || settingsStore?.savedEvents.find(e => e.event_id === event_id);
+         event = eventFromStore 
+            ? eventFromStore 
+            : await fetchEvent(<String> event_id, <String> city_id);
+      }
 
-      const parseTimings = (timings) => {
-         if (timings === 'Non renseigné') return ['Non renseigné'];
+      const loader = new Loader({ apiKey: import.meta.env.VITE_MAPS_API_KEY });
+      const mapDiv = ref(null);
+      const renderMap = ref(false);
+      
+
+      const parseTimings = () => {
+         const timings = event.timing;
+         
+         if (!timings || timings === 'Non renseigné') return ['Non renseigné'];
          const dates = timings.split(";");
          const res = dates.map(date => {
             const [start, end] = date.split(" ");
@@ -93,7 +96,6 @@ export default defineComponent({
       }
 
       const saveEvent = () => {
-         console.log(event);
          settingsStore.saveEvent(event);
       }
       
@@ -160,7 +162,7 @@ export default defineComponent({
             <div class="w-[49%] h-full">
                <h1 class="font-semibold text-lg">Occurences:</h1>
                <ul>
-                  <li :key="time" v-for="time in parseTimings(timing)" class="text-sm">
+                  <li :key="time" v-for="time in parseTimings()" class="text-sm">
                      {{ time }}
                   </li>
                </ul>

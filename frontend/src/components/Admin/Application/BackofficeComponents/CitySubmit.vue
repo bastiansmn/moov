@@ -3,6 +3,7 @@ import { codeIsOK } from "@/utils/statusCodes";
 import { useSettingsStore } from '@/store/settings';
 
 import Input from "@/components/common/Input.vue";
+import clean from "@/utils/fetchCleaner";
 
 const settingsStore = useSettingsStore();
 
@@ -31,7 +32,7 @@ const testApi = (payload) => {
 
 const submitCity = ($event) => {
    const payload = Object.fromEntries(
-      Array.from($event.target.querySelectorAll("input:not([type=submit])"))
+      Array.from<HTMLInputElement>($event.target.querySelectorAll("input:not([type=submit])"))
          .map(e => ([e.name, e.value]))
    );
    
@@ -46,7 +47,7 @@ const submitCity = ($event) => {
    testApi(payload);
    if (!codeIsOK(settingsStore.notification.code)) return;
    if ($event.submitter.name === "submit_api") {
-      fetch("/api/cities/create", {
+      fetch(clean("/api/cities/create"), {
          method: "POST",
          headers: {
             'Content-Type': 'application/json',

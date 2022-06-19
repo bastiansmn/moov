@@ -51,7 +51,7 @@ exports.fetchThemes = async (req, res) => {
                return {
                   themed_events: (await Promise.all(themed_events.map(async e => {
                      return fetchEvent(city, e.event_id);
-                  }))),
+                  }))).filter(e => e !== null),
                   ...rest
                }
             })
@@ -165,6 +165,29 @@ exports.createTheme = (req, res) => {
       console.error(err);
       res.status(500).send({
          message: "Erreur lors de la création du thème"
+      });
+   });
+}
+
+exports.deleteTheme = (req, res) => {
+   Theme.destroy({
+      where: {
+         theme_id: req.body.theme_id
+      }
+   }).then(theme => {
+      if (!theme) {
+         res.status(404).send({
+            message: "Theme non trouvé"
+         });
+         return;
+      }
+      res.status(200).send({
+         message: "Thème supprimé"
+      });
+   }).catch(err => {
+      console.error(err);
+      res.status(500).send({
+         message: "Impossible de supprimer le thème"
       });
    });
 }

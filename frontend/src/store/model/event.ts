@@ -9,7 +9,10 @@ export default interface Event {
    timing: string,
    date_start: Date,
    date_end: string,
-   latlon: string,
+   latlon: {
+      lat: number,
+      lng: number
+   },
    city: string,
    district: string,
    tags: Array<string>

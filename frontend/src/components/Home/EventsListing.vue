@@ -1,11 +1,16 @@
 
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { useSettingsStore } from '@/store/settings';
 import EventPreview from '@/components/common/EventPreview.vue';
 import { FreeMode, Navigation } from 'swiper';
 import { Swiper, SwiperSlide as Slide } from "swiper/vue";
 import { capitalizeFirstLetter } from "@/utils/typos";
+
+import Event from '@/store/model/event';
+import Theme from '@/store/model/theme';
+
+
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -18,25 +23,11 @@ export default defineComponent({
    },
    async setup() {
       const settingsStore = useSettingsStore();
-      
-      const getTags = () => {
-         return new Promise(resolve => {
-            fetch("/api/tags/getTags")
-               .then(res => res.json())
-               .then(res => {
-                  resolve(res);
-               })
-               .catch(err => {
-                  console.error(err);
-                  resolve([]);
-               });
-         })
-      };
 
       const filterEvents = ($event, tag) => {
          const getParentButton = (el: HTMLElement) => {
             let temp = el;
-            while (!temp.tagName !== "BUTTON" && !temp.classList.contains("filterer")) {
+            while (!(temp.tagName !== "BUTTON") && !temp.classList.contains("filterer")) {
                temp = temp.parentElement;
             }
             return temp;
@@ -74,9 +65,9 @@ export default defineComponent({
          onProgress,
          capitalizeFirstLetter,
 
-         tags: computed(() => settingsStore.tags),
-         events: computed(() => settingsStore.getEvents),
-         themes: computed(() => settingsStore.getThemes),
+         tags: computed<string[]>(() => settingsStore.tags),
+         events: computed<Event[]>(() => settingsStore.getEvents),
+         themes: computed<Theme[]>(() => settingsStore.getThemes),
       };
    },
 })
@@ -85,12 +76,11 @@ export default defineComponent({
 
 <template>
    <div class="category__filter overflow-x-hidden opacity__animation">
-      <h1>Catégories</h1>
+      <h1 class="font-semibold">Catégories</h1>
       <Swiper
          class="flex h-[90px] items-center"
          slidesPerView="auto"
          :spaceBetween="2"
-         :freeMode="true"
       >
          <Slide 
             :key="tag" 
@@ -129,23 +119,20 @@ export default defineComponent({
                   <path d="M0.675676 7C0.30251 7 -0.00470181 7.3039 0.0455697 7.67366C0.192036 8.75098 0.687019 9.75809 1.46447 10.5355C2.40215 11.4732 3.67392 12 5 12C6.32608 12 7.59785 11.4732 8.53553 10.5355C9.31298 9.75809 9.80796 8.75098 9.95443 7.67367C10.0047 7.3039 9.69749 7 9.32432 7V7C8.95116 7 8.65499 7.30507 8.58627 7.67185C8.45179 8.38969 8.10372 9.05625 7.57998 9.57998C6.89573 10.2642 5.96768 10.6486 5 10.6486C4.03232 10.6486 3.10427 10.2642 2.42002 9.57998C1.89628 9.05625 1.54821 8.38969 1.41373 7.67185C1.34501 7.30507 1.04884 7 0.675676 7V7Z" fill="#7061E4"/>
                   <rect x="2.75" y="0.75" width="4.5" height="8.5" rx="2.25" stroke="#7061E4" stroke-width="1.5"/>
                </svg>
-               <h1 v-else-if="tag==='Humour'">😂</h1>
+               <span v-else-if="tag==='Humour'">😂</span>
                
-               <h1 class="ml-2">{{ tag }}</h1>
+               <span class="ml-2 font-medium">{{ tag }}</span>
             </button>
          </Slide>
       </Swiper>
    </div>
 
    <div :key="th.theme_id" class="category opacity__animation" v-for="th in themes">
-      <h1 class="font-medium">{{ th.name }}</h1>
+      <h1 class="font-semibold">{{ th.name }}</h1>
       <Swiper 
          class="events h-[220px] w-full overflow-x-auto py-3"
          slidesPerView="auto"
          :spaceBetween="10"
-         navigation
-         :freeMode="true"
-         :modules="modules"
          style="overflow: hidden;"
       >
          <Slide style="width: unset" :key="`event-${event.event_id}`" v-for="event in th.themed_events">
@@ -155,15 +142,12 @@ export default defineComponent({
          </Slide>
       </Swiper>
    </div>
-   <div class="category opacity__animation">
-      <h1 class="font-medium">Evènements à {{ capitalizeFirstLetter(settingsStore.user.city_id) }}</h1>
+   <div class="category opacity__animation" v-if="events.length > 0">
+      <h1 class="font-semibold">Evènements à {{ capitalizeFirstLetter(settingsStore.user.city_id) }}</h1>
       <Swiper 
          class="events h-[220px] w-full overflow-x-auto py-3"
          slidesPerView="auto"
          :spaceBetween="10"
-         navigation
-         freeMode
-         :modules="modules"
          style="overflow: hidden;"
          @progress="onProgress"
       >
@@ -179,11 +163,11 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .filterer {
-   box-shadow: 0px 2px 8px -3px rgba(0, 0, 0, 0.25);
+   box-shadow: 0 2px 8px -3px rgba(0, 0, 0, 0.25);
    --timing: .2s;
-   transition: background var(--timing) ease-in-out;
+   transition: all var(--timing) ease-in-out;
    
-   & > h1 {
+   & > span {
       transition: color var(--timing) ease-in-out;
    }
 
@@ -191,10 +175,15 @@ export default defineComponent({
       transition: stroke var(--timing) ease-in-out;
    }
 
-   &:hover, &.active {
+   &:hover {
+      box-shadow:  5px 5px 5px #d5d5d5,
+             -5px -5px 5px #ebebeb;
+   }
+
+   &.active {
       background: #7061E4;
 
-      & > h1 {
+      & > span {
          color: #FFFFFF;
       }
 

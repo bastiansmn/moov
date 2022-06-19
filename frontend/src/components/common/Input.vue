@@ -41,6 +41,10 @@ export default defineComponent({
       radius: {
          type: Number,
          default: 11,
+      },
+      nav: {
+         type: Boolean,
+         default: false
       }
    },
    setup(props, { emit }) {

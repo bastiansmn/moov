@@ -21,6 +21,8 @@ exports.fetchEvent = (city, event_id) => {
       fetch(`${shortenApiLink}/api/v2/catalog/datasets/${city.dataset_name}/records/${event_id}`)
          .then(response => response.json())
          .then(response => {
+            console.log(response.record);
+            if (!response.record) resolve(null);
             resolve({
                city_id: city.city_id,
                event_id: event_id,

@@ -9,7 +9,7 @@ export default defineComponent({
       }
    },
    setup(props) {
-      const getBgColor = (cat: String) => {         
+      const getBgColor = (cat: string) => {
          switch (cat) {
             case "Musique":
                return "#5BE3E3";
@@ -33,7 +33,7 @@ export default defineComponent({
       }
 
       return {
-         ...props,
+         categories: <string[]> props.cats,
          getBgColor
       }
    },
@@ -41,7 +41,7 @@ export default defineComponent({
 </script>
 
 <template>
-   <div v-for="tag in cats" :key="tag" class="w-[22px] aspect-square rounded-[4px] mr-1 flex items-center justify-center" :style="`background: ${getBgColor(tag)}`">
+   <div v-for="tag in categories" :key="tag" class="w-[22px] aspect-square rounded-[4px] mr-1 flex items-center justify-center" :style="`background: ${getBgColor(tag)}`">
       <svg v-if="tag === 'Musique'" width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path d="M1 6.88235H2.25C3.1875 6.88235 3.5 7.35294 3.5 8.05882V9.82353C3.5 10.5294 3.1875 11 2.25 11C1.3125 11 1 10.7059 1 9.82353V6.88235ZM1 6.88235V5.11765C1 2.76471 2.68666 1 5.6875 1C8.8125 1 11 2.76471 11 5.11765V6.88235M11 6.88235V9.82353C11 10.7059 10.6875 11 9.75 11C8.8125 11 8.5 10.5294 8.5 9.82353C8.5 9.11765 8.5 8.35294 8.5 8.05882C8.5 7.34749 9 6.88235 9.75 6.88235C10.5 6.88235 10.8958 6.88235 11 6.88235Z" stroke="white" stroke-width="1.5"/>
       </svg>

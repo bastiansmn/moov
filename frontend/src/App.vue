@@ -15,7 +15,7 @@ import Notification from '@/components/common/Notification.vue';
         name="fade"
         mode="out-in"
       >
-        <div key="app-router" class="w-full h-full p-6">
+        <div key="app-router" class="w-full h-full p-6 pt-12 sm:pt-6">
           <component :is="Component" />
         </div>
       </transition>

@@ -3,6 +3,7 @@ import { defineComponent } from 'vue'
 import { codeIsOK } from "@/utils/statusCodes"
 import { useBackofficeStore } from '@/store/backoffice'
 import { useSettingsStore } from '@/store/settings'
+import clean from "@/utils/fetchCleaner";
 
 export default defineComponent({
    setup(_props, { emit }) {
@@ -23,7 +24,7 @@ export default defineComponent({
             return;
          }
 
-         fetch("/api/mail/send", {
+         fetch(clean("/api/mail/send"), {
             method: "POST",
             headers: {
                'Content-Type': 'application/json',

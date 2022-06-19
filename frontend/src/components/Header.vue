@@ -26,14 +26,14 @@ export default defineComponent({
 <template> 
    <header class="mt-[132px] sticky top-0 z-30">
       <div class="absolute bottom-0 overflow-hidden h-[220px] w-full bg-gradient-to-r from-[#7162E5] to-[#9566E4] flex flex-col items-center justify-center">
-         <div class="navigation w-full h-[88px] fixed top-0 flex items-center justify-between px-5 z-[2]">
-            <button @click="showAccount()" class="aspect-square h-[42px] bg-white flex items-center justify-center rounded shadow-md">
+         <div class="navigation w-full h-[88px] fixed top-0 flex items-center justify-between px-5 z-[3]">
+            <button @click="showAccount()" class="aspect-square mr-3 h-[42px] bg-white flex items-center justify-center rounded shadow-md">
                <svg width="18" height="18" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M1 15C1 11.25 2.16667 10 8 10C13.8333 10 15 11.25 15 15" stroke="#7061E4" stroke-width="2" stroke-linecap="round"/>
                   <circle cx="8" cy="4" r="3" stroke="#7061E4" stroke-width="2"/>
                </svg>
             </button>
-            <Input placeholder="Rechercher un évènement" shadow :width="300">
+            <Input nav placeholder="Rechercher un évènement" shadow :width="300">
                <button class="aspect-square absolute right-[6px] h-[30px] flex items-center justify-center bg-purple rounded-sm">
                   <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <circle cx="7" cy="7" r="6" stroke="white" stroke-width="2"/>
@@ -61,7 +61,7 @@ export default defineComponent({
             <rect x="1067.1" y="88.1069" width="10" height="10" rx="1.5" transform="rotate(-53.1995 1067.1 88.1069)" stroke="#8A6CDF" stroke-width="3"/>
          </svg>
 
-         <router-link to="/home" class="text-white sticky top-0 font-bold font-sans z-[3] text-[25px]">MOOV</router-link>
+         <router-link to="/home" class="text-white sticky top-0 font-bold font-sans z-[2] text-[25px]">MOOV</router-link>
       </div>
    </header>
 </template>

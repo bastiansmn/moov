@@ -10,6 +10,8 @@ let corsOptions = {
 
 const app = express();
 
+app.use(express.static("public"));
+
 db.sequelize.sync()
 .then(() => {
    // db.role.create({

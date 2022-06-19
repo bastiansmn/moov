@@ -30,6 +30,15 @@ module.exports = (app) => {
       ],
       controller.createTheme
    );
+   app.delete(
+      "/theme/deleteTheme",
+      [
+         jwtAuth.verifyToken,
+         verifyLog.isAdminOrModerator,
+         requestsStats.saveRequest
+      ],
+      controller.deleteTheme
+   )
    app.put(
       "/theme/changeStatus",
       [

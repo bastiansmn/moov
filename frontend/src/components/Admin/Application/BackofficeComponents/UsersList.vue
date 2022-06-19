@@ -3,7 +3,7 @@ import { defineEmits, ref } from "vue";
 import { useSettingsStore } from "@/store/settings";
 import { useBackofficeStore } from "@/store/backoffice";
 
-import { RoleEnum } from "@/store/model/user";
+import User, { RoleEnum } from "@/store/model/user";
 import Input from "@/components/common/Input.vue"
 
 const emits = defineEmits<{

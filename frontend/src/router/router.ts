@@ -3,6 +3,7 @@ import { RouteRecordRaw, createRouter, createWebHashHistory } from 'vue-router';
 import Home from '../views/Home.vue'
 import User, { RoleEnum } from '@/store/model/user';
 import { codeIsOK } from '@/utils/statusCodes';
+import clean from "@/utils/fetchCleaner";
 
 const routes: Array<RouteRecordRaw> = [
    {
@@ -77,7 +78,7 @@ router.beforeEach(async (to, _from, next) => {
 
    // Si le user n'est pas déjà connecté (arrivée sur le site ou reconnexion)
    if (!settingsStore.userConnected) {
-      await fetch(`/api/user/getUserByUUID?user_uuid=${user_uuid}`, {
+      await fetch(clean(`/api/user/getUserByUUID?user_uuid=${user_uuid}`), {
          method: "GET",
          headers: new Headers({
            "Content-Type": "application/json",

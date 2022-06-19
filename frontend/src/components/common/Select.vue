@@ -47,7 +47,7 @@ const props = defineProps({
 
 const emit = defineEmits(["change"]);
 
-const select = ref<HTMLElement>(null);
+const select = ref<HTMLSelectElement>(null);
 
 const changeInput = () => {
    emit("change", select.value.value);
@@ -66,7 +66,7 @@ const changeInput = () => {
       }"
    >
       <select ref="select" @change="changeInput" :name="name" :required="required" autocomplete="off" spellcheck="false" class="outline-none w-full h-full text-dark-grey bg-transparent">
-         <option :key="k" v-for="v, k  in options" :disabled="v === '...'" :selected="v === placeholder" :value="v">{{ capitalizeFirstLetter(v) }}</option>
+         <option :key="k" v-for="(v, k)  in options" :disabled="v === '...'" :selected="v === placeholder" :value="v">{{ capitalizeFirstLetter(v) }}</option>
       </select>
    </div>
 </template>

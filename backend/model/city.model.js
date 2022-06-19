@@ -13,6 +13,10 @@ module.exports = (sequelize, Sequelize) => {
       api_base_link: {
          type: Sequelize.STRING
       },
+      api_key: {
+         type: Sequelize.STRING,
+         allowNull: true
+      },
       dataset_name: {
          type: Sequelize.STRING,
       },

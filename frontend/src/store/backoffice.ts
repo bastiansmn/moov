@@ -3,18 +3,19 @@ import User, { Role } from "./model/user";
 import Theme from "./model/theme";
 import { codeIsOK } from "../utils/statusCodes";
 import { useSettingsStore } from "./settings";
+import clean from "@/utils/fetchCleaner";
 const settingsStore = useSettingsStore();
 
 export const useBackofficeStore = defineStore("backoffice", {
    state: () => ({
-      users: [] as Array<User>,
-      roles: [] as Array<Role>,
-      pendingThemes: [] as Array<Theme>,
-      requests: [] as Array<Request>,
+      users: [] as User[],
+      roles: [] as Role[],
+      pendingThemes: [] as Theme[],
+      requests: [] as Request[],
    }),
    actions: {
       fetchUsers() {
-         return new Promise<Array<User>>(resolve => {
+         return new Promise<User[]>(resolve => {
             const username = localStorage.getItem('username');
             const user_uuid = localStorage.getItem('user_uuid');
             const accessToken = localStorage.getItem('accessToken');
@@ -29,7 +30,7 @@ export const useBackofficeStore = defineStore("backoffice", {
                return;
             }
       
-            fetch("/api/user/getUsers", {
+            fetch(clean("/api/user/getUsers"), {
                method: 'GET',
                headers: {
                   'Content-Type': 'application/json',
@@ -50,7 +51,7 @@ export const useBackofficeStore = defineStore("backoffice", {
          });
       },
       fetchRoles() {
-         return new Promise<Array<Role>>(resolve => {
+         return new Promise<Role[]>(resolve => {
             const user_uuid = localStorage.getItem('user_uuid');
             const accessToken = localStorage.getItem('accessToken');
       
@@ -64,7 +65,7 @@ export const useBackofficeStore = defineStore("backoffice", {
                return;
             }
       
-            fetch("/api/role/getAllRoles", {
+            fetch(clean("/api/role/getAllRoles"), {
                method: "GET",
                headers: {
                   'Content-Type': 'application/json',
@@ -85,7 +86,7 @@ export const useBackofficeStore = defineStore("backoffice", {
          });
       },
       fetchRequests() {
-         return new Promise<Array<Request>>((resolve) => {
+         return new Promise<Request[]>((resolve) => {
             const user_uuid = localStorage.getItem('user_uuid');
             const accessToken = localStorage.getItem('accessToken');
       
@@ -99,7 +100,7 @@ export const useBackofficeStore = defineStore("backoffice", {
                return;
             }
       
-            fetch(`/api/request/getAllRequests`, {
+            fetch(clean("/api/request/getAllRequests"), {
                method: "GET",
                headers: {
                   'Content-Type': 'application/json',
@@ -120,7 +121,7 @@ export const useBackofficeStore = defineStore("backoffice", {
          })
       },
       fetchPendingThemes() {
-         return new Promise<Array<Theme>>((resolve) => {
+         return new Promise<Theme[]>((resolve) => {
             const user_uuid = localStorage.getItem('user_uuid');
             const accessToken = localStorage.getItem('accessToken');
 
@@ -134,7 +135,12 @@ export const useBackofficeStore = defineStore("backoffice", {
                return;
             }
 
-            fetch(`/api/theme/fetchPendingThemes?access_token=${accessToken}`)
+            fetch(clean("/api/theme/fetchPendingThemes"), {
+               headers: {
+                  'Content-Type': 'application/json',
+                   'x-access-token': accessToken
+               }
+            })
                .then(response => {
                   const status = response.status;
                   if (codeIsOK(status)) {
@@ -155,6 +161,8 @@ export const useBackofficeStore = defineStore("backoffice", {
          // TODO: Vérifier si ceci ne créé pas de bugs
          if (this.backofficeLoaded) return;
          
+         console.log("Loading backoffice...");
+         
          this.users = await this.fetchUsers();
          this.roles = await this.fetchRoles();
          this.requests = await this.fetchRequests();
@@ -165,8 +173,12 @@ export const useBackofficeStore = defineStore("backoffice", {
       getUsers: (state) => state.users,
       getRoles: (state) => state.roles,
       getRequests: (state) => state.requests,
+      getPendingThemes: (state) => state.pendingThemes,
       backofficeLoaded: (state) => {
-         return state.users.length !== 0 && state.roles.length !== 0 && state.requests.length !== 0;
+         return state.users.length !== 0 
+            && state.roles.length !== 0 
+            && state.requests.length !== 0
+            && state.pendingThemes.length !== 0;
       }
    },
 });
