@@ -64,8 +64,10 @@ exports.parseTags = (record, translator) => {
       for (const keyword of tagsMapper[tag]) {
          if (
             !res.includes(tag) &&
-            (record[translator.title_field]?.toLowerCase().includes(keyword) 
-            || record[translator.description_field]?.toLowerCase().includes(keyword)
+            (
+                (record[translator.title_field] && record[translator.title_field].toLowerCase().includes(keyword))
+            ||
+                (record[translator.description_field] && record[translator.description_field].toLowerCase().includes(keyword))
          )) {
             res.push(tag);
          }

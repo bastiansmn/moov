@@ -1,5 +1,6 @@
 export default function clean(endpoint: string) {
-    if (endpoint.match("/api") && import.meta.env.PROD)
-        return endpoint.replace("/api", "");
+    if (!import.meta.env.PROD) return endpoint;
+    if (endpoint.match("/api"))
+        return endpoint.replace("/api", import.meta.env.VITE_BACKEND_URL ?? "http://localhost:3000");
     return endpoint;
 }

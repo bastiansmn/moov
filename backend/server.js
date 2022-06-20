@@ -5,7 +5,7 @@ require("dotenv").config();
 const db = require("./model/index");
 
 let corsOptions = {
-   origin: process.env.ORIGIN || 'http://localhost:4000',
+   origin: process.env.ORIGIN ?? 'http://localhost:4000',
 }
 
 const app = express();
@@ -13,23 +13,6 @@ const app = express();
 app.use(express.static("public"));
 
 db.sequelize.sync()
-.then(() => {
-   // db.role.create({
-   //    name: "USER"
-   // });
-   // db.role.create({
-   //    name: "MODERATOR"
-   // }); 
-   // db.role.create({
-   //    name: "ADMIN"
-   // });
-   // db.themeState.create({
-   //    name: "PUBLIC"
-   // });
-   // db.themeState.create({
-   //    name: "PRIVATE"
-   // });
-});
 
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
@@ -46,4 +29,7 @@ require('./routes/tags.route')(app);
 require('./routes/event.route')(app);
 require('./routes/theme.route')(app);
 
-app.listen(process.env.PORT || 3000);
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+   console.log("Server listening on port " + PORT);
+});

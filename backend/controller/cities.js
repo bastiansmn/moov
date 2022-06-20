@@ -93,8 +93,8 @@ exports.fetchData = (req, res) => {
             .then(response => response.json())
             .then(response => {
                let lastDateIsValid = false;
-               console.log(response.records);
                const toSend = response.records.map(record => {
+                  if (!record && !record.fields) return null;
                   lastDateIsValid = isValidDate(record[city.date_start_field]) !== "" && isValidDate(record[city.date_end_field]) !== "";
                   return {
                      city_id: city.city_id,
@@ -113,7 +113,7 @@ exports.fetchData = (req, res) => {
                      tags: parseTags(record.fields, city)
                   };
                }).filter(event => {
-                  return !(Object.values(event).includes(""));
+                  return event !== null && !(Object.values(event).includes(""));
                });
                if (toSend.length === 0) {
                   fetchUntilValid(shift + 10, lastDateIsValid ? ++nbTry : nbTry);
@@ -121,7 +121,6 @@ exports.fetchData = (req, res) => {
                   res.status(200).send(
                      toSend
                   );
-                  return;
                }
             })
             .catch(err => {

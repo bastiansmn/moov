@@ -18,6 +18,12 @@ exports.fetchThemes = async (req, res) => {
       },
       attributes: ["status_id"]
    });
+   if (!publicStatusID) {
+      res.status(500).send({
+         message: "Impossible de récupérer les thèmes"
+      });
+      return;
+   }
    Theme.findAll({
       where: {
          status_id: publicStatusID.status_id,

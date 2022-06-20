@@ -15,8 +15,7 @@ import RequestStatChart from "./BackofficeComponents/RequestStatChart.vue"
 
 import { useBackofficeStore } from '@/store/backoffice'
 import { useSettingsStore } from '@/store/settings'
-import { codeIsOK } from '@/utils/statusCodes'
-import User from '@/store/model/User'
+import User from '@/store/model/user'
 
 const backofficeStore = useBackofficeStore();
 const settingsStore = useSettingsStore();
@@ -132,9 +131,7 @@ export default defineComponent({
          </div>
       </div>
       <div>
-         <CitySubmit
-            @selectUser="selectedUser"
-          />
+         <CitySubmit />
          <!-- TODO : Ajouter une liste des villes existantes (avec lien vers api) + stats de moyenne d'âge + ville plus utilisée -->
       </div>
    </div>

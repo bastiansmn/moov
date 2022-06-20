@@ -1,0 +1,54 @@
+version: "3.9"
+
+services:
+
+  postgres:
+    container_name: psql
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-root}
+      POSTGRES_DB: ${DB_NAME:-moov}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+
+  backend:
+    container_name: backend_app
+    build: .
+    environment:
+#     TODO: Hide cred
+      PORT: 3000
+      DB_HOST: ${DB_HOST:-postgres}
+      DB_USER: ${DB_USER:-postgres}
+      DB_PASSWORD: ${DB_PASSWORD:-root}
+      DB_NAME: ${DB_NAME:-moov}
+      DB_PORT: ${DB_PORT:-5432}
+      ORIGIN: http://localhost
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    ports:
+      - "${PORT:-3000}:3000"
+
+  pg_admin:
+    container_name: pg_admin
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+#     TODO: Hide cred
+      PGADMIN_DEFAULT_EMAIL: ${PG_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PG_PASSWORD}
+    ports:
+      - "${PG_PORT:-16543}:80"
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  db-data:
+  pgadmin-data:

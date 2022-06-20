@@ -32,7 +32,6 @@ exports.sendMail = (req, res) => {
             mailContent,
             username: user.username
          }).then(result => {
-            console.log(result);
             var mailOptions = {
                from: 'moov.noreply@gmail.com',
                to: user.email,
