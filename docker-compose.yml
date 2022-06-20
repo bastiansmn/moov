@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
 
+# Service for the database
   postgres:
     container_name: psql
     image: postgres
@@ -15,11 +16,21 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
 
+# Service for the vue-app
+  frontend:
+    container_name: frontend_app
+    build: frontend/.
+    environment:
+      VITE_MAPS_API_KEY: ${VITE_MAPS_API_KEY}
+      VITE_BACKEND_URL: ${VITE_BACKEND_URL}
+    ports:
+      - "80:80"
+
+# Service for the backend
   backend:
     container_name: backend_app
-    build: .
+    build: backend/.
     environment:
-#     TODO: Hide cred
       PORT: 3000
       DB_HOST: ${DB_HOST:-postgres}
       DB_USER: ${DB_USER:-postgres}
@@ -36,12 +47,12 @@ services:
     ports:
       - "${PORT:-3000}:3000"
 
+# Service for pg-admin
   pg_admin:
     container_name: pg_admin
     image: dpage/pgadmin4
     restart: always
     environment:
-#     TODO: Hide cred
       PGADMIN_DEFAULT_EMAIL: ${PG_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PG_PASSWORD}
     ports:

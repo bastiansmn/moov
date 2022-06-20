@@ -57,7 +57,7 @@ INSERT INTO themed_events (id, event_id, "createdAt", "updatedAt") VALUES (22, '
 --
 
 INSERT INTO users (user_uuid, username, email, password, birthyear, "userRecommandations", "userEmailNotifications", "preferedRadius", "createdAt", "updatedAt", city_id) VALUES ('8a0f8b6b-c41c-4c79-9de3-b1a034511cad', 'admin', 'admin@gmail.com', '$2a$08$3WpW5qD/d38D26DLJu/YW.ONWc7jLl6G5wnqEBdwcOfQHYRHL9Y7G', 2012, false, false, 25, NOW(), NOW(), 'paris');
-INSERT INTO users (user_uuid, username, email, password, birthyear, "userRecommandations", "userEmailNotifications", "preferedRadius", "createdAt", "updatedAt", city_id) VALUES ('6ab11aa6-984b-4ebe-8666-df59d60aa296', 'bastiansmn', 'bastian.somon@gmail.com', '$2a$08$mFRuzc8Hb.ThkFPVEfbCZe.m49evT51hTQ6jotUwG.Fi1urkC3NJu', 2001, false, false, 20, NOW(), NOW(), 'lille');
+INSERT INTO users (user_uuid, username, email, password, birthyear, "userRecommandations", "userEmailNotifications", "preferedRadius", "createdAt", "updatedAt", city_id) VALUES ('6ab11aa6-984b-4ebe-8666-df59d60aa296', 'bastiansmn', 'bastian.somon@gmail.com', '$2a$08$mFRuzc8Hb.ThkFPVEfbCZe.m49evT51hTQ6jotUwG.Fi1urkC3NJu', 2001, false, false, 20, NOW(), NOW(), 'paris');
 
 
 --
