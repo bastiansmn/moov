@@ -129,7 +129,7 @@ export default defineComponent({
 
    <div :key="th.theme_id" class="category opacity__animation" v-for="th in themes">
       <h1 class="font-semibold">{{ th.name }}</h1>
-      <Swiper 
+      <Swiper
          class="events h-[220px] w-full overflow-x-auto py-3"
          slidesPerView="auto"
          :spaceBetween="10"
@@ -144,7 +144,7 @@ export default defineComponent({
    </div>
    <div class="category opacity__animation" v-if="events.length > 0">
       <h1 class="font-semibold">Evènements à {{ capitalizeFirstLetter(settingsStore.user.city_id) }}</h1>
-      <Swiper 
+      <Swiper
          class="events h-[220px] w-full overflow-x-auto py-3"
          slidesPerView="auto"
          :spaceBetween="10"

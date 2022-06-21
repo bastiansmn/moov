@@ -80,5 +80,9 @@ Attention cependant à ne pas mettre n'importe quelle valeur. Par exemple, sauf 
 
 Une fois cette configuration effectuée, vous pouvez lancer les containers via :
 ```
-docker-compose -d --build
+docker-compose up -d --build
+```
+Et pour éteindre l'application :
+```
+docker-compose down 
 ```
