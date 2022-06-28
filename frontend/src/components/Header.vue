@@ -1,8 +1,10 @@
 <script lang="ts">
-import { defineComponent } from "vue";
-import { useSettingsStore } from "@/store/settings";
+import {defineComponent, ref} from "vue";
+import {useSettingsStore} from "@/store/settings";
 
 import Input from "@/components/common/Input.vue";
+import Event from "@/store/model/event";
+import router from "@/router/router";
 
 export default defineComponent({
    name: "Header",
@@ -12,12 +14,48 @@ export default defineComponent({
    setup(_props) {
       const settingsStore = useSettingsStore();
 
+      const searchContent = ref<Array<Event>>([]);
+
       const showAccount = () => {
          settingsStore.togglePannel(true);
       }
 
+      const hideSearch = () => {
+         searchContent.value = [];
+      }
+
+      const handleSearch = (value: string) => {
+         // TODO Améliorer l'algorithme de recherche
+         // regex for alphanumerics, spaces, dashes, special characters, french accents and numbers
+         const regex = /[a-zA-Z\dàâäéèêëîïôöùûüçÀÂÄÉÈÊËÎÏÔÖÙÛÜÇ'\-\s]+/g;
+         if (value.length === 0 || !value.match(regex)) {
+            hideSearch();
+            return;
+         }
+         // TODO: Appel récursive plus intéressante ??
+         searchContent.value = settingsStore.searchAnything(value).slice(0, 10);
+      }
+
+      const showEvent = (event: Event) => {
+         console.log(event)
+         router.push({
+            name: 'Event',
+            query: {
+               event_id: event.event_id,
+               city_id: event.city_id
+            },
+            params: {
+               event: JSON.stringify(event)
+            }
+         })
+      }
+
       return {
-         showAccount
+         showAccount,
+         handleSearch,
+         searchContent,
+         hideSearch,
+         showEvent,
       }
    }
 })
@@ -33,13 +71,37 @@ export default defineComponent({
                   <circle cx="8" cy="4" r="3" stroke="#7061E4" stroke-width="2"/>
                </svg>
             </button>
-            <Input nav placeholder="Rechercher un évènement" shadow :width="300">
+            <Input
+               nav
+               placeholder="Rechercher un évènement"
+               class="relative"
+               shadow
+               :width="300"
+               @change="handleSearch"
+               @blur="hideSearch"
+               @focus="handleSearch"
+            >
                <button class="aspect-square absolute right-[6px] h-[30px] flex items-center justify-center bg-purple rounded-sm">
                   <svg width="17" height="17" viewBox="0 0 17 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                      <circle cx="7" cy="7" r="6" stroke="white" stroke-width="2"/>
                      <rect x="11.562" y="10.1478" width="8.04218" height="2" rx="1" transform="rotate(45 11.562 10.1478)" fill="white"/>
                   </svg>
                </button>
+               <div v-if="searchContent.length > 0" class="searchContent absolute w-full bottom-0 translate-y-full bg-white rounded-sm">
+                  <button
+                     :key="event.event_id"
+                     v-for="event in searchContent"
+                     class="w-full h-[80px] hover:bg-white2 z-50 cursor-pointer flex p-2 rounded-sm"
+                     @click="showEvent(event)"
+                  >
+                     <span class="image h-full aspect-square object-cover mr-2">
+                        <img :src="event.image" :alt="event.title" class="h-full object-cover rounded-[4px]">
+                     </span>
+                     <span class="infos h-full font-semibold text-sm">
+                        {{ event.title }}
+                     </span>
+                  </button>
+               </div>
             </Input>
          </div>
 

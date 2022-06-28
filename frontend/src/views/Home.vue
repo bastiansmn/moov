@@ -8,7 +8,7 @@ import EventLoader from '@/components/Home/EventsLoader.vue'
       <template #default>
          <EventListing />
       </template>
-      <template #fallback>            
+      <template #fallback>
          <EventLoader />
       </template>
    </Suspense>

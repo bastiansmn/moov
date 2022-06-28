@@ -361,6 +361,28 @@ export const useSettingsStore = defineStore("settings", {
             });
          });
       },
+
+      searchAnything(search: string) {
+         const res = [];
+         const getInArray = (array: Array<Event>, search: string) => {
+            return array.filter(e => {
+               return e.title.toLowerCase().includes(search.toLowerCase()) ||
+                  e.description.toLowerCase().includes(search.toLowerCase()) ||
+                  e.tags.some(t => t.toLowerCase().includes(search.toLowerCase()));
+            });
+         }
+         getInArray(this.events, search).forEach(e => {
+            if (res.find(event => event.event_id === e.event_id)) return;
+            res.push(e);
+         });
+         this.themes.forEach((e: Theme) => {
+            getInArray(e.themed_events, search).forEach(e => {
+               if (res.find(event => event.event_id === e.event_id)) return;
+               res.push(e);
+            });
+         });
+         return res;
+      }
    },
    getters: {
       userConnected: (state) => {

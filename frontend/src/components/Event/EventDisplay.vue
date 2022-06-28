@@ -77,11 +77,11 @@ export default defineComponent({
       const loader = new Loader({ apiKey: import.meta.env.VITE_MAPS_API_KEY });
       const mapDiv = ref(null);
       const renderMap = ref(false);
-      
+
 
       const parseTimings = () => {
          const timings = event.timing;
-         
+
          if (!timings || timings === 'Non renseigné') return ['Non renseigné'];
          const dates = timings.split(";");
          const res = dates.map(date => {
@@ -89,7 +89,7 @@ export default defineComponent({
             const res = {
                start: new Date(start).toLocaleString(),
                end: new Date(end).toLocaleString()
-            }; 
+            };
             return `- Du ${res.start} au ${res.end}`;
          });
          return res;

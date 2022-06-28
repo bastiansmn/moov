@@ -9,8 +9,8 @@ const getRandomInt = (min, max) => {
 <template>
    <div class="fake__category__filter">
       <div class="fake__category__title h-[24px] w-[70px] loader"></div>
-      <div class="fake__swiper flex h-[90px] items-center">
-         <div class="fake__filter loader h-1/2 w-[110px] mx-3" :key="i" v-for="i in 6" style="border-radius: 999px"></div>
+      <div class="fake__swiper flex h-[90px] items-center overflow-x-hidden">
+         <div class="fake__filter loader h-1/2 min-w-[110px] mx-3" :key="i" v-for="i in 6" style="border-radius: 999px"></div>
       </div>
    </div>
 

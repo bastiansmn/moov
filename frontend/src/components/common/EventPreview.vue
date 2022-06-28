@@ -25,7 +25,6 @@ const shortenMonth = {
 }
 
 const showEvent = (event: Event) => {
-   const from = router.currentRoute.value.path
    router.push({
       name: 'Event',
       query: {
