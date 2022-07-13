@@ -18,14 +18,14 @@ services:
 
 # Service for the vue-app
   frontend:
-    container_name: frontend_app
+    container_name: frontend-app
     build: frontend/.
     ports:
       - "80:80"
 
 # Service for the backend
   backend:
-    container_name: backend_app
+    container_name: backend-app
     build: backend/.
     environment:
       PORT: 3000
@@ -46,12 +46,11 @@ services:
 
 # Service for pg-admin
   pg_admin:
-    container_name: pg_admin
+    container_name: pg-admin
     image: dpage/pgadmin4
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PG_EMAIL}
-      PGADMIN_DEFAULT_PASSWORD: ${PG_PASSWORD}
     ports:
       - "${PG_PORT:-16543}:80"
     volumes:
