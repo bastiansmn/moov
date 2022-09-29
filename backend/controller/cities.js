@@ -2,7 +2,7 @@ const db = require("../model/index");
 const Cities = db.cities;
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 const { isValidDate, parseTags } = require("../utils/eventTranslator");
-const { convertLatlon } = require("../utils/eventFecthing");
+const { convertLatlon } = require("../utils/eventFetching");
 
 exports.getCities = (_req, res) => {
    Cities.findAll({

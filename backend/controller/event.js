@@ -1,4 +1,4 @@
-const { fetchEvent } = require("../utils/eventFecthing");
+const { fetchEvent } = require("../utils/eventFetching");
 const db = require("../model/index");
 const City = db.cities;
 

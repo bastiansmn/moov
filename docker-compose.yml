@@ -4,7 +4,7 @@ services:
 
 # Service for the database
   postgres:
-    container_name: psql
+    container_name: postgres
     image: postgres
     restart: always
     environment:
@@ -12,7 +12,7 @@ services:
       POSTGRES_PASSWORD: ${DB_PASSWORD:-root}
       POSTGRES_DB: ${DB_NAME:-moov}
     ports:
-      - "${DB_PORT:-5432}:5432"
+      - "5433:5432"
     volumes:
       - db-data:/var/lib/postgresql/data
 
@@ -51,6 +51,7 @@ services:
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PG_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PG_PASSWORD}
     ports:
       - "${PG_PORT:-16543}:80"
     volumes:

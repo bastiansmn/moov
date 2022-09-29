@@ -3,7 +3,7 @@ const Theme = db.theme;
 const ThemeState = db.themeState;
 const ThemedEvent = db.themedEvent;
 const Cities = db.cities;
-const { fetchEvent } = require("../utils/eventFecthing");
+const { fetchEvent } = require("../utils/eventFetching");
 
 exports.fetchThemes = async (req, res) => {
    if (!req.query.city_id) {

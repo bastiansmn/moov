@@ -8,7 +8,7 @@ var jwt = require("jsonwebtoken");
 const config = require("../config/auth.config");
 const { v4: uuid } = require("uuid");
 var bcrypt = require("bcryptjs");
-const { fetchEvent } = require("../utils/eventFecthing");
+const { fetchEvent } = require("../utils/eventFetching");
 
 exports.getUsers = async (_req, res) => {
    User.findAll({
