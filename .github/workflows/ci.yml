@@ -27,4 +27,4 @@ jobs:
           ORIGIN: ${{ secrets.ORIGIN }}
 
       - name: Check if containers are running
-        run: docker ps
+        run: docker ps | wc -l
