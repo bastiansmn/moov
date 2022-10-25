@@ -6,6 +6,6 @@ module.exports = {
   PORT: process.env.DB_PORT || 5432,
   dialect: "postgres",
   pool: {
-    acquire: 50_000,
+    acquire: 4_900,
   }
 };
