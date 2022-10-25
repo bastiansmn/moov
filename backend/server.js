@@ -29,7 +29,12 @@ require('./routes/tags.route')(app);
 require('./routes/event.route')(app);
 require('./routes/theme.route')(app);
 
+// Route to test the application
+require('./routes/test.route')(app);
+
 const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
    console.log("Server listening on port " + PORT);
 });
+
+module.exports = { app, server, db }
