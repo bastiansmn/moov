@@ -15,7 +15,7 @@ jobs:
           echo "VITE_BACKEND_URL=${{ secrets.BACKEND_URL }}" >> frontend/.env
 
       - name: Run the docker compose file
-        run: docker-compose -f docker-compose.full-app.yml up -d
+        run: docker-compose -f docker-compose.full-app.yml up -d --build --abort-on-container-exit
         env:
           EMAIL: ${{ secrets.EMAIL }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
@@ -25,12 +25,6 @@ jobs:
           PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
           PG_PORT: ${{ secrets.PG_PORT }}
           ORIGIN: ${{ secrets.ORIGIN }}
-
-      - name: Check if containers are running
-#          TODO: Changer la façon dont on vérifie si les containers sont en cours d'exécution
-        run: |
-          sleep 10
-          [ $(docker ps | wc -l) -eq 5 ]
 
       - name: Remove containers
         run: docker-compose -f docker-compose.full-app.yml down
