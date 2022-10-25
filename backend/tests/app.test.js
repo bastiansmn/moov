@@ -11,12 +11,18 @@ describe('/hello endpoint', () => {
     });
 });
 
-describe("test db", () => {
+describe("test db connection", () => {
     it("should connect to db", async () => {
-        expect(async () => {
-            await db.sequelize.authenticate()
-        }).not.toThrow(ConnectionRefusedError);
+        await db.sequelize.sync()
     });
+})
+
+describe("test db migration", () => {
+    it("should have inserted values", async () => {
+        const response = await request.get("/tags/getTags")
+        expect(response.status).toBe(200)
+        expect(response.body).toEqual(db.TAGS)
+    })
 })
 
 
