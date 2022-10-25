@@ -35,6 +35,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 16.x
+      - run: cd frontend
       - run: npm i
       - run: npm run build
       - name: Copy dist files to vps
@@ -43,6 +44,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
-          source: dist/*
+          source: vue-app/*
           target: /var/www/html/moov
           strip_components: 1
