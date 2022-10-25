@@ -29,7 +29,6 @@ jobs:
       - name: Run docker-compose
         run: docker-compose -f docker-compose.server.yml up -d
 
-
   deploy-client:
     runs-on: ubuntu-latest
     steps:
