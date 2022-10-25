@@ -39,7 +39,7 @@ jobs:
         with:
           node-version: 16.x
 
-      - name: Install and start
+      - name: Install and test
         run: |
           cd backend
           npm i
