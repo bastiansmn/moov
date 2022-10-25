@@ -34,7 +34,7 @@ jobs:
       - name: Check if containers are running
         run: |
           sleep 10
-          echo $?
+          whereis wc
 #          [ $(docker ps -q | wc -l) -eq 4 ]
 
       - name: Remove containers
