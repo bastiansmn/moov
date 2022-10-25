@@ -1,0 +1,27 @@
+name: Moov CI
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: action/checkout@v3
+
+      - name: Create the .env file for frontend
+        run: |
+          touch frontend/.env
+          echo "VITE_MAPS_API_KEY=${{ secrets.MAPS_API_KEY }}" >> frontend/.env
+          echo "VITE_BACKEND_URL=http://localhost:3000" >> frontend/.env
+
+      - name: Run the docker compose file
+        run: docker-compose -f docker-compose.full-app.yml up -d
+        env:
+          EMAIL: ${{ secrets.EMAIL }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          JWT_REFRESH_SECRET: ${{ secrets.JWT_REFRESH_SECRET }}
+          PG_EMAIL: ${{ secrets.PG_EMAIL }}
+          PG_PASSWORD: ${{ secrets.PG_PASSWORD }}
+          PG_PORT: ${{ secrets.PG_PORT }}
+          ORIGIN: ${{ secrets.ORIGIN }}

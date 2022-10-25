@@ -34,7 +34,7 @@ services:
       DB_PASSWORD: ${DB_PASSWORD:-root}
       DB_NAME: ${DB_NAME:-moov}
       DB_PORT: ${DB_PORT:-5432}
-      ORIGIN: http://localhost
+      ORIGIN: ${ORIGIN:-http://localhost}
       JWT_SECRET: ${JWT_SECRET}
       JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET}
     depends_on:
@@ -48,7 +48,6 @@ services:
   pg_admin:
     container_name: pg-admin
     image: dpage/pgadmin4
-    restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PG_EMAIL}
       PGADMIN_DEFAULT_PASSWORD: ${PG_PASSWORD}
