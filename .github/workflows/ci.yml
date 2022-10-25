@@ -3,7 +3,7 @@ name: Moov CI
 on: [push]
 
 jobs:
-  build-database:
+  build-server:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -20,13 +20,6 @@ jobs:
 
       - name: Run docker-compose
         run: docker-compose -f docker-compose.db.yml up -d
-
-
-  build-backend:
-    runs-on: ubuntu-latest
-    needs: build-database
-    steps:
-      - uses: actions/checkout@v3
 
       - name: Create the .env file for backend
         run: |
@@ -53,7 +46,7 @@ jobs:
           npm test
 
 
-  build-frontend:
+  build-client:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3

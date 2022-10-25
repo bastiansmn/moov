@@ -12,7 +12,7 @@ describe('/hello endpoint', () => {
 });
 
 describe("test db", () => {
-    it("should return a response", async () => {
+    it("should connect to db", async () => {
         expect(async () => {
             await db.sequelize.authenticate()
         }).not.toThrow(ConnectionRefusedError);
