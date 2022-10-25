@@ -34,8 +34,7 @@ jobs:
       - name: Check if containers are running
         run: |
           sleep 10
-          whereis wc
-#          [ $(docker ps -q | wc -l) -eq 4 ]
+          [ $(docker ps -q | wc -l) -eq 4 ]
 
       - name: Remove containers
         run: docker-compose -f docker-compose.full-app.yml down
