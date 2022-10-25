@@ -28,4 +28,9 @@ jobs:
 
       - name: Check if containers are running
         run: |
+#          TODO: Changer la façon dont on vérifie si les containers sont en cours d'exécution
+          sleep 10
           [ $(docker ps | wc -l) -eq 5 ]
+
+      - name: Remove containers
+        run: docker-compose -f docker-compose.full-app.yml down
