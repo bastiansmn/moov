@@ -1,7 +1,6 @@
 const { app, server, db } = require("../server")
 const supertest = require("supertest")
 const request = supertest(app)
-const { ConnectionRefusedError } = require("sequelize")
 
 describe('/hello endpoint', () => {
     it('should return a response', async () => {
@@ -13,9 +12,9 @@ describe('/hello endpoint', () => {
 
 describe("test db connection", () => {
     it("should connect to db", async () => {
-        await db.sequelize.sync()
+        await db.sequelize.authenticate()
     });
-})
+});
 
 describe("test db migration", () => {
     it("should have inserted values", async () => {
@@ -23,7 +22,7 @@ describe("test db migration", () => {
         expect(response.status).toBe(200)
         expect(response.body).toEqual(db.TAGS)
     })
-})
+});
 
 
 describe("Shutting down", () => {
@@ -33,4 +32,4 @@ describe("Shutting down", () => {
             expect(err).toBe(undefined);
         })
     })
-})
+});
