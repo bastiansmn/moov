@@ -12,7 +12,7 @@ jobs:
         run: |
           touch frontend/.env
           echo "VITE_MAPS_API_KEY=${{ secrets.MAPS_API_KEY }}" >> frontend/.env
-          echo "VITE_BACKEND_URL=http://localhost:3000" >> frontend/.env
+          echo "VITE_BACKEND_URL=${{ secrets.BACKEND_URL }}" >> frontend/.env
 
       - name: Run the docker compose file
         run: docker-compose -f docker-compose.full-app.yml up -d
