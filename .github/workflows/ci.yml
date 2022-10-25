@@ -27,8 +27,8 @@ jobs:
           ORIGIN: ${{ secrets.ORIGIN }}
 
       - name: Check if containers are running
-        run: |
 #          TODO: Changer la façon dont on vérifie si les containers sont en cours d'exécution
+        run: |
           sleep 10
           [ $(docker ps | wc -l) -eq 5 ]
 
