@@ -1,5 +1,5 @@
 import { useSettingsStore } from '@/store/settings';
-import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router';
+import {RouteRecordRaw, createRouter, createWebHashHistory} from 'vue-router';
 import Home from '../views/Home.vue'
 import User, { RoleEnum } from '@/store/model/user';
 import { codeIsOK } from '@/utils/statusCodes';
@@ -54,7 +54,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-   history: createWebHistory(),
+   history: createWebHashHistory(),
    routes
 });
 

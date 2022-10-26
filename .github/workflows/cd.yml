@@ -8,31 +8,53 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Stop and remove the containers
-        run: docker-compose -f docker-compose.server.yml down
+      - name: Push new backend image to container registry
+        uses: docker/build-push-action@v2
+        with:
+          context: backend/
+          file: backend/Dockerfile
+          push: true
+          tags: bastiansmn/moov-container-registry:server-latest
 
-      - name: Set up env file
-        run: |
-          touch .env
-          echo "PG_EMAIL=${{ secrets.PG_EMAIL }}" >> .env
-          echo "PG_PASSWORD=${{ secrets.PG_PASSWORD }}" >> .env
-          echo "EMAIL=${{ secrets.EMAIL }}" >> .env
-          echo "EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}" >> .env
-          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
-          echo "JWT_REFRESH_SECRET=${{ secrets.JWT_REFRESH_SECRET }}" >> .env
-          echo "ORIGIN=${{ secrets.ORIGIN }}" >> .env
+      - name: Copy docker-compose.server.yml file to vps
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          source: docker-compose.server.yml
+          target: /apps/moov
 
-      - name: Source the .env variables to the current shell
-        run: |  
-          export $(grep -v '^#' .env | xargs)
-
-      - name: Run docker-compose
-        run: docker-compose -f docker-compose.server.yml up -d
+      - name: Deploy using ssh
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /apps/moov
+            docker-compose -f docker-compose.server.yml down
+            echo "" > .env
+            echo "PG_EMAIL=${{ secrets.PG_EMAIL }}" >> .env
+            echo "PG_PASSWORD=${{ secrets.PG_PASSWORD }}" >> .env
+            echo "EMAIL=${{ secrets.EMAIL }}" >> .env
+            echo "EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}" >> .env
+            echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+            echo "JWT_REFRESH_SECRET=${{ secrets.JWT_REFRESH_SECRET }}" >> .env
+            echo "ORIGIN=${{ secrets.ORIGIN }}" >> .env
+            export $(grep -v '^#' .env | xargs)
+            docker-compose -f docker-compose.server.yml up -d
 
   deploy-client:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Create the .env file for frontend
+        run: |
+          touch frontend/.env
+          echo "VITE_MAPS_API_KEY=${{ secrets.MAPS_API_KEY }}" >> frontend/.env
+          echo "VITE_BACKEND_URL=${{ secrets.BACKEND_URL }}" >> frontend/.env
       - name: Use Node.js 16
         uses: actions/setup-node@v2
         with:
