@@ -10,4 +10,4 @@ COPY . ./
 RUN npm install
 
 # Run the app
-CMD [ "ls" ]
+CMD [ "node", "server.js" ]
