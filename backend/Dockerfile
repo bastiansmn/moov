@@ -13,4 +13,4 @@ RUN npm install
 COPY . .
 
 # Run the app
-CMD [ "node", "server.js" ]
+CMD [ "pwd" ]
