@@ -12,5 +12,8 @@ RUN npm install
 # Copy the rest of the files
 COPY . .
 
+# Expose port 3000
+EXPOSE 3000
+
 # Run the app
-CMD [ "pwd" ]
+CMD [ "npm", "start" ]
