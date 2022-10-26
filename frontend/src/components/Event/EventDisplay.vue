@@ -1,10 +1,9 @@
 <script lang="ts">
 import Event from '@/store/model/event';
-import { defineComponent, onMounted, ref } from 'vue';
-import { useRoute } from 'vue-router'
-import { useSettingsStore } from '@/store/settings';
-import { Loader } from '@googlemaps/js-api-loader';
-import clean from "@/utils/fetchCleaner";
+import {defineComponent, onMounted, ref} from 'vue';
+import {useRoute} from 'vue-router'
+import {useSettingsStore} from '@/store/settings';
+import {Loader} from '@googlemaps/js-api-loader';
 
 const settingsStore = useSettingsStore();
 
