@@ -4,13 +4,13 @@ FROM node:15
 WORKDIR /app
 
 # Copy package.json and package-lock.json
-COPY package.json ./
+COPY . ./
 
 # Install dependencies
 RUN npm install
 
-# Copy the rest of the files
-COPY . .
+RUN ls -la
+RUN ls -la /app
 
 # Run the app
 CMD [ "node", "server.js" ]
