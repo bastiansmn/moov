@@ -40,6 +40,7 @@ jobs:
           script: |
             cd /apps/moov
             docker stop $(docker ps -aq)
+            docker container remove $(docker ps -aq)
             docker compose -f docker-compose.server.yml down
             echo "" > .env
             echo "PG_EMAIL=${{ secrets.PG_EMAIL }}" >> .env
