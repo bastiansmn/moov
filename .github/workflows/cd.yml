@@ -15,7 +15,6 @@ jobs:
       - name: Push new backend image to container registry
         uses: docker/build-push-action@v2
         with:
-          context: backend/
           file: backend/Dockerfile
           push: true
           tags: bastiansmn/moov-container-registry:server-latest
