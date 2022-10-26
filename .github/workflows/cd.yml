@@ -49,8 +49,6 @@ jobs:
           script: |
             cd /apps/moov
             docker compose -f docker-compose.server.yml down
-            docker container rm $(docker ps -aq)
-            docker image remove $(docker images -aq)
             docker pull bastiansmn/moov-container-registry:server-latest
             echo "" > .env
             echo "PG_EMAIL=${{ secrets.PG_EMAIL }}" >> .env
