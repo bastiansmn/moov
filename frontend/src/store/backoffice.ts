@@ -1,9 +1,8 @@
 import { defineStore } from "pinia";
 import User, { Role } from "./model/user";
 import Theme from "./model/theme";
-import { codeIsOK } from "../utils/statusCodes";
+import { codeIsOK } from "@/utils/statusCodes";
 import { useSettingsStore } from "./settings";
-import clean from "@/utils/fetchCleaner";
 const settingsStore = useSettingsStore();
 
 export const useBackofficeStore = defineStore("backoffice", {
@@ -30,7 +29,7 @@ export const useBackofficeStore = defineStore("backoffice", {
                return;
             }
       
-            fetch(clean("/api/user/getUsers"), {
+            fetch("/api/user/getUsers", {
                method: 'GET',
                headers: {
                   'Content-Type': 'application/json',
@@ -65,7 +64,7 @@ export const useBackofficeStore = defineStore("backoffice", {
                return;
             }
       
-            fetch(clean("/api/role/getAllRoles"), {
+            fetch("/api/role/getAllRoles", {
                method: "GET",
                headers: {
                   'Content-Type': 'application/json',
@@ -100,7 +99,7 @@ export const useBackofficeStore = defineStore("backoffice", {
                return;
             }
       
-            fetch(clean("/api/request/getAllRequests"), {
+            fetch("/api/request/getAllRequests", {
                method: "GET",
                headers: {
                   'Content-Type': 'application/json',
@@ -135,7 +134,7 @@ export const useBackofficeStore = defineStore("backoffice", {
                return;
             }
 
-            fetch(clean("/api/theme/fetchPendingThemes"), {
+            fetch("/api/theme/fetchPendingThemes", {
                headers: {
                   'Content-Type': 'application/json',
                    'x-access-token': accessToken

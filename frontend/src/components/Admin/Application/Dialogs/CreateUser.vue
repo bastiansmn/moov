@@ -1,12 +1,11 @@
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
-import { useSettingsStore } from '@/store/settings'
-import { useBackofficeStore } from '@/store/backoffice'
-import { codeIsOK } from "@/utils/statusCodes";
+import {defineComponent, ref} from 'vue'
+import {useSettingsStore} from '@/store/settings'
+import {useBackofficeStore} from '@/store/backoffice'
+import {codeIsOK} from "@/utils/statusCodes";
 
 import User from '@/store/model/user';
 import Input from '@/components/common/Input.vue';
-import clean from "@/utils/fetchCleaner";
 
 export default defineComponent({
    components: {
@@ -52,7 +51,7 @@ export default defineComponent({
          if (admin)
             roles.push("ADMIN");
 
-         fetch(clean("/api/user/create"), {
+         fetch("/api/user/create", {
             method: "POST",
             headers: {
                'Content-Type': 'application/json',

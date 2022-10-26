@@ -1,10 +1,9 @@
 <script lang="ts">
-import { defineComponent, ref, onMounted } from "vue";
+import {defineComponent, ref} from "vue";
 
 import Input from '@/components/common/Input.vue';
 import Select from '@/components/common/Select.vue';
-import { useSettingsStore } from '@/store/settings';
-import clean from '@/utils/fetchCleaner';
+import {useSettingsStore} from '@/store/settings';
 
 export default defineComponent({
    name: "Connection",
@@ -48,7 +47,7 @@ export default defineComponent({
                return;
             }
 
-            fetch(clean("/api/auth/signup"), {
+            fetch("/api/auth/signup", {
                method: "POST",
                headers: new Headers({
                   "Content-Type": "application/json",
@@ -103,7 +102,7 @@ export default defineComponent({
                password
             };
 
-            fetch(clean("/api/auth/signin"), {
+            fetch("/api/auth/signin", {
                method: "POST",
                headers: new Headers({
                   "Content-Type": "application/json",
@@ -222,7 +221,7 @@ export default defineComponent({
                   placeholder="Année de naissance" 
                   :options="[...Array(new Date().getFullYear() + 1).keys()].slice(1900).reverse()" 
                />
-               <input type="submit" value="register" hidden>
+               <input type="submit" value="register" hidden placeholder="">
             </form>
             <button @click="toggleForm('register')" class="toggle-register w-full h-[42px] text-white font-bold outline-none transition-[transform]">
                S'incrire

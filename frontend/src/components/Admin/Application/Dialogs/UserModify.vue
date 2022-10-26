@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits } from 'vue'
+import {defineEmits, defineProps} from 'vue'
 import User from "@/store/model/user"
-import { useBackofficeStore } from '@/store/backoffice';
-import { codeIsOK } from "@/utils/statusCodes"
-import { useSettingsStore } from '@/store/settings';
-import clean from "@/utils/fetchCleaner";
+import {useBackofficeStore} from '@/store/backoffice';
+import {codeIsOK} from "@/utils/statusCodes"
+import {useSettingsStore} from '@/store/settings';
 
 const props = defineProps<{
    selectedUser: User
@@ -29,7 +28,7 @@ const updateUser = ($event) => {
    if (moderatorRole) 
       roles.push("MODERATOR");
    
-   fetch(clean('/api/user/updateRoles'), {
+   fetch('/api/user/updateRoles', {
       method: "PUT",
       headers: {
          'Content-Type': 'application/json',

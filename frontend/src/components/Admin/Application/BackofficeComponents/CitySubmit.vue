@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import { codeIsOK } from "@/utils/statusCodes";
-import { useSettingsStore } from '@/store/settings';
+import {codeIsOK} from "@/utils/statusCodes";
+import {useSettingsStore} from '@/store/settings';
 
 import Input from "@/components/common/Input.vue";
-import clean from "@/utils/fetchCleaner";
 
 const settingsStore = useSettingsStore();
 
@@ -47,7 +46,7 @@ const submitCity = ($event) => {
    testApi(payload);
    if (!codeIsOK(settingsStore.notification.code)) return;
    if ($event.submitter.name === "submit_api") {
-      fetch(clean("/api/cities/create"), {
+      fetch("/api/cities/create", {
          method: "POST",
          headers: {
             'Content-Type': 'application/json',

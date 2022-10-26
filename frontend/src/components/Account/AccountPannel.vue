@@ -1,19 +1,18 @@
 <script lang="ts">
-import { defineComponent, ref, computed } from 'vue'
-import { useSettingsStore } from '@/store/settings'
-import clean from '@/utils/fetchCleaner';
+import {computed, defineComponent, ref} from 'vue'
+import {useSettingsStore} from '@/store/settings'
 
 import PannelDropdown from './PannelDropdown.vue'
 import Switcher from '../common/Switcher.vue'
 import EventPreview from '../common/EventPreview.vue'
 
-import { RoleEnum } from '@/store/model/user'
+import {RoleEnum} from '@/store/model/user'
 import City from '@/store/model/city'
 import Select from '../common/Select.vue'
 
 const fetchCities = () => {
    return new Promise<Array<City>>(resolve => {      
-      fetch(clean("/api/cities/getCities"))
+      fetch("/api/cities/getCities")
          .then(res => res.json())
          .then(res => {
             resolve(res);

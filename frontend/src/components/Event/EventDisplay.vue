@@ -10,7 +10,7 @@ const settingsStore = useSettingsStore();
 
 const fetchEvent = (event_id: String, city_id: String) => {
    return new Promise<Event>(resolve => {
-      fetch(clean(`/api/event/fetchEvent?event_id=${event_id}&city_id=${city_id}`))
+      fetch(`/api/event/fetchEvent?event_id=${event_id}&city_id=${city_id}`)
             .then(res => {
                const status = res.status;
                if (status === 200) {

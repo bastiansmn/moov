@@ -3,7 +3,6 @@ import router from "@/router/router";
 import User from "./model/user";
 import Event from "./model/event";
 import Theme from "./model/theme";
-import clean from "@/utils/fetchCleaner";
 
 // Create a new store instance.
 export const useSettingsStore = defineStore("settings", {
@@ -83,7 +82,7 @@ export const useSettingsStore = defineStore("settings", {
             router.push({ name: "Home" });
       },
       setUserRecommandations(val: boolean) {
-         fetch(clean("/api/user/setRecommandations"), {
+         fetch("/api/user/setRecommandations", {
             method: "PUT",
             headers: new Headers({
                "Content-Type": "application/json",
@@ -112,7 +111,7 @@ export const useSettingsStore = defineStore("settings", {
          this.setUserRecommandations(false);
       },
       setUserEmailNotifications(val: boolean) {
-         fetch(clean("/api/user/setNotifications"), {
+         fetch("/api/user/setNotifications", {
             method: "PUT",
             headers: new Headers({
                "Content-Type": "application/json",
@@ -141,7 +140,7 @@ export const useSettingsStore = defineStore("settings", {
          this.setUserEmailNotifications(false);
       },
       setUserCity(val: string) {
-         fetch(clean("/api/user/setCity"), {
+         fetch("/api/user/setCity", {
             method: "PUT",
             headers: new Headers({
                "Content-Type": "application/json",
@@ -174,7 +173,7 @@ export const useSettingsStore = defineStore("settings", {
       setUserRadius(val: string) {
          // Convert val to number
          const preferedRadius = parseInt(val.replace("km", "").trim());         
-         fetch(clean("/api/user/setPreferedRadius"), {
+         fetch("/api/user/setPreferedRadius", {
             method: "PUT",
             headers: new Headers({
                "Content-Type": "application/json",
@@ -204,7 +203,7 @@ export const useSettingsStore = defineStore("settings", {
       },
       fetchThemes(update=false) {
          return new Promise<Array<Theme>>(resolve => {
-            fetch(clean(`/api/theme/fetchThemes?city_id=${this.user.city_id ?? 'paris'}`))
+            fetch(`/api/theme/fetchThemes?city_id=${this.user.city_id ?? 'paris'}`)
                .then(res => {
                   const status = res.status;
                   res.json().then(data => {
@@ -248,7 +247,7 @@ export const useSettingsStore = defineStore("settings", {
       },
       fetchEvents(update=false, newEvents=false) {
          return new Promise<Array<Event>>(resolve => {
-            fetch(clean(`/api/cities/fetchData?city_id=${this.userConnected ? this.user.city_id : 'paris'}&rows=${this.slidesPerLoad}&start=${this.events.length}`))
+            fetch(`/api/cities/fetchData?city_id=${this.userConnected ? this.user.city_id : 'paris'}&rows=${this.slidesPerLoad}&start=${this.events.length}`)
                .then(response => {
                   if (response.status < 200 || response.status >= 300) {
                      this.sendNotification({
@@ -280,7 +279,7 @@ export const useSettingsStore = defineStore("settings", {
       },
       fetchTags(update=false) {
          return new Promise<Array<String>>(resolve => {
-            fetch(clean("/api/tags/getTags"))
+            fetch("/api/tags/getTags")
                .then(res => res.json())
                .then(res => {
                   if (update) this.tags = res;
@@ -294,7 +293,7 @@ export const useSettingsStore = defineStore("settings", {
       }, 
       fetchSavedEvents(update=false) {
          return new Promise<Array<Event>>(resolve => {
-            fetch(clean("/api/user/getSavedEvents"), {
+            fetch("/api/user/getSavedEvents", {
                method: "GET",
                headers: new Headers({
                   "Content-Type": "application/json",
@@ -309,7 +308,7 @@ export const useSettingsStore = defineStore("settings", {
          })
       },
       saveEvent(event: Event) {
-         fetch(clean("/api/user/saveEvent"), {
+         fetch("/api/user/saveEvent", {
             method: "POST",
             headers: new Headers({
                "Content-Type": "application/json",
@@ -333,7 +332,7 @@ export const useSettingsStore = defineStore("settings", {
          });
       },
       unsaveEvent(event: Event) {
-         fetch(clean("/api/user/unsaveEvent"), {
+         fetch("/api/user/unsaveEvent", {
             method: "DELETE",
             headers: new Headers({
                "Content-Type": "application/json",
