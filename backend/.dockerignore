@@ -3,4 +3,5 @@ node_modules
 .eslintrc.js
 .gitignore
 Dockerfile
+package-lock.json
 moov-db
