@@ -4,6 +4,14 @@ exports.isValidDate = (date) => {
    return ""
 }
 
+exports.parseLinks = (record, translator) => {
+   try {
+      return JSON.parse(record[translator.url_field])[0].link ?? "";
+   } catch (err) {
+      return record[translator.url_field] ?? "";
+   }
+}
+
 exports.parseTags = (record, translator) => {
    const tagsMapper = {
       "Musique": [

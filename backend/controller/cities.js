@@ -1,11 +1,14 @@
 const db = require("../model/index");
 const Cities = db.cities;
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
-const { isValidDate, parseTags } = require("../utils/eventTranslator");
+const { isValidDate, parseTags, parseLinks } = require("../utils/eventTranslator");
 const { convertLatlon } = require("../utils/eventFetching");
 
 exports.getCities = (_req, res) => {
    Cities.findAll({
+      where: {
+         is_active: true
+      },
       exclude: ["createdAt", "updatedAt"],
    }).then(cities => {
       res.status(200).send(cities);
@@ -16,6 +19,19 @@ exports.getCities = (_req, res) => {
       });
    });
 };
+
+exports.getAllCities = (_req, res) => {
+   Cities.findAll({
+      exclude: ["createdAt", "updatedAt"],
+   }).then(cities => {
+      res.status(200).send(cities);
+   }).catch(_err => {
+      console.log(_err);
+      res.status(400).send({
+         message: "Impossible de récupérer les villes"
+      });
+   });
+}
 
 exports.createCity = (req, res) => {
    const city_id = req.body.city_id;
@@ -34,7 +50,7 @@ exports.createCity = (req, res) => {
    const city_field = req.body.city_field;
    const district_field = req.body.district_field;
 
-   if (!city_id || !name || !api_base_link || !title_field || !description_field || !image_field || !url_field || !placename_field || !timing_field || !date_start_field || !date_end_field || !city_field || !district_field || !dataset_name || !latlon_field) { 
+   if (!city_id || !name || !api_base_link || !title_field || !description_field || !image_field || !url_field || !placename_field || !timing_field || !date_start_field || !date_end_field || !city_field || !district_field || !dataset_name || !latlon_field) {
       res.status(400).send({
          message: "Tous les champs sont requis"
       });
@@ -56,7 +72,8 @@ exports.createCity = (req, res) => {
       date_end_field,
       latlon_field,
       city_field,
-      district_field
+      district_field,
+      is_active: true
    }).then(city => {
       res.status(200).send(city);
    }).catch(_err => {
@@ -66,6 +83,25 @@ exports.createCity = (req, res) => {
       });
    });
 };
+
+exports.deleteCity = (req, res) => {
+   const city_id = req.params.city_id;
+
+   Cities.destroy({
+      where: {
+         city_id
+      }
+   }).then(() => {
+      res.status(200).send({
+         message: "Ville supprimée"
+      });
+   }).catch(_err => {
+      console.log(_err);
+      res.status(400).send({
+         message: "Impossible de supprimer la ville"
+      });
+   });
+}
 
 exports.fetchData = (req, res) => {
    if (!req.query.city_id) {
@@ -89,20 +125,36 @@ exports.fetchData = (req, res) => {
             return;
          }
          // TODO: Use api keys for apis to ensure we have no limit on the number of requests
-         fetch(`${city.api_base_link}/?dataset=${city.dataset_name}&rows=${req.query.rows ?? 10}&sort=${city.date_start_field}&start=${shift}${city.api_key ? `&apikey=${city.api_key}` : ""}`)
+         fetch(`${city.api_base_link}/?dataset=${city.dataset_name}&rows=${req.query.rows ?? 30}&sort=${city.date_start_field}&start=${shift}${city.api_key ? `&apikey=${city.api_key}` : ""}`)
             .then(response => response.json())
             .then(response => {
                let lastDateIsValid = false;
-               const toSend = response.records.map(record => {
+               const validateEvents = response.records.map(record => {
                   if (!record && !record.fields) return null;
                   lastDateIsValid = isValidDate(record[city.date_start_field]) !== "" && isValidDate(record[city.date_end_field]) !== "";
+                  console.log({
+                     city_id: city.city_id,
+                     event_id: record.recordid || "",
+                     title: record.fields[city.title_field] || "",
+                     description: record.fields[city.description_field] || "Non renseigné",
+                     image: record.fields[city.image_field] || "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Pas_d%27image_disponible.svg/300px-Pas_d%27image_disponible.svg.png",
+                     url: parseLinks(record.fields, city) || "",
+                     placename: record.fields[city.placename_field] || "Non renseigné",
+                     timing: record.fields[city.timing_field]?.replaceAll("_", " ") || "Non renseigné",
+                     date_start: isValidDate(record.fields[city.date_start_field]),
+                     date_end: isValidDate(record.fields[city.date_end_field]),
+                     latlon: convertLatlon(record.fields[city.latlon_field]) || "Non renseigné",
+                     city: record.fields[city.city_field] || "Non renseigné",
+                     district: record.fields[city.district_field] || "Non renseigné",
+                     tags: parseTags(record.fields, city)
+                  })
                   return {
                      city_id: city.city_id,
                      event_id: record.recordid || "",
                      title: record.fields[city.title_field] || "",
                      description: record.fields[city.description_field] || "Non renseigné",
-                     image: record.fields[city.image_field],
-                     url: record.fields[city.url_field] || "", 
+                     image: record.fields[city.image_field] || "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Pas_d%27image_disponible.svg/300px-Pas_d%27image_disponible.svg.png",
+                     url: parseLinks(record.fields, city) || "",
                      placename: record.fields[city.placename_field] || "Non renseigné",
                      timing: record.fields[city.timing_field]?.replaceAll("_", " ") || "Non renseigné",
                      date_start: isValidDate(record.fields[city.date_start_field]),
@@ -115,6 +167,18 @@ exports.fetchData = (req, res) => {
                }).filter(event => {
                   return event !== null && !(Object.values(event).includes(""));
                });
+
+               const toSend = [];
+               const map = new Map();
+               for (const item of validateEvents) {
+                  if(!map.has(item.title)){
+                     map.set(item.title, true);    // set any value to Map
+                     toSend.push({
+                        ...item,
+                     });
+                  }
+               }
+
                if (toSend.length === 0) {
                   fetchUntilValid(shift + 10, lastDateIsValid ? ++nbTry : nbTry);
                } else {

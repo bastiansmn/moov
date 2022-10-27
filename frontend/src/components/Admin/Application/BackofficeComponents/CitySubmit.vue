@@ -12,7 +12,7 @@ const testApi = (payload) => {
       .then(response => response.json())
       .then(response => {
          const data = response.records[0].fields;
-         const { api_base_link, city_id, dataset_name, name, ...requiredFields } = payload;
+         const { api_base_link, city_id, dataset_name, name, timing_field, ...requiredFields } = payload;
          for (let key in requiredFields) {
             if (!data.hasOwnProperty(requiredFields[key])) {
                settingsStore.sendNotification({
@@ -34,6 +34,8 @@ const submitCity = ($event) => {
       Array.from<HTMLInputElement>($event.target.querySelectorAll("input:not([type=submit])"))
          .map(e => ([e.name, e.value]))
    );
+
+   console.log(payload);
    
    if (Object.values(payload).includes("")) {
       settingsStore.sendNotification({

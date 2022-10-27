@@ -4,6 +4,9 @@ Moov est une application qui permet de visualiser les évènements des API Opend
 # Déploiement
 
 Un déploiement est disponible à cette URL : 
+[https://moov.bastian-somon.fr](https://moov.bastian-somon.fr)
+
+Notez que, même l'application gère automatiquement la liste des évènements affichés, les thèmes -eux- ne sont pas maintenus, et donc l'application peut paraître "vide" au sur l'écran d'accueil. J'essaie cependant de créer des thèmes pour les moments de l'années les plus intéressants ainsi (Noël, Halloween, etc..., pour les grandes villes).
 
 ### Lancement en local:
 

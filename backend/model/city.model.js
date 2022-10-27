@@ -52,6 +52,9 @@ module.exports = (sequelize, Sequelize) => {
       },
       district_field: {
          type: Sequelize.STRING,
+      },
+      is_active: {
+         type: Sequelize.BOOLEAN,
       }
    }, {
       defaultScope: {

@@ -32,5 +32,14 @@ module.exports = (app) => {
          requestsStats.saveRequest
       ],
       controller.fetchData
-   )
+   );
+
+   app.delete(
+      "/cities/delete",
+      [
+         jwtAuth.verifyToken,
+         verifyLog.isAdmin,
+      ],
+      controller.deleteCity
+   );
 }
