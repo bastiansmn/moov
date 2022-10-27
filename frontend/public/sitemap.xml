@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://moov.bastian-somon.fr/home</loc>
+
+    </url>
+    <url>
+        <loc>https://moov.bastian-somon.fr/event</loc>
+    </url>
+    <url>
+        <loc>https://moov.bastian-somon.fr/admin/application</loc>
+    </url>
+    <url>
+        <loc>https://moov.bastian-somon.fr/admin/catalog</loc>
+    </url>
+    <url>
+        <loc>https://moov.bastian-somon.fr/admin/themes</loc>
+    </url>
+</urlset>
