@@ -41,6 +41,7 @@ export default defineComponent({
       <router-link v-if="isAdmin || isModerator" to="/admin/themes" class="text-light-grey">
          Création de thèmes
       </router-link>
+      <a href="/admin">PgAdmin</a>
    </nav>
    <div class="admin__content w-full">
       <router-view v-slot="{ Component }">
