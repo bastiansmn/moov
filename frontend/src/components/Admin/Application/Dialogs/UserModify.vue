@@ -56,7 +56,35 @@ const updateUser = ($event) => {
             message: response.message
          });
       });
-      
+   });
+}
+
+const deleteUser = () => {
+   console.log(props.selectedUser.user_uuid);
+   const accessToken = localStorage.getItem('accessToken');
+   const user_uuid = props.selectedUser.user_uuid;
+
+   fetch("/api/user/delete", {
+      method: "DELETE",
+      headers: {
+         'Content-Type': 'application/json',
+         'x-access-token': accessToken
+      },
+      body: JSON.stringify({
+         user_uuid,
+      })
+   }).then(response => {
+      const status = response.status;
+      if (codeIsOK(status)) {
+         backofficeStore.users = backofficeStore.users.filter(user => user.user_uuid !== props.selectedUser.user_uuid);
+         emit("close");
+      }
+      response.json().then(response => {
+         settingsStore.sendNotification({
+            code: status,
+            message: response.message
+         });
+      });
    });
 }
 </script>
@@ -87,7 +115,12 @@ const updateUser = ($event) => {
                   {{ name }}
                </label>
             </div>
-            <input type="submit" value="Valider" class="bg-purple text-white rounded-[4px] px-4 py-1 mt-5 cursor-pointer">
+            <div class="controls">
+               <button @click.prevent="deleteUser()" class="bg-error text-white rounded-[4px] px-4 py-1 mt-5 cursor-pointer">
+                  Supprimer
+               </button>
+               <input type="submit" value="Valider" class="bg-purple text-white rounded-[4px] px-4 py-1 mt-5 cursor-pointer">
+            </div>
          </form>
       </div>
    </div>
@@ -104,5 +137,12 @@ input[type=checkbox] {
       transition: background .3s;
       background: #C5C5C5;
    }
+}
+
+.controls {
+   display: flex;
+   justify-content: space-between;
+   width: 100%;
+   margin-top: 1rem;
 }
 </style>

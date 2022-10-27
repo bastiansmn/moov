@@ -431,3 +431,34 @@ exports.unsaveEvent = (req, res) => {
       })
    })
 }
+
+exports.deleteUser = (req, res) => {
+   if (!req.body.user_uuid) {
+      res.status(400).send({
+          message: "Requête invalide",
+      });
+      return;
+   }
+
+   if (req.user_uuid === req.body.user_uuid) {
+      res.status(400).send({
+         message: "Vous ne pouvez pas supprimer votre propre compte",
+      });
+      return;
+   }
+
+   User.destroy({
+      where: {
+         user_uuid: req.body.user_uuid
+      }
+   }).then(() => {
+      res.status(200).send({
+         message: "Utilisateur supprimé",
+      });
+   }).catch(err => {
+      console.error(err);
+      res.status(400).send({
+         message: "Erreur lors de la suppression de l'utilisateur",
+      });
+   });
+}

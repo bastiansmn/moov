@@ -134,8 +134,9 @@ export default defineComponent({
    </div>
    <div class="event__content flex justify-between">
       <div class="left__event flex flex-col">
+         <h1 class="font-semibold text-lg mb-5">{{ title }}</h1>
          <img :src="image" :alt="title" class="rounded-sm shadow mb-5 w-full aspect-video object-cover">
-         <h1 class="font-semibold text-lg mb-5">Description</h1>
+         <h1 class="description font-semibold text-lg mb-5">Description</h1>
          <p class="event__description" v-html="description"></p>
       </div>
       <div class="right__event">
@@ -186,6 +187,28 @@ export default defineComponent({
 </template>
 
 <style lang="scss" scoped>
+@media screen and (max-width: 1000px) {
+   .event__content {
+      flex-direction: column;
+   }
+   .left__event {
+      width: 100% !important;
+      min-width: unset !important;
+
+      & > h1:not(.description) {
+         display: block !important;
+      }
+   }
+   .right__event {
+      width: 100% !important;
+      max-width: unset !important;
+
+      & > h1 {
+         visibility: hidden;
+      }
+   }
+}
+
 .event__description {
    &:deep(p) {
       margin-bottom: 2px;
@@ -198,6 +221,10 @@ export default defineComponent({
 .left__event {
    width: 53%;
    min-width: 500px;
+
+   & > h1:not(.description) {
+      display: none;
+   }
 }
 
 .right__event {

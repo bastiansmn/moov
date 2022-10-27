@@ -104,5 +104,12 @@ module.exports = (app) => {
          jwtAuth.verifyToken
       ],
       controller.unsaveEvent
+   );
+   app.delete(
+      "/user/delete",
+      [
+         jwtAuth.verifyToken,
+      ],
+      controller.deleteUser
    )
 };
