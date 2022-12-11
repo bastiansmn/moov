@@ -16,11 +16,11 @@ services:
 
   # Service for the backend
   moov-api:
-    container_name: moo-api
+    container_name: moov-api
     image: bastiansmn/moov-container-registry:server-latest
     environment:
       PORT: 3000
-      DB_HOST: ${DB_HOST:-postgres}
+      DB_HOST: ${DB_HOST:-moov-db}
       DB_USER: ${DB_USER:-postgres}
       DB_PASSWORD: ${DB_PASSWORD:-root}
       DB_NAME: ${DB_NAME:-moov}
@@ -37,9 +37,7 @@ services:
 
 volumes:
   db-data:
-  pgadmin-data:
 
 networks:
   default:
-    external:
-      name: apps-network
+    name: apps-network
