@@ -13,5 +13,6 @@ export default interface City {
    date_end_field: string,
    latlon_field: string,
    city_field: string,
-   district_field: string
+   district_field: string,
+   is_active: boolean,
 }

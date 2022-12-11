@@ -3,6 +3,7 @@ import User, { Role } from "./model/user";
 import Theme from "./model/theme";
 import { codeIsOK } from "@/utils/statusCodes";
 import { useSettingsStore } from "./settings";
+import City from "@/store/model/city";
 const settingsStore = useSettingsStore();
 
 export const useBackofficeStore = defineStore("backoffice", {
@@ -10,6 +11,7 @@ export const useBackofficeStore = defineStore("backoffice", {
       users: [] as User[],
       roles: [] as Role[],
       pendingThemes: [] as Theme[],
+      cities: [] as City[],
       requests: [] as Request[],
    }),
    actions: {
@@ -156,6 +158,43 @@ export const useBackofficeStore = defineStore("backoffice", {
                })
          });
       },
+      fetchCities() {
+         return new Promise<City[]>((resolve) => {
+            const user_uuid = localStorage.getItem('user_uuid');
+            const accessToken = localStorage.getItem('accessToken');
+
+            if (!user_uuid || !accessToken) {
+               resolve([]);
+               settingsStore.sendNotification({
+                  code: 400,
+                  message: "Impossible de récupérer les villes"
+               });
+               localStorage.clear();
+               return;
+            }
+
+            fetch("/api/city/fetchAllCities", {
+               headers: {
+                  'Content-Type': 'application/json',
+                   'x-access-token': accessToken
+               }
+            })
+               .then(response => {
+                  const status = response.status;
+                  if (codeIsOK(status)) {
+                     response.json().then(response => {
+                        resolve(response);
+                     });
+                  } else {
+                     settingsStore.sendNotification({
+                        code: status,
+                        message: "Erreur dans la récupération des villes"
+                     });
+                     resolve([]);
+                  }
+               })
+        });
+      },
       async loadBackoffice() {
          // TODO: Vérifier si ceci ne créé pas de bugs
          if (this.backofficeLoaded) return;
@@ -173,6 +212,7 @@ export const useBackofficeStore = defineStore("backoffice", {
       getRoles: (state) => state.roles,
       getRequests: (state) => state.requests,
       getPendingThemes: (state) => state.pendingThemes,
+      getCities: (state) => state.cities,
       backofficeLoaded: (state) => {
          return state.users.length !== 0 
             && state.roles.length !== 0 

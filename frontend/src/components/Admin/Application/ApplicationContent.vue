@@ -16,12 +16,14 @@ import RequestStatChart from "./BackofficeComponents/RequestStatChart.vue"
 import { useBackofficeStore } from '@/store/backoffice'
 import { useSettingsStore } from '@/store/settings'
 import User from '@/store/model/user'
+import CityList from "@/components/Admin/Application/BackofficeComponents/CityList.vue";
 
 const backofficeStore = useBackofficeStore();
 const settingsStore = useSettingsStore();
 
 export default defineComponent({
    components: {
+      CityList,
       // Dialogs:
       UserModify,
       MailSender,
@@ -130,8 +132,9 @@ export default defineComponent({
             </div>
          </div>
       </div>
-      <div>
+      <div class="flex justify-between">
          <CitySubmit />
+         <CityList />
          <!-- TODO : Ajouter une liste des villes existantes (avec lien vers api) + stats de moyenne d'âge + ville plus utilisée -->
       </div>
    </div>

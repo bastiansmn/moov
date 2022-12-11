@@ -6,8 +6,8 @@
   "scripts": {
     "test": "jest --forceExit",
     "start": "nodemon server.js",
-    "migrate": "",
-    "seed": ""
+    "migrate": "echo \"migrating\"",
+    "seed": "echo \"seeding\""
   },
   "author": "Bastian SOMON",
   "license": "ISC",

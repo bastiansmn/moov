@@ -16,6 +16,14 @@ module.exports = (app) => {
       ],
       controller.getCities
    );
+   app.get(
+      "/cities/getAllCities",
+      [
+         jwtAuth.verifyToken,
+         verifyLog.isAdmin,
+      ],
+      controller.getAllCities
+   )
    app.post(
       "/cities/create",
       [

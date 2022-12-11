@@ -3,6 +3,7 @@ import router from "@/router/router";
 import User from "./model/user";
 import Event from "./model/event";
 import Theme from "./model/theme";
+import City from "@/store/model/city";
 
 // Create a new store instance.
 export const useSettingsStore = defineStore("settings", {
@@ -17,6 +18,7 @@ export const useSettingsStore = defineStore("settings", {
       },
       themes: [] as Array<Theme>,
       events: [] as Array<Event>,
+      cities: [] as Array<City>,
       savedEvents: [] as Array<Event>,
       filter: [] as Array<string>,
       tags: [] as Array<string>,
@@ -26,9 +28,9 @@ export const useSettingsStore = defineStore("settings", {
    actions: {
       async loadSettings() {
          if (this.settingsLoaded) return;
-         
+
          console.log("Loading settings...");
-         
+
          this.themes = await this.fetchThemes();
          this.events = await this.fetchEvents();
          this.savedEvents = await this.fetchSavedEvents();
@@ -59,7 +61,7 @@ export const useSettingsStore = defineStore("settings", {
          }, delay || 5_000);
       },
 
-      connectUser(user: User) {         
+      connectUser(user: User) {
          this.user = user;
 
          // TODO : ne pas enregistrer le token dans le localStorage
@@ -98,8 +100,8 @@ export const useSettingsStore = defineStore("settings", {
                if (status >= 200 && status < 300)
                   this.user.userRecommandations = val;
                this.sendNotification({
-                  code: status, 
-                  message: data.message 
+                  code: status,
+                  message: data.message
                });
             });
          });
@@ -127,8 +129,8 @@ export const useSettingsStore = defineStore("settings", {
                if (status >= 200 && status < 300)
                   this.user.userEmailNotifications = val;
                this.sendNotification({
-                  code: status, 
-                  message: data.message 
+                  code: status,
+                  message: data.message
                });
             });
          });
@@ -158,8 +160,8 @@ export const useSettingsStore = defineStore("settings", {
                   this.fetchThemes(true);
                }
                this.sendNotification({
-                  code: status, 
-                  message: data.message 
+                  code: status,
+                  message: data.message
                });
             });
          }).catch(err => {
@@ -172,7 +174,7 @@ export const useSettingsStore = defineStore("settings", {
       },
       setUserRadius(val: string) {
          // Convert val to number
-         const preferedRadius = parseInt(val.replace("km", "").trim());         
+         const preferedRadius = parseInt(val.replace("km", "").trim());
          fetch("/api/user/setPreferedRadius", {
             method: "PUT",
             headers: new Headers({
@@ -189,8 +191,8 @@ export const useSettingsStore = defineStore("settings", {
                if (status >= 200 && status < 300)
                   this.user.preferedRadius = preferedRadius;
                this.sendNotification({
-                  code: status, 
-                  message: data.message 
+                  code: status,
+                  message: data.message
                });
             });
          }).catch(err => {
@@ -229,8 +231,8 @@ export const useSettingsStore = defineStore("settings", {
                         resolve(data);
                      } else {
                         this.sendNotification({
-                           code: status, 
-                           message: data.message 
+                           code: status,
+                           message: data.message
                         });
                         resolve([]);
                      }
@@ -290,7 +292,7 @@ export const useSettingsStore = defineStore("settings", {
                   resolve([]);
                });
          })
-      }, 
+      },
       fetchSavedEvents(update=false) {
          return new Promise<Array<Event>>(resolve => {
             fetch("/api/user/getSavedEvents", {
@@ -323,8 +325,8 @@ export const useSettingsStore = defineStore("settings", {
             res.json().then(data => {
                if (status >= 200 && status < 300) {
                   this.sendNotification({
-                     code: status, 
-                     message: data.message 
+                     code: status,
+                     message: data.message
                   });
                   this.fetchSavedEvents(true);
                }
@@ -346,8 +348,8 @@ export const useSettingsStore = defineStore("settings", {
             res.json().then(data => {
                if (status >= 200 && status < 300) {
                   this.sendNotification({
-                     code: status, 
-                     message: data.message 
+                     code: status,
+                     message: data.message
                   });
                   this.savedEvents = this.savedEvents.filter(e => e.event_id !== event.event_id);
                }
@@ -358,6 +360,20 @@ export const useSettingsStore = defineStore("settings", {
                code: 400,
                message: "Une erreur est survenue"
             });
+         });
+      },
+
+      fetchAllCities(update: boolean) {
+         return new Promise<Array<City>>(resolve => {
+            fetch("/api/cities/getAllCities")
+               .then(res => res.json())
+               .then(res => {
+                  if (update) this.cities = res;
+                  resolve(res);
+               }).catch(err => {
+                  console.error(err);
+                  resolve([]);
+               });
          });
       },
 
@@ -412,8 +428,8 @@ export const useSettingsStore = defineStore("settings", {
          }).filter(e => e.themed_events.length > 0);
       },
       settingsLoaded: (state) => {
-         return state.themes.length !== 0 
-            && state.events.length !== 0 
+         return state.themes.length !== 0
+            && state.events.length !== 0
             && state.savedEvents.length !== 0
             && state.filter.length !== 0
             && state.tags.length !== 0;
