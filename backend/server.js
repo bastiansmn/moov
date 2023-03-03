@@ -1,12 +1,7 @@
 const express = require('express');
 const bodyParser = require("body-parser");
-const cors = require("cors");
 require("dotenv").config();
 const db = require("./model/index");
-
-let corsOptions = {
-   origin: process.env.ORIGIN ?? 'http://localhost:4000',
-}
 
 const app = express();
 
@@ -14,7 +9,6 @@ app.use(express.static("public"));
 
 db.sequelize.sync()
 
-app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

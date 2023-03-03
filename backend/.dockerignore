@@ -4,4 +4,3 @@ node_modules
 .gitignore
 Dockerfile
 package-lock.json
-moov-db

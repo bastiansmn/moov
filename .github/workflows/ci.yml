@@ -14,14 +14,14 @@ jobs:
           echo "PG_EMAIL=${{ secrets.PG_EMAIL }}" >> .env
           echo "PG_PASSWORD=${{ secrets.PG_PASSWORD }}" >> .env
 
-      - name: Source the .env variables to the current shell
+      - name: Source the application.env variables to the current shell
         run: |
           export $(grep -v '^#' .env | xargs)
 
       - name: Run docker-compose
         run: docker-compose -f docker-compose.db.yml up -d
 
-      - name: Create the .env file for backend
+      - name: Create the application.env file for backend
         run: |
           touch backend/.env
           echo "EMAIL=${{ secrets.EMAIL }}" >> backend/.env
@@ -30,7 +30,7 @@ jobs:
           echo "JWT_REFRESH_SECRET=${{ secrets.JWT_REFRESH_SECRET }}" >> backend/.env
           echo "ORIGIN=${{ secrets.ORIGIN }}" >> backend/.env
 
-      - name: Source the .env variables to the current shell
+      - name: Source the application.env variables to the current shell
         run: |
           export $(grep -v '^#' backend/.env | xargs)
 
@@ -51,7 +51,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Create the .env file for frontend
+      - name: Create the application.env file for frontend
         run: |
           touch frontend/.env
           echo "VITE_MAPS_API_KEY=${{ secrets.MAPS_API_KEY }}" >> frontend/.env
