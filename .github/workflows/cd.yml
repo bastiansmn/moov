@@ -24,7 +24,7 @@ jobs:
 
       - name: Login and push to container registry
         run: |
-          echo ${{ secrets.REGISTRY_USER }} | docker login registry.bastian-somon.fr -u ${{ secrets.REGISTRY_PASS }} --password-stdin
+          echo ${{ secrets.REGISTRY_PASS }} | docker login registry.bastian-somon.fr -u ${{ secrets.REGISTRY_USER }} --password-stdin
           docker build -t registry.bastian-somon.fr/moov-frontend:latest frontend
           docker push registry.bastian-somon.fr/moov-frontend:latest
 
