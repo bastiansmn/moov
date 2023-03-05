@@ -52,10 +52,10 @@ jobs:
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBECONFIG }}
         with:
-          args: rollout restart deployment moov-backend
+          args: rollout restart deployment node -n moov
       - name: Trigger frontend rollout
         uses: Consensys/kubernetes-action@master
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBECONFIG }}
         with:
-          args: rollout restart deployment moov-frontend
+          args: rollout restart deployment nginx -n moov
