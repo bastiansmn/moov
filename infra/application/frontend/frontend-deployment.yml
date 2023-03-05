@@ -18,6 +18,9 @@ spec:
           imagePullPolicy: Always
           ports:
             - containerPort: 80
+          envFrom:
+          - secretRef:
+              name: moov-secret
       imagePullSecrets:
         - name: registry-creds
 #          volumeMounts:

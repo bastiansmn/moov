@@ -11,3 +11,4 @@ resources:
 - frontend/frontend-service.yml
 - database/db-deployment.yml
 - database/db-service.yml
+- database/db-pvc.yml
