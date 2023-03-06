@@ -4,7 +4,7 @@ const request = supertest(app)
 
 describe('/hello endpoint', () => {
     it('should return a response', async () => {
-        const response = await request.get("/hello")
+        const response = await request.get("/api/hello")
         expect(response.status).toBe(200)
         expect(response.text).toBe("Hello");
     });
@@ -18,7 +18,7 @@ describe("test db connection", () => {
 
 describe("test db migration", () => {
     it("should have inserted values", async () => {
-        const response = await request.get("/tags/getTags")
+        const response = await request.get("/api/tags/getTags")
         expect(response.status).toBe(200)
         expect(response.body).toEqual(db.TAGS)
     })
