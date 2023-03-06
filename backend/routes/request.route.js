@@ -10,7 +10,7 @@ module.exports = (app) => {
       next();
    });
    app.get(
-      "/request/getAllRequests",
+      "/api/request/getAllRequests",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdmin,

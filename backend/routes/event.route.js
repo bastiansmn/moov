@@ -10,7 +10,7 @@ module.exports = (app) => {
       next();
    });
    app.get(
-      "/event/fetchEvent",
+      "/api/event/fetchEvent",
       [
          requestsStats.saveRequest
       ],
