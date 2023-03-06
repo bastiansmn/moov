@@ -4,9 +4,6 @@ kind: Ingress
 metadata:
   name: moov-ingress
   namespace: moov
-  annotations:
-    nginx.ingress.kubernetes.io/use-regex: "true"
-    nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
@@ -20,10 +17,10 @@ spec:
                 name: moov-frontend
                 port:
                   number: 80
-          - path: /api(/|$)(.*)
-            pathType: Prefix
-            backend:
-              service:
-                name: moov-backend
-                port:
-                  number: 3000
+#          - path: /api(/|$)(.*)
+#            pathType: Prefix
+#            backend:
+#              service:
+#                name: moov-backend
+#                port:
+#                  number: 3000
