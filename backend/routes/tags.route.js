@@ -9,7 +9,7 @@ module.exports = (app) => {
       next();
    });
    app.get(
-      "/tags/getTags",
+      "/api/tags/getTags",
       controller.getTags
    )
 }

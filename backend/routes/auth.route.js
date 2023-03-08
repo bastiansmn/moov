@@ -15,7 +15,7 @@ module.exports = (app) => {
       next();
    });
    app.post(
-      "/auth/signup",
+      "/api/auth/signup",
       [
          bodytrim.applyToBody(strTrim),
          verifyLog.validateEmailAndUsername,
@@ -27,7 +27,7 @@ module.exports = (app) => {
       controller.signup
    );
    app.post(
-      "/auth/signin", 
+      "/api/auth/signin",
       [ 
          bodytrim.applyToBody(strTrim),
          requestsStats.saveRequest

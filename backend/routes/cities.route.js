@@ -10,14 +10,14 @@ module.exports = (app) => {
       next();
    });
    app.get(
-      "/cities/getCities",
+      "/api/cities/getCities",
       [
          requestsStats.saveRequest
       ],
       controller.getCities
    );
    app.get(
-      "/cities/getAllCities",
+      "/api/cities/getAllCities",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdmin,
@@ -25,7 +25,7 @@ module.exports = (app) => {
       controller.getAllCities
    )
    app.post(
-      "/cities/create",
+      "/api/cities/create",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdmin,
@@ -35,7 +35,7 @@ module.exports = (app) => {
    );
 
    app.get(
-      "/cities/fetchData",
+      "/api/cities/fetchData",
       [
          requestsStats.saveRequest
       ],
@@ -43,7 +43,7 @@ module.exports = (app) => {
    );
 
    app.delete(
-      "/cities/delete",
+      "/api/cities/delete",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdmin,

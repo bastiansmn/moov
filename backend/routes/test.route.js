@@ -7,7 +7,7 @@ module.exports = (app) => {
         next();
     });
     // Route to test if server is up and running
-    app.get("/hello", (_req, res) => {
+    app.get("/api/hello", (_req, res) => {
         res.status(200).send("Hello");
     })
 }

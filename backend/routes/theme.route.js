@@ -10,11 +10,11 @@ module.exports = (app) => {
       next();
    });
    app.get(
-      "/theme/fetchThemes", 
+      "/api/theme/fetchThemes",
       controller.fetchThemes
    );
    app.get(
-      "/theme/fetchPendingThemes",
+      "/api/theme/fetchPendingThemes",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdmin
@@ -22,7 +22,7 @@ module.exports = (app) => {
       controller.fetchPendingThemes
    );
    app.post(
-      "/theme/createTheme",
+      "/api/theme/createTheme",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdminOrModerator,
@@ -31,7 +31,7 @@ module.exports = (app) => {
       controller.createTheme
    );
    app.delete(
-      "/theme/deleteTheme",
+      "/api/theme/deleteTheme",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdminOrModerator,
@@ -40,7 +40,7 @@ module.exports = (app) => {
       controller.deleteTheme
    )
    app.put(
-      "/theme/changeStatus",
+      "/api/theme/changeStatus",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdmin,
@@ -48,7 +48,7 @@ module.exports = (app) => {
       controller.changeStatus
    );
    app.post(
-      "/theme/addEvent",
+      "/api/theme/addEvent",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdminOrModerator,
@@ -56,7 +56,7 @@ module.exports = (app) => {
       controller.addEvent
    );
    app.delete(
-      "/theme/deleteEvent",
+      "/api/theme/deleteEvent",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdminOrModerator, 

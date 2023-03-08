@@ -10,14 +10,14 @@ module.exports = (app) => {
       next();
    });
    app.get(
-      "/user/getUserByUUID",
+      "/api/user/getUserByUUID",
       [
          jwtAuth.verifyToken,
       ],
       controller.getUserByUUID
    );
    app.put(
-      "/user/setNotifications",
+      "/api/user/setNotifications",
       [
          jwtAuth.verifyToken,
          requestsStats.saveRequest
@@ -25,7 +25,7 @@ module.exports = (app) => {
       controller.setUserNotifications
    );
    app.put(
-      "/user/setRecommandations",
+      "/api/user/setRecommandations",
       [
          jwtAuth.verifyToken,
          requestsStats.saveRequest
@@ -33,7 +33,7 @@ module.exports = (app) => {
       controller.setUserRecommandations
    );
    app.get(
-      "/user/getUsers",
+      "/api/user/getUsers",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdmin,
@@ -42,7 +42,7 @@ module.exports = (app) => {
       controller.getUsers
    );
    app.put(
-      "/user/updateRoles",
+      "/api/user/updateRoles",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdmin,
@@ -51,21 +51,21 @@ module.exports = (app) => {
       controller.updateRoles
    );
    app.put(
-      "/user/setCity",
+      "/api/user/setCity",
       [
          jwtAuth.verifyToken
       ],
       controller.setCity
    );
    app.put(
-      "/user/setPreferedRadius",
+      "/api/user/setPreferedRadius",
       [
          jwtAuth.verifyToken
       ],
       controller.setPreferedRadius
    );
    app.post(
-      "/user/create",
+      "/api/user/create",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdmin,
@@ -77,7 +77,7 @@ module.exports = (app) => {
       controller.createUser
    );
    app.get(
-      "/user/me",
+      "/api/user/me",
       [
          jwtAuth.verifyToken,
          requestsStats.saveRequest
@@ -85,28 +85,28 @@ module.exports = (app) => {
       controller.recommandedEvents
    );
    app.get(
-      "/user/getSavedEvents",
+      "/api/user/getSavedEvents",
       [
          jwtAuth.verifyToken
       ],
       controller.getSavedEvents
    );
    app.post(
-      "/user/saveEvent",
+      "/api/user/saveEvent",
       [
          jwtAuth.verifyToken
       ],
       controller.saveEvent
    );
    app.delete(
-      "/user/unsaveEvent",
+      "/api/user/unsaveEvent",
       [
          jwtAuth.verifyToken
       ],
       controller.unsaveEvent
    );
    app.delete(
-      "/user/delete",
+      "/api/user/delete",
       [
          jwtAuth.verifyToken,
       ],

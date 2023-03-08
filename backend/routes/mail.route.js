@@ -15,7 +15,7 @@ module.exports = (app) => {
       next();
    });
    app.post(
-      "/mail/send", 
+      "/api/mail/send",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdmin,

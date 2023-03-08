@@ -10,7 +10,7 @@ module.exports = (app) => {
       next();
    });
    app.get(
-      "/role/getAllRoles",
+      "/api/role/getAllRoles",
       [
          jwtAuth.verifyToken,
          verifyLog.isAdmin,
