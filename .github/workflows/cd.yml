@@ -34,8 +34,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Trigger deploy
-        uses: Consensys/kubernetes-action@master
+      - name: Kubernetes Action with Python 2.x fixes
+        uses: davi020/kubernetes-action@V1
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBECONFIG }}
         with:
@@ -47,14 +47,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Trigger backend rollout
-        uses: Consensys/kubernetes-action@master
+      - name: Kubernetes Action with Python 2.x fixes
+        uses: davi020/kubernetes-action@V1
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBECONFIG }}
         with:
           args: rollout restart deployment node -n moov
-      - name: Trigger frontend rollout
-        uses: Consensys/kubernetes-action@master
+
+      - name: Kubernetes Action with Python 2.x fixes
+        uses: davi020/kubernetes-action@V1
         env:
           KUBE_CONFIG_DATA: ${{ secrets.KUBECONFIG }}
         with:
