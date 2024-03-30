@@ -12,6 +12,15 @@ spec:
       labels:
         app: node
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: workload
+                operator: In
+                values:
+                - application
       containers:
         - name: node
           image: registry.bastian-somon.fr/moov-backend:latest
