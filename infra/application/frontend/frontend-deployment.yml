@@ -12,15 +12,6 @@ spec:
       labels:
         app: nginx
     spec:
-      # affinity:
-      #   nodeAffinity:
-      #     requiredDuringSchedulingIgnoredDuringExecution:
-      #       nodeSelectorTerms:
-      #       - matchExpressions:
-      #         - key: workload
-      #           operator: In
-      #           values:
-      #           - application
       containers:
         - name: nginx
           image: registry.bastian-somon.fr/moov-frontend:latest
@@ -32,14 +23,3 @@ spec:
               name: moov-secret
       imagePullSecrets:
         - name: registry-creds
-#          volumeMounts:
-#            - name: nginx-config
-#              mountPath: /etc/nginx/nginx.conf
-#              subPath: nginx.conf
-#      volumes:
-#        - name: nginx-config
-#          configMap:
-#            name: nginx-configmap
-#            items:
-#              - key: nginx.conf
-#                path: nginx.conf
